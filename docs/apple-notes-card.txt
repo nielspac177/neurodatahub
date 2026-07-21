@@ -1,8 +1,20 @@
-NEURODATAHUB — ACTUALIZACIÓN SEMANAL
+NEURODATAHUB — ACTUALIZACIÓN
 Tarjeta para Apple Notes. Texto plano a propósito: se pega limpio.
 Versión larga: RUNBOOK.md en el repo.
 
 ────────────────────────────────────
+0. CADENCIA
+
+  SEMANAL   automático, gratis, no tocas nada.
+            Mantiene el catálogo al día: enlaces, licencias,
+            preguntas ya cerradas por alguien.
+
+  MENSUAL   tú, ~1 h. Es lo único que cuesta tokens.
+            Añade datasets nuevos.
+
+  Lo de abajo es la corrida MENSUAL.
+
+
 1. ABRIR EL AGENTE
 ────────────────────────────────────
 
@@ -13,10 +25,10 @@ Terminal:
 
 Pegar esto en Claude Code:
 
-   Lee RUNBOOK.md y ejecuta la actualización semanal completa de
-   NeuroDataHub. Párate y enséñame lo que haya en drafts/needs_human/
-   antes de publicar nada. No hagas push: déjalo commiteado en una
-   rama y dime el comando para mergear.
+   Lee RUNBOOK.md y ejecuta la corrida MENSUAL de enriquecimiento de
+   NeuroDataHub con --limit 20. Párate y enséñame lo que haya en
+   drafts/needs_human/ antes de publicar nada. No hagas push: déjalo
+   commiteado en una rama y dime el comando para mergear.
 
 Eso basta. El agente saca el resto del RUNBOOK.md.
 

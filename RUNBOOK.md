@@ -41,6 +41,19 @@ y decide qué se publica.
 
 ---
 
+## 1b. Dos cadencias distintas
+
+| Qué | Cuándo | Coste | Por qué |
+|---|---|---|---|
+| Escaneo + auditoría de enlaces + delta de citas | **semanal**, automático | 0 tokens | es lo que mantiene *lo último*: enlaces vivos, licencias vigentes, preguntas ya cerradas |
+| Enriquecimiento (panel adversarial) | **mensual**, a mano | ~200-300k tokens/registro | es la única parte cara; añade datasets nuevos |
+
+Tener "lo último" y gastar poco no están reñidos: lo que envejece mal en un
+catálogo son los registros ya publicados, y revalidarlos es gratis. Añadir
+datasets nuevos puede esperar al mes.
+
+Para la corrida mensual sube el lote: `--limit 20` en vez de 8.
+
 ## 2. El ciclo completo, en orden
 
 ```bash
@@ -87,10 +100,16 @@ git add -A && git commit
 Usa la herramienta `Workflow` de Claude Code:
 
 ```
-Workflow({ scriptPath: "workflows/enrich.mjs", args: { limit: 8 } })
+Workflow({ scriptPath: "workflows/enrich.mjs", args: { limit: 20 } })
 ```
 
-Tarda ~15 min y lanza ~100 subagentes. Lo que hace, por etapas:
+Escalonado de modelos (`const M` al principio del script): Haiku para el
+filtro de alcance y el ensamblado, Sonnet para redactor y críticos, el modelo
+de sesión sólo para el crítico de novedad, que es el único que razona de
+verdad sobre literatura. Cada etapa guarda su parte en `drafts/parts/` y
+`scripts/assemble_record.py` las une en Python — antes un agente recibía el
+registro entero como texto sólo para escribirlo, y esa llamada sola costaba
+60-86k tokens por registro. Lo que hace, por etapas:
 
 1. **Alcance** — puerta barata; descarta lo que no es neuro antes de gastar tokens.
 2. **Redactor** — sólo ve la evidencia congelada. Cada campo lleva una cita

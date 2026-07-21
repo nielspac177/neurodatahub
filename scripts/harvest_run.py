@@ -15,6 +15,7 @@ El estado se guarda SÓLO al final, después de persistir las colas: si la
 corrida muere a la mitad, la próxima vuelve a traer en vez de saltarse.
 """
 import argparse
+import json
 import sys
 from datetime import date
 from pathlib import Path
@@ -140,11 +141,43 @@ def main():
 
     for b, rows in buckets.items():
         state.append_jsonl(b, rows)
+    compact_queues()
     ledger.save()
     state.save_harvest_state(hstate)
 
     write_report(buckets, per_source, dupes)
     print(f"\nInforme -> reports/scan-{today}.md")
+
+
+# Con enriquecimiento mensual y escaneo semanal, las colas crecen cuatro veces
+# más rápido de lo que se consumen. Sin compactar, el PR semanal llega a cientos
+# de miles de líneas y deja de ser revisable.
+KEEP_CANDIDATES = 500
+KEEP_BORDERLINE = 500
+
+
+def compact_queues():
+    """Recorta las colas dejando lo mejor puntuado.
+
+    `rejected` se vacía del todo: el libro mayor (state/seen.json) ya recuerda
+    cada rechazo con su puntaje, que es lo único que hace falta para no
+    volver a triarlo. Conservar además el JSON completo sólo infla el diff.
+    """
+    for name, keep in (("candidates", KEEP_CANDIDATES), ("borderline", KEEP_BORDERLINE)):
+        rows = state.read_jsonl(name)
+        if len(rows) <= keep:
+            continue
+        rows.sort(key=lambda r: -(r.get("score") or 0))
+        path = state.QUEUE_DIR / f"{name}.jsonl"
+        path.write_text("".join(json.dumps(r, ensure_ascii=False) + "\n"
+                                for r in rows[:keep]), encoding="utf-8")
+        print(f"  cola {name}: {len(rows)} -> {keep} (se conservan los mejor puntuados)")
+
+    rejected = state.QUEUE_DIR / "rejected.jsonl"
+    if rejected.exists() and rejected.stat().st_size:
+        n = sum(1 for _ in rejected.open(encoding="utf-8"))
+        rejected.write_text("", encoding="utf-8")
+        print(f"  cola rejected: {n} descartados -> 0 (ya están en el libro mayor)")
 
 
 def write_report(buckets, per_source, dupes):

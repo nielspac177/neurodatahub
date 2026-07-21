@@ -2,10 +2,14 @@ name: Weekly dataset scan
 
 # Domingo 06:00 UTC + disparo manual desde la pestaña Actions.
 #
+# CADENCIA: este job corre SEMANALMENTE porque es gratis y es lo que mantiene
+# el catálogo al día — enlaces vivos, términos de acceso vigentes, preguntas
+# que alguien pudo haber cerrado. El enriquecimiento (el que cuesta tokens)
+# es MENSUAL y se lanza a mano; ver RUNBOOK.md §2.
+#
 # Este job es la mitad DETERMINISTA del pipeline: enumera, deduplica, tría y
 # valida. No necesita ninguna clave de API y nunca escribe en
-# data/databases.yml. El enriquecimiento con LLM y la verificación adversarial
-# corren en local sobre las colas que este job produce.
+# data/databases.yml.
 on:
   schedule:
     - cron: "0 6 * * 0"

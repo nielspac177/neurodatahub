@@ -163,6 +163,30 @@ const FEASIBILITY = {
 };
 
 const REPO = '/Users/nielspacheco/neurodatahub';
+const PARTS = `${REPO}/drafts/parts`;
+
+// Escalonado de modelos. La primera corrida usó Opus en las 101 llamadas, que
+// es desperdicio: la mayoría de etapas son extracción estructurada contra un
+// texto congelado, con el esquema atrapando los errores de formato y Python
+// re-verificando cada veto después. Sólo la novedad exige razonar de verdad
+// sobre literatura, así que es la única que conserva el modelo fuerte.
+const M = {
+  scope:       { model: 'haiku',  effort: 'low' },
+  drafter:     { model: 'sonnet' },
+  literature:  { model: 'sonnet' },
+  ideator:     { model: 'sonnet' },
+  grounding:   { model: 'sonnet' },
+  access:      { model: 'sonnet' },
+  novelty:     {},                       // hereda el modelo de sesión
+  feasibility: { model: 'sonnet' },
+};
+
+// Instrucción común: cada etapa guarda SU parte en disco. Antes el script
+// devolvía el registro entero a un agente final para que lo escribiera, y esa
+// llamada sola costaba 60-86k tokens por registro.
+const save = (id, part) =>
+  `\n\nFinally, write your JSON result verbatim to ${PARTS}/${id}.${part}.json ` +
+  `using the Write tool (create the directory if needed). Do not alter any value.`;
 
 // ---------------------------------------------------------------------------
 phase('Scope');
@@ -203,8 +227,8 @@ Out of scope: non-neuro organs, animal-only with no translational framing,
 climate/geo/engineering, and anything that is not a reusable dataset.
 
 Base the decision ONLY on the evidence text. Be strict — a false positive
-costs the whole downstream pipeline.`,
-      { label: `scope:${item.id}`, phase: 'Scope', schema: SCOPE, effort: 'low' }
+costs the whole downstream pipeline.` + save(item.id, 'scope'),
+      { label: `scope:${item.id}`, phase: 'Scope', schema: SCOPE, ...M.scope }
     );
     return { item, scope };
   },
@@ -234,8 +258,8 @@ RULES — these are absolute:
 
 Also draft access_steps (ordered, each {step_en, step_es, eta}) and
 starter_code {python, r} ONLY if the evidence shows the actual file layout.
-Omit them entirely otherwise.`,
-      { label: `draft:${item.id}`, phase: 'Draft', schema: DRAFT }
+Omit them entirely otherwise.` + save(item.id, 'draft'),
+      { label: `draft:${item.id}`, phase: 'Draft', schema: DRAFT, ...M.drafter }
     );
     return { ...prev, draft };
   },
@@ -261,8 +285,8 @@ If there is no DOI, fall back to a Europe PMC search on the dataset name.
 Classify citing works by task (outcome-prediction, biomarker, segmentation,
 subtyping, causal, external-validation, foundation-model) and method.
 Set saturation: high if the obvious analyses are clearly done, low if barely used.
-n_citing_works must be the real number you observed, 0 if none.`,
-        { label: `lit:${item.id}`, phase: 'Context', schema: LITERATURE }
+n_citing_works must be the real number you observed, 0 if none.` + save(item.id, 'literature'),
+        { label: `lit:${item.id}`, phase: 'Context', schema: LITERATURE, ...M.literature }
       ),
       () => agent(
         `Read ${REPO}/drafts/${item.id}.evidence.json and ${REPO}/PLAN.md (section 6).
@@ -278,8 +302,8 @@ propose the project. Ideas that need data the dataset lacks are worse than
 no ideas — they waste a student's semester.
 
 difficulty is 1-5. effort_weeks must be realistic for one student.
-Write question_en and question_es for each.`,
-        { label: `ideas:${item.id}`, phase: 'Context', schema: IDEAS }
+Write question_en and question_es for each.` + save(item.id, 'ideas'),
+        { label: `ideas:${item.id}`, phase: 'Context', schema: IDEAS, ...M.ideator }
       ),
     ]);
     return { ...prev, literature, ideas };
@@ -310,8 +334,8 @@ UNSUPPORTED  = quote missing, paraphrased, or does not establish the value
 CONTRADICTED = the evidence states something different
 
 Default to UNSUPPORTED when uncertain. A field wrongly marked SUPPORTED
-puts an unverified claim in front of students.`,
-        { label: `c1-grounding:${item.id}`, phase: 'Critics', schema: GROUNDING }
+puts an unverified claim in front of students.` + save(item.id, 'grounding'),
+        { label: `c1-grounding:${item.id}`, phase: 'Critics', schema: GROUNDING, ...M.grounding }
       ),
 
       // C2 — acceso, derivado A CIEGAS. No ve la respuesta del redactor.
@@ -330,8 +354,8 @@ alone. Report the license verbatim and classify:
 Quote the exact licence/access sentence you relied on.
 If the evidence does not state the terms, answer "unknown" with confidence
 low. Do NOT infer from the repository's general reputation — some datasets
-on otherwise-open repositories carry their own restrictions.`,
-        { label: `c2-access:${item.id}`, phase: 'Critics', schema: ACCESS }
+on otherwise-open repositories carry their own restrictions.` + save(item.id, 'access'),
+        { label: `c2-access:${item.id}`, phase: 'Critics', schema: ACCESS, ...M.access }
       ),
 
       // C3 — novedad, por proyecto.
@@ -358,7 +382,7 @@ NOVEL     = no close prior work found
 
 Be skeptical: a question that is already answered wastes a student's time,
 so lean toward PUBLISHED/PARTIAL when you find close work.`,
-        { label: `c3-novelty:${p.id}`, phase: 'Critics', schema: NOVELTY }
+        { label: `c3-novelty:${p.id}`, phase: 'Critics', schema: NOVELTY, ...M.novelty }
       ).then((v) => (v ? { ...v, project_id: p.id } : v)))),
 
       // C4 — viabilidad, por proyecto.
@@ -382,7 +406,7 @@ access latency.
 Assign your OWN difficulty and effort_weeks. Be pessimistic: students
 consistently underestimate, and an over-optimistic rating is what makes them
 abandon a project halfway.`,
-        { label: `c4-feasibility:${p.id}`, phase: 'Critics', schema: FEASIBILITY }
+        { label: `c4-feasibility:${p.id}`, phase: 'Critics', schema: FEASIBILITY, ...M.feasibility }
       ).then((v) => (v ? { ...v, project_id: p.id } : v)))),
     ]);
 
@@ -420,16 +444,28 @@ abandon a project halfway.`,
       pipeline_version: 'enrich/1.0',
     };
 
+    // Los veredictos por-proyecto viven en memoria del script (no los escribió
+    // ningún agente), así que se persisten aquí en una sola llamada barata.
+    const perProject = JSON.stringify({
+      novelty: critics.novelty || [],
+      feasibility: critics.feasibility || [],
+    });
     await agent(
-      `Write this JSON verbatim to ${REPO}/drafts/${item.id}.record.json
-using the Write tool. Do not reformat, summarise, or alter any value —
-downstream Python re-verifies every field and any edit you make would
-corrupt the audit trail.
+      `Write this JSON verbatim to ${PARTS}/${item.id}.novelty.json using Write:\n` +
+      JSON.stringify(critics.novelty || []) +
+      `\n\nThen write this JSON verbatim to ${PARTS}/${item.id}.feasibility.json:\n` +
+      JSON.stringify(critics.feasibility || []) +
+      `\n\nReply with: written`,
+      { label: `verdicts:${item.id}`, phase: 'Assemble', model: 'haiku', effort: 'low' }
+    );
 
-${JSON.stringify(payload)}
-
-Then reply with exactly: written`,
-      { label: `write:${item.id}`, phase: 'Assemble', effort: 'low' }
+    // Las partes ya están en disco: aquí sólo se ordena unirlas. El agente no
+    // ve el payload, así que este paso cuesta unos cientos de tokens en vez de
+    // decenas de miles.
+    await agent(
+      `Run exactly this command and reply with its output:\n` +
+      `cd ${REPO} && python3 scripts/assemble_record.py ${item.id}`,
+      { label: `assemble:${item.id}`, phase: 'Assemble', model: 'haiku', effort: 'low' }
     );
 
     const g = critics.grounding?.verdicts || [];
