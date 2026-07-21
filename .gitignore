@@ -24,3 +24,10 @@ __pycache__/
 *.swp
 .idea/
 .vscode/
+
+# --- estado de trabajo transitorio del pipeline ---
+# Las partes intermedias y los .bak no son la cadena de custodia; ésa vive en
+# el bloque verification de data/databases.yml. Se regeneran en cada corrida.
+/drafts/parts/
+/drafts/ns-parts/
+*.yml.bak

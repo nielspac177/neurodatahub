@@ -400,6 +400,8 @@ def flatten_projects(records):
             item = dict(p)
             item["skills"] = normalize_skills(p.get("skills"))
             item["dataset_id"] = r["id"]
+            # subspecialty, clinical_rationale y outcome_measure ya vienen en
+            # dict(p); sólo hay que asegurarse de que sobrevivan al aplanado.
             item["dataset_name"] = r["name"]
             item["dataset_url"] = r.get("url")
             item["access"] = r.get("access")
@@ -446,8 +448,10 @@ def facets(records):
 
 
 def project_facets(projects):
-    diff, skill, lens, mod, ds, comp, acc = (Counter() for _ in range(7))
+    diff, skill, lens, mod, ds, comp, acc, sub = (Counter() for _ in range(8))
     for p in projects:
+        if p.get("subspecialty"):
+            sub[p["subspecialty"]] += 1
         diff[str(p.get("difficulty") or "unrated")] += 1
         lens[p.get("lens") or "unclassified"] += 1
         mod[p.get("modality_primary", "?")] += 1
@@ -467,6 +471,7 @@ def project_facets(projects):
         "access": dict(acc.most_common()),
         "dataset": dict(ds.most_common()),
         "compute": dict(comp.most_common()),
+        "subspecialty": dict(sub.most_common()),
     }
 
 

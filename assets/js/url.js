@@ -15,6 +15,7 @@ export const FACETS = {
   a: { attr: 'access', multi: false },
   d: { attr: 'difficulty', multi: false },
   s: { attr: 'skills', multi: true },
+  sub: { attr: 'subspecialty', multi: false },
 };
 
 export function encode(state) {

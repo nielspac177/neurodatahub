@@ -248,3 +248,11 @@ input[type="checkbox"]:checked + .chip .chip__count { opacity: .85; }
 .results-status { font-size: var(--fs-sm); color: var(--text-muted); font-variant-numeric: tabular-nums; }
 
 .tag-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+/* Insignia de subespecialidad neuroquirúrgica: acento vascular por defecto,
+   para que las preguntas clínicas destaquen en la rejilla de proyectos. */
+.badge--soft.is-subspecialty {
+  border-color: var(--mod-clinical-ink);
+  color: var(--mod-clinical-ink);
+  font-weight: var(--fw-semibold);
+}

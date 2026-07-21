@@ -246,16 +246,27 @@ def project_card(p, lang, root):
         effort = (f'<span class="badge badge--soft">{p["effort_weeks"]} '
                   f'{esc(S(lang, "weeks"))}</span>')
 
+    # La subespecialidad neuroquirúrgica se muestra como insignia y como
+    # motivo clínico de una línea: es lo que un estudiante de medicina busca.
+    sub = ""
+    if p.get("subspecialty"):
+        sub = (f'<span class="badge badge--soft is-subspecialty">'
+               f'{esc(S(lang, "sub_" + p["subspecialty"]))}</span>')
+    rationale = ""
+    if p.get("clinical_rationale"):
+        rationale = f'<p class="card__desc">{esc(p["clinical_rationale"])}</p>'
+
     return (
         f'<li class="{classes("card", "card--project", mod and f"card--{mod}")}" '
-        f'{attr(data_id=p.get("id"), data_dataset=p["dataset_id"], data_modality=mod, data_access=p.get("access_hardest"), data_difficulty=p.get("difficulty") or "", data_lens=p.get("lens") or "", data_skills="|".join(p.get("skills") or []))}>'
+        f'{attr(data_id=p.get("id"), data_dataset=p["dataset_id"], data_modality=mod, data_access=p.get("access_hardest"), data_difficulty=p.get("difficulty") or "", data_lens=p.get("lens") or "", data_skills="|".join(p.get("skills") or []), data_subspecialty=p.get("subspecialty") or "")}>'
         f'<h3 class="card__title"><a href="{ds_href}#{esc(p.get("id", ""))}">{esc(q)}</a></h3>'
         f'{pips(p.get("difficulty"), lang, "difficulty")}'
+        f'{rationale}'
         f'{skills}'
         f'<div class="card__foot">'
         f'{access_dot(p.get("access_hardest"), lang)}'
         f'<span class="badge badge--soft">{esc(p["dataset_name"])}</span>'
-        f'{effort}{unverified}'
+        f'{sub}{effort}{unverified}'
         f'</div>'
         f'</li>'
     )
@@ -387,5 +398,6 @@ def dataset_haystack(r):
 def project_haystack(p):
     parts = [p.get("question_en"), p.get("question_es"), p.get("dataset_name"),
              " ".join(p.get("skills") or []), p.get("lens"),
+             p.get("clinical_rationale"), p.get("outcome_measure"), p.get("subspecialty"),
              " ".join(p.get("diseases") or [])]
     return _fold(" ".join(x for x in parts if x))

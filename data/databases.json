@@ -599,6 +599,83 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "brats-q3",
+          "question_en": "Among glioblastoma patients in the BraTS survival cohort, does extent of resection (gross total vs subtotal, as recorded in the resection-status field) remain associated with overall survival after adjusting for age and preoperative enhancing tumour volume — and is the association preserved in patients over 70?",
+          "question_es": "En pacientes con glioblastoma de la cohorte de supervivencia de BraTS, ¿la extensión de la resección (resección total vs subtotal, según el campo de estado de resección) sigue asociada a la supervivencia global tras ajustar por edad y volumen tumoral realzante preoperatorio, y se mantiene esa asociación en mayores de 70 años?",
+          "difficulty": 3,
+          "effort_weeks": 8,
+          "skills": [
+            "python",
+            "statistics",
+            "neuroimaging"
+          ],
+          "extra_datasets": [
+            "tcia"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Neurosurgeons routinely debate how aggressively to resect in elderly glioblastoma patients, where the survival gain from a gross total resection may not justify the perioperative risk.",
+          "outcome_measure": "Overall survival (days from surgery; Cox proportional hazards, median OS)",
+          "subspecialty": "tumor"
+        },
+        {
+          "id": "brats-q4",
+          "question_en": "Does the ratio of peritumoural oedema volume to enhancing tumour volume on preoperative multiparametric MRI predict shorter overall survival in glioblastoma, independently of total tumour volume and age?",
+          "question_es": "¿La razón entre el volumen de edema peritumoral y el volumen de tumor realzante en la RM multiparamétrica preoperatoria predice menor supervivencia global en glioblastoma, de forma independiente del volumen tumoral total y la edad?",
+          "difficulty": 2,
+          "effort_weeks": 6,
+          "skills": [
+            "python",
+            "statistics",
+            "neuroimaging"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Extensive oedema is often read on rounds as a marker of infiltrative disease that limits how far a surgeon can safely resect, but whether it carries prognostic weight beyond raw tumour size changes how much it should influence the operative plan.",
+          "outcome_measure": "Overall survival (days; median OS and Cox hazard ratio per unit oedema:enhancement ratio)",
+          "subspecialty": "tumor"
+        },
+        {
+          "id": "brats-q5",
+          "question_en": "In the BraTS meningioma and brain-metastasis cohorts, which MRI descriptors (dural contact, degree of peritumoural oedema relative to lesion volume, lesion multiplicity, necrotic core fraction) best distinguish a solitary metastasis from a glioblastoma or an atypical meningioma before surgery?",
+          "question_es": "En las cohortes de meningioma y metástasis cerebral de BraTS, ¿qué descriptores de RM (contacto dural, grado de edema peritumoral relativo al volumen de la lesión, multiplicidad, fracción de núcleo necrótico) distinguen mejor una metástasis solitaria de un glioblastoma o un meningioma atípico antes de la cirugía?",
+          "difficulty": 3,
+          "effort_weeks": 8,
+          "skills": [
+            "python",
+            "statistics",
+            "neuroimaging"
+          ],
+          "extra_datasets": [
+            "tcia"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "A solitary metastasis, a glioblastoma and an atypical meningioma each send the patient down a different path — systemic workup for a primary, en-bloc versus piecemeal resection, or Simpson-grade planning — and the call is often made on the preoperative MRI alone.",
+          "outcome_measure": "Preoperative diagnostic classification accuracy against the reference tumour-type label (AUC, confusion matrix, sensitivity for metastasis)",
+          "subspecialty": "tumor"
+        },
+        {
+          "id": "brats-q6",
+          "question_en": "Does a volumetric prognostic threshold for enhancing tumour burden derived in one BraTS contributing institution still separate long- from short-survivors when applied unchanged to patients from the other institutions and scanners?",
+          "question_es": "¿Un umbral volumétrico pronóstico de carga tumoral realzante derivado en una institución contribuyente de BraTS sigue separando supervivientes largos de cortos al aplicarse sin cambios a pacientes de las demás instituciones y escáneres?",
+          "difficulty": 4,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics",
+            "neuroimaging"
+          ],
+          "extra_datasets": [
+            "tcia"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Cut-offs quoted in tumour board ('over 30 cc does badly') are usually derived at a single centre, and a surgeon needs to know whether the number survives a different scanner and referral pattern before letting it steer an operative decision.",
+          "outcome_measure": "Overall survival (discrimination of the threshold across sites: C-index, calibration slope, log-rank between strata within each held-out site)",
+          "subspecialty": "tumor"
         }
       ],
       "descriptor_doi": "10.1109/TMI.2014.2377694",
@@ -1184,6 +1261,44 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "eicu-crd-ntq1",
+          "question_en": "Does a simple bedside prognostic model for severe TBI built on MIMIC-IV (age, GCS motor score, first-day vitals and labs) retain its calibration and discrimination when applied across the ~200 hospitals of eICU, and which hospital characteristics predict where the model over- or under-estimates mortality?",
+          "question_es": "¿Un modelo pronóstico sencillo de cabecera para TCE grave construido en MIMIC-IV (edad, componente motor del GCS, constantes y laboratorios del primer día) mantiene su calibración y discriminación al aplicarse a los ~200 hospitales de eICU, y qué características del hospital predicen dónde el modelo sobre- o subestima la mortalidad?",
+          "difficulty": 3,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics"
+          ],
+          "extra_datasets": [
+            "mimic-iv"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Prognostic scores are quoted to families as if they were universal, but a model that is well calibrated in a Boston academic ICU and badly miscalibrated in a small community ICU would systematically mislead exactly the units with least neurotrauma experience.",
+          "outcome_measure": "In-hospital mortality, reported as discrimination (AUC) and calibration (slope/intercept) per hospital",
+          "subspecialty": "trauma"
+        },
+        {
+          "id": "eicu-crd-ntq2",
+          "question_en": "How much do ICUs vary in their early management of severe TBI — use of osmotherapy, deep sedation and vasopressors in the first 24 hours — and does that between-hospital variation explain differences in risk-adjusted mortality after accounting for APACHE score and admission GCS?",
+          "question_es": "¿Cuánto varían las UCI en el manejo precoz del TCE grave —uso de osmoterapia, sedación profunda y vasopresores en las primeras 24 h— y explica esa variación entre hospitales las diferencias en mortalidad ajustada por riesgo tras tener en cuenta el APACHE y el GCS de ingreso?",
+          "difficulty": 3,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics"
+          ],
+          "extra_datasets": [
+            "mimic-iv"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "If risk-adjusted TBI mortality differs several-fold between ICUs that follow the same guidelines, the difference is a modifiable process-of-care problem rather than case mix, which is precisely the argument for regionalising neurotrauma care.",
+          "outcome_measure": "Risk-adjusted in-hospital mortality, modelled with hospital-level random effects (median odds ratio)",
+          "subspecialty": "trauma"
         }
       ],
       "descriptor_doi": "10.1038/sdata.2018.178",
@@ -1545,6 +1660,80 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "mimic-iv-ntq1",
+          "question_en": "Among ICU patients with severe traumatic brain injury and documented intracranial hypertension, does early decompressive craniectomy (within 48 h of admission) compared with continued maximal medical management change in-hospital survival and the odds of being discharged home rather than to a skilled nursing or long-term facility, when the comparison is set up as a target-trial emulation with propensity matching on admission GCS, age, pupillary/vital-sign status and injury severity?",
+          "question_es": "En pacientes de UCI con traumatismo craneoencefálico grave e hipertensión intracraneal documentada, ¿la craniectomía descompresiva precoz (en las primeras 48 h) frente al manejo médico máximo continuado modifica la supervivencia intrahospitalaria y la probabilidad de alta a domicilio en lugar de a un centro de cuidados prolongados, planteando la comparación como emulación de ensayo diana con emparejamiento por puntaje de propensión sobre GCS de ingreso, edad, estado pupilar/hemodinámico y gravedad de la lesión?",
+          "difficulty": 4,
+          "effort_weeks": 14,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "RESCUEicp and DECRA left neurosurgeons with the uncomfortable result that craniectomy buys survival but often at the cost of severe disability, so real-world data on who actually walks out to home rather than to a nursing facility directly informs the consent conversation at 3 a.m.",
+          "outcome_measure": "In-hospital mortality and discharge disposition (home vs facility) as a proxy for dichotomised GOS-E; secondary: ICU length of stay",
+          "subspecialty": "trauma"
+        },
+        {
+          "id": "mimic-iv-ntq2",
+          "question_en": "In severe TBI patients receiving osmotherapy in the ICU, does first-line hypertonic saline versus mannitol associate with different in-hospital mortality, ICU length of stay and rate of subsequent surgical decompression, after adjustment for baseline GCS, sodium, creatinine and injury severity?",
+          "question_es": "En pacientes con TCE grave que reciben osmoterapia en UCI, ¿la elección de suero salino hipertónico frente a manitol como primera línea se asocia a distinta mortalidad intrahospitalaria, estancia en UCI y tasa de descompresión quirúrgica posterior, tras ajustar por GCS basal, sodio, creatinina y gravedad de la lesión?",
+          "difficulty": 3,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Every neuro-ICU has a house preference between hypertonic saline and mannitol despite no definitive trial, and knowing which agent precedes fewer crash craniectomies or renal injuries would settle a daily bedside argument.",
+          "outcome_measure": "In-hospital mortality; secondary: ICU length of stay and rate of subsequent decompressive craniectomy",
+          "subspecialty": "trauma"
+        },
+        {
+          "id": "mimic-iv-ntq3",
+          "question_en": "In patients aged 65 and over admitted with traumatic intracranial haemorrhage, does pre-injury anticoagulant or antiplatelet therapy predict a worse hospital course — measured as need for craniotomy, blood-product transfusion, and in-hospital mortality — and does the association differ between direct oral anticoagulants and warfarin?",
+          "question_es": "En pacientes de 65 años o más ingresados por hemorragia intracraneal traumática, ¿el tratamiento anticoagulante o antiagregante previo a la lesión predice un peor curso hospitalario —medido como necesidad de craneotomía, transfusión de hemoderivados y mortalidad intrahospitalaria— y difiere la asociación entre anticoagulantes orales directos y warfarina?",
+          "difficulty": 2,
+          "effort_weeks": 8,
+          "skills": [
+            "python",
+            "statistics"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "The anticoagulated elderly fall patient is the single most common neurotrauma consult, and whether a DOAC really carries the same haematoma-expansion risk as warfarin determines how aggressively we reverse and how long we observe before discharge.",
+          "outcome_measure": "In-hospital mortality; secondary: craniotomy/craniectomy rate and transfusion requirement",
+          "subspecialty": "trauma"
+        },
+        {
+          "id": "mimic-iv-ntq4",
+          "question_en": "Does the trajectory of the Glasgow Coma Scale over the first 72 ICU hours — its slope and variability — predict in-hospital mortality and discharge destination better than the single admission GCS in patients with traumatic brain injury?",
+          "question_es": "¿La trayectoria de la escala de coma de Glasgow durante las primeras 72 h en UCI —su pendiente y variabilidad— predice mejor la mortalidad intrahospitalaria y el destino al alta que el GCS único de ingreso en pacientes con traumatismo craneoencefálico?",
+          "difficulty": 3,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Prognostic conversations with families still hinge on the admission GCS even though clinicians instinctively trust the trend more, and quantifying how much the 72-hour trajectory adds would change when withdrawal-of-care discussions are appropriate.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; model comparison by AUC/net reclassification versus admission GCS alone",
+          "subspecialty": "trauma"
         }
       ],
       "descriptor_doi": "10.1038/s41597-022-01899-x",
@@ -2084,6 +2273,46 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "tcia-q2",
+          "question_en": "Using TCGA-LGG and TCGA-GBM collections, can simple preoperative MRI descriptors a radiologist can score by eye (tumour location and lobe, contrast enhancement pattern, presence of a non-enhancing tumour component, cortical involvement) classify IDH mutation and 1p/19q codeletion status well enough to guide the decision between upfront maximal resection and stereotactic biopsy?",
+          "question_es": "Usando las colecciones TCGA-LGG y TCGA-GBM, ¿pueden descriptores sencillos de RM preoperatoria evaluables visualmente por un radiólogo (localización y lóbulo, patrón de realce, presencia de componente no realzante, afectación cortical) clasificar el estado de mutación IDH y codeleción 1p/19q con precisión suficiente para orientar la decisión entre resección máxima inicial y biopsia estereotáctica?",
+          "difficulty": 3,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics",
+            "neuroimaging"
+          ],
+          "extra_datasets": [
+            "brats"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "IDH-mutant and 1p/19q-codeleted gliomas benefit most from aggressive early resection, so a preoperative read that shifts the molecular prior changes whether the patient goes to craniotomy or to biopsy first.",
+          "outcome_measure": "Diagnostic accuracy for molecular class (AUC, sensitivity/specificity, and calibration against biopsy-confirmed IDH and 1p/19q status)",
+          "subspecialty": "tumor"
+        },
+        {
+          "id": "tcia-q3",
+          "question_en": "In TCGA-GBM and TCGA-LGG patients with survival follow-up, is the apparent survival advantage of larger resections explained by confounding with age, tumour location (eloquent vs non-eloquent) and molecular subtype, when analysed with propensity-score adjustment rather than simple group comparison?",
+          "question_es": "En pacientes de TCGA-GBM y TCGA-LGG con seguimiento de supervivencia, ¿la aparente ventaja de supervivencia de las resecciones más amplias se explica por confusión con edad, localización tumoral (elocuente vs no elocuente) y subtipo molecular, al analizarse con ajuste por puntaje de propensión en lugar de comparación simple de grupos?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference"
+          ],
+          "extra_datasets": [
+            "brats"
+          ],
+          "status": "open",
+          "unverified": true,
+          "clinical_rationale": "Surgeons select healthier patients with more accessible tumours for aggressive resection, so the survival benefit quoted in retrospective series may be partly selection rather than surgery — which matters when counselling a borderline candidate.",
+          "outcome_measure": "Overall survival (propensity-score-adjusted hazard ratio and adjusted median OS difference)",
+          "subspecialty": "tumor"
         }
       ],
       "descriptor_doi": "10.1007/s10278-013-9622-7"

@@ -159,6 +159,10 @@ def build_projects(records, projects, lang, out_root):
         f'<div class="rail__head"><span class="rail__title">{esc(S(lang, "filters"))}</span>'
         f'<button class="btn btn--ghost" type="button" data-clear-filters>{esc(S(lang, "clear"))}</button></div>',
         f'<a class="visually-hidden skip-link" href="#results-heading">{esc(S(lang, "skip_filters"))}</a>',
+        C.chip_group(S(lang, "f_subspecialty"), "sub",
+                     list(pf.get("subspecialty", {})),
+                     pf.get("subspecialty", {}),
+                     labeller=lambda v: S(lang, "sub_" + v)),
         C.chip_group(S(lang, "f_difficulty"), "d", diff_values, pf["difficulty"],
                      labeller=lambda v: schema.DIFFICULTY_WORDS[int(v)][0 if lang == "en" else 1]),
         C.chip_group(S(lang, "f_modality"), "m",
