@@ -50,7 +50,7 @@
       ]
     },
     "doi": {
-      "value": "doi:10.18112/openneuro.ds008066.v1.0.0",
+      "value": "10.18112/openneuro.ds008066.v1.0.0",
       "evidence": [
         {"src": "e2", "quote": "DatasetDOI: doi:10.18112/openneuro.ds008066.v1.0.0"}
       ]

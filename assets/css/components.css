@@ -256,3 +256,9 @@ input[type="checkbox"]:checked + .chip .chip__count { opacity: .85; }
   color: var(--mod-clinical-ink);
   font-weight: var(--fw-semibold);
 }
+
+
+/* Veredicto clínico del neurocirujano, mostrado con honestidad:
+   verde = incertidumbre abierta, ámbar = pregunta muy estudiada. */
+.badge--soft.is-open { border-color: var(--ok); color: var(--ok); font-weight: var(--fw-semibold); }
+.badge--soft.is-studied { border-color: var(--warn); color: var(--warn); }

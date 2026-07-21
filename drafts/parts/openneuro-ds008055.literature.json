@@ -1,10 +1,11 @@
 {
-  "dataset": "Scientific Creativity MRI Dataset",
+  "dataset_name": "Scientific Creativity MRI Dataset",
   "doi": "10.18112/openneuro.ds008055.v1.0.4",
   "openalex_work_id": "https://openalex.org/W7166593980",
   "n_citing_works": 0,
-  "saturation": "low",
+  "citing_works": [],
   "dominant_tasks": [],
   "key_publications": [],
-  "summary_en": "No citing works were found for this dataset via the OpenAlex citation graph (filter=cites:W7166593980 confirmed cited_by_count=0 on the dataset's own OpenAlex record) or via a Europe PMC fallback search for the dataset name and DOI (both returned 0 hits). This is consistent with the dataset's very recent publication date (2026-06-29, version 1.0.4), only about three weeks before the date of this search (2026-07-21) — too little time has elapsed for downstream papers to appear. No literature currently exists that has used this dataset, so no task/method classification is possible yet. Saturation is low by default since the dataset is effectively unused so far, representing an open opportunity rather than a saturated space."
+  "saturation": "low",
+  "notes": "Dataset was published on OpenNeuro 2026-06-29 (v1.0.1) through 2026-07-01 (v1.0.4), only ~3 weeks before this query (2026-07-21). Queried OpenAlex works?filter=cites:W7166593980 (0 results) and Europe PMC full-text search for the exact dataset title (0 results, hitCount=0). No secondary/citing publications exist yet for any version of this dataset (all four DOI versions show cited_by_count=0 in OpenAlex). This is expected given the dataset's very recent release date rather than evidence of low interest; saturation is set to 'low' to reflect that essentially no analyses using this dataset have been published yet, not that the space is exhausted."
 }

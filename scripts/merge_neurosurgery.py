@@ -93,6 +93,11 @@ def main():
                 "clinical_rationale": q.get("clinical_rationale"),
                 "outcome_measure": q.get("outcome_measure"),
                 "subspecialty": q.get("subspecialty"),
+                # El veredicto del neurocirujano se muestra, no se oculta:
+                # "open" = incertidumbre clínica real; "well-studied" = buena
+                # pregunta pero ya resuelta por ensayos. El estudiante elige.
+                "clinical_verdict": ({"RELEVANT":"open","MARGINAL":"well-studied"}
+                                     .get(q.get("clinical_verdict"))),
             }
             if q.get("novelty") in schema.VALID_NOVELTY:
                 proj["novelty"] = q["novelty"]

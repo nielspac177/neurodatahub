@@ -2,28 +2,28 @@
   "verdicts": [
     {
       "field": "modality_primary",
-      "verdict": "SUPPORTED",
-      "note": "Quote 'Modalities: eeg, beh' appears verbatim in e2 and lists 'eeg' first, supporting eeg as the primary modality."
+      "verdict": "UNSUPPORTED",
+      "note": "Quote 'Modalities: eeg, beh' is verbatim and present in e2, but it merely lists two modalities without designating either as 'primary'. The value 'eeg' is a plausible inference (eeg listed first, README is EEG-heavy) but the cited quote does not itself establish primacy."
     },
     {
       "field": "diseases",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null with no evidence asserted; the repository record and README indeed contain no clinical/disease-status statement, so no unsupported claim is made."
+      "note": "Value is null with an appropriate 'needs' note and no evidence claimed. Nothing in e2 addresses clinical/health status, so leaving it null and unevidenced is correct."
     },
     {
       "field": "doi",
       "verdict": "SUPPORTED",
-      "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0' appears verbatim in e2 and directly establishes the DOI value."
+      "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0' appears verbatim in e2 and directly establishes the value."
     },
     {
       "field": "license",
       "verdict": "SUPPORTED",
-      "note": "Quote 'License: CC0' appears verbatim in e2 and directly establishes the license value."
+      "note": "Quote 'License: CC0' appears verbatim in e2 and directly establishes the value."
     },
     {
       "field": "n_subjects",
       "verdict": "SUPPORTED",
-      "note": "Quote 'Number of subjects: 123' appears verbatim in e2 and directly establishes the subject count."
+      "note": "Quote 'Number of subjects: 123' appears verbatim in e2 and directly establishes the value."
     },
     {
       "field": "provider",
@@ -33,47 +33,47 @@
     {
       "field": "region",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null with no evidence asserted; no site/institution location appears anywhere in the record."
+      "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 contains no site/institution location."
     },
     {
       "field": "species",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null with no evidence asserted; the word 'human' never appears in the record, matching the drafter's own caveat."
+      "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 never states 'human' explicitly, so leaving this unconfirmed is correct rather than asserting it."
     },
     {
       "field": "access",
       "verdict": "UNSUPPORTED",
-      "note": "The only cited quote, 'License: CC0', establishes the copyright license, not the data-access mechanism. CC0 is a permissive license but does not itself state that the dataset is openly/freely accessible without restriction (e.g., no registration, no embargo) — that is a distinct claim the quote does not make. This conflates license with access status."
+      "note": "Quote 'License: CC0' is verbatim but pertains to copyright/reuse licensing, not access/download gating. CC0 does not by itself establish that the dataset access mode is 'open' (e.g., registration or other access controls are not addressed one way or the other by this quote); it conflates license status with access status."
     },
     {
       "field": "access_notes",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null with no evidence asserted; no access/download terms beyond the license line appear in the record."
+      "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 states no access restrictions or terms beyond the license line."
     },
     {
       "field": "cost",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null with no evidence asserted; no pricing statement appears in the record."
+      "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 contains no pricing information."
     },
     {
       "field": "data_types",
       "verdict": "SUPPORTED",
-      "note": "The long README quote appears verbatim in e2 (matches the source text exactly, truncated before the unrelated Structural-MRI sentence) and enumerates each data type/task listed in the value array. The 'Modalities: eeg, beh' quote is also verbatim and supports the presence of behavioural (beh) data."
+      "note": "The cited README sentence is verbatim in e2, and each list item is a faithful, non-distorting decomposition of substrings that appear verbatim within that sentence (verified programmatically)."
     },
     {
       "field": "short_desc_en",
       "verdict": "SUPPORTED",
-      "note": "All three cited quotes ('License: CC0', 'Number of subjects: 123', and the long README passage) appear verbatim in e2 and jointly support the facts stated. Describing CC0 as 'open (CC0)' is a reasonable characterization of the license itself (CC0 is a public-domain/maximally-permissive license), distinct from the stronger categorical 'access: open' claim made in the access field."
+      "note": "All three cited quotes (License: CC0; Number of subjects: 123; the README description sentence) are verbatim in e2 and collectively support the summary's claims."
     },
     {
       "field": "short_desc_es",
       "verdict": "SUPPORTED",
-      "note": "Same underlying quotes as short_desc_en, verified verbatim in e2; this is a translation of the same supported facts, with 'abierto (CC0)' being the same reasonable license characterization noted above."
+      "note": "Spanish translation of the same facts covered by the English summary; underlying cited quotes are verbatim in e2 and support the translated content (no new claims introduced)."
     },
     {
       "field": "years",
       "verdict": "SUPPORTED",
-      "note": "Value is correctly left null; the 'needs' text accurately identifies that 'Created: 2026-06-26T01:54:51.365Z' (present verbatim in e2) is an upload/snapshot timestamp, not a data-collection period, so no unsupported year claim is made."
+      "note": "Value is null with an appropriate 'needs' note correctly distinguishing the upload/snapshot timestamp from an unstated data-collection period; no evidence claimed for a value."
     }
   ]
 }

@@ -252,6 +252,12 @@ def project_card(p, lang, root):
     if p.get("subspecialty"):
         sub = (f'<span class="badge badge--soft is-subspecialty">'
                f'{esc(S(lang, "sub_" + p["subspecialty"]))}</span>')
+    verdict = ""
+    if p.get("clinical_verdict"):
+        cls = "is-open" if p["clinical_verdict"] == "open" else "is-studied"
+        verdict = (f'<span class="badge badge--soft {cls}" '
+                   f'title="{esc(S(lang, "cv_note_" + p["clinical_verdict"]))}">'
+                   f'{esc(S(lang, "cv_" + p["clinical_verdict"]))}</span>')
     rationale = ""
     if p.get("clinical_rationale"):
         rationale = f'<p class="card__desc">{esc(p["clinical_rationale"])}</p>'
@@ -266,7 +272,7 @@ def project_card(p, lang, root):
         f'<div class="card__foot">'
         f'{access_dot(p.get("access_hardest"), lang)}'
         f'<span class="badge badge--soft">{esc(p["dataset_name"])}</span>'
-        f'{sub}{effort}{unverified}'
+        f'{sub}{verdict}{effort}{unverified}'
         f'</div>'
         f'</li>'
     )

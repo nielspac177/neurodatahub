@@ -10,7 +10,7 @@
     },
     "species": {
       "value": null,
-      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence)",
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence; 'participants' with a clinical depression diagnosis implies human but is never stated verbatim)",
       "evidence": []
     },
     "diseases": {
@@ -27,7 +27,7 @@
     },
     "years": {
       "value": null,
-      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp was present in fetched evidence)",
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp 'Created: 2026-06-29T19:45:23.022Z' was present in fetched evidence, which is an upload date, not the study period)",
       "evidence": []
     },
     "data_types": {
@@ -65,7 +65,7 @@
     },
     "region": {
       "value": null,
-      "needs": "study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "needs": "Study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
       "evidence": []
     },
     "access": {
@@ -76,7 +76,7 @@
     },
     "access_notes": {
       "value": null,
-      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence)",
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence; landing page source e1 was fetched but returned empty content, chars: 0)",
       "evidence": []
     },
     "cost": {

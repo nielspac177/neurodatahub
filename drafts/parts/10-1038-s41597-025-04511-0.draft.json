@@ -144,17 +144,14 @@
       ]
     },
     "doi": {
-      "value": "10.18112/openneuro.ds005684.v1.0.0 (dataset); 10.1038/s41597-025-04511-0 (data descriptor)",
+      "value": "10.1038/s41597-025-04511-0",
       "evidence": [
-        {
-          "src": "e1",
-          "quote": "OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0"
-        },
         {
           "src": "e2",
           "quote": "\"DOI\": \"10.1038/s41597-025-04511-0\""
         }
-      ]
+      ],
+      "note": "This is the DOI of the data-descriptor article. The underlying dataset itself carries a separate OpenNeuro DOI, 10.18112/openneuro.ds005684.v1.0.0 (src e1: \"OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0\"), referenced in access_steps."
     },
     "short_desc_en": {
       "value": "An fMRI dataset from 35 healthy adults performing a one-back color similarity judgment task with report and no-report trial conditions, plus color vision tests (Ishihara, ND-100 Hue) and questionnaires (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II), converted to BIDS format and made freely available on OpenNeuro.",

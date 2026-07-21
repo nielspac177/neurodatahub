@@ -63,10 +63,9 @@
       ]
     },
     "provider": {
-      "value": "Federal Center of Neurosurgery",
-      "evidence": [
-        {"src": "e1", "quote": "Ethics approval for the research protocol was given by the local ethics committee of the Federal Center of Neurosurgery, dated 25.05.21 (protocol # 7)."}
-      ]
+      "value": null,
+      "needs": "Author affiliations or dataset landing page naming the institution that acquired the MRI data / generated the dataset. Evidence only names an unspecified 'our hospital' and separately states that ethics approval came from 'the local ethics committee of the Federal Center of Neurosurgery' — the latter is the ethics-approving body, not confirmed by the text as the data-generating or hosting institution.",
+      "evidence": []
     },
     "region": {
       "value": null,
@@ -97,7 +96,11 @@
         {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"},
         {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"},
         {"src": "e1", "quote": "Follow-up data six months after treatment were available for 58 patients."},
-        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."}
+        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."},
+        {"src": "e1", "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"},
+        {"src": "e1", "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"}
       ]
     },
     "short_desc_es": {
@@ -106,7 +109,11 @@
         {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"},
         {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"},
         {"src": "e1", "quote": "Follow-up data six months after treatment were available for 58 patients."},
-        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."}
+        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."},
+        {"src": "e1", "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"},
+        {"src": "e1", "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"}
       ]
     }
   },

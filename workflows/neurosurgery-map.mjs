@@ -13,17 +13,27 @@ export const meta = {
 const REPO = '/Users/nielspacheco/neurodatahub';
 const PARTS = `${REPO}/drafts/ns-parts`;
 
-// Subespecialidades neuroquirúrgicas reales, no categorías inventadas. El
-// usuario es investigador de aneurismas y sus estudiantes son de medicina, así
-// que la vascular va primero y todo se enmarca clínicamente.
-const SUBSPECIALTIES = [
-  { id: 'vascular',    en: 'Cerebrovascular / aneurysm / subarachnoid haemorrhage / AVM' },
-  { id: 'tumor',       en: 'Neuro-oncology: glioma, glioblastoma, meningioma, metastasis' },
-  { id: 'epilepsy',    en: 'Epilepsy surgery: resection, SEEG, responsive neurostimulation' },
-  { id: 'functional',  en: 'Functional: DBS, movement disorders, pain, psychiatric neurosurgery' },
-  { id: 'trauma',      en: 'Neurotrauma: TBI, contusion, ICP, decompressive craniectomy' },
-  { id: 'csf-spine',   en: 'Hydrocephalus, CSF dynamics, and spine (degenerative + trauma)' },
+// El público son estudiantes de medicina que ven pacientes neuroquirúrgicos en
+// la UCI. MIMIC-IV y eICU contienen justo esa población: HSA, hemorragia
+// intracraneal, ictus, estatus epiléptico, TCE. Con ICU_EMPHASIS el ideador
+// prioriza preguntas respondibles con datos de UCI (escalas, desenlaces,
+// manejo) frente a las que necesitan neuroimagen que el catálogo no tiene.
+const ICU_EMPHASIS = (args && args.icu) !== false;
+
+const ALL_SUBSPECIALTIES = [
+  { id: 'vascular',    en: 'Cerebrovascular in the ICU: aneurysmal subarachnoid haemorrhage, spontaneous intracerebral haemorrhage, ischaemic stroke — vasospasm/DCI, rebleeding, hydrocephalus, external ventricular drains, blood-pressure and reversal management' },
+  { id: 'epilepsy',    en: 'Seizures and status epilepticus in the ICU and on EEG: refractory status, non-convulsive seizures, anti-seizure drug escalation, seizures after haemorrhage or TBI' },
+  { id: 'trauma',      en: 'Neurotrauma in the ICU: severe TBI, traumatic intracranial haemorrhage, intracranial hypertension, osmotherapy, decompressive craniectomy, GCS trajectory' },
+  { id: 'functional',  en: 'Functional / movement-disorder and neuromodulation: DBS candidacy and outcomes, Parkinson progression, pain — where cohort data exist' },
+  { id: 'tumor',       en: 'Neuro-oncology: glioma, glioblastoma, meningioma, metastasis; resection extent, molecular status, survival' },
+  { id: 'csf-spine',   en: 'Hydrocephalus / CSF dynamics / shunt dependence, and spine' },
 ];
+
+// args.subspecialties limita la corrida; por defecto, las que la UCI responde
+// mejor y que quedaron sin generar cuando se agotó la sesión anterior.
+const WANT = (args && args.subspecialties) || ['vascular', 'epilepsy', 'trauma', 'functional'];
+const PER = (args && args.per) || 6;
+const SUBSPECIALTIES = ALL_SUBSPECIALTIES.filter((s) => WANT.includes(s.id));
 
 const MODEL = { survey: { model: 'sonnet' }, ideate: {}, clinical: {}, novelty: {},
                 feasible: { model: 'sonnet' }, emit: { model: 'haiku', effort: 'low' } };
@@ -122,24 +132,41 @@ Use the exact 'id' values from the YAML.`,
 Subspecialty: ${sub.en}
 Datasets judged usable: ${JSON.stringify(usable)}
 
-Write 4-6 research questions for MEDICAL STUDENTS — not for ML engineers.
+Write ${PER} research questions for MEDICAL STUDENTS — not for ML engineers.
 That distinction drives everything:
 
- - Frame each question around a CLINICAL decision or outcome a neurosurgeon
-   argues about on rounds: who rebleeds, who needs a shunt, who benefits from
-   surgery, what predicts a poor mRS at 90 days.
- - Prefer questions answerable with clinical variables, imaging descriptors
-   and outcome scales over ones needing a novel deep-learning architecture.
- - State the outcome_measure explicitly (mRS, GOS-E, Engel class, survival,
-   shunt dependence, reoperation).
- - clinical_rationale must say WHY a neurosurgeon would care about the answer,
-   in one sentence a clinician would recognise as true.
- - skills: short tags only (python, statistics, clinical-data, neuroimaging,
-   validation, causal-inference). Never sentences.
+ - Frame each question around a CLINICAL decision or bedside outcome a
+   neurosurgeon or neurointensivist argues about on rounds: who rebleeds,
+   who develops delayed cerebral ischaemia, who needs a shunt or an EVD, who
+   benefits from surgery, what predicts a poor mRS at 90 days.
+${ICU_EMPHASIS ? ` - THESE ARE ICU DATA. Anchor the questions in the ICU course:
+   admission severity, first-24h vitals and labs, vasopressors and blood
+   pressure, sedation, osmotherapy, ventriculostomy, timing of intervention,
+   in-hospital mortality and discharge disposition. MIMIC-IV and eICU contain
+   subarachnoid and intracerebral haemorrhage, stroke, status epilepticus and
+   severe TBI patients — use ICD codes, chartevents, labs and outcomes.
+ - Do NOT propose questions that need angiography, aneurysm morphology, EEG
+   source localisation or operative detail unless the surveyed dataset shows
+   those fields exist. An ICU question you can actually run beats an ideal
+   question you cannot.` : ''}
+ - Prefer questions answerable with clinical variables and outcome scales over
+   ones needing a novel deep-learning architecture.
+ - State the outcome_measure explicitly (mRS, GOS-E, Engel class, in-hospital
+   mortality, discharge disposition, shunt dependence, DCI, reoperation).
+ - clinical_rationale must say WHY a clinician would care about the answer, in
+   one sentence a neurosurgeon would recognise as true — cite the trial or
+   guideline tension where relevant.
+ - skills: short tags only (python, statistics, clinical-data, causal-inference,
+   validation). Never sentences.
  - required_variables must name fields the surveyed dataset actually has.
  - difficulty 1-5, where 2-3 is a motivated medical student with basic stats.
 
-dataset_id must be one of the surveyed ids. Write question_en AND question_es.`,
+Make the questions DISTINCT from each other — different outcomes, different
+decisions, not five phrasings of "predict mortality".
+
+dataset_id must be one of the surveyed ids. Write question_en AND question_es.
+Each id MUST be unique and start with "${sub.id}-icu-" so it cannot collide
+with questions already in the catalog.`,
       { label: `ideate:${sub.id}`, phase: 'Generate', schema: QUESTIONS, ...MODEL.ideate }
     );
     return { ...prev, questions: ideas?.questions || [] };
@@ -243,10 +270,15 @@ Assign your own difficulty (1-5) and effort_weeks, pessimistically.`,
     log(`✓ ${sub.id}: ${kept.length}/${questions.length} preguntas sobreviven a los tres críticos`);
 
     if (kept.length) {
+      // Se marca el veredicto de cada crítico en cada pregunta, para que el
+      // merge sepa que SÍ pasaron el panel (a diferencia de las 12 rescatadas
+      // sin verificar). Y se emite con Haiku, barato, por subespecialidad, así
+      // una subespecialidad ya completada no se pierde si el límite corta las
+      // siguientes.
       await agent(
         `Write this JSON verbatim to ${PARTS}/${sub.id}.json using the Write tool ` +
         `(create the directory if needed). Do not alter any value.\n\n` +
-        JSON.stringify(kept),
+        JSON.stringify(kept.map((q) => ({ ...q, _critics_ran: true }))),
         { label: `emit:${sub.id}`, phase: 'Emit', ...MODEL.emit }
       );
     }

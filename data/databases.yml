@@ -153,6 +153,143 @@
     outcome_measure: In-hospital mortality and discharge disposition; model comparison by AUC/net reclassification
       versus admission GCS alone
     subspecialty: trauma
+  - id: epilepsy-icu-benzo-dosing
+    question_en: In adults admitted to the ICU with status epilepticus (ICD-9/10 G40.x/G41.x), does receiving
+      a guideline-adequate first-line benzodiazepine dose (e.g., lorazepam >=4 mg or midazolam >=10 mg
+      within the first hour) versus an underdose reduce progression to refractory status epilepticus —
+      defined as initiation of a continuous IV anaesthetic infusion (midazolam, propofol or pentobarbital)
+      — and in-hospital mortality, after adjusting for admission severity and seizure aetiology?
+    question_es: En adultos ingresados en UCI con estado epiléptico (CIE-9/10 G40.x/G41.x), ¿recibir una
+      dosis inicial adecuada de benzodiacepina de primera línea (p. ej., lorazepam >=4 mg o midazolam
+      >=10 mg en la primera hora) frente a una infradosis reduce la progresión a estado epiléptico refractario
+      —definido como el inicio de una infusión anestésica intravenosa continua (midazolam, propofol o
+      pentobarbital)— y la mortalidad intrahospitalaria, tras ajustar por gravedad al ingreso y etiología?
+    difficulty: 4
+    effort_weeks: 11
+    skills:
+    - python
+    - statistics
+    - causal-inference
+    extra_datasets:
+    - eicu-crd
+    status: open
+    unverified: false
+    clinical_rationale: Repeated audits show first-line benzodiazepines are chronically underdosed and
+      that underdosing is the strongest modifiable predictor of a refractory course, yet clinicians hold
+      back at the bedside for fear of respiratory depression.
+    outcome_measure: 'Progression to refractory SE (initiation of continuous IV anaesthetic infusion);
+      secondary: in-hospital mortality and intubation'
+    subspecialty: epilepsy
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No existing study, in an administrative/ICD-9/10-coded ICU cohort, operationalizes
+      refractory SE specifically as initiation of continuous IV anaesthetic infusion and uses it as a
+      co-primary endpoint with in-hospital mortality while jointly adjusting for admission severity and
+      seizure aetiology; prior work reports surrogate outcomes (ventilation days, ICU LOS, favorable discharge)
+      from trial-embedded or single-city registry samples. This administrative-cohort emulation (feasible
+      in MIMIC/eICU) is the remaining delta, though it is confirmatory of an already-established association
+      rather than a novel hypothesis.
+    feasibility: feasible_with_caveat
+  - id: epilepsy-icu-anesthetic-timing
+    question_en: In refractory status epilepticus requiring continuous IV anaesthesia, does earlier initiation
+      (within 24 h of seizure onset) versus later initiation change in-hospital mortality, ventilator-free
+      days and discharge disposition, framed as a target-trial emulation with propensity adjustment for
+      admission severity and aetiology?
+    question_es: En el estado epiléptico refractario que requiere anestesia intravenosa continua, ¿el
+      inicio precoz (en las primeras 24 h desde el comienzo de las crisis) frente al inicio tardío modifica
+      la mortalidad intrahospitalaria, los días libres de ventilador y el destino al alta, planteado como
+      emulación de ensayo diana con ajuste por puntaje de propensión sobre gravedad al ingreso y etiología?
+    difficulty: 5
+    effort_weeks: 18
+    skills:
+    - python
+    - statistics
+    - causal-inference
+    extra_datasets:
+    - eicu-crd
+    status: open
+    unverified: false
+    clinical_rationale: Guidelines are silent on the timing of continuous anaesthesia and clinicians disagree
+      whether aggressive early burst-suppression protects brain or merely commits fragile patients to
+      prolonged ventilation and its complications.
+    outcome_measure: 'In-hospital mortality; secondary: ventilator-free days and discharge disposition
+      (home vs facility)'
+    subspecialty: epilepsy
+    clinical_verdict: open
+    novelty: partial
+    still_open_because: 'The specific remaining delta is methodological and one outcome: (1) a formal
+      target-trial emulation design with an explicit 24-h time-zero cutoff and immortal-time handling,
+      rather than the exposure-category propensity matching used by the 2024 study; and (2) ventilator-free
+      days as an outcome, which no identified study reports for this exposure. These are incremental refinements,
+      not a new clinical question — the direction of effect (no mortality/functional benefit from earlier
+      anaesthesia) is already established.'
+    feasibility: feasible_with_caveat
+  - id: epilepsy-icu-stess-prognostic-validation
+    question_en: Can a simple bedside status epilepticus severity score built from ICU admission variables
+      (age, level of consciousness, worst seizure type, prior seizure history — a STESS-like model) discriminate
+      in-hospital mortality in MIMIC-IV status epilepticus patients, and does it outperform admission
+      illness-severity alone?
+    question_es: ¿Puede una escala sencilla de gravedad del estado epiléptico construida con variables
+      de ingreso en UCI (edad, nivel de conciencia, peor tipo de crisis, antecedente de crisis previas
+      —un modelo tipo STESS) discriminar la mortalidad intrahospitalaria en pacientes con estado epiléptico
+      de MIMIC-IV, y supera a la gravedad de enfermedad al ingreso por sí sola?
+    difficulty: 3
+    effort_weeks: 8
+    skills:
+    - python
+    - statistics
+    extra_datasets:
+    - eicu-crd
+    status: open
+    unverified: false
+    clinical_rationale: Families and intensivists want an early honest prognosis in status epilepticus,
+      and validating whether the STESS score's simple components hold in a large ICU cohort tells us whether
+      to trust it for goals-of-care conversations.
+    outcome_measure: 'In-hospital mortality (discrimination by AUC); secondary: discharge disposition;
+      benchmarked against an admission illness-severity baseline'
+    subspecialty: epilepsy
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No published study specifically (a) isolates the MIMIC-IV status epilepticus subpopulation,
+      (b) reconstructs/refits a STESS-like score from MIMIC-IV ICU admission variables, and (c) benchmarks
+      its in-hospital mortality discrimination directly against admission illness-severity scores (SOFA
+      / SAPS-II / APACHE) — i.e., an incremental-value comparison in this exact database and endpoint.
+    feasibility: feasible_with_caveat
+  - id: trauma-icu-1
+    question_en: Among ICU patients with severe traumatic brain injury, does placement of an invasive
+      intracranial pressure monitor or external ventricular drain (identified from procedure codes and
+      its timing relative to admission) change in-hospital mortality and the odds of discharge home rather
+      than to a facility, when confounding by indication is handled with a target-trial emulation and
+      propensity matching on admission GCS, age, pupillary status and injury severity?
+    question_es: En pacientes de UCI con traumatismo craneoencefálico grave, ¿la colocación de un monitor
+      invasivo de presión intracraneal o un drenaje ventricular externo (identificados por códigos de
+      procedimiento y su momento respecto al ingreso) modifica la mortalidad intrahospitalaria y la probabilidad
+      de alta a domicilio en lugar de a un centro, cuando la confusión por indicación se aborda con una
+      emulación de ensayo diana y emparejamiento por propensión sobre GCS de ingreso, edad, estado pupilar
+      y gravedad de la lesión?
+    difficulty: 4
+    effort_weeks: 13
+    skills:
+    - python
+    - statistics
+    - causal-inference
+    status: open
+    unverified: false
+    clinical_rationale: The BEST:TRIP trial failed to show a mortality benefit for ICP-monitor-guided
+      management over clinical-and-imaging management, so real-world data on who actually benefits from
+      an invasive monitor still shapes whether a bolt or EVD goes in at the bedside.
+    outcome_measure: 'In-hospital mortality and discharge disposition (home vs facility) as a proxy for
+      dichotomised GOS-E; secondary: ICU length of stay'
+    subspecialty: trauma
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: 'No study applies a formal target-trial emulation design (with explicit handling
+      of immortal-time bias from monitor-placement timing) to this device question — existing work uses
+      propensity weighting/matching in ordinary cohorts, and the only TBI target-trial emulation found
+      addresses prophylactic anticoagulation, not ICP monitoring. Also not jointly done in one study:
+      discharge-home-vs-facility as a co-primary outcome alongside mortality, and an explicit EVD-vs-ICP-bolt
+      device-type contrast. That methodological+outcome combination is the remaining delta.'
+    feasibility: feasible_with_caveat
   descriptor_doi: 10.1038/s41597-022-01899-x
   doi: 10.13026/6mm1-ek67
   access_steps:
@@ -291,6 +428,132 @@
     outcome_measure: Risk-adjusted in-hospital mortality, modelled with hospital-level random effects
       (median odds ratio)
     subspecialty: trauma
+  - id: epilepsy-icu-second-line-asd-choice
+    question_en: Among ICU patients whose status epilepticus fails first-line benzodiazepines, does the
+      choice of second-line anti-seizure drug (levetiracetam vs valproate vs fosphenytoin/phenytoin) associate
+      with different rates of treatment failure — needing a third agent or a continuous anaesthetic infusion
+      — and ICU length of stay across the ~200 hospitals of eICU?
+    question_es: En pacientes de UCI cuyo estado epiléptico no responde a benzodiacepinas de primera línea,
+      ¿la elección del fármaco anticrisis de segunda línea (levetiracetam vs valproato vs fosfenitoína/fenitoína)
+      se asocia a distintas tasas de fracaso terapéutico —necesidad de un tercer agente o de infusión
+      anestésica continua— y a distinta estancia en UCI, a lo largo de los ~200 hospitales de eICU?
+    difficulty: 4
+    effort_weeks: 12
+    skills:
+    - python
+    - statistics
+    extra_datasets:
+    - mimic-iv
+    status: open
+    unverified: false
+    clinical_rationale: ESETT found the three second-line agents equivalent in a randomised trial, but
+      real-world multicentre practice and outcomes still vary, and knowing whether one agent precedes
+      fewer escalations informs the drug a resident reaches for at 2 a.m.
+    outcome_measure: 'Treatment failure (escalation to third-line agent or continuous anaesthetic); secondary:
+      ICU length of stay and in-hospital mortality'
+    subspecialty: epilepsy
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No published analysis performs a real-world comparative-effectiveness study of
+      second-line ASD choice in the eICU multi-hospital cohort using escalation-to-third-agent/anaesthetic-infusion
+      and ICU LOS as outcomes; ESETT answers efficacy (seizure cessation) in an RCT but not these real-world
+      resource/escalation endpoints or heterogeneity across ~200 ICUs.
+    feasibility: feasible_with_caveat
+  - id: epilepsy-icu-hemorrhage-seizure-prophylaxis
+    question_en: In patients admitted to the ICU with spontaneous intracerebral or subarachnoid haemorrhage,
+      does prophylactic anti-seizure medication (levetiracetam or phenytoin started without a documented
+      seizure) associate with discharge disposition and in-hospital mortality, and how much does the prophylaxis
+      rate vary between hospitals in eICU?
+    question_es: En pacientes ingresados en UCI por hemorragia intracerebral o subaracnoidea espontánea,
+      ¿la medicación anticrisis profiláctica (levetiracetam o fenitoína iniciada sin crisis documentada)
+      se asocia al destino al alta y a la mortalidad intrahospitalaria, y cuánto varía la tasa de profilaxis
+      entre hospitales en eICU?
+    difficulty: 3
+    effort_weeks: 11
+    skills:
+    - python
+    - statistics
+    extra_datasets:
+    - mimic-iv
+    status: open
+    unverified: false
+    clinical_rationale: AHA guidelines recommend against routine seizure prophylaxis after ICH/SAH yet
+      prescribing persists widely, and quantifying whether it helps or merely adds sedation and worse
+      disposition would settle a recurrent rounds debate.
+    outcome_measure: 'Discharge disposition (functional-outcome proxy) and in-hospital mortality; secondary:
+      documented in-hospital seizure and hospital-level variation in prophylaxis rate'
+    subspecialty: epilepsy
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: 'The remaining delta is the eICU-specific, multi-hospital practice-variation component:
+      no located work quantifies between-hospital variation in prophylactic ASM rates (e.g., median odds
+      ratio / ICC across eICU sites) for spontaneous ICH/SAH, nor links that variation to discharge disposition
+      and in-hospital mortality within eICU. The association direction (levetiracetam neutral, phenytoin
+      harmful) is already established elsewhere, so novelty is confined to the database-specific descriptive
+      practice-variation and casemix-adjusted disposition/mortality estimates in eICU.'
+    feasibility: feasible_with_caveat
+  - id: trauma-icu-3
+    question_en: In severe-TBI patients across the ~200 eICU hospitals, how strongly does a single documented
+      episode of hypotension (systolic BP < 90 mmHg) in the first 24 ICU hours predict in-hospital mortality
+      after adjustment for admission GCS, APACHE score, age and early vasopressor use, and does the effect
+      size hold consistently between hospitals?
+    question_es: En pacientes con TCE grave a lo largo de los ~200 hospitales de eICU, ¿con qué fuerza
+      un único episodio documentado de hipotensión (presión sistólica < 90 mmHg) en las primeras 24 h
+      de UCI predice la mortalidad intrahospitalaria tras ajustar por GCS de ingreso, APACHE, edad y uso
+      precoz de vasopresores, y se mantiene ese tamaño de efecto de forma consistente entre hospitales?
+    difficulty: 4
+    effort_weeks: 14
+    skills:
+    - python
+    - statistics
+    status: open
+    unverified: false
+    clinical_rationale: The Brain Trauma Foundation guidelines treat even one prehospital or early hypotensive
+      episode as a secondary insult that roughly doubles mortality, and quantifying it across many hospitals
+      tells the bedside team how hard to defend a blood-pressure floor in the first day.
+    outcome_measure: In-hospital mortality (adjusted odds ratio for any first-24h SBP < 90 episode; consistency
+      assessed with hospital-level random effects)
+    subspecialty: trauma
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No located study formally tests whether the adjusted hypotension-to-mortality
+      effect size is consistent across the ~200 eICU hospitals (a multilevel/random-effects cross-hospital
+      heterogeneity analysis), nor uses the exact adjustment set (GCS + APACHE + age + early vasopressor
+      use) on a binary single-episode SBP<90 exposure in eICU. The underlying predictive association itself,
+      however, is already well established.
+    feasibility: feasible_with_caveat
+  - id: trauma-icu-5
+    question_en: In severe-TBI patients across the eICU hospitals, is in-ICU beta-blocker exposure (from
+      the medication table) associated with lower in-hospital mortality after adjustment for admission
+      GCS, APACHE score, age and first-day heart rate, and is any association concentrated in patients
+      with early tachycardia suggestive of sympathetic hyperactivity?
+    question_es: En pacientes con TCE grave a lo largo de los hospitales de eICU, ¿la exposición a betabloqueantes
+      en la UCI (según la tabla de medicación) se asocia a menor mortalidad intrahospitalaria tras ajustar
+      por GCS de ingreso, APACHE, edad y frecuencia cardíaca del primer día, y se concentra esa asociación
+      en pacientes con taquicardia precoz sugestiva de hiperactividad simpática?
+    difficulty: 4
+    effort_weeks: 14
+    skills:
+    - python
+    - statistics
+    - causal-inference
+    status: open
+    unverified: false
+    clinical_rationale: Observational series (the DASH-after-TBI literature) repeatedly suggest beta-blockade
+      blunts the catecholamine surge and improves survival after severe TBI, but with no definitive RCT
+      a multi-hospital signal helps decide whether propranolol belongs in the early order set.
+    outcome_measure: In-hospital mortality (adjusted odds ratio for beta-blocker exposure; effect modification
+      tested in the early-tachycardia subgroup)
+    subspecialty: trauma
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No existing study performs this analysis in the eICU-CRD multicenter cohort specifically,
+      AND — the genuinely open delta — none pre-specifies and tests the effect-modification hypothesis
+      that any beta-blocker mortality benefit is concentrated in patients with early (first-day) tachycardia
+      as a proxy for sympathetic hyperactivity. Prior work reports main/adjusted effects and generic subgroups
+      but not a formal heart-rate-stratified interaction test tying benefit to the hyperadrenergic phenotype.
+      Remaining delta = (1) eICU replication + (2) the tachycardia-by-beta-blocker interaction analysis.
+    feasibility: feasible_with_caveat
   descriptor_doi: 10.1038/sdata.2018.178
   doi: 10.13026/C2WM1R
   access_steps:
@@ -370,6 +633,105 @@
     status: open
     unverified: true
     confidence: 0.2
+  - id: functional-icu-ppmi-motor-progression-window
+    question_en: In de novo Parkinson's disease patients followed in PPMI, how fast does the MDS-UPDRS
+      Part III motor score (in the OFF-medication state) worsen over the first 3-5 years, and can baseline
+      clinical variables (age at onset, tremor-dominant vs postural-instability/gait-difficulty phenotype,
+      Hoehn & Yahr stage) identify the fast progressors who would reach the disabling-but-still-levodopa-responsive
+      window where subthalamic DBS is usually considered?
+    question_es: En pacientes con enfermedad de Parkinson de novo seguidos en PPMI, ¿con qué rapidez empeora
+      la puntuación motora MDS-UPDRS Parte III (en estado OFF, sin medicación) durante los primeros 3-5
+      años, y pueden variables clínicas basales (edad de inicio, fenotipo tremor-dominante vs inestabilidad
+      postural/trastorno de la marcha, estadio de Hoehn & Yahr) identificar a los progresadores rápidos
+      que alcanzarían la ventana de discapacidad aún respondedora a levodopa en la que se suele considerar
+      la DBS subtalámica?
+    difficulty: 3
+    effort_weeks: 7
+    skills:
+    - python
+    - statistics
+    status: open
+    unverified: false
+    clinical_rationale: 'DBS timing is a recurring movement-disorder-clinic argument: refer too early
+      and you operate on a mildly affected patient, too late and axial/cognitive decline erodes the benefit,
+      so knowing which baseline phenotype predicts a fast motor slope directly informs when to send a
+      patient to the functional neurosurgeon.'
+    outcome_measure: 'Annual rate of change (slope) in MDS-UPDRS Part III OFF-state score; secondary:
+      time to Hoehn & Yahr stage 3'
+    subspecialty: functional
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No study has operationalized the 'disabling-but-still-levodopa-responsive STN-DBS
+      candidacy window' as an explicit longitudinal endpoint in PPMI and tested whether baseline age at
+      onset, TD/PIGD phenotype, and H&Y predict which de novo patients reach it within 3-5 years; existing
+      work predicts generic fast progression, not this DBS-specific clinical milestone (which PPMI de
+      novo patients rarely attain that early, so it must be surrogate-defined).
+    feasibility: feasible_with_caveat
+  - id: functional-icu-ppmi-genotype-progression
+    question_en: Among genetically characterised Parkinson's disease patients in PPMI, do GBA carriers,
+      LRRK2 carriers and non-carriers differ in the joint trajectory of motor (MDS-UPDRS III) and cognitive
+      (MoCA) decline over follow-up, and is the GBA group's faster cognitive slope large enough to change
+      the DBS candidacy conversation, given that cognitive impairment is a relative contraindication?
+    question_es: Entre los pacientes con enfermedad de Parkinson genéticamente caracterizados en PPMI,
+      ¿difieren los portadores de GBA, los portadores de LRRK2 y los no portadores en la trayectoria conjunta
+      de deterioro motor (MDS-UPDRS III) y cognitivo (MoCA) durante el seguimiento, y es la pendiente
+      cognitiva más rápida del grupo GBA lo bastante grande como para cambiar la conversación sobre candidatura
+      a DBS, dado que el deterioro cognitivo es una contraindicación relativa?
+    difficulty: 3
+    effort_weeks: 3
+    skills:
+    - python
+    - statistics
+    status: open
+    unverified: false
+    clinical_rationale: GBA-associated Parkinson's is widely believed to progress toward dementia faster,
+      and since post-DBS cognitive decline is the outcome families most fear, quantifying the genotype-specific
+      cognitive slope tells the surgeon whether GBA status should temper enthusiasm for stimulation.
+    outcome_measure: Genotype-stratified slopes of MDS-UPDRS Part III and MoCA over time (mixed-effects
+      model interaction term)
+    subspecialty: functional
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No single study fits a JOINT/bivariate latent trajectory of MDS-UPDRS III and
+      MoCA simultaneously across all three genotype groups (GBA / LRRK2 / non-carrier) within PPMI and
+      then formally tests whether the GBA cognitive slope crosses a pre-specified DBS-candidacy threshold.
+      Existing work models motor and cognitive progression separately, and the GBA-worse-post-DBS-cognition
+      evidence comes from separate surgical cohorts, not from a PPMI trajectory analysis translated into
+      a candidacy decision rule. The remaining delta is the integrated bivariate model plus an explicit,
+      quantified candidacy-threshold analysis.
+    feasibility: feasible_with_caveat
+  - id: functional-icu-ppmi-levodopa-responsiveness
+    question_en: Using paired OFF- and ON-medication MDS-UPDRS Part III assessments in PPMI, how much
+      does baseline levodopa responsiveness (percentage improvement OFF to ON) vary between patients,
+      and does it stay stable over the first few years of disease — the assumption that underlies its
+      use as the single best preoperative predictor of subthalamic DBS motor benefit?
+    question_es: Usando evaluaciones MDS-UPDRS Parte III pareadas en estado OFF y ON en PPMI, ¿cuánto
+      varía entre pacientes la respuesta basal a levodopa (porcentaje de mejoría de OFF a ON) y se mantiene
+      estable durante los primeros años de enfermedad —el supuesto que sustenta su uso como el mejor predictor
+      preoperatorio del beneficio motor de la DBS subtalámica?
+    difficulty: 3
+    effort_weeks: 7
+    skills:
+    - python
+    - statistics
+    status: open
+    unverified: false
+    clinical_rationale: The preoperative levodopa-challenge response is the number every functional neurosurgeon
+      quotes when predicting how much a patient will improve after STN-DBS, yet its stability early in
+      disease is rarely checked against a large cohort, and any drift would undermine referrals made years
+      before surgery.
+    outcome_measure: MDS-UPDRS Part III percent improvement OFF-to-ON at baseline and its longitudinal
+      stability (within-patient variability over visits)
+    subspecialty: functional
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No study quantifies the inter-patient variability of baseline levodopa responsiveness
+      (percent OFF-to-ON improvement) in PPMI and tests whether that responsiveness is stable year-over-year
+      across the first few years of disease, i.e., directly interrogating the temporal-stability premise
+      that justifies using a single early levodopa-challenge response as the preoperative predictor of
+      STN-DBS outcome. The predictor-validity work lives in surgical cohorts, not the de novo PPMI cohort,
+      and the stability-over-time question is asserted rather than empirically measured.
+    feasibility: feasible_with_caveat
   descriptor_doi: 10.1016/j.pneurobio.2011.09.005
   access_steps:
   - step_en: Apply for access through the LONI IDA portal
@@ -1028,6 +1390,35 @@
     status: open
     unverified: true
     confidence: 0.2
+  - id: functional-icu-enigma-subcortical-signature
+    question_en: In the ENIGMA-Parkinson's distributed meta-analysis, how large and how consistent across
+      sites are the differences in subcortical volumes and cortical thickness between Parkinson's patients
+      and controls, and do the structural measures that differ most reproducibly overlap with the basal-ganglia
+      and thalamic targets used in functional neurosurgery?
+    question_es: En el metaanálisis distribuido ENIGMA-Parkinson, ¿qué magnitud tienen y cuán consistentes
+      entre sitios son las diferencias en volúmenes subcorticales y grosor cortical entre pacientes con
+      Parkinson y controles, y las medidas estructurales que difieren de forma más reproducible se solapan
+      con las dianas de ganglios basales y tálamo empleadas en neurocirugía funcional?
+    difficulty: 4
+    effort_weeks: 6
+    skills:
+    - statistics
+    status: open
+    unverified: false
+    clinical_rationale: Before any structural measure can be trusted as a marker relevant to the surgical
+      targets, it has to hold up across scanners and sites rather than at one center, and ENIGMA's multi-site
+      meta-analytic design is exactly what shows whether a Parkinson's structural signature is robust
+      enough to take seriously.
+    outcome_measure: Cross-site effect size (Cohen's d) of subcortical volume and cortical-thickness differences
+      (PD vs control) with between-site heterogeneity (I-squared)
+    subspecialty: functional
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No published work explicitly cross-references ENIGMA-PD's most-reproducible (largest-d,
+      lowest-heterogeneity) structural measures against basal-ganglia/thalamic neurosurgical targets (STN/GPi/VIM-thalamus).
+      This overlap analysis is also constrained because the standard ENIGMA subcortical segmentation does
+      not include STN, so any mapping is limited to thalamus, pallidum, and putamen.
+    feasibility: feasible_with_caveat
   descriptor_doi: 10.1007/s11682-013-9269-5
 - id: tuh-eeg
   name: TUH EEG Corpus (Temple University Hospital)
@@ -1079,6 +1470,39 @@
     status: open
     unverified: true
     confidence: 0.2
+  - id: epilepsy-icu-eeg-detection-transfer
+    question_en: How well does an automated seizure detector trained and validated on annotated scalp
+      EEG (CHB-MIT and the TUH seizure subset) perform, and where do its sensitivity and false-alarm rate
+      degrade — establishing the performance floor and pitfalls before such a tool could be trusted to
+      flag non-convulsive seizures on ICU continuous EEG?
+    question_es: ¿Qué rendimiento alcanza un detector automático de crisis entrenado y validado sobre
+      EEG de cuero cabelludo anotado (CHB-MIT y el subconjunto de crisis de TUH), y dónde se degradan
+      su sensibilidad y su tasa de falsas alarmas —estableciendo el suelo de rendimiento y sus limitaciones
+      antes de que una herramienta así pueda usarse para detectar crisis no convulsivas en EEG continuo
+      de UCI?
+    difficulty: 3
+    effort_weeks: 6
+    skills:
+    - python
+    - statistics
+    extra_datasets:
+    - chb-mit
+    status: open
+    unverified: false
+    clinical_rationale: Non-convulsive seizures in the ICU are missed without continuous EEG that few
+      centres can review in real time, so knowing the achievable sensitivity and false-alarm burden of
+      automated detection defines whether screening tools are anywhere near ready for the neuro-ICU.
+    outcome_measure: Seizure-detection sensitivity, specificity and false alarms per hour, reported within-dataset
+      and cross-dataset (CHB-MIT <-> TUH)
+    subspecialty: epilepsy
+    clinical_verdict: well-studied
+    novelty: partial
+    still_open_because: No single study takes a detector trained on CHB-MIT+TUH (corpora that contain
+      almost no non-convulsive seizures) and quantifies its sensitivity/FAR specifically against annotated
+      ICU continuous-EEG non-convulsive seizures as the held-out domain-shift test set. That NCS-specific
+      generalization number is the remaining delta, but it is a validation exercise on well-trodden benchmarks
+      rather than a novel scientific question.
+    feasibility: feasible_with_caveat
   descriptor_doi: 10.3389/fnins.2016.00196
   starter_code:
     python: 'import mne

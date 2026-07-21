@@ -1,166 +1,149 @@
 {
-  "id": "openneuro-ds008055",
   "projects": [
     {
-      "id": "ds008055-gen-cross-task",
-      "lens": "generalization",
-      "question_en": "Does a classifier trained to decode creative idea-generation trials on one creativity task (e.g., the Idea Diversity task or the Taxonomy of Verbal Creativity task) generalize to distinguishing hypothesis-generation from control trials on the Scientific Creativity Task (SCT), or is each task's neural signature domain-specific?",
-      "question_es": "¿Un clasificador entrenado para decodificar ensayos de generación de ideas creativas en una tarea (p. ej. la tarea Idea Diversity o la Taxonomy of Verbal Creativity) generaliza a distinguir ensayos de generación de hipótesis vs. control en la Scientific Creativity Task (SCT), o la firma neural es específica de cada tarea?",
+      "id": "ds008055-causal-sct-contrast",
+      "question_en": "Which brain regions show a task-driven increase in activity during hypothesis generation compared to the matched control condition in the Scientific Creativity Task (task-SCT), and is this effect consistent across the participants with complete event coverage?",
+      "question_es": "¿Qué regiones cerebrales muestran un aumento de actividad atribuible a la tarea durante la generación de hipótesis en comparación con la condición de control equiparada de la Tarea de Creatividad Científica (task-SCT), y es este efecto consistente en los participantes con cobertura completa de eventos?",
+      "lens": "causal",
+      "difficulty": 2,
+      "effort_weeks": 8,
+      "required_variables": [
+        {
+          "name": "task-SCT BOLD runs (hypothesis generation vs. matched control condition)",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "task-SCT event files (condition onsets/durations, hypothesis generation vs. control; 54 participants/107 runs with usable events, 53 participants with full coverage)",
+          "file": "sub-*/func/*task-SCT*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "T1w anatomical scans (defaced) for registration/normalization",
+          "file": "sub-*/anat/*_T1w.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": ["fMRI GLM (SPM/FSL/nilearn)", "BIDS", "basic inferential statistics"],
+      "compute": "single workstation with 16GB+ RAM; roughly 1-2 CPU-days for 1st/2nd-level GLM across ~53 subjects",
+      "still_open_because": "The README documents the task-SCT design (hypothesis generation vs. matched control) with 53/54 participants having full event coverage, but gives no indication that a within-dataset task-vs-control contrast analysis has been run on this new release."
+    },
+    {
+      "id": "ds008055-multimodal-struct-func",
+      "question_en": "Does individual variation in cortical anatomy from the T1w scans relate to resting-state functional connectivity strength within creativity-related networks in the same cohort of 108 participants?",
+      "question_es": "¿La variación individual en la anatomía cortical de las imágenes T1w se relaciona con la fuerza de la conectividad funcional en reposo dentro de redes vinculadas a la creatividad, en la misma cohorte de 108 participantes?",
+      "lens": "multimodal",
       "difficulty": 3,
       "effort_weeks": 10,
-      "skills": ["fMRIPrep preprocessing", "nilearn/nistats", "scikit-learn (decoding/ML)", "BIDS data handling"],
-      "compute": "University lab workstation or shared HPC; fMRIPrep preprocessing (~1-2 hrs/subject on 8 CPU cores), decoding analysis feasible on CPU only",
       "required_variables": [
         {
-          "variable": "task-SCT BOLD runs + events.tsv (hypothesis generation vs. matched control condition)",
-          "file": "sub-*/func/*task-SCT*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "54 participants / 108 runs; non-empty event files for 54 participants and 107 runs; 53 participants have events for all SCT runs"
-        },
-        {
-          "variable": "task-ID BOLD runs + events.tsv (Idea Diversity task)",
-          "file": "sub-*/func/*task-ID*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "25 participants / 150 runs; non-empty event files for 19 participants and 114 runs"
-        },
-        {
-          "variable": "task-TVC BOLD runs + events.tsv (Taxonomy of Verbal Creativity task)",
-          "file": "sub-*/func/*task-TVC*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "35 participants / 70 runs; non-empty event files for 35 participants and 70 runs"
-        },
-        {
-          "variable": "T1w anatomical image (for registration/normalization)",
+          "name": "T1w anatomical scans, full cohort (108 subjects, defaced)",
           "file": "sub-*/anat/*_T1w.nii.gz",
-          "src": "e2",
-          "note": "Defaced T1w anatomical scans included in the BIDS release"
-        }
-      ],
-      "still_open_because": "The dataset's primary references (Beaty et al.; Luchini et al.; Zeitlen et al.) analyze each creativity task on its own; the evidence record does not describe any cross-task generalization/decoding analysis across SCT, ID, and TVC in this release."
-    },
-    {
-      "id": "ds008055-multimodal-rsfc-task",
-      "lens": "multimodal",
-      "question_en": "Can individual differences in resting-state functional connectivity (from the 108-subject resting-state scan) predict the magnitude or pattern of task-fMRI activation during hypothesis generation on the Scientific Creativity Task, i.e., does 'connectome fingerprinting' forecast task-evoked creative cognition?",
-      "question_es": "¿Las diferencias individuales en conectividad funcional en reposo (de los 108 sujetos con resting-state) predicen la magnitud o el patrón de activación fMRI durante la generación de hipótesis en la Scientific Creativity Task, es decir, la 'huella conectómica' anticipa la cognición creativa evocada por la tarea?",
-      "difficulty": 3,
-      "effort_weeks": 8,
-      "skills": ["fMRIPrep", "functional connectivity (nilearn/CONN)", "task GLM modeling", "regression/prediction modeling"],
-      "compute": "Lab workstation or shared HPC; standard fMRIPrep preprocessing plus connectivity extraction, no GPU required",
-      "required_variables": [
+          "src": "e2"
+        },
         {
-          "variable": "task-rest BOLD (resting-state fMRI)",
+          "name": "Resting-state fMRI runs (108 participants/108 runs; events not expected for rest)",
           "file": "sub-*/func/*task-rest*_bold.nii.gz",
-          "src": "e2",
-          "note": "108 participants / 108 runs; events files not expected for rest"
+          "src": "e2"
         },
         {
-          "variable": "task-SCT BOLD + events.tsv (hypothesis generation vs. matched control condition)",
-          "file": "sub-*/func/*task-SCT*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "54 participants / 108 runs; non-empty events for 54 participants and 107 runs"
-        },
-        {
-          "variable": "SBRef images matched to functional runs (for motion/coregistration QC)",
+          "name": "SBRef images matched to functional runs, used for registration/QC",
           "file": "sub-*/func/*_sbref.nii.gz",
-          "src": "e2",
-          "note": "\"Most functional runs include matched SBRef images\""
+          "src": "e2"
         },
         {
-          "variable": "Fieldmap EPI files linked to functional runs via BIDS metadata (for distortion correction)",
+          "name": "Fieldmap EPI files linked to functional runs via BIDS metadata, for distortion correction",
           "file": "sub-*/fmap/*_epi.nii.gz",
-          "src": "e2",
-          "note": "\"Fieldmap EPI files are included where available and linked to the functional runs through BIDS metadata\""
+          "src": "e2"
         }
       ],
-      "still_open_because": "The listed primary references study task-evoked and pattern-similarity effects of scientific/verbal creativity separately from resting state; the evidence does not indicate any rest-to-task predictive or connectome-fingerprinting analysis has been performed on this release."
+      "skills": ["structural morphometry (FreeSurfer)", "resting-state connectivity analysis (nilearn/CONN)", "BIDS preprocessing"],
+      "compute": "workstation or small cluster; FreeSurfer recon-all is ~8-10 hr/subject across 108 subjects, so batch processing on a shared cluster or cloud credits is recommended",
+      "still_open_because": "The full 108-subject cohort has both T1w and resting-state fMRI, plus fieldmaps and SBRef images enabling proper distortion correction, but the release notes give no indication a structure-function coupling analysis has been performed on this dataset."
     },
     {
-      "id": "ds008055-causal-effconn-sct",
-      "lens": "causal",
-      "question_en": "Using the matched hypothesis-generation-vs-control design built into the Scientific Creativity Task, what directed (effective-connectivity) influences among creativity-network regions distinguish hypothesis generation from the control condition, moving beyond simple activation contrasts toward a causal/generative model of scientific idea generation?",
-      "question_es": "Usando el diseño emparejado de generación de hipótesis vs. control incorporado en la Scientific Creativity Task, ¿qué influencias dirigidas (conectividad efectiva) entre regiones de la red de creatividad distinguen la generación de hipótesis de la condición control, yendo más allá de un simple contraste de activación hacia un modelo causal/generativo de la generación de ideas científicas?",
+      "id": "ds008055-generalization-cross-task",
+      "question_en": "Can a model trained to decode task-relevant brain activity from the Scientific Creativity Task (task-SCT, 54 participants) generalize to distinguish the analogous verbal-creativity conditions in the Taxonomy of Verbal Creativity task (task-TVC, 35 participants with full event coverage)?",
+      "question_es": "¿Un modelo entrenado para decodificar la actividad cerebral relevante de la Tarea de Creatividad Científica (task-SCT, 54 participantes) generaliza para distinguir las condiciones análogas de creatividad verbal en la tarea de Taxonomía de Creatividad Verbal (task-TVC, 35 participantes con cobertura completa de eventos)?",
+      "lens": "generalization",
       "difficulty": 4,
       "effort_weeks": 12,
-      "skills": ["Dynamic Causal Modeling (SPM/MATLAB) or Granger causality (Python)", "task GLM", "BIDS", "neuroanatomy of creativity networks"],
-      "compute": "SPM/MATLAB or Python DCM/Granger toolboxes on a lab workstation; effective-connectivity estimation is CPU-bound with moderate per-subject runtime",
       "required_variables": [
         {
-          "variable": "task-SCT BOLD runs with hypothesis-generation and matched control condition events",
-          "file": "sub-*/func/*task-SCT*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "\"task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition\"; 54 participants / 108 runs, events for 54 participants / 107 runs, 53 with complete events"
-        },
-        {
-          "variable": "T1w anatomical for ROI/network definition",
-          "file": "sub-*/anat/*_T1w.nii.gz",
+          "name": "task-SCT BOLD runs and events (54 participants/107 runs with usable events)",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz and sub-*/func/*task-SCT*_events.tsv",
           "src": "e2"
         },
         {
-          "variable": "Fieldmap EPI files linked to functional runs (for distortion-corrected timeseries needed by effective-connectivity models)",
-          "file": "sub-*/fmap/*_epi.nii.gz",
+          "name": "task-TVC BOLD runs and events (35 participants/70 runs, full event coverage)",
+          "file": "sub-*/func/*task-TVC*_bold.nii.gz and sub-*/func/*task-TVC*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "T1w anatomical scans for cross-task spatial normalization",
+          "file": "sub-*/anat/*_T1w.nii.gz",
           "src": "e2"
         }
       ],
-      "still_open_because": "Beaty et al. and related references report activation- or network-level contrasts for the control-vs-hypothesis-generation design; the evidence does not mention any directed/effective-connectivity (causal) modeling of that contrast having been performed."
+      "skills": ["multivariate pattern analysis (MVPA)", "cross-task transfer evaluation", "nilearn/scikit-learn"],
+      "compute": "single workstation sufficient for MVPA on parcellated/ROI data; no large-scale deep learning required",
+      "still_open_because": "The README describes both task-SCT and task-TVC as probing verbal/scientific creativity constructs with full or near-full event coverage in distinct participant subsets, but no cross-task generalization test is mentioned in the release notes -- this is an unexploited within-dataset external-task validation."
     },
     {
       "id": "ds008055-neuromod-ifg-target",
+      "question_en": "Can group-level task-fMRI activation during scientific hypothesis generation (task-SCT), combined with resting-state functional connectivity from the same 108 subjects, be used to derive a reproducible candidate neuromodulation target (e.g., in inferior frontal gyrus, implicated in creative category-switching per the dataset's own primary references) for future non-invasive stimulation studies aimed at enhancing creative ideation?",
+      "question_es": "¿La activación fMRI a nivel grupal durante la generación de hipótesis científicas (task-SCT), combinada con la conectividad funcional en reposo de los mismos 108 sujetos, puede usarse para derivar un blanco candidato reproducible de neuromodulación (p. ej., en el giro frontal inferior, implicado en el cambio de categoría creativo según las referencias primarias del propio conjunto de datos) para futuros estudios de estimulación no invasiva orientados a potenciar la ideación creativa?",
       "lens": "neuromodulation",
-      "question_en": "Can group-level task-fMRI activation during scientific hypothesis generation (task-SCT), combined with resting-state functional connectivity from the same 108 subjects, be used to derive a reproducible candidate neuromodulation target (e.g., in inferior frontal gyrus, implicated in creative category-switching per Luchini et al.) for future non-invasive stimulation studies aimed at enhancing creative ideation?",
-      "question_es": "¿La activación fMRI a nivel grupal durante la generación de hipótesis científicas (task-SCT), combinada con la conectividad funcional en reposo de los mismos 108 sujetos, puede usarse para derivar un blanco candidato reproducible de neuromodulación (p. ej., en el giro frontal inferior, implicado en el cambio de categoría creativo según Luchini et al.) para futuros estudios de estimulación no invasiva orientados a potenciar la ideación creativa?",
       "difficulty": 3,
       "effort_weeks": 9,
-      "skills": ["group-level fMRI GLM analysis", "seed-based/connectivity-based target mapping (Fox-lab style)", "neuroanatomy", "basics of coil/scalp-to-cortex targeting"],
-      "compute": "Lab workstation; group-level GLM and connectivity analysis, no specialized hardware needed",
       "required_variables": [
         {
-          "variable": "task-SCT BOLD + events.tsv (hypothesis generation vs. control) for group activation map",
-          "file": "sub-*/func/*task-SCT*_bold.nii.gz, *_events.tsv",
+          "name": "task-SCT BOLD runs and events (hypothesis generation vs. control) for group activation map",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz and sub-*/func/*task-SCT*_events.tsv",
           "src": "e2"
         },
         {
-          "variable": "task-rest BOLD (108 subjects / 108 runs) for connectivity-based target refinement",
+          "name": "Resting-state fMRI (108 subjects/108 runs) for connectivity-based target refinement",
           "file": "sub-*/func/*task-rest*_bold.nii.gz",
           "src": "e2"
         },
         {
-          "variable": "T1w anatomical for individual/group registration and target coordinate mapping",
+          "name": "T1w anatomical for individual/group registration and target coordinate mapping",
           "file": "sub-*/anat/*_T1w.nii.gz",
           "src": "e2"
         }
       ],
-      "still_open_because": "The IFG's role in creative category-switching is reported by Luchini et al. via a pattern-similarity analysis, not as a stimulation target; the evidence gives no indication this dataset has been used to derive or validate a connectivity-based neuromodulation target."
+      "skills": ["group-level fMRI GLM analysis", "seed-based/connectivity-based target mapping", "basic neuroanatomy"],
+      "compute": "lab workstation; group-level GLM and connectivity analysis, no specialized hardware needed",
+      "still_open_because": "The dataset's own listed primary reference (Luchini et al.) reports inferior frontal gyrus involvement in creative category-switching via pattern-similarity analysis, not as a stimulation target; the evidence gives no indication this dataset has been used to derive or validate a connectivity-based neuromodulation target."
     },
     {
-      "id": "ds008055-fm-selfsupervised-rest2task",
+      "id": "ds008055-foundation-pretrain-transfer",
+      "question_en": "Can self-supervised pretraining on the full resting-state fMRI corpus (108 participants/108 runs) produce brain-activity representations that improve few-shot classification on the smaller, fully-annotated Idea Diversity task (task-ID, 19 participants with complete event coverage)?",
+      "question_es": "¿El preentrenamiento autosupervisado sobre el corpus completo de fMRI en reposo (108 participantes/108 corridas) produce representaciones de actividad cerebral que mejoran la clasificación con pocos ejemplos en la tarea de Diversidad de Ideas (task-ID, 19 participantes con cobertura completa de eventos), más pequeña y totalmente anotada?",
       "lens": "foundation-models",
-      "question_en": "Does self-supervised pretraining (e.g., masked-timepoint or contrastive representation learning) on the 108-subject/108-run resting-state fMRI corpus produce embeddings that improve few-shot classification of hypothesis-generation vs. control trials on task-SCT (labeled data available for only 54 participants), compared to training a classifier from scratch on the limited task data alone?",
-      "question_es": "¿El preentrenamiento auto-supervisado (p. ej., aprendizaje de representaciones enmascaradas o contrastivas) sobre el corpus de fMRI en reposo de 108 sujetos/108 corridas produce representaciones (embeddings) que mejoran la clasificación few-shot de ensayos de generación de hipótesis vs. control en task-SCT (datos etiquetados disponibles solo para 54 participantes), comparado con entrenar un clasificador desde cero solo con los datos limitados de la tarea?",
       "difficulty": 4,
       "effort_weeks": 12,
-      "skills": ["PyTorch/deep learning", "self-supervised learning for time series/fMRI", "fMRIPrep preprocessing", "few-shot evaluation methodology"],
-      "compute": "Single-GPU workstation (e.g., one RTX 3090/4090) sufficient for a 108-subject rs-fMRI pretraining corpus at this scale; a few days of training time",
       "required_variables": [
         {
-          "variable": "task-rest BOLD, full resting-state corpus for self-supervised pretraining",
+          "name": "Resting-state fMRI, full cohort for unsupervised pretraining (108 participants/108 runs)",
           "file": "sub-*/func/*task-rest*_bold.nii.gz",
-          "src": "e2",
-          "note": "108 participants / 108 runs"
+          "src": "e2"
         },
         {
-          "variable": "task-SCT BOLD + events.tsv (hypothesis generation vs. matched control) for downstream few-shot fine-tuning/evaluation",
-          "file": "sub-*/func/*task-SCT*_bold.nii.gz, *_events.tsv",
-          "src": "e2",
-          "note": "labeled task data limited to 54 participants / 107 runs with non-empty events"
+          "name": "task-ID BOLD runs and event files for downstream fine-tuning/evaluation (25 participants/150 runs total; events available for 19 participants/114 runs, 19 with full coverage)",
+          "file": "sub-*/func/*task-ID*_bold.nii.gz and sub-*/func/*task-ID*_events.tsv",
+          "src": "e2"
         },
         {
-          "variable": "T1w anatomical for standard-space registration ahead of representation learning",
-          "file": "sub-*/anat/*_T1w.nii.gz",
+          "name": "SBRef images for functional-run registration/QC during preprocessing",
+          "file": "sub-*/func/*_sbref.nii.gz",
           "src": "e2"
         }
       ],
-      "still_open_because": "None of the listed primary references describe a self-supervised/foundation-model pretraining approach on this release; all cited work uses conventional GLM, pattern-similarity, or network analyses on individual tasks."
+      "skills": ["self-supervised learning (autoencoders/contrastive learning)", "PyTorch", "fMRI preprocessing (fMRIPrep)"],
+      "compute": "single GPU (e.g., RTX 3090/A5000-class) sufficient at this scale; pretraining roughly 2-4 GPU-days",
+      "still_open_because": "The rest-fMRI arm is the largest, most completely-covered acquisition in the release (108/108 runs) while task-ID is explicitly the smallest fully-annotated task (19 participants with complete events), making this a natural, currently-untested pretrain-then-few-shot-transfer pair within a single dataset."
     }
   ]
 }

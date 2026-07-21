@@ -3,15 +3,16 @@
   "data_descriptor_doi": "10.1038/s41597-025-06311-y",
   "dataset_doi": "10.18112/openneuro.ds005713.v1.0.1",
   "openalex_work_id": "https://openalex.org/W4417304259",
-  "resolution_method": "OpenAlex DOI lookup for the work id succeeded, but OpenAlex list/filter endpoints (cites: filter) returned HTTP 429 'Rate limit exceeded / Insufficient budget' for the remainder of the session. Fell back to Semantic Scholar Graph API (paper citations) cross-checked against a Europe PMC full-text search for the literal accession string \"ds005713\" to confirm genuine dataset reuse (vs. incidental/self-citation of the data descriptor).",
-  "n_citing_works": 5,
-  "citing_works_note": "Semantic Scholar's citation graph returned 3 citing papers, one of which (a companion olfactory-groove-meningioma data descriptor by the same Novosibirsk group) cites the TN paper only as a methodological/format precedent and does NOT reuse ds005713 data -- excluded. Europe PMC full-text search for the accession string \"ds005713\" independently surfaced 5 papers (excluding the original data descriptor itself) that explicitly state they pulled MRI/clinical data from the OpenNeuro ds005713 repository; these are the works counted here as genuine dataset users.",
+  "resolution_method": "OpenAlex DOI lookup resolved to W4417304259; the OpenAlex cites: filter (works?filter=cites:W4417304259) succeeded on re-query and returned 4 citing works directly. This was cross-checked against an earlier-session fallback (Semantic Scholar citation graph + Europe PMC full-text search for the literal accession string \"ds005713\", used when OpenAlex list endpoints were rate-limited) which had surfaced 5 genuine-reuse papers via full-text accession matching. Merging both passes: 3 works are confirmed by both methods, 2 works were found only by the earlier full-text/Semantic-Scholar fallback (not yet reflected in OpenAlex's citation index -- citation-indexing lag), and 1 additional work was found only by the direct OpenAlex cites: filter (not yet indexed by Europe PMC/Semantic Scholar at the time of the earlier pass). Total distinct genuine-reuse works across both passes: 6.",
+  "n_citing_works": 6,
+  "citing_works_note": "Across the two resolution passes, 6 distinct papers show clear evidence of actually reusing ds005713 MRI/clinical data (either by explicit accession-string citation in full text, or by cohort/method description matching the dataset's pre/post-surgical TN design). One additional citing work (a companion olfactory-groove-meningioma data descriptor by the same Novosibirsk group, cited via OpenAlex's cites: filter) cites the TN data descriptor only as a methodological/BIDS-formatting precedent and does NOT reuse ds005713 data -- excluded, see excluded_as_non_reuse.",
   "dominant_tasks": [
     "biomarker",
-    "mechanism/structure-function characterization"
+    "mechanism/structure-function characterization",
+    "cross-condition specificity (comparator cohort use, one instance)"
   ],
   "task_breakdown": {
-    "biomarker": 5,
+    "biomarker": 6,
     "outcome-prediction": 0,
     "segmentation": 0,
     "subtyping": 0,
@@ -82,6 +83,17 @@
       "method": "Diffusion tractography, Brainnetome-parcellated structural connectomes, network control theory metrics",
       "n_used": "82 TN patients, 42 healthy controls (subset of ds005713)",
       "finding": "Aberrant structural network controllability in TN relative to controls"
+    },
+    {
+      "title": "Anterior-superior hypothalamic enlargement as specific marker in episodic migraine: converging evidence from an independent discovery-replication design",
+      "doi": "10.64898/2026.06.12.26355501",
+      "journal": "medRxiv (preprint)",
+      "year": 2026,
+      "authors": "(not individually retrieved)",
+      "task": "biomarker specificity / comparator cohort (secondary use)",
+      "method": "Atlas-based automated hypothalamic subunit segmentation on structural MRI; MANOVA and Welch t-tests across two migraine discovery/replication cohorts plus two independent 'chronic pain' comparator cohorts",
+      "n_used": "119 TN patients, 55 healthy controls (near-complete ds005713 cohort), used as one of two chronic-pain comparator datasets alongside a fibromyalgia cohort",
+      "finding": "No significant hypothalamic subunit volumetric differences detected in the TN cohort, used as evidence that a left anterior-superior hypothalamic enlargement found in migraine is migraine-specific rather than a generic chronic-pain effect"
     }
   ],
   "excluded_as_non_reuse": [
@@ -92,5 +104,5 @@
     }
   ],
   "saturation": "medium",
-  "saturation_rationale": "The data descriptor was published 2025-12-12 (~7 months before this analysis), yet 5 independent secondary-analysis papers already exist -- unusually fast uptake for a niche clinical MRI dataset. However, all 5 cluster tightly around the same class of task: univariate/graph-theoretic neuroimaging biomarker discovery (diffusion microstructure, structure-function coupling, connectome controllability, glymphatic index, imaging-genetics) comparing TN patients vs. controls or pre- vs. post-surgery. No one has yet used ds005713 for supervised outcome-prediction modeling (e.g., predicting surgical pain relief from baseline imaging), lesion/nerve segmentation, TN subtyping, causal/treatment-effect estimation, external validation of a classifier trained elsewhere, or foundation-model fine-tuning. So: the 'easy' descriptive/biomarker comparisons are being harvested quickly (borderline high there), but the higher-value ML/predictive/segmentation white space is still completely open, which keeps overall saturation at medium rather than high."
+  "saturation_rationale": "The data descriptor was published 2025-12-12 (~7 months before this analysis), yet 6 independent secondary-analysis papers already exist -- unusually fast uptake for a niche clinical MRI dataset. However, all 6 cluster tightly around the same class of task: univariate/graph-theoretic neuroimaging biomarker discovery (diffusion microstructure, structure-function coupling, connectome controllability, glymphatic index, imaging-genetics) comparing TN patients vs. controls or pre- vs. post-surgery, plus one instance of the TN cohort being borrowed purely as a cross-condition specificity comparator for an unrelated migraine study. No one has yet used ds005713 for supervised outcome-prediction modeling (e.g., predicting surgical pain relief from baseline imaging), lesion/nerve segmentation, TN subtyping, causal/treatment-effect estimation, formal external validation of a classifier trained elsewhere, or foundation-model fine-tuning. So: the 'easy' descriptive/biomarker comparisons are being harvested quickly (borderline high there, and multiple groups are now drawing on it as a convenient chronic-pain comparator cohort), but the higher-value ML/predictive/segmentation white space is still completely open, which keeps overall saturation at medium rather than high."
 }
