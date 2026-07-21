@@ -24,6 +24,7 @@
       "glioma": 2,
       "glioblastoma": 2,
       "seizure": 2,
+      "healthy-control": 2,
       "tbi": 2,
       "sepsis": 2,
       "delirium": 2,
@@ -33,16 +34,20 @@
       "ptsd": 2,
       "parkinson": 2,
       "multiple": 2,
+      "sleep-apnea": 1,
+      "cognitive-impairment": 1,
       "anxiety": 1,
       "substance-use": 1,
       "mci": 1,
       "meningioma": 1,
       "brain-metastasis": 1,
+      "decision-making": 1,
       "treatment-resistant depression": 1,
       "intracranial-hemorrhage": 1,
       "aging": 1,
       "autism": 1,
       "movement-disorders": 1,
+      "creativity": 1,
       "brain-tumor": 1,
       "encephalopathy": 1
     },
@@ -216,18 +221,18 @@
         {
           "step_en": "Open the OpenNeuro dataset page for ds008108 (https://openneuro.org/datasets/ds008108), snapshot 1.0.0.",
           "step_es": "Abrir la pagina del dataset ds008108 en OpenNeuro (https://openneuro.org/datasets/ds008108), snapshot 1.0.0.",
-          "eta": "1 min",
           "evidence": [
             {
               "src": "e2",
               "quote": "OpenNeuro dataset ds008108 (snapshot 1.0.0)"
             }
-          ]
+          ],
+          "eta_en": "1 min",
+          "eta_es": "1 min"
         },
         {
           "step_en": "Download the dataset directly; no registration or agreement is described, as it is released under CC0 (75,106,494,412 bytes across 5,603 files, so plan disk space and transfer time).",
           "step_es": "Descargar el dataset directamente; no se describe registro ni acuerdo, ya que se publica bajo licencia CC0 (75.106.494.412 bytes en 5.603 archivos, prever espacio en disco y tiempo de transferencia).",
-          "eta": "hours (dataset is ~75 GB)",
           "evidence": [
             {
               "src": "e2",
@@ -237,18 +242,21 @@
               "src": "e2",
               "quote": "Total files: 5603\nSize bytes: 75106494412"
             }
-          ]
+          ],
+          "eta_en": "hours (dataset is ~75 GB)",
+          "eta_es": "horas (el dataset pesa ~75 GB)"
         },
         {
           "step_en": "Verify the BIDS layout: each subject folder (e.g. sub-001) contains the five session folders ses-preSleep, ses-nightSleep, ses-postSleep, ses-preNap and ses-postNap, alongside README.md and dataset_description.json at the root.",
           "step_es": "Verificar la estructura BIDS: cada carpeta de sujeto (p. ej. sub-001) contiene las cinco carpetas de sesion ses-preSleep, ses-nightSleep, ses-postSleep, ses-preNap y ses-postNap, junto a README.md y dataset_description.json en la raiz.",
-          "eta": "5 min",
           "evidence": [
             {
               "src": "e2",
               "quote": "dataset/\n├── README.md\n├── dataset_description.json\n├── sub-001/\n│   ├── ses-preSleep/  (Behavioral)\n│   ├── ses-nightSleep/ (PSG EDF)\n│   ├── ses-postSleep/ (Behavioral)\n│   ├── ses-preNap/    (Behavioral)\n│   └── ses-postNap/   (Behavioral, T1w MRI, rs-fMRI)\n└── ..."
             }
-          ]
+          ],
+          "eta_en": "5 min",
+          "eta_es": "5 min"
         }
       ],
       "starter_code": {
@@ -292,7 +300,11 @@
             "sha256": "2d69b3d2c1fa288218c02d12b53818e9701d8dfee8e7dc2f5598a166ad28ff86"
           }
         ]
-      }
+      },
+      "diseases": [
+        "sleep-apnea",
+        "cognitive-impairment"
+      ]
     },
     {
       "id": "abcd",
@@ -358,6 +370,28 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        }
+      ],
+      "descriptor_doi": "10.1016/j.dcn.2018.03.001",
+      "access_steps": [
+        {
+          "step_en": "Create an NDA (NIMH Data Archive) account",
+          "step_es": "Crea una cuenta en NDA (NIMH Data Archive)",
+          "url": "https://nda.nih.gov/abcd",
+          "eta_en": "20 min",
+          "eta_es": "20 min"
+        },
+        {
+          "step_en": "Submit a Data Use Certification signed by your institution's signing official",
+          "step_es": "Envía la Data Use Certification firmada por el responsable institucional",
+          "eta_en": "1-3 weeks (depends on your institution)",
+          "eta_es": "1-3 semanas (depende de tu institución)"
+        },
+        {
+          "step_en": "Once approved, define a data package and download with the NDA tools",
+          "step_es": "Tras la aprobación, define un paquete de datos y descarga con las herramientas de NDA",
+          "eta_en": "hours",
+          "eta_es": "horas"
         }
       ]
     },
@@ -426,7 +460,29 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "access_steps": [
+        {
+          "step_en": "Submit an ADNI data access application (needs an institutional affiliation)",
+          "step_es": "Envía una solicitud de acceso a ADNI (requiere afiliación institucional)",
+          "url": "https://adni.loni.usc.edu/data-samples/adni-data/#AccessData",
+          "eta_en": "1 h",
+          "eta_es": "1 h"
+        },
+        {
+          "step_en": "The Data Sharing and Publication Committee reviews the request",
+          "step_es": "El comité de publicación y compartición revisa la solicitud",
+          "eta_en": "2-6 weeks",
+          "eta_es": "2-6 semanas"
+        },
+        {
+          "step_en": "Download through LONI IDA once approved",
+          "step_es": "Descarga por LONI IDA una vez aprobada",
+          "eta_en": "hours (the data is large)",
+          "eta_es": "horas (los datos son grandes)"
+        }
+      ],
+      "descriptor_doi": "10.1002/jmri.21049"
     },
     {
       "id": "bci-competition-iv",
@@ -480,7 +536,8 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.3389/fnins.2012.00055"
     },
     {
       "id": "brats",
@@ -543,7 +600,11 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1109/TMI.2014.2377694",
+      "starter_code": {
+        "python": "import nibabel as nib\nimport numpy as np\n\nseg = nib.load('BraTS2021_00000/BraTS2021_00000_seg.nii.gz')\nd = seg.get_fdata()\n# Etiquetas: 1 núcleo necrótico, 2 edema, 4 tumor realzante\nfor lab in (1, 2, 4):\n    print(lab, int((d == lab).sum()), 'vóxeles')"
+      }
     },
     {
       "id": "chb-mit",
@@ -592,7 +653,11 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "doi": "10.13026/C2K01R",
+      "starter_code": {
+        "python": "# pip install mne\nimport mne\n\nraw = mne.io.read_raw_edf('chb01/chb01_03.edf', preload=True)\nprint(raw.info['sfreq'], 'Hz ·', len(raw.ch_names), 'canales')\n\n# Las crisis vienen en chb01-summary.txt, no en el EDF:\n# hay que parsear los tiempos de inicio/fin a mano.\nraw.filter(1., 40.).plot(duration=20)"
+      }
     },
     {
       "id": "openneuro-ds008066",
@@ -755,7 +820,11 @@
             "sha256": "fc52d76478b1658e4397955b906ce2408f36e092ee6b1c8fee4f0ecac15342a1"
           }
         ]
-      }
+      },
+      "diseases": [
+        "healthy-control",
+        "decision-making"
+      ]
     },
     {
       "id": "10-1038-s41597-025-04511-0",
@@ -1004,17 +1073,20 @@
         {
           "step_en": "Open the dataset DOI https://doi.org/10.18112/openneuro.ds005684.v1.0.0, which resolves to the OpenNeuro record for ds005684.",
           "step_es": "Abrir el DOI del conjunto de datos https://doi.org/10.18112/openneuro.ds005684.v1.0.0, que resuelve al registro de OpenNeuro ds005684.",
-          "eta": "1 min"
+          "eta_en": "1 min",
+          "eta_es": "1 min"
         },
         {
           "step_en": "Download the dataset directly; the evidence states the data are freely available and describes no registration, application or data use agreement.",
           "step_es": "Descargar el conjunto de datos directamente; la evidencia indica que los datos estan libremente disponibles y no describe registro, solicitud ni acuerdo de uso de datos.",
-          "eta": "minutos a horas segun el ancho de banda"
+          "eta_en": "minutes to hours depending on bandwidth",
+          "eta_es": "minutos a horas según el ancho de banda"
         },
         {
           "step_en": "Read the BIDS layout: participant directories (e.g. sub-01), four session directories per participant, each with anat and func subdirectories including event timing files.",
           "step_es": "Revisar la estructura BIDS: directorios por participante (p. ej. sub-01), cuatro directorios de sesion por participante, cada uno con subdirectorios anat y func que incluyen archivos de tiempos de eventos.",
-          "eta": "10 min"
+          "eta_en": "10 min",
+          "eta_es": "10 min"
         }
       ],
       "starter_code": {
@@ -1113,7 +1185,27 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1038/sdata.2018.178",
+      "doi": "10.13026/C2WM1R",
+      "access_steps": [
+        {
+          "step_en": "Same PhysioNet credentialing as MIMIC-IV — do it once, it covers both",
+          "step_es": "Misma credencial PhysioNet que MIMIC-IV: se hace una vez y sirve para ambas",
+          "url": "https://physionet.org/settings/credentialing/",
+          "eta_en": "see MIMIC-IV",
+          "eta_es": "ver MIMIC-IV"
+        },
+        {
+          "step_en": "Sign the eICU-specific data use agreement",
+          "step_es": "Firma el acuerdo de uso específico de eICU",
+          "eta_en": "10 min",
+          "eta_es": "10 min"
+        }
+      ],
+      "starter_code": {
+        "python": "import pandas as pd\n\npat = pd.read_csv('eicu/patient.csv.gz')\n# unitvisitnumber > 1 marca reingresos a UCI\nprint(pat.groupby('hospitalid').size().describe())"
+      }
     },
     {
       "id": "enigma",
@@ -1170,7 +1262,8 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1007/s11682-013-9269-5"
     },
     {
       "id": "openneuro-ds008064",
@@ -1453,7 +1546,40 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1038/s41597-022-01899-x",
+      "doi": "10.13026/6mm1-ek67",
+      "access_steps": [
+        {
+          "step_en": "Create a free PhysioNet account",
+          "step_es": "Crea una cuenta gratuita en PhysioNet",
+          "url": "https://physionet.org/register/",
+          "eta_en": "5 min",
+          "eta_es": "5 min"
+        },
+        {
+          "step_en": "Complete the CITI 'Data or Specimens Only Research' course and upload the certificate",
+          "step_es": "Completa el curso CITI 'Data or Specimens Only Research' y sube el certificado",
+          "eta_en": "4-6 h",
+          "eta_es": "4-6 h"
+        },
+        {
+          "step_en": "Submit the credentialing request; a human reviews it",
+          "step_es": "Envía la solicitud de credencial; la revisa una persona",
+          "eta_en": "3-14 days",
+          "eta_es": "3-14 días"
+        },
+        {
+          "step_en": "Sign the data use agreement on the project page, then download",
+          "step_es": "Firma el acuerdo de uso en la página del proyecto y descarga",
+          "eta_en": "10 min",
+          "eta_es": "10 min"
+        }
+      ],
+      "starter_code": {
+        "python": "import pandas as pd\n\n# Tras descargar y descomprimir el volcado con credencial.\nadm = pd.read_csv('mimiciv/hosp/admissions.csv.gz')\ndx  = pd.read_csv('mimiciv/hosp/diagnoses_icd.csv.gz')\n\n# Ingresos con un diagnóstico cerebrovascular (ICD-10 I60-I69)\nstroke = dx[dx.icd_code.str.startswith(('I60','I61','I62','I63'), na=False)]\nprint(adm.merge(stroke, on='hadm_id').subject_id.nunique(), 'pacientes')",
+        "r": "library(data.table)\nadm <- fread('mimiciv/hosp/admissions.csv.gz')\ndx  <- fread('mimiciv/hosp/diagnoses_icd.csv.gz')\nstroke <- dx[grepl('^I6[0-3]', icd_code)]\nlength(unique(merge(adm, stroke, by='hadm_id')$subject_id))"
+      }
     },
     {
       "id": "moabb",
@@ -1506,7 +1632,11 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1088/1741-2552/aadea0",
+      "starter_code": {
+        "python": "# pip install moabb\nfrom moabb.datasets import BNCI2014001\nfrom moabb.paradigms import MotorImagery\n\nX, y, meta = MotorImagery().get_data(BNCI2014001(), subjects=[1])\nprint(X.shape, set(y))   # (n_trials, n_channels, n_times)"
+      }
     },
     {
       "id": "oasis",
@@ -1560,7 +1690,11 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1101/2019.12.13.19014902",
+      "starter_code": {
+        "python": "import pandas as pd\ndf = pd.read_csv('OASIS3_demographics.csv')\nprint(df.groupby('cdr').size())   # CDR 0 = cognitivamente normal"
+      }
     },
     {
       "id": "openneuro",
@@ -1627,7 +1761,12 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.7554/eLife.71774",
+      "starter_code": {
+        "bash": "# Sin cuenta. openneuro-py descarga sólo lo que pidas.\npip install openneuro-py\nopenneuro-py download --dataset=ds000117 --target-dir=./ds000117\n\n# Ver qué hay antes de bajar 40 GB:\nopenneuro-py download --dataset=ds000117 --include=participants.tsv",
+        "python": "import openneuro as on\non.download(dataset='ds000117', target_dir='./ds000117',\n            include=['participants.tsv', 'sub-01/anat'])"
+      }
     },
     {
       "id": "pgc",
@@ -1690,7 +1829,8 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1176/appi.ajp.2017.17030283"
     },
     {
       "id": "ppmi",
@@ -1756,6 +1896,28 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        }
+      ],
+      "descriptor_doi": "10.1016/j.pneurobio.2011.09.005",
+      "access_steps": [
+        {
+          "step_en": "Apply for access through the LONI IDA portal",
+          "step_es": "Solicita acceso por el portal LONI IDA",
+          "url": "https://ida.loni.usc.edu/",
+          "eta_en": "30 min",
+          "eta_es": "30 min"
+        },
+        {
+          "step_en": "Agree to the PPMI Data Use Agreement (names a supervising investigator)",
+          "step_es": "Acepta el acuerdo de uso de PPMI (exige nombrar a un investigador responsable)",
+          "eta_en": "1 day",
+          "eta_es": "1 día"
+        },
+        {
+          "step_en": "Wait for approval, then download via the IDA browser or its API",
+          "step_es": "Espera la aprobación y descarga desde el navegador de IDA o su API",
+          "eta_en": "1-3 weeks",
+          "eta_es": "1-3 semanas"
         }
       ]
     },
@@ -1862,7 +2024,13 @@
             "sha256": "0cb51e73172b16c73600b8f9f8593ff23e9885969694276ce69d65ad5a4b236c"
           }
         ]
-      }
+      },
+      "diseases": [
+        "healthy-control",
+        "creativity"
+      ],
+      "short_desc_en": "Task fMRI dataset on scientific creativity with a matched experimental control condition, shared openly on OpenNeuro under CC0.",
+      "short_desc_es": "Dataset de fMRI de tarea sobre creatividad científica con condición de control emparejada, publicado abiertamente en OpenNeuro bajo CC0."
     },
     {
       "id": "tcia",
@@ -1917,7 +2085,8 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.1007/s10278-013-9622-7"
     },
     {
       "id": "tuh-eeg",
@@ -1976,7 +2145,11 @@
           "unverified": true,
           "confidence": 0.2
         }
-      ]
+      ],
+      "descriptor_doi": "10.3389/fnins.2016.00196",
+      "starter_code": {
+        "python": "import mne\n\nraw = mne.io.read_raw_edf('aaaaaaaa_s001_t000.edf', preload=True)\n# Los montajes varían entre registros: normaliza antes de agrupar.\nprint(raw.ch_names[:8])"
+      }
     },
     {
       "id": "uk-biobank",
@@ -2042,6 +2215,34 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        }
+      ],
+      "descriptor_doi": "10.1371/journal.pmed.1001779",
+      "access_steps": [
+        {
+          "step_en": "Register as a researcher in the Access Management System",
+          "step_es": "Regístrate como investigador en el Access Management System",
+          "url": "https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access",
+          "eta_en": "1 h",
+          "eta_es": "1 h"
+        },
+        {
+          "step_en": "Submit a scientific application describing the analysis",
+          "step_es": "Envía una solicitud científica describiendo el análisis",
+          "eta_en": "1-2 weeks of writing",
+          "eta_es": "1-2 semanas de redacción"
+        },
+        {
+          "step_en": "Pay the access fee — this is NOT free; budget for it before planning a project",
+          "step_es": "Paga la tarifa de acceso — NO es gratis; presupuéstala antes de planificar",
+          "eta_en": "depends on scope",
+          "eta_es": "según el ámbito"
+        },
+        {
+          "step_en": "Approval, then data delivered to your approved compute environment",
+          "step_es": "Aprobación y entrega de datos a tu entorno de cómputo aprobado",
+          "eta_en": "4-12 weeks",
+          "eta_es": "4-12 semanas"
         }
       ]
     }

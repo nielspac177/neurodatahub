@@ -173,7 +173,10 @@
       "access": "open",
       "modality_primary": "multimodal",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "sleep-apnea",
+        "cognitive-impairment"
+      ],
       "all_datasets": [
         "openneuro-ds008108"
       ],
@@ -247,7 +250,10 @@
       "access": "open",
       "modality_primary": "multimodal",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "sleep-apnea",
+        "cognitive-impairment"
+      ],
       "all_datasets": [
         "openneuro-ds008108"
       ],
@@ -283,7 +289,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "decision-making"
+      ],
       "all_datasets": [
         "openneuro-ds008066"
       ],
@@ -319,7 +328,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "decision-making"
+      ],
       "all_datasets": [
         "openneuro-ds008066"
       ],
@@ -355,7 +367,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "decision-making"
+      ],
       "all_datasets": [
         "openneuro-ds008066"
       ],
@@ -391,7 +406,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "decision-making"
+      ],
       "all_datasets": [
         "openneuro-ds008066"
       ],
@@ -613,7 +631,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "creativity"
+      ],
       "all_datasets": [
         "openneuro-ds008055"
       ],
@@ -649,7 +670,10 @@
       "access": "open",
       "modality_primary": "multimodal",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "sleep-apnea",
+        "cognitive-impairment"
+      ],
       "all_datasets": [
         "openneuro-ds008108"
       ],
@@ -685,7 +709,10 @@
       "access": "open",
       "modality_primary": "multimodal",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "sleep-apnea",
+        "cognitive-impairment"
+      ],
       "all_datasets": [
         "openneuro-ds008108"
       ],
@@ -838,7 +865,10 @@
       "access": "open",
       "modality_primary": "neuroimaging",
       "disease_category": [],
-      "diseases": [],
+      "diseases": [
+        "healthy-control",
+        "creativity"
+      ],
       "all_datasets": [
         "openneuro-ds008055"
       ],

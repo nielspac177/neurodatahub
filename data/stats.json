@@ -2,7 +2,7 @@
   "n_datasets": 21,
   "n_projects": 44,
   "n_projects_unverified": 25,
-  "n_datasets_missing_desc": 1,
+  "n_datasets_missing_desc": 0,
   "stale": [],
   "by_access": {
     "open": 9,
@@ -185,6 +185,26 @@
       "modality": "multimodal"
     },
     {
+      "disease": "cognitive-impairment",
+      "modality": "clinical"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "genetics"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "bci"
+    },
+    {
       "disease": "control",
       "modality": "clinical"
     },
@@ -198,6 +218,46 @@
     },
     {
       "disease": "control",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "creativity",
+      "modality": "clinical"
+    },
+    {
+      "disease": "creativity",
+      "modality": "genetics"
+    },
+    {
+      "disease": "creativity",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "creativity",
+      "modality": "bci"
+    },
+    {
+      "disease": "creativity",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "clinical"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "genetics"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "bci"
+    },
+    {
+      "disease": "decision-making",
       "modality": "multimodal"
     },
     {
@@ -342,6 +402,26 @@
     },
     {
       "disease": "glioma",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "clinical"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "genetics"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "bci"
+    },
+    {
+      "disease": "healthy-control",
       "modality": "multimodal"
     },
     {
@@ -575,6 +655,26 @@
     {
       "disease": "sepsis",
       "modality": "multimodal"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "clinical"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "genetics"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "bci"
     },
     {
       "disease": "stroke",

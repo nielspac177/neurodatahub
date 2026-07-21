@@ -270,7 +270,10 @@ def access_steps(steps, lang):
     out = []
     for i, s in enumerate(steps, 1):
         text = s.get(f"step_{lang}") or s.get("step_en") or s.get("step_es") or ""
-        eta = f'<p class="step__eta">{esc(s["eta"])}</p>' if s.get("eta") else ""
+        # eta_<lang> con respaldo a `eta`: un plazo escrito sólo en un idioma
+        # se filtraba a la otra página ("3-14 días" en la versión inglesa).
+        eta_txt = s.get(f"eta_{lang}") or s.get("eta_en") or s.get("eta")
+        eta = f'<p class="step__eta">{esc(eta_txt)}</p>' if eta_txt else ""
         body = (f'<a href="{esc(s["url"])}">{esc(text)}</a>' if s.get("url") else esc(text))
         out.append(f'<li class="step"><span class="step__num tnum" aria-hidden="true">{i}</span>'
                    f'<div><p>{body}</p>{eta}</div></li>')
