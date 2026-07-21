@@ -1,137 +1,128 @@
-NEURODATAHUB — ACTUALIZACIÓN
-Tarjeta para Apple Notes. Texto plano a propósito: se pega limpio.
-Versión larga: RUNBOOK.md en el repo.
+NEURODATAHUB — ACTUALIZACIÓN MENSUAL
 
-────────────────────────────────────
-0. CADENCIA
-
-  SEMANAL   automático, gratis, no tocas nada.
-            Mantiene el catálogo al día: enlaces, licencias,
-            preguntas ya cerradas por alguien.
-
-  MENSUAL   tú, ~1 h. Es lo único que cuesta tokens.
-            Añade datasets nuevos.
-
-  Lo de abajo es la corrida MENSUAL.
+Sitio:  https://nielspac177.github.io/neurodatahub/
+Repo:   ~/neurodatahub
 
 
-1. ABRIR EL AGENTE
-────────────────────────────────────
+════════════════════════════════════════
+CADENCIA
+════════════════════════════════════════
 
-Terminal:
+SEMANAL   automático, gratis. No tocas nada. Mantiene el
+          catálogo al día (enlaces vivos, licencias, preguntas
+          ya cerradas por otros). Corre solo los domingos.
 
-   cd ~/neurodatahub
-   claude
-
-Pegar esto en Claude Code:
-
-   Lee RUNBOOK.md y ejecuta la corrida MENSUAL de enriquecimiento de
-   NeuroDataHub con --limit 20. Párate y enséñame lo que haya en
-   drafts/needs_human/ antes de publicar nada. No hagas push: déjalo
-   commiteado en una rama y dime el comando para mergear.
-
-Eso basta. El agente saca el resto del RUNBOOK.md.
+MENSUAL   tú, ~1 h. Es lo único que gasta tokens. Añade
+          datasets y preguntas nuevas. Es lo de abajo.
 
 
-────────────────────────────────────
-2. QUÉ VA A HACER (≈30–60 min)
-────────────────────────────────────
+════════════════════════════════════════
+OPCIÓN A — LA FÁCIL (deja que el agente lo haga)
+════════════════════════════════════════
 
-  1. Descubrir     enumera revistas de datos (Scientific Data, Data in
-                   Brief, GigaScience) por ISSN + OpenNeuro + DANDI
-  2. Congelar      descarga y guarda las fuentes con sha256
-  3. Enriquecer    ~100 subagentes: redactor + 4 críticos adversariales
-  4. Publicar      Python re-verifica todo y mezcla lo que pasa
-  5. Mantener      enlaces muertos, cambios de licencia, recorte
-  6. Comprobar     4 gates; si uno falla, se para
-  7. Commit        en una rama, sin push
+1) Terminal:
 
-El paso 3 es el caro. Los demás son gratis.
+      cd ~/neurodatahub
+      claude
+
+2) Pega esto en Claude Code:
+
+   Lee RUNBOOK.md y ejecuta la corrida mensual de NeuroDataHub.
+   Empieza pequeño: fetch_evidence --limit 3 y enrich con limit 3.
+   Enséñame /usage antes y después para ver el gasto. Párate y
+   muéstrame drafts/needs_human/ antes de publicar nada. No hagas
+   push: déjalo en una rama y dame el comando para mergear.
+
+3) Cuando te enseñe drafts/needs_human/, decide (ver más abajo).
+
+4) Para publicar, dile:  "haz push"
 
 
-────────────────────────────────────
-3. LO ÚNICO QUE TIENES QUE DECIDIR TÚ
-────────────────────────────────────
+════════════════════════════════════════
+OPCIÓN B — MÁS PREGUNTAS CLÍNICAS DE NEUROCIRUGÍA
+════════════════════════════════════════
 
-Al final te enseñará drafts/needs_human/. Motivos típicos:
+Pega esto en Claude Code (en ~/neurodatahub):
+
+   Corre workflows/neurosurgery-map.mjs con las subespecialidades
+   que quiera (vascular, epilepsy, trauma, functional, tumor,
+   csf-spine), luego merge_neurosurgery.py y build.py. Muéstrame
+   el resultado antes de push.
+
+Nota: vascular sale vacío hasta que el catálogo tenga un dataset
+de aneurisma/HSA con escalas (Hunt-Hess, Fisher, mRS). Si me das
+el nombre de uno, lo añado y ahí sí salen preguntas vasculares.
+
+
+════════════════════════════════════════
+LO ÚNICO QUE DECIDES TÚ (drafts/needs_human/)
+════════════════════════════════════════
+
+Cada archivo trae el motivo. Los típicos:
 
   "'open' con una sola derivación"
-      → Abre la URL. ¿De verdad se descarga sin cuenta?
-        Sí → publicar.  No → corregir el acceso.
+      Abre la URL. ¿Se descarga sin cuenta?
+      Sí -> publicar.   No -> corregir el acceso.
 
-  "desacuerdo: redactor=X, crítico=Y"
-      → Mira la licencia real. Ante la duda, el más restrictivo.
+  "el id ya existe"        ya está en el catálogo. Descartar.
+  "N citas no verificables" el modelo se inventó frases. Descartar.
+  "falta campo obligatorio" completar a mano o descartar.
 
-  "N citas no verificables"
-      → El modelo se inventó frases. Descartar el registro.
-
-  "falta campo obligatorio"
-      → Completar a mano o descartar.
-
-Regla de oro: si dudas del acceso, NO lo publiques como abierto.
+REGLA DE ORO: si dudas del acceso, NO lo publiques como abierto.
 Equivocarse ahí le cuesta semanas a un estudiante.
 
 
-────────────────────────────────────
-4. PUBLICAR DE VERDAD
-────────────────────────────────────
-
-Cuando estés conforme:
+════════════════════════════════════════
+PUBLICAR
+════════════════════════════════════════
 
    cd ~/neurodatahub
    git checkout main
-   git merge weekly/AAAA-MM-DD
+   git merge <la-rama-que-te-dio>
    git push
 
-El push dispara el deploy de GitHub Pages. Antes de eso no hay nada
-publicado.
+El push despliega el sitio (~1 min). Antes de eso no hay nada
+publicado. Si al abrir el sitio los filtros no filtran tras un
+update, recarga fuerte una vez: Cmd+Shift+R.
 
 
-────────────────────────────────────
-5. SI ALGO SE ROMPE
-────────────────────────────────────
+════════════════════════════════════════
+COSTE (importante)
+════════════════════════════════════════
 
-  Nada nuevo aparece
-      Normal: las marcas de agua están al día.
-      Para recorrer histórico:  python3 scripts/harvest_run.py --backfill
+Un lote de enriquecimiento cuesta bastante (millones de tokens),
+todo en la corrida mensual. Por eso:
 
-  Se bloquea todo
-      Suele ser correcto: los críticos no coinciden en el acceso.
-      Mira el campo _blocks de cada archivo.
-
-  Falla calibrate_triage.py
-      El filtro dejaría escapar una base buena conocida.
-      Se arregla el léxico (scripts/lib/lexicon.py), NUNCA el umbral.
-
-  Falla check_contrast.py
-      Un color nuevo no cumple accesibilidad. Oscurecer hasta ≥4.5:1.
-
-  Quiero empezar de cero
-      NO borres state/seen.json salvo que quieras re-triar todo lo ya
-      descartado (miles de artículos). Casi nunca es lo que quieres.
+  - Empieza SIEMPRE con --limit 3 y mira /usage.
+  - Si queda presupuesto, sube el lote (--limit 10, 20).
+  - No hace falta procesar los miles de candidatos en cola: los
+    mejores están arriba; el triaje ya descartó el resto.
 
 
-────────────────────────────────────
-6. VER EL SITIO EN LOCAL
-────────────────────────────────────
+════════════════════════════════════════
+SI ALGO SE ROMPE
+════════════════════════════════════════
 
-   cd ~/neurodatahub
-   python3 scripts/build.py
-   python3 -m http.server 8000
+  Se corta a media corrida (límite de sesión)
+      No se pierde nada: cada etapa guarda su parte en disco.
+      Al volver, dile al agente que reanude; lo hecho se sirve
+      de caché.
 
-   → http://localhost:8000
+  Falla una comprobación (build/contrast/calibrate)
+      Para. No la desactives. Dile al agente que la arregle.
 
-Nota: el HTML no se guarda en git; se regenera. Si el sitio se ve
-vacío, es que falta correr build.py.
+  Ver el sitio en local:
+      python3 scripts/build.py && python3 -m http.server 8000
+      -> http://localhost:8000
 
 
-────────────────────────────────────
-7. LO QUE NUNCA DEBE PASAR
-────────────────────────────────────
+════════════════════════════════════════
+NUNCA
+════════════════════════════════════════
 
-  · Editar data/databases.yml a mano para meter registros nuevos
-    (salta las reglas de veto).
-  · Publicar 'open' con una sola fuente que lo diga.
-  · Rellenar un campo que la evidencia no respalda.
+  - Editar data/databases.yml a mano para meter registros
+    (salta las reglas de verificación).
+  - Publicar 'open' con una sola fuente que lo diga.
+  - Rellenar un campo que la evidencia no respalda.
     Vacío es correcto; adivinado es un defecto.
-  · Hacer push sin haber revisado needs_human/.
+  - Hacer push sin revisar drafts/needs_human/.
