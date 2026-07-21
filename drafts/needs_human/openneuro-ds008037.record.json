@@ -1,0 +1,536 @@
+{
+  "id": "openneuro-ds008037",
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "UNSUPPORTED",
+          "note": "Quote 'Modalities: eeg, beh' is verbatim and present in e2, but it merely lists two modalities without designating either as 'primary'. The value 'eeg' is a plausible inference (eeg listed first, README is EEG-heavy) but the cited quote does not itself establish primacy."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note and no evidence claimed. Nothing in e2 addresses clinical/health status, so leaving it null and unevidenced is correct."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0' appears verbatim in e2 and directly establishes the value."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'License: CC0' appears verbatim in e2 and directly establishes the value."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'Number of subjects: 123' appears verbatim in e2 and directly establishes the value."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'OpenNeuro dataset ds008037 (snapshot 1.0.0)' appears verbatim in e2 and establishes OpenNeuro as the provider."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 contains no site/institution location."
+        },
+        {
+          "field": "species",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 never states 'human' explicitly, so leaving this unconfirmed is correct rather than asserting it."
+        },
+        {
+          "field": "access",
+          "verdict": "UNSUPPORTED",
+          "note": "Quote 'License: CC0' is verbatim but pertains to copyright/reuse licensing, not access/download gating. CC0 does not by itself establish that the dataset access mode is 'open' (e.g., registration or other access controls are not addressed one way or the other by this quote); it conflates license status with access status."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 states no access restrictions or terms beyond the license line."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note and no evidence claimed; e2 contains no pricing information."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "The cited README sentence is verbatim in e2, and each list item is a faithful, non-distorting decomposition of substrings that appear verbatim within that sentence (verified programmatically)."
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "SUPPORTED",
+          "note": "All three cited quotes (License: CC0; Number of subjects: 123; the README description sentence) are verbatim in e2 and collectively support the summary's claims."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "SUPPORTED",
+          "note": "Spanish translation of the same facts covered by the English summary; underlying cited quotes are verbatim in e2 and support the translated content (no new claims introduced)."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an appropriate 'needs' note correctly distinguishing the upload/snapshot timestamp from an unstated data-collection period; no evidence claimed for a value."
+        }
+      ]
+    },
+    "access": {
+      "id": "openneuro-ds008037",
+      "access": "open",
+      "license": "CC0",
+      "confidence": "high",
+      "evidence_quote": "License: CC0",
+      "reasoning": "The repository record explicitly states the dataset's license is CC0 (Creative Commons Zero / public domain dedication). CC0 imposes no access restrictions, no account/registration, and no approval step — data can be downloaded immediately by anyone, consistent with OpenNeuro's standard open-access model. No separate access-restriction statement (e.g., DUA, credentialing requirement) appears anywhere in the evidence."
+    },
+    "novelty": [
+      {
+        "project_id": "ds008037-tep-site-signatures",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1162/imag_a_00349",
+        "still_open_because": "The dataset paper (Ross/Rogasch et al., 2024, imag_a_00349, n=135) uses the identical design — TMS to dorsolateral prefrontal, premotor, and parietal cortex plus a shoulder/scalp sensory control — and already establishes that TEPs show DISTINCT spatiotemporal signatures across these sites versus the control: site-specific early peaks (<60 ms) largest at the stimulation site, contrasted with a generalized frontocentral N100/P200 sensory complex common to all sites and controls. So the 'distinct spatiotemporal signatures across sites vs shoulder control' half of the question is effectively published. The specific remaining delta is the SECOND half: no prior work builds a single-trial classifier that decodes which of the four conditions (prefrontal/premotor/parietal/shoulder) was stimulated from individual-trial TEPs. The prior paper's analyses are group/average-level topography and peak-amplitude comparisons, not trial-wise decoding. The nearest ML work (neuroimage.2026.121802 / bioRxiv 2025.06.29.662189) only classifies active vs. sham TMS across datasets, not stimulation site. A single-trial multi-site decoding analysis on this dataset would therefore be a genuine, un-done contribution, though its interpretation is partly pre-empted: the prior paper predicts decodability would rest on early (<60 ms) site-specific features rather than the shared N100/P200, and warns of residual muscle-artifact confounds.",
+        "queries_run": [
+          "OpenAlex: TMS-evoked potentials spatiotemporal signature cortical stimulation site classifier single-trial",
+          "Europe PMC: TMS-evoked potential stimulation site decoding prefrontal premotor parietal",
+          "OpenAlex: neural dynamics working memory transcranial magnetic stimulation TEP",
+          "Europe PMC: TMS-EEG classifier decode stimulation site single-trial TEP prefrontal premotor parietal shoulder",
+          "OpenAlex: single-trial TEP decoding classification cortical site TMS-EEG",
+          "Europe PMC: working memory TMS EEG prefrontal premotor parietal shoulder control TEP spatiotemporal",
+          "OpenAlex: decode TMS stimulation site single-trial machine learning EEG classifier prefrontal premotor parietal"
+        ]
+      },
+      {
+        "project_id": "ds008037-tms-causal-site-effect",
+        "verdict": "PUBLISHED",
+        "prior_doi": "10.1162/imag_a_00349",
+        "queries_run": [
+          "OpenAlex: TMS EEG evoked potential shoulder sham control prefrontal premotor parietal",
+          "EuropePMC: TMS-evoked potential somatosensory auditory contamination sham shoulder prefrontal premotor parietal",
+          "OpenAlex: working memory transcranial magnetic stimulation EEG dataset TMS-evoked potential sensory control",
+          "OpenAlex work fetch + authorship check for DOI 10.1162/imag_a_00349"
+        ],
+        "still_open_because": "Not open. The exact question is the central result of Biabani et al. 2024 (Imaging Neuroscience, 10.1162/imag_a_00349), authored by the same team (Mana Biabani, Nigel C. Rogasch) that created dataset ds008037 and using precisely this data: TMS to prefrontal, premotor, and parietal cortex plus shoulder stimulation as a sensory (sham-like) control (n=135; three experiments). They explicitly attribute the frontocentral N100/P200 complex to a generalised peripheral auditory/somatosensory response common to all four conditions, and isolate early (<60 ms) site-specific peaks as the genuine transcranial cortical response once that peripheral contamination and muscle artefact are accounted for. This is the requested causal decomposition, on this exact dataset, already published."
+      },
+      {
+        "project_id": "ds008037-eeg-behavior-wm-factor",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: EEG behavioral latent factor working memory capacity multimodal",
+          "OpenAlex: working memory capacity n-back operation span EEG latent factor",
+          "OpenAlex: multimodal latent factor EEG behavioral working memory capacity fusion outperforms",
+          "EuropePMC: EEG working memory capacity latent factor behavioral battery",
+          "EuropePMC: neural dynamics working memory transcranial magnetic stimulation dataset",
+          "EuropePMC: 'working memory capacity' AND EEG AND 'symmetry span' AND 'operation span'",
+          "EuropePMC: multimodal fusion EEG behavioral latent variable working memory capacity individual differences"
+        ],
+        "still_open_because": "No prior work fuses EEG working-memory task features with a multi-task behavioral WMC battery (n-back, operation span, symmetry span, backward digit span) into a single joint latent multimodal factor and tests superiority over either modality alone. The two halves exist independently: behavioral latent-variable WMC modeling is standard (Engle/Kane/Conway tradition, e.g. Martin et al. 2021 J Exp Psychol Gen 10.1037/xge0001048), and EEG correlates of WM capacity are documented (Virtue-Griffiths et al. 2025, Imaging Neuroscience, 10.1162/imag.a.150). The dataset's own lab has published EEG/TMS decoding work (Fulvio & Postle 2026, eNeuro, 10.1523/eneuro.0346-25.2026) but not this cross-modal latent-fusion analysis. The integrative claim (single multimodal latent factor outperforming unimodal) was not found in any source."
+      },
+      {
+        "project_id": "ds008037-rest-eeg-generalization",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: resting-state EEG biomarker working memory capacity generalization",
+          "OpenAlex: EEG predict working memory performance n-back operation span",
+          "EuropePMC: resting EEG working memory capacity biomarker cross-task generalization",
+          "EuropePMC: EEG model predict working memory task-general biomarker",
+          "OpenAlex: resting EEG cross-task prediction cognitive ability individual differences",
+          "EuropePMC: resting-state EEG predict fluid intelligence working memory machine learning",
+          "OpenAlex: neural dynamics working memory transcranial magnetic stimulation EEG capacity"
+        ],
+        "still_open_because": "No prior work found that trains a resting-state EEG model on one working-memory task and evaluates cross-task generalization to held-out complex-span/n-back tasks as a task-general WM biomarker. The closest adjacent work is associative/review-level: 'Mapping Executive Function Performance Based on Resting-State EEG in Healthy Individuals' (10.3390/jcm15031306, 2026), a systematic review linking resting EEG to executive function but not a trained predictive model tested for cross-task transfer; and 'Comparison of the Working Memory Load in N-Back and Working Memory Span Tasks by Means of EEG' (10.3389/fnhum.2017.00006), which contrasts task-evoked EEG load across n-back vs span but does neither resting-state prediction nor held-out cross-task generalization. The specific generalization test (train on WM task, predict never-seen behavioral-battery task performance) remains unaddressed."
+      },
+      {
+        "project_id": "ds008037-eeg-foundation-model",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.48550/arxiv.2405.18765",
+        "still_open_because": "See above — the delta is the within-subject joint tri-paradigm pretraining plus few-subject behavioral-battery linear-probe transfer on this specific dataset; the generic SSL+linear-probe recipe is published (LaBraM/BrainBERT/BrainLM) but not this instantiation.",
+        "queries_run": [
+          "OpenAlex: self-supervised EEG encoder linear probe behavioral transfer",
+          "OpenAlex: TMS-EEG working memory self-supervised pretraining representation",
+          "EuropePMC: self-supervised EEG foundation model linear probe behavior",
+          "OpenAlex: EEG foundation model few-shot linear probe cognitive score prediction",
+          "EuropePMC: self-supervised EEG resting-state working memory TMS joint pretraining transfer",
+          "OpenAlex: neural dynamics working memory transcranial magnetic stimulation dataset 123 subjects",
+          "OpenAlex: multi-paradigm EEG self-supervised representation predict behavioral battery linear probe",
+          "EuropePMC: EEG contrastive pretraining across tasks individual differences cognition linear probe few-shot"
+        ]
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "ds008037-tep-site-signatures",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "Trial-/BIDS-level encoding of stimulation site (e.g. acq- entity or events.tsv trigger codes) is not confirmed — only README prose says 4 sites were tested, no file listing was fetched to verify the labeling is machine-recoverable per trial",
+          "Number of subjects with complete TMS-EEG data across all four sites is not confirmed — the 123-subject count is shared across resting-state, working-memory, an 11-task cognitive battery, and tmseeg, so the tmseeg-complete N could be much smaller",
+          "Trials-per-site count (needed to judge viability of single-trial classification) is not reported anywhere in the evidence"
+        ],
+        "difficulty": 8,
+        "effort_weeks": 16,
+        "reason": "Evidence (README text only, no file listing) supports that TMS-EEG was collected at 4 sites and that eeg modality data exists for the tmseeg task, but it does not confirm the actual BIDS-level per-trial labeling scheme or the subject/trial counts needed for a single-trial decoding analysis. Independent of the labeling gap, TMS-EEG artifact removal (pulse, decay, muscle artifacts) is a specialized multi-stage pipeline (TESA/EEGLAB, double ICA) that typically consumes 4-6 weeks of learning curve alone, and the 105GB/7786-file dataset adds real access latency. Claimed difficulty 4 and 10 weeks materially underestimate this; a realistic student timeline is 14-16+ weeks, which strains or exceeds a 15-week semester once normal slippage is included — feasible only with reduced scope (e.g., fewer sites/channels, or leaning on any available cleaned derivatives) and should be treated as high-risk without pre-verifying the file structure."
+      },
+      {
+        "project_id": "ds008037-tms-causal-site-effect",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 12,
+        "missing_variables": [
+          "Per-condition subject count is not stated: the README gives one dataset-wide N=123 spanning rest-EEG, working-memory EEG, TMS-EEG (4 sites), and a 10-task behavioral battery — how many of the 123 actually completed TMS-EEG at all four sites (prefrontal, premotor, parietal, shoulder) with usable data is unconfirmed by the evidence."
+        ],
+        "reason": "Both literally claimed variables check out against e2: the README explicitly lists 'TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition' — so the three active-site recordings and the shoulder control comparator both exist as named modalities in the release. No hard variable is absent.\n\nHowever the claimed difficulty/effort (4 / 10 weeks) undersells three real obstacles: (1) Scale/access latency — total dataset is ~105GB across 7786 files; even filtering to just the tmseeg task, downloading and indexing BIDS-organized TMS-EEG data at this size eats real time in week 1-2, especially on typical student bandwidth/storage. (2) The analysis itself is not a simple group contrast — 'subtracting out peripheral contamination common to all four sites' via the shoulder-sham condition is a nontrivial, actively-debated TMS-EEG methodology (decay/muscle-artifact removal, ICA-based cleaning, SSP-SIR-style suppression of sensory-evoked activity, then TEP subtraction or regression-based site vs. sham contrast) — this requires TESA/EEGLAB or MNE-based specialist pipelines, not off-the-shelf preprocessing, and the dataset's own authors (Biabani & Rogasch) are prominent in exactly this genuine-vs-artifactual-TEP debate, meaning a naive subtraction risks being methodologically unsound without real domain reading. (3) Unconfirmed per-condition N: the 123-subject headline count is pooled across unrelated sub-studies (rest, WM, TMS-EEG, cognitive battery), and the evidence gives no breakdown of how many subjects have complete 4-site TMS-EEG data, which is the actual denominator for the causal-inference design proposed. A student could plausibly discover mid-semester that the usable TMS-EEG-complete N is much smaller than 123. Given the artifact-correction learning curve plus large-dataset logistics plus the unverified effective sample size, this is a difficulty-5, ~12-week project even for a strong student, and risks not finishing in a 15-week semester once download/preprocessing setup time is subtracted — hence FEASIBLE_WITH_CAVEAT rather than a clean FEASIBLE."
+      },
+      {
+        "project_id": "ds008037-eeg-behavior-wm-factor",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 12,
+        "reason": "Both claimed variable groups are directly confirmed in the e2 README text: (1) \"working-memory EEG and behavioural data (workingmemory)\" is explicitly listed as one of the released task folders, and (2) the multi-task cognitive battery description explicitly names all four required subtasks with their exact abbreviations — \"backwards digit span (bds) ... n-back (nback), operation span (opn) ... symmetry span (sym)\". n=123 subjects is an adequate sample for a latent-factor/CFA-type analysis, and the dataset is CC0/open with no access-approval latency (instant DataLad/S3 download), so there's no gating-access risk despite the large total archive size (105GB across TMS-EEG, rest, WM, and battery data — students would selectively pull only the eeg+beh WM and battery subsets).\n\nHowever, the claimed difficulty (3) and effort (8 weeks) look optimistic for what the question actually asks. This isn't \"load two spreadsheets and correlate them\" — it requires: (a) an EEG preprocessing pipeline for the working-memory task (filtering, ICA/artifact rejection, epoching, extraction of load-sensitive features such as CDA/alpha power or time-frequency measures), (b) scoring four structurally different behavioral paradigms (n-back d'/hit-rate, operation span, symmetry span, backward digit span) into comparable capacity metrics, (c) fitting an actual latent-variable model (CFA/SEM or CCA) that combines EEG and behavioral indicators into one factor, and (d) a rigorous \"outperforms either modality alone\" comparison (nested model fit, cross-validated predictive comparison), which is itself a nontrivial methodological step many students underestimate. There's also an unverified assumption baked into the plan: the README doesn't confirm that all 123 subjects completed both the workingmemory EEG task AND the full four-task battery in the same session — if the overlap sample is smaller, the latent-factor analysis loses power. Realistically this is a 4/5 difficulty, ~12-week effort project even before write-up, which is tight but doable inside a 15-week semester — hence feasible-with-caveat rather than a clean FEASIBLE."
+      },
+      {
+        "project_id": "ds008037-rest-eeg-generalization",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 13,
+        "reason": "All three named tasks (rest, workingmemory, and the nback/opn/sym behavioral-battery items) are literally named in the dataset's Tasks field and README, so nothing is flatly absent from the evidence. But the evidence is a dataset-level summary, not a per-subject participant/phenotype table, so it does NOT confirm the thing the project actually needs: that the same subjects (out of n=123) completed rest + workingmemory + nback + opn + sym, giving a usable train/test-generalization n. This is a TMS-EEG study (4 stimulation sites: PFC, premotor, parietal, sham) whose primary design is TMS x working-memory; the 10-task 'multi-task cognitive battery' (bar/bds/clt/gng/nback/opn/ort/sbs/sst/sym) reads like a separate baseline/individual-differences battery that may have been run on a subset of the cohort, at a different session, or with a different N than the TMS-EEG arm. A student cannot know the effective overlap N until they pull participants.tsv/phenotype files after download — that's a real risk the 9-week estimate doesn't budget for. Second, the WM 'training target' is EEG recorded inside a TMS study, so 'working-memory EEG' may be TMS-EEG (needs TMS-artifact removal, a hard and error-prone preprocessing step) rather than clean scalp EEG, and/or may be split across 4 stimulation conditions — a confound the student must handle before any biomarker claim is meaningful. Third, the actual ask — build an EEG->WM-performance regression/decoding model from spectral/connectivity/complexity features, validate it, then test out-of-task generalization to three distinct WM-capacity tasks with proper nested CV and leakage control — is a multi-stage ML research pipeline (raw EEG QC, artifact/ICA cleaning across 4+ task paradigms, feature engineering, model selection, held-out generalization testing, interpretation) that regularly takes a full semester for an experienced RA, before counting the 105GB/7786-file download and BIDS-wrangling overhead for this idiosyncratic, non-standard task naming scheme. The claimed difficulty 3 / effort 9 weeks is optimistic; this is closer to a full-semester capstone with real risk of running out of time if the rest/workingmemory/nback/opn/sym overlap sample turns out small or the WM EEG is TMS-contaminated."
+      },
+      {
+        "project_id": "ds008037-eeg-foundation-model",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 16,
+        "missing_variables": [
+          "Per-subject completeness across rest + workingmemory + tmseeg + behavioral-battery for the same 123 subjects: evidence only gives a dataset-level 'Number of subjects: 123' and a modality/task list, not a subject-level completeness matrix. It is plausible (common in multi-session EEG studies, esp. TMS-EEG with 4 stimulation sites) that not all 123 subjects completed every arm, which directly undercuts the premise of 'jointly pretrained on the same 123 subjects' and shrinks the already-small few-shot probe pools further."
+        ],
+        "reason": "All four claimed raw ingredients (rest EEG, workingmemory EEG, tmseeg across 4 sites, and the ~10-task behavioral battery incl. sst/gng/sbs/clt/ort/bar) are explicitly named in the ds008037 README and are CC0/immediately downloadable — no access-latency problem. But the evidence never confirms that the same 123 subjects have all four data types simultaneously, only that these modalities exist somewhere in the 7,786-file, 105GB release; TMS-EEG especially is often collected on a subset. That gap directly threatens the project's core premise of joint pretraining on 'the same 123 subjects.' Independent of that, the technical difficulty is high for a single semester: (1) TMS-EEG requires specialized artifact-removal preprocessing (TMS pulse/decay, muscle artifact, TESA-style pipelines) before any encoder can even see clean epochs; (2) building/training a self-supervised encoder that jointly handles three EEG paradigms with different structure (continuous rest, task-locked WM, TMS-evoked) is itself a research-grade problem, not a routine one; (3) 105GB of raw data is a real download/storage/compute hurdle; (4) the few-shot linear-probe evaluation ('a handful of labeled subjects per task') across ~6-10 behavioral outcomes will be extremely high-variance and may not yield an interpretable result even if every engineering step works. This is achievable by a strong student using existing tooling (MNE/TESA for TMS-EEG cleanup, an off-the-shelf EEG-SSL architecture rather than one built from scratch, and a reduced set of 2-3 probe tasks instead of all ten), but as scoped it is a tight-to-overrun 16-week effort, not the claimed 12, and success on the few-shot transfer question specifically should be framed as exploratory/negative-result-tolerant rather than a guaranteed deliverable."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/2.0",
+  "name": "The neural dynamics of working memory and transcranial magnetic stimulation",
+  "fields": {
+    "modality_primary": {
+      "value": "eeg",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: eeg, beh"
+        }
+      ]
+    },
+    "diseases": {
+      "value": null,
+      "needs": "Participant clinical/health status — not stated in the OpenNeuro repository record or README (check participants.tsv or the dataset_description.json for inclusion/exclusion criteria).",
+      "evidence": []
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008037.v1.0.0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "n_subjects": {
+      "value": "123",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008037 (snapshot 1.0.0)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "Study site / author institution location — not stated in the repository record; check the dataset_description.json or an associated publication for author affiliations.",
+      "evidence": []
+    },
+    "species": {
+      "value": null,
+      "needs": "Explicit species confirmation — the record never states 'human', though 'de-identified' recordings plus cognitive/behavioural tasks (working memory, TMS-EEG, digit span, etc.) strongly suggest human participants; check dataset_description.json or the accompanying paper to confirm.",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset Access/Download page or terms of use for this specific dataset, for any restrictions beyond the CC0 license.",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset page — no explicit cost/pricing statement appears in the repository record.",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "resting-state EEG recordings (rest)",
+        "working-memory EEG and behavioural data (workingmemory)",
+        "TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition",
+        "behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        },
+        {
+          "src": "e2",
+          "quote": "Modalities: eeg, beh"
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "An open (CC0) OpenNeuro EEG dataset from 123 participants combining resting-state EEG, working-memory EEG and behavioural data, TMS-EEG recordings from four stimulation sites (prefrontal cortex, premotor cortex, parietal cortex, and a shoulder control site), and behavioural data from a multi-task cognitive battery.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Conjunto de datos abierto (CC0) de OpenNeuro con 123 participantes que combina EEG en reposo, EEG y datos conductuales de memoria de trabajo, registros de TMS-EEG desde cuatro sitios de estimulación (corteza prefrontal, corteza premotora, corteza parietal y un sitio de control en el hombro), y datos conductuales de una batería cognitiva multi-tarea.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "Data collection period — not stated in the repository record. The 'Created: 2026-06-26T01:54:51.365Z' timestamp reflects the OpenNeuro upload/snapshot date, not the study period; check the associated publication or dataset_description.json.",
+      "evidence": []
+    }
+  },
+  "access_steps": [],
+  "starter_code": {},
+  "scope": {
+    "in_scope": true,
+    "reason": "Human neurophysiological dataset with EEG recordings (resting-state, working-memory, TMS-EEG). Multiple brain stimulation sites (prefrontal cortex, premotor cortex, parietal cortex) with control condition. 123 subjects with cognitive behavioral data. EEG is an explicitly in-scope modality. Directly applicable to neuroscience, cognitive neuroscience, and neuromodulation research. Public, reusable OpenNeuro dataset suitable for student research.",
+    "modality_primary": "EEG",
+    "disease_tags": []
+  },
+  "literature": {
+    "dataset_doi": "doi:10.18112/openneuro.ds008037.v1.0.0",
+    "openalex_work_id": "https://openalex.org/W7167798138",
+    "dataset_title": "The neural dynamics of working memory and transcranial magnetic stimulation",
+    "dataset_publication_date": "2026-07-09",
+    "n_citing_works": 0,
+    "citing_works": [],
+    "dominant_tasks": [],
+    "key_publications": [],
+    "saturation": "low",
+    "notes": "OpenAlex resolves the DOI to work id W7167798138 (cited_by_count: 0, counts_by_year: []). The query works?filter=cites:W7167798138 returns 0 results, consistent with that zero count. A fallback Europe PMC search for the dataset accession \"ds008037\" also returns 0 hits. The dataset was only created/indexed on OpenNeuro on 2026-07-09, just 12 days before this analysis (2026-07-21), so no citing literature has had time to appear yet. This reflects publication recency (an unused/very new dataset), not a saturated research area -- 'low' saturation here means total absence of citing works rather than exhaustive-but-narrow use."
+  },
+  "projects": [
+    {
+      "id": "ds008037-tep-site-signatures",
+      "lens": "neuromodulation",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "skills": [
+        "TMS-EEG preprocessing (TESA/EEGLAB)",
+        "TMS-artifact and muscle-artifact rejection",
+        "ERP/TEP quantification",
+        "basic supervised classification (e.g. linear SVM, LDA)"
+      ],
+      "compute": "Laptop/workstation; classical EEG pipeline, no GPU required",
+      "question_en": "Do TMS-evoked EEG potentials (TEPs) show distinct spatiotemporal signatures across the three cortical stimulation sites (prefrontal, premotor, parietal) compared with the shoulder control condition, and can a simple classifier decode which site was stimulated from single-trial TEPs?",
+      "question_es": "¿Los potenciales evocados por TMS (TEPs) en el EEG muestran firmas espaciotemporales distintas entre los tres sitios de estimulación cortical (prefrontal, premotora, parietal) frente a la condición control de hombro, y puede un clasificador simple decodificar qué sitio fue estimulado a partir de los TEPs de ensayo único?",
+      "required_variables": [
+        {
+          "variable": "tmseeg recordings labeled by stimulation site (prefrontal cortex / premotor cortex / parietal cortex / shoulder control)",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "EEG modality flag confirming eeg data type is present for the tmseeg task",
+          "evidence": "\"Modalities: eeg, beh\" / \"Tasks: TMS-EEG, Working memory, Resting state...\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Most public TMS-EEG releases include only one or two stimulation sites; a within-subject 3-site-plus-control design across 123 subjects is unusually well powered for site-specific TEP decoding, and this exact release has not yet been analyzed in published work (dataset created 2026-06-26)."
+    },
+    {
+      "id": "ds008037-tms-causal-site-effect",
+      "lens": "causal",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "skills": [
+        "causal contrast / quasi-experimental design",
+        "TEP amplitude and global mean field power quantification",
+        "linear mixed-effects modeling",
+        "multiple-comparisons correction across sites/electrodes"
+      ],
+      "compute": "Laptop/workstation; classical EEG pipeline, no GPU required",
+      "question_en": "Using the shoulder stimulation as a built-in sham-like control, what is the causal effect of prefrontal, premotor, and parietal TMS on evoked cortical EEG activity once the peripheral (somatosensory/auditory) contamination common to all four sites is subtracted out?",
+      "question_es": "Usando la estimulación en el hombro como control tipo sham incorporado, ¿cuál es el efecto causal de la TMS prefrontal, premotora y parietal sobre la actividad cortical evocada en el EEG una vez restada la contaminación periférica (somatosensorial/auditiva) común a los cuatro sitios?",
+      "required_variables": [
+        {
+          "variable": "tmseeg recordings at the three active cortical sites (prefrontal, premotor, parietal)",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "tmseeg recordings at the shoulder control site, used as the causal comparator",
+          "evidence": "\"...and shoulder as a control condition\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "TMS-EEG papers typically report per-site evoked responses descriptively but rarely exploit an explicit peripheral-control condition to formally isolate the cortical-specific causal component from generic sensory confounds, which this dataset's design permits directly."
+    },
+    {
+      "id": "ds008037-eeg-behavior-wm-factor",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "skills": [
+        "EEG spectral/ERP feature extraction",
+        "behavioral scoring and cleaning",
+        "factor analysis / PCA / structural equation modeling",
+        "basic statistics"
+      ],
+      "compute": "Laptop; no GPU required",
+      "question_en": "Can EEG features from the working-memory task be combined with behavioral scores from the multi-task cognitive battery (n-back, operation span, symmetry span, backward digit span) to build a single latent multimodal factor of working-memory capacity that outperforms either modality alone?",
+      "question_es": "¿Se pueden combinar las características de EEG de la tarea de memoria de trabajo con las puntuaciones conductuales de la batería cognitiva multitarea (n-back, operation span, symmetry span, backward digit span) para construir un único factor latente multimodal de capacidad de memoria de trabajo que supere a cada modalidad por separado?",
+      "required_variables": [
+        {
+          "variable": "working-memory EEG and behavioural data (workingmemory task)",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "behavioral battery scores: n-back (nback), operation span (opn), symmetry span (sym), backwards digit span (bds)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising ... backwards digit span (bds) ... n-back (nback), operation span (opn) ... and symmetry span (sym) tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Working-memory EEG and independent behavioral WM span tasks are collected in the same 123 subjects here but were not designed together in most prior EEG-WM datasets, so a joint latent-factor analysis linking EEG and multi-task behavior is a genuinely open combination for this release."
+    },
+    {
+      "id": "ds008037-rest-eeg-generalization",
+      "lens": "generalization",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "skills": [
+        "resting-state EEG preprocessing",
+        "spectral/connectivity feature extraction",
+        "regression / regularized ML (ridge, elastic net)",
+        "cross-task validation design"
+      ],
+      "compute": "Laptop/workstation; no GPU required",
+      "question_en": "Does a resting-state EEG model trained to predict performance on the working-memory task generalize to predict performance on the separate behavioral battery tasks (n-back, operation span, symmetry span) that it never saw during training, i.e. is there a task-general EEG biomarker of working-memory capacity?",
+      "question_es": "¿Un modelo de EEG en reposo entrenado para predecir el rendimiento en la tarea de memoria de trabajo generaliza para predecir el rendimiento en las tareas conductuales independientes de la batería (n-back, operation span, symmetry span) que nunca vio durante el entrenamiento, es decir, existe un biomarcador de EEG general de la capacidad de memoria de trabajo?",
+      "required_variables": [
+        {
+          "variable": "de-identified resting-state EEG recordings (rest task)",
+          "evidence": "\"de-identified resting-state EEG recordings (rest)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "working-memory EEG+behavioral data (workingmemory task) used for the training target",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "held-out behavioral battery scores: n-back (nback), operation span (opn), symmetry span (sym)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising ... n-back (nback), operation span (opn) ... and symmetry span (sym) tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Cross-task generalization of resting-state EEG biomarkers is rarely tested within a single cohort because most public EEG datasets include only one WM-related task; this release's rest + WM-EEG + independent behavioral battery in the same 123 subjects is an uncommon setup for testing task-general vs. task-specific biomarkers."
+    },
+    {
+      "id": "ds008037-eeg-foundation-model",
+      "lens": "foundation-models",
+      "difficulty": 5,
+      "effort_weeks": 12,
+      "skills": [
+        "deep learning (PyTorch)",
+        "self-supervised learning (contrastive or masked-autoencoding objectives)",
+        "EEG signal preprocessing and epoching",
+        "linear probing / few-shot evaluation design"
+      ],
+      "compute": "GPU workstation or cloud GPU instance (e.g. single consumer GPU sufficient given ~123 subjects of EEG)",
+      "question_en": "Can a self-supervised EEG encoder pretrained jointly on the resting-state, working-memory, and TMS-EEG recordings from the same 123 subjects learn representations that transfer, via a simple linear probe, to predicting scores on the held-out behavioral battery tasks with only a handful of labeled subjects per task?",
+      "question_es": "¿Puede un codificador de EEG auto-supervisado, preentrenado conjuntamente con los registros de reposo, memoria de trabajo y TMS-EEG de los mismos 123 sujetos, aprender representaciones que transfieran, mediante una sonda lineal simple, a predecir las puntuaciones de las tareas conductuales de la batería no vistas, usando solo un puñado de sujetos etiquetados por tarea?",
+      "required_variables": [
+        {
+          "variable": "resting-state EEG recordings (rest task) across 123 subjects, for pretraining corpus",
+          "evidence": "\"de-identified resting-state EEG recordings (rest)\" and \"Number of subjects: 123\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "working-memory EEG recordings (workingmemory task), for pretraining corpus",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "TMS-EEG recordings (tmseeg task, all four sites), for pretraining corpus",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "behavioral battery scores used as few-shot probe labels (e.g. sst, gng, sbs, clt, ort, bar)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising the bar (bar) ... colour (clt), go/no-go (gng) ... orientation (ort), symbol search (sbs), stop-signal (sst) ... tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Most EEG foundation-model work pretrains on large single-modality corpora (e.g. sleep or rest only); this dataset's within-subject combination of resting, task, and TMS-perturbed EEG from the same 123 individuals is a rare testbed for whether one pretrained encoder transfers across physiologically distinct EEG regimes to few-shot behavioral prediction, which has not yet been studied on this release."
+    }
+  ],
+  "_blocks": [
+    "'open' con una sola derivación — requiere confirmación",
+    "falta campo obligatorio: modality_primary"
+  ]
+}

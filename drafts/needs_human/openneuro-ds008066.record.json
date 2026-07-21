@@ -1,0 +1,641 @@
+{
+  "id": "openneuro-ds008066",
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'Modalities: mri' appears verbatim in e2 and directly establishes value 'mri'."
+        },
+        {
+          "field": "species",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; no unverified claim is made, so nothing to refute."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; no unverified claim is made, so nothing to refute."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'Number of subjects: 40' appears verbatim in e2 and directly establishes value '40'."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; only a snapshot-creation timestamp exists in e2, correctly not treated as data-collection years."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "All four quotes ('one anatomical T1-weighted image', 'three functional BOLD runs of the choice task', 'three single-band reference images, one corresponding to each BOLD run', 'one events.tsv file for each BOLD run') appear verbatim in e2's README and each directly supports the corresponding list item."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'License: CC0' appears verbatim in e2 and directly establishes value 'CC0'."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008066.v1.0.0' appears verbatim in e2 and supports the DOI value (prefix 'doi:' stripped, which is standard normalization)."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'OpenNeuro dataset ds008066 (snapshot 1.0.0)' appears verbatim in e2 and establishes 'OpenNeuro' as provider."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; e2 contains no site/institutional affiliation information."
+        },
+        {
+          "field": "access",
+          "verdict": "UNSUPPORTED",
+          "note": "The only cited quote, 'License: CC0', establishes a copyright/reuse license, not an access mechanism or access status. No text in e2 states download terms, login requirements, or otherwise characterizes the dataset as 'open access'. Inferring access:'open' from a CC0 license line is a plausible but uncited leap; the field's own evidence does not genuinely establish the value."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; e2 has no explicit access-procedure text."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an honest 'needs' note; e2 has no pricing statement."
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "UNSUPPORTED",
+          "note": "All individually cited quotes are verbatim in e2, but the value contains two specific claims not backed by any quote in this field's own evidence array: (1) 'six decoy/no-decoy conditions (3, 9, or 24 options)' — the cited quote only says 'Participants completed a choice task with six experimental conditions', with no mention of decoy/no-decoy labels or the 3/9/24 option breakdown (that detail exists elsewhere in e2's condition list, e.g. 'd3: decoy condition with 3 options', but is not cited here); (2) '(each with a single-band reference image and an events.tsv file) per participant' — SBRef/events.tsv are never mentioned in this field's evidence list (only in the separate data_types field). These specifics exceed what the cited quotes establish."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "UNSUPPORTED",
+          "note": "Same evidence array and same gaps as short_desc_en: the Spanish text asserts 'seis condiciones de senuelo/sin senuelo (3, 9 o 24 opciones)' and per-run SBRef/events.tsv detail, neither of which is backed by any quote cited for this field, even though both are true elsewhere in the uncited portions of e2."
+        }
+      ]
+    },
+    "access": {
+      "id": "openneuro-ds008066",
+      "license": "CC0",
+      "access": "open",
+      "confidence": "high",
+      "evidence_quote": "License: CC0",
+      "reasoning": "The repository record (src_id e2, OpenNeuro dataset metadata) states 'License: CC0'. CC0 is a public domain dedication placing no restrictions on use, and OpenNeuro serves this dataset for direct download with no account or approval step evidenced in the record, so it is classified as open access."
+    },
+    "novelty": [
+      {
+        "project_id": "ds008066-cross-subject-generalization",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: choice overload fMRI decoding choice set size (rate-limited/no usable results)",
+          "OpenAlex: choice overload fMRI decoy number of options BOLD (rate-limited)",
+          "EuropePMC: choice overload fMRI decoding set size decoy",
+          "EuropePMC: choice overload neural fMRI set size value (426 hits, none relevant)",
+          "EuropePMC: choice overload fMRI decoding cross-validation participants (73 hits, none relevant)",
+          "EuropePMC: 'choice overload' fMRI striatum number options (5 hits, all reviews/unrelated)",
+          "EuropePMC: multivoxel pattern decoding number of choice options fMRI generalization (32 hits, none on choice-set-size decoding)"
+        ],
+        "still_open_because": "No study found that trains an ML classifier to decode choice-set size (3/9/24) or decoy condition from BOLD activity in the Choice Overload fMRI Dataset, nor any testing leave-N-subjects-out cross-subject generalization of such a decoder. EuropePMC returned only adjacent decision-neuroscience reviews and unrelated MVPA studies (e.g., orbitofrontal cognitive-map decoding, perceptual-choice decoding); none address choice-set-size representation or its cross-participant generalizability. OpenAlex was unavailable due to daily budget exhaustion, so coverage is EuropePMC-only, but the target dataset and precise decoding+generalization framing appear unaddressed."
+      },
+      {
+        "project_id": "ds008066-anatomical-roi-integration",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1016/j.neuroimage.2012.06.065",
+        "still_open_because": "The core methodological claim — that defining ROIs from each participant's own data rather than a group template changes the measured BOLD response and increases sensitivity/functional resolution in multi-subject analyses — is already established and repeatedly published (Nieto-Castanon & Fedorenko 2012, 10.1016/j.neuroimage.2012.06.065; and a large native-space-vs-spatial-normalization literature, e.g. the precision-fMRI language-atlas work 10.1002/hbm.25474 / 10.1038/s41597-022-01645-3). What has NOT been done is applying this comparison to the choice-overload paradigm: no study reanalyzes the Choice Overload fMRI Dataset (or any choice-overload/assortment-size fMRI data) contrasting subject-specific native-T1 anatomical ROIs against group-normalized results for the choice-overload BOLD contrast (choice-set value in dorsal striatum / ACC). Two further deltas narrow the novelty: (1) the established prior work mostly uses subject-specific FUNCTIONAL localizers, whereas this question uses ANATOMICAL ROIs from native T1, and (2) the direction/magnitude of any divergence is task- and region-specific, so the choice-overload-specific outcome is not predictable from the general result. The remaining open work is therefore the dataset- and contrast-specific empirical reanalysis, not the general methodological principle.",
+        "queries_run": [
+          "OpenAlex: choice overload fMRI BOLD (rate-limited, no budget)",
+          "EuropePMC: choice overload fMRI brain (13 hits)",
+          "EuropePMC: \"choice overload\" striatum assortment size reward value neural (2 hits)",
+          "EuropePMC: choice overload fMRI dataset OpenNeuro reanalysis individual anatomy (0 hits)",
+          "EuropePMC: native space individual ROI versus group normalized fMRI BOLD (688 hits, general methods only)",
+          "EuropePMC: individual anatomical ROI native space outperform spatial normalization functional localizer group average (19 hits; found Nieto-Castanon & Fedorenko 2012)",
+          "EuropePMC: Reutskaja choice overload neural signatures dorsal striatum ACC consumer (1 review hit)"
+        ]
+      },
+      {
+        "project_id": "ds008066-decoy-causal-contrast",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: decoy effect fMRI BOLD choice overload (rate-limited, no usable results)",
+          "EuropePMC: decoy effect fMRI BOLD choice",
+          "EuropePMC: decoy option BOLD choice-related regions set size",
+          "EuropePMC: choice overload fMRI decoy assortment size neural",
+          "EuropePMC: decoy attraction effect neural fMRI value decision",
+          "EuropePMC: \"choice overload\" AND fMRI AND dataset"
+        ],
+        "still_open_because": "No prior work found testing whether decoy presence causally increases BOLD magnitude in choice-related regions with option-set size held constant via matched no-decoy conditions. Existing attraction/decoy-effect fMRI studies (e.g., 10.1523/jneurosci.2532-16.2016; 10.7554/elife.83316; 10.1073/pnas.1805224115) examine how a decoy modulates value signals, choice behavior, or reward-prediction errors — a distinct question from the set-size-controlled BOLD-magnitude contrast on this specific dataset. No publication is tied to the Choice Overload fMRI Dataset or its d3/d9/d24 vs n3/n9/n24 design."
+      },
+      {
+        "project_id": "ds008066-overload-target-mapping",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1038/s41562-018-0440-2",
+        "queries_run": [
+          "OpenAlex: choice overload striatum cingulate choice set value",
+          "OpenAlex: number of options parametric DLPFC decision fMRI choice",
+          "EuropePMC: choice overload fMRI striatum number of options",
+          "EuropePMC: 'choice overload' striatum anterior cingulate choice set value",
+          "EuropePMC: choice overload number of options fMRI parametric decision",
+          "EuropePMC: set size decoy fMRI decision dorsolateral prefrontal number of alternatives",
+          "OpenAlex: choice overload TMS dorsolateral prefrontal decision fatigue set size"
+        ],
+        "still_open_because": "The core empirical question -- how activity in decision-related regions varies with the number of options in a choice-overload fMRI task -- was directly published by Reutskaja, Cheek, Camerer & Rangel (2018, Nat Hum Behav, doi:10.1038/s41562-018-0440-2), which manipulated choice-set size and modeled BOLD in dorsal striatum and ACC. Crucially, they found an INVERTED-U (activity peaking at an intermediate set size), which is the leading counter-hypothesis to the proposed monotonic parametric increase; so the analytic approach and the ACC target are not novel. Remaining deltas relative to that work: (1) the specific dataset uses set sizes 3/9/24 with an added decoy/no-decoy factor (six conditions), not Reutskaja's 6/12/24 with no decoy; (2) the a-priori inclusion of DLPFC (defined per-subject from T1w) as a target region alongside ACC; (3) a direct test of monotonic parametric increase vs the established inverted-U, incorporating the decoy manipulation; and (4) the translational framing of the region as a candidate TMS/neuromodulation target for decision fatigue -- a framing no located paper has operationalized. These make the project adjacent-but-distinct rather than fully novel, but the student should expect the ACC set-size relationship to likely replicate as inverted-U, not the hypothesized monotonic rise, and should design the DLPFC/decoy/TMS-biomarker angle as the genuinely new contribution."
+      },
+      {
+        "project_id": "ds008066-foundation-model-transfer",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.3389/fnins.2023.1199312",
+        "queries_run": [
+          "EuropePMC: fMRI foundation model few-shot decoding",
+          "EuropePMC: choice overload decoy fMRI decoding",
+          "EuropePMC: 'choice overload' fMRI BOLD choice set",
+          "EuropePMC: fMRI foundation model transfer learning decoding from scratch pretrained",
+          "EuropePMC: choice overload neuroimaging decoy effect consumer decision fMRI",
+          "EuropePMC: pretrained fMRI model few-shot cross-subject decoding held-out participants",
+          "OpenAlex: choice overload fMRI dataset (rate-limited, no results)",
+          "OpenAlex: fMRI foundation model few-shot decoding fine-tune (rate-limited, no results)"
+        ],
+        "still_open_because": "The general claim that self-supervised / foundation-model pretraining beats from-scratch training for task-fMRI classification is already demonstrated (Wang et al. 2023, Front. Neurosci., DOI 10.3389/fnins.2023.1199312), and cross-subject few-shot fMRI decoding exists in the literature. However, no published work applies a publicly available pretrained fMRI foundation model to this specific Choice Overload fMRI Dataset (40 participants) to few-shot-decode the decision-neuroscience labels of interest — choice-set size and decoy condition — from held-out participants' BOLD runs, nor benchmarks it head-to-head against a from-scratch model. The remaining, untested deltas are: (1) the specific dataset and its small-N cross-participant transfer regime, (2) the specific target labels (choice-set size, decoy condition) which are decision/value-based rather than the perceptual or task-category labels used in prior pretraining benchmarks, and (3) whether few-shot fine-tuning on a subset of only 40 participants yields a real advantage at this sample scale. The outcome is plausible from prior work but not established for these conditions."
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "ds008066-cross-subject-generalization",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 11,
+        "reason": "All four claimed variables are confirmed in the evidence text (e2): T1w anatomical (1/subject), 3 BOLD runs/subject, events.tsv with onset/duration/trial_type covering the six d3/d9/d24/n3/n9/n24 labels, and N=40 subjects. Data is CC0 on OpenNeuro (no DUA/access latency) and total size (~27GB) is a manageable download, so the dataset itself is not the blocker. The 8-week/difficulty-3 estimate is optimistic, though: the README explicitly states the dataset ships RAW data only ('does not include preprocessed data, first-level statistical models...'), so before any decoding can start a student must (1) run a full preprocessing pipeline (fMRIPrep or equivalent: motion correction, T1 normalization to a common template — required for cross-subject generalization to be meaningful, confound regression) on 40 subjects x 3 runs, which is a multi-day compute job and a real setup/debugging burden for someone without prior fMRIPrep experience; (2) build single-trial (beta-series/LSS) GLMs to get per-trial activity patterns suitable as classifier features, since 10-second-duration overlapping trial events need deconvolution, not raw BOLD frames; (3) implement leave-N-subjects-out CV with a classifier and run permutation testing to establish chance-level significance, which is its own iteration cycle. None of these steps are impossible with 40 subjects/120 runs — the sample size is adequate for the proposed generalization test — but stacking preprocessing-pipeline-from-scratch + single-trial modeling + nested cross-subject CV + permutation stats into 8 weeks is unrealistic for a student; the actual critical path (preprocessing alone can eat 3-4 weeks including QC and reruns) pushes this to roughly 11 weeks and difficulty 4, still inside a 15-week semester but with much less slack than claimed."
+      },
+      {
+        "project_id": "ds008066-anatomical-roi-integration",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 14,
+        "reason": "All 4 claimed variables (T1w, 3x BOLD runs, events.tsv, 3x sbref) are explicitly confirmed present per-subject in the OpenNeuro README (e2), across N=40 subjects (685 files, 27GB), CC0/immediately accessible — no missing variables. However, the dataset ships raw data only (no preprocessed derivatives, per README), so the student must build and run two complete pipelines from scratch: (1) FreeSurfer recon-all native-space segmentation + native-space first-level GLMs per subject/run, and (2) a standard group-template-normalized pipeline with GLMs in template space, then design a defensible statistical comparison between the two ROI strategies for the choice-overload contrast. FreeSurfer recon-all alone runs ~6-10 hrs/subject (days-to-weeks of compute across 40 subjects even parallelized), and SPM-defaced anatomicals can degrade automated segmentation quality, adding QC overhead. The claimed difficulty 3 / effort 10 weeks underestimates the tooling ramp-up (FreeSurfer + fMRIPrep-style normalization + GLM stats), compute wall-clock time, and the fact that the core comparison methodology is not off-the-shelf and must be designed by the student. Feasible within a 15-week semester only with cluster/parallel compute access and prior neuroimaging pipeline experience; tight otherwise."
+      },
+      {
+        "project_id": "ds008066-decoy-causal-contrast",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 10,
+        "reason": "All five claimed variables are directly confirmed in the e2 repository-record text: (1) trial_type with the six d3/d9/d24/n3/n9/n24 labels is explicitly listed in the README's 'Task description' section; (2) onset/duration columns with the fixed 10s duration are explicitly stated ('Each event has a duration of 10 seconds'; 'Events files' section lists onset/duration/trial_type columns); (3) three BOLD functional runs per subject are explicitly stated ('three functional BOLD runs of the choice task'), consistent with Tasks: choice and N=40 subjects; (4) one T1w anatomical (RMS-combined, defaced) is explicitly stated; (5) task-choice_events.json is explicitly named as containing 'additional condition descriptions.' No required variable is absent, so this is not INFEASIBLE on data-availability grounds, and N=40 with 3 runs is an adequate (indeed above-average) sample for a within-subject task-fMRI contrast — access is immediate since ds008066 is public CC0 with no DUA/application delay.\n\nThat said, the claimed difficulty 3 / 8 weeks is optimistic and should be revised upward. This is not a tabular-data project — it requires a full task-fMRI pipeline: BIDS-to-preprocessed conversion (fMRIPrep or equivalent) across 40 subjects x 3 runs x (BOLD+sbref+T1w) = real compute burden (each fMRIPrep run commonly takes several hours per subject; no HPC access assumed), design-matrix construction from events.tsv per subject, first-level GLM contrasts (decoy vs no-decoy matched by option count, i.e., mean of d3-n3/d9-n9/d24-n24 or an interaction test), then a second-level/group mixed-effects model with multiple-comparison correction, plus a priori ROI selection for 'choice-related regions' (vmPFC/striatum/dlPFC) requiring literature grounding. Notable execution risks the evidence does not resolve: no fieldmaps are mentioned (only sbref images), so distortion correction quality is uncertain and could complicate registration/normalization; the README gives no per-condition trial counts, so a novice cannot pre-assess statistical power before diving in; raw data is ~27GB and derivatives (fMRIPrep + GLM maps) will likely exceed 100GB, which is a nontrivial storage/compute logistics problem for a student on a laptop. For a student new to fMRI pipelines, learning fMRIProg/FSL/nilearn, debugging preprocessing failures, and getting through first- and second-level stats within a semester is realistically a 9-10 week effort even before writing it up, and carries real risk of stalling on preprocessing infrastructure alone — hence difficulty 4 rather than 3, and effort revised to ~10 weeks rather than 8."
+      },
+      {
+        "project_id": "ds008066-overload-target-mapping",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 4,
+        "effort_weeks": 12,
+        "missing_variables": [],
+        "reason": "All 4 claimed variables are directly confirmed in the OpenNeuro README (src e2): trial_type d3/d9/d24/n3/n9/n24 in events.tsv, 3 BOLD runs/subject, T1w anatomical, and task-choice_events.json. N=40 subjects, ~27GB, CC0, BIDS-organized -- data access is not a blocker. However the claimed difficulty (3) and effort (9 wks) understate what the analysis actually requires: subject-specific DLPFC/ACC ROI definition from T1w implies individual anatomical parcellation (e.g. FreeSurfer recon-all, ~8-12h/subject compute) plus full functional preprocessing (motion correction, coregistration, normalization) across 3 runs x 40 subjects, then per-subject GLM with a parametric 3->9->24 trend contrast and group-level ROI stats -- a full raw-to-group pipeline build, not an analysis on pre-provided derivatives (README explicitly says no preprocessed data/first-level models are included). This is realistically a 3-4 month build for a student without prior fMRIPrep/FreeSurfer experience, tight in a 15-week semester once HPC queueing and debugging are counted. Additionally, the README does not report trials-per-condition, so statistical power for the d24/n24 cells (likely fewer repeatable high-set-size trials) is unconfirmed -- a caveat on the core parametric hypothesis, not a missing file. Recommend raising difficulty to 4 and effort to ~12 weeks, and flagging upfront that the student needs prior fMRI pipeline experience or a pre-built preprocessing workflow (e.g. access to an existing fMRIPrep+FreeSurfer setup) to finish on time."
+      },
+      {
+        "project_id": "ds008066-foundation-model-transfer",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 15,
+        "missing_variables": [],
+        "reason": "All four claimed variables are confirmed present per the OpenNeuro repository record for ds008066 (snapshot 1.0.0, 40 subjects, CC0): (1) 3 BOLD functional runs/subject at sub-<ID>/func/*_task-choice_run-<N>_bold.nii.gz; (2) 3 matching sbref images/subject; (3) 1 T1w anatomical/subject (RMS-combined, defaced); (4) events.tsv per run with onset/duration/trial_type columns coding the 6 conditions (d3/d9/d24/n3/n9/n24 = 3 choice-set sizes x decoy/no-decoy). No missing variables.\n\nHowever, the difficulty/effort as claimed (4 / 12 weeks) is optimistic for several reasons:\n1. The dataset explicitly ships RAW data only — 'does not include preprocessed data, first-level statistical models.' The student must run a full preprocessing pipeline (e.g., fMRIPrep) on 40 subjects x 3 runs themselves before any modeling can start; this alone is commonly 3-4 weeks including debugging, especially since T1w images are already defaced (usually fine for fMRIPrep but adds a troubleshooting risk surface).\n2. 'Fine-tuning a publicly available pretrained fMRI foundation model' is a nontrivial engineering task, not a plug-in: existing fMRI foundation models (BrainLM, Brain-JEPA, SwiFT, etc.) each expect specific input representations (parcellation/atlas, TR, normalization space) that will require nontrivial adaptation work to match this dataset's BOLD data, and truly usable public checkpoints/code are inconsistent in quality/availability — this is a research-engineering risk, not just a data-availability risk.\n3. Sample size: 40 subjects split into a 'small fine-tuning subset' plus held-out test subjects is thin for a between-subject few-shot generalization claim across 6 conditions; results are likely to be noisy/underpowered, though the trial-level design (many events per run) partially compensates.\n4. Given (1)+(2), a realistic effort is closer to 14-16 weeks of full-time-equivalent work, which is tight-to-over for a single 15-week semester once coursework and inevitable pipeline debugging are factored in. Access latency itself is minimal — OpenNeuro is open, no DUA/gating.\n\nNet: feasible as a project with real risk of scope overrun; recommend the student pre-scope tightly (e.g., pick one already-working foundation-model codebase with released weights before committing, and budget the first month purely for fMRIPrep) or descope to a single factor (choice-set size OR decoy) to keep it inside a semester."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/2.0",
+  "name": "Choice Overload fMRI Dataset",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        }
+      ]
+    },
+    "species": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence)",
+      "evidence": []
+    },
+    "diseases": {
+      "value": null,
+      "needs": "participants.tsv / methods section on participant health status (not stated in fetched evidence; README only describes the choice task, not clinical/health characteristics of participants)",
+      "evidence": []
+    },
+    "n_subjects": {
+      "value": "40",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 40"
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp was present in fetched evidence: Created: 2026-06-29T22:52:57.881Z)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted anatomical MRI",
+        "Functional BOLD MRI (choice task, three runs)",
+        "Single-band reference (SBRef) images",
+        "Events.tsv files (task events, one per BOLD run)"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "one anatomical T1-weighted image"
+        },
+        {
+          "src": "e2",
+          "quote": "three functional BOLD runs of the choice task"
+        },
+        {
+          "src": "e2",
+          "quote": "three single-band reference images, one corresponding to each BOLD run"
+        },
+        {
+          "src": "e2",
+          "quote": "one events.tsv file for each BOLD run"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "doi": {
+      "value": "10.18112/openneuro.ds008066.v1.0.0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008066.v1.0.0"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008066 (snapshot 1.0.0)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence)",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download page (no explicit pricing statement in fetched evidence)",
+      "evidence": []
+    },
+    "short_desc_en": {
+      "value": "An OpenNeuro dataset (ds008066) released under CC0 containing raw MRI data from 40 participants performing a choice overload fMRI task with six decoy/no-decoy conditions (3, 9, or 24 options), organized in BIDS format with one T1-weighted anatomical image and three functional BOLD runs (each with a single-band reference image and an events.tsv file) per participant.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 40"
+        },
+        {
+          "src": "e2",
+          "quote": "This dataset contains raw MRI data from a choice overload fMRI task. Data are organized in BIDS format."
+        },
+        {
+          "src": "e2",
+          "quote": "Participants completed a choice task with six experimental conditions"
+        },
+        {
+          "src": "e2",
+          "quote": "one anatomical T1-weighted image"
+        },
+        {
+          "src": "e2",
+          "quote": "three functional BOLD runs of the choice task"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos de OpenNeuro (ds008066) publicado bajo licencia CC0 con datos crudos de resonancia magnetica de 40 participantes que realizan una tarea de sobrecarga de eleccion con seis condiciones de senuelo/sin senuelo (3, 9 o 24 opciones), organizado en formato BIDS con una imagen anatomica T1 y tres corridas funcionales BOLD (cada una con su imagen de referencia de banda unica y su archivo events.tsv) por participante.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 40"
+        },
+        {
+          "src": "e2",
+          "quote": "This dataset contains raw MRI data from a choice overload fMRI task. Data are organized in BIDS format."
+        },
+        {
+          "src": "e2",
+          "quote": "Participants completed a choice task with six experimental conditions"
+        },
+        {
+          "src": "e2",
+          "quote": "one anatomical T1-weighted image"
+        },
+        {
+          "src": "e2",
+          "quote": "three functional BOLD runs of the choice task"
+        }
+      ]
+    }
+  },
+  "access_steps": [
+    {
+      "step_en": "Go to the OpenNeuro dataset page (accession ds008066, referenced by DOI 10.18112/openneuro.ds008066.v1.0.0)",
+      "step_es": "Ve a la pagina del dataset en OpenNeuro (accession ds008066, referenciado por el DOI 10.18112/openneuro.ds008066.v1.0.0)",
+      "url": "https://openneuro.org/datasets/ds008066",
+      "eta": "2 min"
+    },
+    {
+      "step_en": "Download the dataset directly, no account or credentialing required (CC0 license, open access platform)",
+      "step_es": "Descarga el dataset directamente, sin cuenta ni credencial (licencia CC0, plataforma de acceso abierto)",
+      "eta": "depends on bandwidth (685 files, ~27 GB total per repository record)"
+    },
+    {
+      "step_en": "Explore the BIDS structure per participant (one T1w anatomical image, three BOLD functional runs, three single-band reference images) and read each run's events.tsv (onset, duration, trial_type) plus task-choice_events.json for condition descriptions",
+      "step_es": "Explora la estructura BIDS por participante (una imagen anatomica T1, tres corridas funcionales BOLD, tres imagenes de referencia de banda unica) y lee el events.tsv de cada corrida (onset, duration, trial_type) ademas de task-choice_events.json para las descripciones de las condiciones",
+      "eta": "10-30 min"
+    }
+  ],
+  "starter_code": {
+    "python": "import pandas as pd\nimport nibabel as nib\n\n# Each functional run has a companion events.tsv with columns: onset, duration, trial_type\nevents = pd.read_csv('sub-01/func/sub-01_task-choice_run-1_events.tsv', sep='\\t')\nprint(events['trial_type'].value_counts())  # six conditions: d3, d9, d24, n3, n9, n24\n\n# One T1-weighted anatomical image per participant (BIDS layout)\nt1w = nib.load('sub-01/anat/sub-01_T1w.nii.gz')\nprint(t1w.shape)",
+    "r": "library(data.table)\n\n# Each functional run has a companion events.tsv with columns: onset, duration, trial_type\nevents <- fread('sub-01/func/sub-01_task-choice_run-1_events.tsv')\ntable(events$trial_type)  # six conditions: d3, d9, d24, n3, n9, n24"
+  },
+  "scope": {
+    "id": "openneuro-ds008066",
+    "in_scope": true,
+    "decision_date": "2026-07-21",
+    "primary_modality": "fMRI",
+    "rationale": "Human neuroimaging dataset (fMRI) with 40 participants, properly anonymized and organized in BIDS format. Explicitly matches in-scope criteria: functional MRI is a core neuroimaging modality for neuro/psych research. Data is reusable (CC0 license), published on OpenNeuro, and appropriate for student education in neuroimaging analysis.",
+    "scope_criteria_met": [
+      "Human neuroimaging data (fMRI)",
+      "Reusable research dataset",
+      "Properly anonymized and published",
+      "Standard format (BIDS)",
+      "Educational value for students"
+    ],
+    "out_of_scope_characteristics": []
+  },
+  "literature": {
+    "dataset": "Choice Overload fMRI Dataset",
+    "doi": "10.18112/openneuro.ds008066.v1.0.0",
+    "openalex_work_id": "https://openalex.org/W7167693789",
+    "n_citing_works": 0,
+    "citing_works": [],
+    "dominant_tasks": [],
+    "methods": [],
+    "key_publications": [],
+    "saturation": "low",
+    "notes": "OpenAlex record for this dataset resolves to work id W7167693789, publication_date 2026-07-08, cited_by_count 0. The citation-graph query `filter=cites:W7167693789` (i.e. works that cite/reference this dataset) returned meta.count = 0 -- no indexed works currently cite it. Given the dataset was published only ~13 days before this scan (today is 2026-07-21), the absence of citing literature reflects recency rather than a saturated/exhausted research space.",
+    "summary_en": "The 'Choice Overload fMRI Dataset' (OpenNeuro ds008066, v1.0.0, OpenAlex W7167693789) was published on 2026-07-08, about two weeks before this scan. It has cited_by_count = 0, and the OpenAlex citation graph confirms zero works currently cite it (filter=cites:W7167693789 returns 0 results). No publications have yet used this dataset for outcome-prediction, biomarker, segmentation, subtyping, causal, external-validation, or foundation-model analyses -- the dataset is effectively unused in the literature so far, consistent with its very recent release date rather than any lack of research interest."
+  },
+  "projects": [
+    {
+      "id": "ds008066-cross-subject-generalization",
+      "lens": "generalization",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Does a machine-learning model trained to decode choice-set size (3 vs 9 vs 24 options) and decoy condition from BOLD activity in a subset of the 40 participants generalize to held-out participants it has never seen (leave-N-subjects-out cross-validation), or does classification accuracy collapse outside the training sample?",
+      "question_es": "¿Un modelo de aprendizaje automático entrenado para decodificar el tamaño del conjunto de opciones (3 vs 9 vs 24) y la condición de señuelo (decoy) a partir de la actividad BOLD en un subconjunto de los 40 participantes generaliza a participantes no vistos durante el entrenamiento (validación cruzada dejando fuera N sujetos), o el rendimiento de clasificación se derrumba fuera de la muestra de entrenamiento?",
+      "required_variables": [
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2",
+          "note": "README states each participant has 'three functional BOLD runs of the choice task' across 40 subjects"
+        },
+        {
+          "variable": "trial_type event labels (d3/d9/d24/n3/n9/n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README: events.tsv has columns onset, duration, trial_type; six condition labels are defined"
+        },
+        {
+          "variable": "T1w anatomical image (for registration/normalization)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'one anatomical T1-weighted image' per participant"
+        },
+        {
+          "variable": "subject count / de-identified subject labels (N=40)",
+          "file": "dataset-level (participants folder structure)",
+          "src_id": "e2",
+          "note": "repository_record: 'Number of subjects: 40'; README: 'Participant identifiers were replaced with de-identified subject labels'"
+        }
+      ],
+      "skills": [
+        "BIDS data handling",
+        "fMRIPrep or manual preprocessing (motion correction, normalization)",
+        "nilearn/scikit-learn decoding",
+        "cross-validation design"
+      ],
+      "compute": "Standard workstation/HPC CPU node for preprocessing (~16-32GB RAM); GPU optional, useful only for faster decoding sweeps",
+      "still_open_because": "The dataset is a brand-new (2026-06-29) raw-only release with no derivatives or published decoding analyses; whether a decoder trained on part of the 40 participants transfers to unseen participants has not been tested."
+    },
+    {
+      "id": "ds008066-anatomical-roi-integration",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 10,
+      "question_en": "When individual anatomical ROIs are defined from each participant's own T1-weighted image (rather than a group template), does the choice-overload BOLD response in those subject-specific regions differ from what a standard group-normalized analysis would show?",
+      "question_es": "Cuando se definen ROIs anatómicas individuales a partir de la propia imagen T1 de cada participante (en lugar de una plantilla grupal), ¿la respuesta BOLD de sobrecarga de elección en esas regiones específicas del sujeto difiere de lo que mostraría un análisis estándar normalizado a una plantilla grupal?",
+      "required_variables": [
+        {
+          "variable": "T1w anatomical image",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'one anatomical T1-weighted image', RMS-combined from repeated acquisition, defaced with SPM"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "events.tsv (onset, duration, trial_type)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        },
+        {
+          "variable": "single-band reference images (per-run, for accurate functional-to-anatomical registration)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_sbref.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'three single-band reference images, one corresponding to each BOLD run'"
+        }
+      ],
+      "skills": [
+        "FreeSurfer or ANTs anatomical segmentation",
+        "fMRI first-level GLM (SPM/FSL/nilearn)",
+        "co-registration of functional to anatomical space",
+        "basic statistics for comparing analysis pipelines"
+      ],
+      "compute": "Workstation with ~50GB free disk per subject for FreeSurfer reconstruction; CPU-only, can run overnight per subject batch",
+      "still_open_because": "The dataset ships raw structural and functional scans together but the README describes only the task/decoy manipulation; no analysis has combined the anatomical scan with the functional runs to test individualized vs. template-based ROI definition."
+    },
+    {
+      "id": "ds008066-decoy-causal-contrast",
+      "lens": "causal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Because the presence of a decoy option was experimentally assigned within each run (decoy conditions d3/d9/d24 vs. matched no-decoy conditions n3/n9/n24), does adding a decoy causally increase BOLD activity in choice-related regions when option-set size is held constant?",
+      "question_es": "Dado que la presencia de un señuelo (decoy) fue asignada experimentalmente dentro de cada corrida (condiciones con señuelo d3/d9/d24 frente a condiciones equivalentes sin señuelo n3/n9/n24), ¿añadir un señuelo aumenta causalmente la actividad BOLD en regiones relacionadas con la elección cuando el tamaño del conjunto de opciones se mantiene constante?",
+      "required_variables": [
+        {
+          "variable": "trial_type values (d3, d9, d24, n3, n9, n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README defines six experimental conditions: decoy (d3/d9/d24) and no-decoy (n3/n9/n24) matched by option count 3/9/24"
+        },
+        {
+          "variable": "onset and duration columns (fixed 10s event duration)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README: 'Each event has a duration of 10 seconds'"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for registration)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "task-choice_events.json (additional condition descriptions)",
+          "file": "task-choice_events.json",
+          "src_id": "e2",
+          "note": "README: 'Additional condition descriptions are provided in task-choice_events.json'"
+        }
+      ],
+      "skills": [
+        "Event-related GLM design (SPM/FSL/nilearn)",
+        "Contrast specification",
+        "Multiple comparisons correction",
+        "Basic experimental-design/causal-inference reasoning"
+      ],
+      "compute": "Standard CPU workstation for first-level and group-level GLM; no GPU needed",
+      "still_open_because": "The decoy-vs-no-decoy manipulation matched by set size is built into the task design and documented in the README, but the release contains no derivatives or contrast maps, so this causal comparison has not been run."
+    },
+    {
+      "id": "ds008066-overload-target-mapping",
+      "lens": "neuromodulation",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "question_en": "Within the six documented conditions (three set sizes x decoy/no-decoy), does activity in a priori decision-related regions (e.g., dorsolateral prefrontal / anterior cingulate cortex, defined from each subject's T1w) increase parametrically as the number of options rises from 3 to 9 to 24 -- identifying a candidate biomarker region for future neuromodulation (e.g., TMS) studies of choice overload/decision fatigue?",
+      "question_es": "Dentro de las seis condiciones documentadas (tres tamaños de conjunto x señuelo/sin señuelo), ¿la actividad en regiones de decisión definidas a priori (p. ej., corteza prefrontal dorsolateral / cingulada anterior, delimitadas a partir de la T1 de cada sujeto) aumenta de forma paramétrica al pasar de 3 a 9 y a 24 opciones, identificando una región biomarcadora candidata para futuros estudios de neuromodulación (p. ej., TMS) sobre sobrecarga de elección/fatiga de decisión?",
+      "required_variables": [
+        {
+          "variable": "trial_type with set-size levels nested in decoy/no-decoy (d3/d9/d24, n3/n9/n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for ROI/parcellation)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "task-choice_events.json (condition descriptions)",
+          "file": "task-choice_events.json",
+          "src_id": "e2"
+        }
+      ],
+      "skills": [
+        "ROI-based fMRI analysis",
+        "Parametric modulation GLM",
+        "nilearn/SPM/FSL",
+        "Literature review of decision-fatigue neuroanatomy"
+      ],
+      "compute": "CPU workstation; no GPU required",
+      "still_open_because": "No published analysis of this raw-only release has tested a parametric option-count effect as a candidate neuromodulation target; the six-condition design documented in the README is well suited to this but currently unexploited."
+    },
+    {
+      "id": "ds008066-foundation-model-transfer",
+      "lens": "foundation-models",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "question_en": "Can a publicly available pretrained fMRI foundation model, fine-tuned on a small subset of this dataset's 40 participants, few-shot-decode choice-set size and decoy condition from held-out participants' BOLD runs better than a model trained from scratch on this dataset alone?",
+      "question_es": "¿Puede un modelo de fundación de fMRI disponible públicamente, ajustado (fine-tuned) con un pequeño subconjunto de los 40 participantes de este dataset, decodificar en modo few-shot el tamaño del conjunto de opciones y la condición de señuelo en participantes no vistos, con mejor desempeño que un modelo entrenado desde cero solo con este dataset?",
+      "required_variables": [
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "single-band reference images (for realistic preprocessing/distortion correction pipeline)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_sbref.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for spatial normalization into the foundation model's expected space)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "trial_type labels (fine-tuning/evaluation targets)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        }
+      ],
+      "skills": [
+        "Transfer learning / fine-tuning pretrained neuroimaging models",
+        "PyTorch",
+        "fMRI preprocessing to a standard template space",
+        "Few-shot evaluation design"
+      ],
+      "compute": "Single consumer/lab GPU (16-24GB VRAM) for fine-tuning; CPU preprocessing beforehand",
+      "still_open_because": "This is a brand-new (2026-06-29) raw release with no derivatives or published analyses yet, so no one has tested whether existing fMRI foundation models transfer to its specific decoy/choice-overload task."
+    }
+  ],
+  "_blocks": [
+    "'open' con una sola derivación — requiere confirmación",
+    "el id ya existe en el catálogo"
+  ]
+}

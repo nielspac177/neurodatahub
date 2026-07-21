@@ -31,3 +31,4 @@ __pycache__/
 /drafts/parts/
 /drafts/ns-parts/
 *.yml.bak
+/drafts/verify-parts/

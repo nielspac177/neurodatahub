@@ -1,0 +1,776 @@
+{
+  "id": "10-1038-s41597-025-04511-0",
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "SUPPORTED",
+          "note": "Both quotes are verbatim in e1 (title and abstract sentence 'In this study, we present the fMRI dataset that captures relational similarity judgments among two out of nine color qualia per trial from 35 participants.') and genuinely establish this as an fMRI/neuroimaging dataset."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data.' is verbatim in e1 and supports classifying the cohort as healthy controls ('control')."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'All data in this dataset are freely available at the OpenNeuro repository' is verbatim in e1 and directly names OpenNeuro as the hosting provider."
+        },
+        {
+          "field": "access",
+          "verdict": "SUPPORTED",
+          "note": "Same verbatim quote ('freely available at the OpenNeuro repository') genuinely supports 'open' access."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "All four quotes are verbatim: the OpenNeuro availability statement, the BIDS 1.9.0 conversion statement, the PII-removal statement (all e1), and the Crossref license URL field (e2). The composite note correctly and cautiously distinguishes the article's CC BY-NC-ND license (from Crossref) from the (unstated in evidence) dataset reuse license -- it does not overclaim a dataset license."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an empty evidence array and an explicit 'needs' note explaining why (no dataset-level license statement was found in the fetched evidence, only the article's Crossref license). This is a correctly justified abstention rather than an unsupported claim."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'All data in this dataset are freely available at the OpenNeuro repository' verbatim in e1, genuinely supports 'free'."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "Both quotes are verbatim in e1: 'Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study.' and 'Due to excessive head motion, we excluded four participants (see Technical Validation).' Together they support the stated composite value."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an empty evidence array and an explicit 'needs' note (only publication/processing dates were found in the fetched evidence, not acquisition dates). Correctly justified abstention."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "Every quote checked appears verbatim in e1 and supports the corresponding data-type item: MPRAGE T1 quote, multiband EPI/BOLD quote, Behavior-files quote, Ishihara/ND-100 Hue quote, and the three questionnaire-name quotes (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II)."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'This consent process was approved by the Ethics Committee of the National Institutes for Quantum Science and Technology in Chiba, Japan, under approval number 18-028.' is verbatim in e1. It directly names Chiba, Japan as the institution's location; note this establishes the ethics-approval/institutional site rather than an explicitly stated 'data collection region,' though the same institute (per the Participants section) also recruited participants and presumably scanned them, making the inference reasonable."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "Quote '\"DOI\": \"10.1038/s41597-025-04511-0\"' is verbatim in e2 (Crossref metadata) and matches the value exactly."
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "SUPPORTED",
+          "note": "All six cited quotes are verbatim in e1 and collectively support the composite description (35 healthy adults, report/no-report fMRI color-similarity task, color vision tests, questionnaires, BIDS conversion, OpenNeuro availability). Note the phrase 'one-back' in the value is not itself quoted as evidence, but it echoes the paper's own section heading ('One-back color similarity judgment task with report/no-report instructions in the fMRI') and is not a fabricated claim."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "SUPPORTED",
+          "note": "This is a Spanish translation of short_desc_en built from the same verbatim e1 quotes; the underlying facts are equally supported. Same minor caveat as short_desc_en regarding the untraced 'tipo one-back' phrasing, which is a faithful rendering of the paper's own section heading rather than an unsupported addition."
+        }
+      ]
+    },
+    "access": {
+      "id": "10-1038-s41597-025-04511-0",
+      "access": "open",
+      "confidence": "medium",
+      "license": null,
+      "cost": null,
+      "evidence_quote": "All data in this dataset are freely available at the OpenNeuro repository (OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0)",
+      "reasoning": "The evidence states the dataset is 'freely available' at OpenNeuro, with no mention of any account, credentialing, DUA, or application step to obtain the data — the paper's Data Records section describes direct availability. Note: the Crossref metadata does list a license (CC BY-NC-ND 4.0), but that field applies to the article text (content-version 'tdm'/'vor', i.e. text-and-data-mining/version-of-record reuse of the manuscript), not to the underlying dataset hosted on OpenNeuro, so it was not used as the basis for the data-access classification. No formal data license (e.g. CC0) is stated anywhere in the evidence, so 'license' is left null rather than inferred from OpenNeuro's general reputation."
+    },
+    "novelty": [
+      {
+        "project_id": "p1-report-vs-noreport-causal-isolation",
+        "verdict": "NOVEL",
+        "prior_doi": "10.1038/s41597-025-04511-0",
+        "queries_run": [
+          "OpenAlex: color qualia decoding report no-report V4 fMRI",
+          "OpenAlex: no-report paradigm consciousness color multivoxel decoding",
+          "OpenAlex: color qualia decoding prefrontal V4 report fMRI (N=0)",
+          "OpenAlex: no-report paradigm color perception ventral visual decoding qualia (N=0)",
+          "OpenAlex: color identity decoding V4 V8 human fMRI perception consciousness (N=0)",
+          "OpenAlex cites:W4408197500 (works citing the dataset)",
+          "EuropePMC: color qualia similarity judgment report fMRI",
+          "EuropePMC: multivoxel pattern decoding color report no-report prefrontal consciousness",
+          "EuropePMC: decoding color identity V4 no-report generalization cross-decoding",
+          "EuropePMC: report AND no-report AND color AND decoding AND qualia AND V4 (N=0)",
+          "EuropePMC: qualia structure color similarity judgment neuroimaging decoding report"
+        ],
+        "still_open_because": "No published analysis performs this specific contrast. Every search returns only the data descriptor itself (Scientific Data 2025, 10.1038/s41597-025-04511-0), which documents the dataset but does not report MVPA color-identity decoding, cross-generalization from report to no-report trials, or a V4/V8-vs-PFC dissociation. The proposed study is conceptually adjacent to the broader no-report-paradigm literature that uses report/no-report contrasts to separate perceptual from report-related neural correlates (e.g., Frassle et al. 2014; Tsuchiya, Wilke, Frassle & Lamme TICS 2015; Boly et al. J Neurosci 2017), but those studies address univariate correlates of visibility/consciousness generally, not a train-on-report/test-on-no-report multivariate decoding of the 9 specific target-color identities dissociating occipitotemporal color-qualia representation from prefrontal report signals on this dataset. That specific decoding-generalization analysis appears unpublished."
+      },
+      {
+        "project_id": "p2-cross-participant-decoder-generalization",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.64898/2026.02.13.705699",
+        "queries_run": [
+          "OpenAlex: color qualia similarity judgment decoding BOLD occipitotemporal",
+          "OpenAlex: color qualia similarity with and without reports fMRI",
+          "EuropePMC: color qualia similarity judgment fMRI decoding",
+          "EuropePMC: color similarity rating decoding leave-one-subject-out fMRI",
+          "EuropePMC: color qualia shared neural code across people decoding",
+          "EuropePMC: color dissimilarity rating decoding ventral temporal cross-participant",
+          "EuropePMC: neural decoding subjective color similarity leave-subjects-out",
+          "EuropePMC: shared neural representation color experience population decoder fMRI",
+          "Semantic Scholar citations of dataset DOI 10.1038/s41597-025-04511-0",
+          "Semantic Scholar: color qualia structure alignment decoding fMRI cross-subject"
+        ],
+        "still_open_because": "The conceptual question — is the neural code for color qualia shared enough across people — is being actively addressed by the same research lineage, but through a fundamentally different method: unsupervised structural alignment (Gromov-Wasserstein optimal transport) of individual color-similarity structures (Takeda et al., \"Robust individual alignment of color qualia structures,\" 2026, DOI 10.64898/2026.02.13.705699) and cross-individual phenomenal/neural geometry comparisons (bioRxiv 10.1101/2025.10.01.679834). None of these train a SUPERVISED classifier to predict trial-by-trial -4 to +4 dissimilarity ratings from occipitotemporal BOLD, and none report leave-N-subjects-out generalization contrasted against a within-subject decoder on this specific 31-participant dataset. The remaining delta is precisely that supervised, trial-level, population-vs-per-person decoding benchmark, which the alignment literature does not perform."
+      },
+      {
+        "project_id": "p3-behavioral-neural-individual-differences",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1038/s41597-025-04511-0",
+        "queries_run": [
+          "EuropePMC: color qualia similarity judgment fMRI report",
+          "EuropePMC: color discrimination naming representational dissimilarity V4 individual differences",
+          "EuropePMC citations of MED/40050292 (dataset paper, 7 citing works reviewed)",
+          "EuropePMC core fetch of PPR1223713 'Robust individual alignment of color qualia structures' abstract",
+          "EuropePMC: color naming consistency neural representational dissimilarity matrix individual differences V4 V8 fMRI (0 hits)",
+          "EuropePMC: perceptual color discrimination predicts neural color similarity representation visual cortex"
+        ],
+        "still_open_because": "The behavioral half of this question is already done: a same-group 2026 preprint (EuropePMC PPR1223713, \"Robust individual alignment of color qualia structures\") links individual FM100-Hue color-discrimination ability (TES) to the shape of each person's BEHAVIORAL color-qualia similarity structure via unsupervised alignment, and even distinguishes neurotypical vs atypical color structures. What remains genuinely unaddressed: (1) no work links perceptual ability to the NEURAL color RDM measured with fMRI in V4/V8 — the prior work is behavioral-ratings only; (2) color-NAMING consistency (verbal + forced-choice naming of the 9 experimental colors) has not been used as a predictor of representational structure at all; (3) the specific dataset (Hirao 2025) explicitly reports its behavioral, naming, and fMRI streams separately and no publication statistically links them. So the neural-prediction question is open, but note it is adjacent in method to established behavioral-structure work from the same lab."
+      },
+      {
+        "project_id": "p4-demographic-subgroup-differences",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: color qualia similarity judgments reports neuroimaging",
+          "EuropePMC: color qualia similarity judgment report prefrontal decoding",
+          "OpenAlex: color qualia report prefrontal sex age handedness lateralization",
+          "EuropePMC: 'color qualia' report prefrontal lateralization sex handedness anxiety",
+          "OpenAlex cites:W4408197500 (works citing the dataset)",
+          "OpenAlex: consciousness report no-report prefrontal color decoding individual differences"
+        ],
+        "still_open_because": "The source dataset is a 2025 Scientific Data descriptor (DOI 10.1038/s41597-025-04511-0) describing the report/no-report color-qualia paradigm; it characterizes the data rather than running inferential individual-difference moderation. No published work (including its 7 citing papers, none of which matched) examines whether sex, age, or Edinburgh handedness laterality quotient moderate the magnitude/hemispheric lateralization of report-related prefrontal activity or occipitotemporal color-qualia decoding strength while controlling for STAI trait anxiety and BDI-II as covariates. This is a distinct, unpublished secondary analysis. Caveat: the dataset is brand new (2025), so absence of prior work partly reflects recency; the specific moderation-plus-covariate design remains genuinely open."
+      },
+      {
+        "project_id": "p5-foundation-model-few-shot-decoding",
+        "verdict": "NOVEL",
+        "prior_doi": "10.1038/s41597-025-04511-0",
+        "queries_run": [
+          "OpenAlex: fMRI foundation model color qualia similarity decoding (rate-limited, no results)",
+          "EuropePMC: fMRI foundation model fine-tuning decoding subject-specific data",
+          "EuropePMC: color dissimilarity rating fMRI MVPA decoding qualia",
+          "EuropePMC: color qualia similarity judgment fMRI report no-report consciousness",
+          "EuropePMC: sequential color similarity judgment neuroimaging reportability",
+          "EuropePMC: foundation model fMRI fine-tuning few subjects data efficiency decoding",
+          "EuropePMC: self-supervised pretraining fMRI reduce subject-specific data decoding",
+          "EuropePMC: color similarity rating decoding fMRI Tsuchiya Oizumi qualia structure",
+          "EuropePMC: fMRI foundation model data efficient fine-tuning outperform GLM MVPA few runs",
+          "EuropePMC: brain foundation model few-shot subject decoding voxel encoder pretraining"
+        ],
+        "still_open_because": "The only close prior work is the dataset descriptor itself (Scientific Data, 10.1038/s41597-025-04511-0), which documents the sequential color qualia similarity-judgment fMRI dataset (31 valid participants, report/no-report conditions) but performs no trial-by-trial dissimilarity decoding and no foundation-model analysis. Separately, fMRI/BOLD foundation models with self-supervised pretraining and few-shot/data-efficient fine-tuning exist as a general methods area (e.g., inner-speech and multi-brain self-supervised decoding reviews surfaced in search), but none has been applied to this dataset, and none benchmarks foundation-model fine-tuning against a classical voxel-wise GLM/MVPA baseline for decoding the -4..+4 (0-7 dissimilarity) color-similarity ratings from held-out runs. The specific data-efficiency hypothesis — that self-supervised pretraining lets a handful of runs from a few subjects match a full-data GLM/MVPA model on this qualia/report vs no-report decoding task — appears unpublished. The remaining delta is the entire proposed experiment; only the dataset and generic foundation-model tooling pre-exist."
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "p1-report-vs-noreport-causal-isolation",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 14,
+        "missing_variables": [
+          "Pre-defined V4/V8 (and PFC) ROI masks: evidence confirms no color/retinotopic localizer scan exists in this dataset (only the color-similarity task runs) — the original authors' method for delineating V4/V8 is not shown in the retrieved excerpt (truncated before ROI-definition text), so a student must obtain/define these ROIs from an external probabilistic anatomical atlas rather than a subject-specific functional localizer, which is a real gap for a color-decoding-specific analysis.",
+          "Preprocessed/derivative functional data: the Data Records section describes only a raw BIDS folder (anat/func from converted DICOMs) with no mention of a derivatives/ subfolder; the SPM12 realignment-coregistration-normalization-smoothing pipeline described in the paper is what the AUTHORS ran for their own validation, not confirmed to be distributed. The student must run this full preprocessing pipeline themselves.",
+          "Six motion parameters / FD as distributed files: the paper states these were computed by the original authors during Technical Validation, but there is no confirmation they ship as per-run confound TSVs in the OpenNeuro release (typical of raw, non-fMRIPrep BIDS datasets) — likely must be regenerated during the student's own realignment step."
+        ],
+        "reason": "Core variables are confirmed present: 4 sessions x 4 runs of multiband task BOLD (862 vol/run) per subject across 35 subjects (31 after QC exclusion), report(circle)/no-report(square) cue with 9 target-color trials, and T1w MPRAGE anatomicals, all in BIDS on OpenNeuro (ds005684) — ample trial counts per class per subject for a 9-way MVPA with cross-condition (report->no-report) generalization test, which is the core novel contrast the question needs. However, the claim understates real work: (1) the dataset appears to ship only raw BIDS, not preprocessed derivatives, so realignment/coregistration/normalization/smoothing must be done from scratch (SPM/fMRIPrep) before any decoding is possible; (2) there is no retinotopic/color localizer, so V4/V8 (and PFC) ROIs must be defined via an external anatomical/probabilistic atlas rather than functionally localized per-subject, weakening spatial specificity and adding a nontrivial methodological step a student must justify; (3) building two parallel 9-class classifiers per subject, training only on report trials, testing cross-generalization to no-report trials, and doing this across ~31 subjects with proper nested cross-validation and group-level stats is a substantial MVPA pipeline — realistic for a highly capable, fMRI-experienced student in a full semester but very likely to overrun 10 weeks once download (large multiband multi-session dataset), preprocessing, and debugging ROI/atlas mapping are counted. I raised difficulty from 4 to 5 and effort from 10 to 14 weeks accordingly; still fits one 15-week semester if the student starts immediately and has decoding/MVPA experience."
+      },
+      {
+        "project_id": "p2-cross-participant-decoder-generalization",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "Preprocessed/normalized (MNI, smoothed) derivative BOLD volumes: the evidence only confirms raw DICOM-to-BIDS conversion was shared on OpenNeuro ('All DICOM files and behavior files were put in this folder... after conversion to BIDS'); the SPM12 realignment/coregistration/normalization/smoothing pipeline is described only as the authors' own Technical Validation step, not confirmed as a distributed derivatives folder. A population decoder needs subjects in a common space, so the student must run this full pipeline themselves from raw NIfTI/DICOM if no derivatives exist -- not accounted for in the claimed variable list.",
+          "Occipitotemporal (V4/V8) ROI or atlas mask: nowhere in the evidence is a shared ROI/parcellation file mentioned. The question requires restricting the classifier to 'occipitotemporal BOLD patterns,' so the student must source and apply an external probabilistic atlas (e.g., Wang/Kastner) themselves -- an added dependency and design choice not covered by the four claimed variables.",
+          "Per-trial single-image/beta estimates: the paper's own GLM models regressors at the condition level (40 regressors/run) for group activation, not single-trial betas. A trial-by-trial decoder needs a single-trial GLM (LSA/LSS), which is a nontrivial additional analysis step the evidence does not show as pre-computed or distributed."
+        ],
+        "difficulty": 5,
+        "effort_weeks": 15,
+        "reason": "The four explicitly claimed variables are genuinely present: BIDS BOLD runs for 35 (31 valid) participants across 4 sessions x 4 runs (confirmed by the folder-structure figure/text and MRI acquisition parameters), per-trial similarity ratings via MRI trackball stored in behavior files (confirmed), Table 4 grand-average dissimilarity for the 45 color pairs (confirmed), and Table 1 demographics (confirmed, 17M/18F, 21-59y). No fabricated variable. However, the project as specified (population-level, leave-N-subjects-out MVPA regression decoder for trial-wise dissimilarity ratings from occipitotemporal patterns, benchmarked against within-subject decoding) requires three substantial pieces of infrastructure that are NOT shown to be distributed with the dataset and are absent from the claimed-variables list: (1) MNI-normalized/smoothed derivative volumes -- the evidence only documents raw DICOM->BIDS conversion, with the SPM12 preprocessing described as the authors' internal validation step, not confirmed as shared derivatives; (2) an occipitotemporal/V4-V8 ROI mask, never mentioned as distributed, so an external atlas must be sourced and applied; (3) single-trial beta-series GLM estimates -- the paper's own GLM is a standard block/event design at the condition level, not per-trial, so the student must build a full LSA/LSS pipeline themselves before any decoding can start. Given 31 subjects x 4 sessions x 4 runs x ~14.5-min rapid event-related runs (TR=1s, ~840 usable volumes/run), full preprocessing + single-trial modeling for all subjects is itself a multi-week computational undertaking before any classifier is trained, and the LNSO cross-validation loop (repeated across subject-holdout folds, compared against per-subject within-subject decoders, with appropriate stats) adds further compute and design complexity. Data access itself is trivial (OpenNeuro, no DUA/IRB), so latency is not the bottleneck -- pipeline-building effort is. This pushes a claimed 10-week/difficulty-4 project to a realistic 14-15 week, difficulty-5 undertaking that would consume most or all of a semester for a student not already fluent in SPM/FSL first-level modeling and multivariate decoding, hence FEASIBLE_WITH_CAVEAT rather than a clean FEASIBLE."
+      },
+      {
+        "project_id": "p3-behavioral-neural-individual-differences",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 4,
+        "effort_weeks": 11,
+        "missing_variables": [
+          "Raw per-trial ND-100 hue-sorting order/placement is NOT confirmed to be distributed in machine-readable form — the evidence only confirms a single summary discrimination score per participant in Table 1 ('sum of discrimination scores across 100 hues'); the paper text describing 'Behavior files' says they store the in-scanner color-similarity task responses and questionnaire results, not the outside-scanner ND-100 sorting itself. A student can use the Table-1 summary score as the predictor (sufficient for the stated question) but cannot assume trial-level hue-sorting data is available.",
+          "No dedicated V4/V8 functional localizer or retinotopic mapping scan is described in the MRI acquisition section (only one T1w MPRAGE + 4 task-based multiband EPI runs). ROI definition for V4/V8 will have to rely on a probabilistic/anatomical atlas registered to each subject's normalized brain rather than subject-specific functional retinotopy, which is a real methodological limitation not flagged in the claimed variables list."
+        ],
+        "reason": "All four claimed variables are genuinely present in the dataset as described: Table 1 has the ND-100 summary discrimination score per participant, Table 2 has the post-scan verbal + forced-choice color-naming results, and the OpenNeuro BIDS release (ds005684) has per-subject/session anat T1w and func BOLD + events for the 9-color one-back similarity task across 35 participants (31 after motion exclusion). So no variable is flatly absent. However, three things push this from clean FEASIBLE to FEASIBLE_WITH_CAVEAT/harder-than-claimed: (1) the raw ND-100 sorting behavior (as opposed to the single summary score) is not clearly in the distributed Behavior files — a caveat, not fatal, since the summary score suffices; (2) there is no retinotopic/functional localizer scan, so V4/V8 ROIs must be defined via atlas rather than subject-specific functional mapping, adding real methodological risk/complexity the claim doesn't mention; (3) the actual analysis chain required — single-trial or condition-level GLM per color per subject, building per-subject neural RDMs from multivoxel patterns in an atlas-defined ROI, deriving a naming-consistency summary metric from Table 2, and then correlating two individual-difference scalars against a 'shape' of neural dissimilarity structure across only ~31 usable participants — is a substantial multivariate fMRI pipeline (BIDS handling, GLM, RSA, atlas-based ROI, individual-differences stats) that a single student is unlikely to build, debug, and interpret cleanly in 8 weeks, and the small n makes any correlational effect on 'never linked together' data likely underpowered/null. This is squarely a semester-length (not two-month) project even for a capable student, so I raised difficulty to 4 and effort to ~11 weeks, still within a 15-week semester but with little slack."
+      },
+      {
+        "project_id": "p4-demographic-subgroup-differences",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 13,
+        "reason": "All four claimed variables are confirmed present (demographics/Table 1, EHI laterality quotient/Table 1+Behavior files, STAI-trait & BDI-II/Table 1, report vs no-report BOLD with events.tsv in BIDS func data), and the dataset is freely available on OpenNeuro (ds005684) with no access latency. But the claimed 8-week/difficulty-3 estimate is optimistic: (a) only raw BIDS data appears to be distributed -- the paper's SPM12 preprocessing is described as their own technical-validation step, not confirmed as included derivatives, so the student must build first-level GLM (report/no-report contrast, PFC laterality extraction) AND a separate MVPA/decoding pipeline for occipitotemporal color-qualia decoding from scratch, each historically a near-full-semester task; (b) usable N is ~31 (35 minus 4 excluded for motion) for a model with 3 moderators x 2 outcome domains x 2 covariates -- thin for interaction effects, and handedness LQ in particular is likely to have restricted/skewed variance (general Japanese volunteer sample, no left-handedness oversampling), risking a non-viable moderation test for that arm specifically. Recommend raising difficulty to ~4 and effort to ~12-13 weeks, and flagging the handedness-power caveat explicitly to the student before they commit."
+      },
+      {
+        "project_id": "p5-foundation-model-few-shot-decoding",
+        "verdict": "INFEASIBLE",
+        "difficulty": 9,
+        "effort_weeks": 18,
+        "missing_variables": [
+          "\"full 4D preprocessed BOLD time series\" — evidence only confirms raw DICOM-to-BIDS-converted functional NIfTI files are distributed (\"All DICOM files and behavior files were put in this folder... after conversion to BIDS format\"). The SPM12 registration/normalization/smoothing pipeline described under Technical Validation is the AUTHORS' internal QC pipeline, not confirmed to ship as a derivatives/ folder — a student must re-run the full preprocessing pipeline from raw data themselves, which the claimed variable list glosses over as if already done.",
+          "\"per-run tSNR and framewise displacement QC metrics\" as a distributed, machine-readable per-run file — evidence only shows these were computed and reported in the paper's own Technical Validation narrative/tables for the authors' exclusion decision (excluding 4 of 35 participants); no per-run tSNR/FD .tsv or similar artifact is confirmed to exist in the OpenNeuro repository for a student to consume directly. A student would need to recompute these from raw motion parameters themselves."
+        ],
+        "reason": "The dataset itself (35 participants, 31 after motion exclusion, 4 runs x 862 vol/run, T1w + BOLD + events.tsv in BIDS on OpenNeuro ds005684) checks out for the basic variables — participant count and raw imaging/behavioral files are confirmed. What breaks feasibility is the analysis design layered on top, not the dataset per se: (1) the \"preprocessed BOLD\" and \"per-run tSNR/FD\" variables are not confirmed to be distributed as derivatives/QC files — the evidence describes them only as the authors' internal SPM12 technical-validation pipeline, meaning a student must independently build a full preprocessing + QC pipeline before any modeling begins, consuming a large fraction of a semester by itself; (2) the core ask — fine-tuning a pretrained fMRI/BOLD \"foundation-model\" encoder (e.g., BrainLM/Brain-JEPA-class models) on a handful of runs from a few of only 31 subjects, then benchmarking against a classical GLM/MVPA trained on all data — requires bleeding-edge, poorly-documented research code, a nontrivial domain shift (most such encoders are pretrained on resting-state or parcellated timeseries, not this task's event-related color-similarity paradigm), and GPU infrastructure; this is PhD-level model-adaptation engineering, not something reliably scoped in 12-15 weeks even before the preprocessing burden. (3) With only a \"handful of runs\" from a \"few\" participants for fine-tuning, any accuracy comparison to a full-data classical model will be extremely noisy, making the core scientific claim (does pretraining reduce data needs) hard to support with statistical confidence in a class project timeframe. Recommend the classical GLM/MVPA decoding half alone as a scoped-down, feasible alternative (drop the foundation-model fine-tuning comparison), which would fit in ~8-10 weeks at difficulty ~5."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/2.0",
+  "name": "A neuroimaging dataset during sequential color qualia similarity judgments with and without reports",
+  "fields": {
+    "modality_primary": {
+      "value": "neuroimaging",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "A neuroimaging dataset during sequential color qualia similarity judgments with and without reports"
+        },
+        {
+          "src": "e1",
+          "quote": "In this study, we present the fMRI dataset that captures relational similarity judgments among two out of nine color qualia per trial from 35 participants."
+        }
+      ]
+    },
+    "diseases": {
+      "value": [
+        "control"
+      ],
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": "Data are freely available at OpenNeuro, converted to BIDS 1.9.0 format, after removal of personally identifiable information. The Scientific Data article itself carries a CC BY-NC-ND 4.0 license per Crossref metadata, but no statement in the fetched evidence gives the OpenNeuro dataset's own reuse license.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "after personally identifiable information was removed"
+        },
+        {
+          "src": "e2",
+          "quote": "\"URL\": \"https://creativecommons.org/licenses/by-nc-nd/4.0\""
+        }
+      ]
+    },
+    "license": {
+      "value": null,
+      "needs": "OpenNeuro ds005684 dataset page/README (License field) — the fetched evidence only states the CC BY-NC-ND 4.0 license of the Scientific Data article (via Crossref), not a stated reuse license for the underlying OpenNeuro dataset itself",
+      "evidence": []
+    },
+    "cost": {
+      "value": "free",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "n_subjects": {
+      "value": "35 participants (17 male, 18 female; aged 21-59 years); 4 excluded for excessive head motion",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "Due to excessive head motion, we excluded four participants (see Technical Validation)."
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro ds005684 dataset page or a Methods passage giving explicit data-acquisition dates (only the publication date, 2025-03-06, and article-processing timestamps are present in the fetched evidence)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted structural MRI (MPRAGE)",
+        "Task-based multiband T2*-weighted BOLD fMRI (EPI)",
+        "Behavioral files (color similarity judgment responses)",
+        "Color vision test results (Ishihara test, ND-100 Hue test)",
+        "Questionnaire data (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II)"
+      ],
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Structural images were acquired using a T1-weighted magnetization-prepared rapid gradient-echo (MPRAGE) protocol"
+        },
+        {
+          "src": "e1",
+          "quote": "Functional images were acquired using a multiband, T2*-weighted gradient-echo echo planar imaging sequence"
+        },
+        {
+          "src": "e1",
+          "quote": "In the Behavior files, the results of the color comparison in the color similarity rating task conducted in the MRI scanner and the questionnaire results are stored."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        }
+      ]
+    },
+    "region": {
+      "value": "Japan (Chiba)",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "This consent process was approved by the Ethics Committee of the National Institutes for Quantum Science and Technology in Chiba, Japan, under approval number 18-028."
+        }
+      ]
+    },
+    "doi": {
+      "value": "10.1038/s41597-025-04511-0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "\"DOI\": \"10.1038/s41597-025-04511-0\""
+        }
+      ],
+      "note": "This is the DOI of the data-descriptor article. The underlying dataset itself carries a separate OpenNeuro DOI, 10.18112/openneuro.ds005684.v1.0.0 (src e1: \"OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0\"), referenced in access_steps."
+    },
+    "short_desc_en": {
+      "value": "An fMRI dataset from 35 healthy adults performing a one-back color similarity judgment task with report and no-report trial conditions, plus color vision tests (Ishihara, ND-100 Hue) and questionnaires (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II), converted to BIDS format and made freely available on OpenNeuro.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        },
+        {
+          "src": "e1",
+          "quote": "This dataset also includes a “no-report” condition in half of the trials to assess the impact of overt reporting."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Conjunto de datos de fMRI de 35 adultos sanos que realizaron una tarea de juicio de similitud de color tipo one-back con ensayos de reporte y de no-reporte, junto con pruebas de visión del color (Ishihara, ND-100 Hue) y cuestionarios (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II), convertido a formato BIDS y disponible libremente en OpenNeuro.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        },
+        {
+          "src": "e1",
+          "quote": "This dataset also includes a “no-report” condition in half of the trials to assess the impact of overt reporting."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "species": {
+      "value": "human",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        }
+      ]
+    }
+  },
+  "access_steps": [
+    {
+      "step_en": "Go to the dataset's OpenNeuro DOI page and download directly — open access, no account or registration required",
+      "step_es": "Ir a la página del DOI del dataset en OpenNeuro y descargar directamente — acceso abierto, sin cuenta ni registro",
+      "eta": "5-10 min",
+      "url": "https://doi.org/10.18112/openneuro.ds005684.v1.0.0",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository (OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0"
+        }
+      ]
+    }
+  ],
+  "starter_code": {
+    "python": "import nibabel as nib\nfrom pathlib import Path\n\n# Folder layout per the data descriptor (src e1):\n# \"ColorSimilarity_fMRI_exp\" top-level dir; \"sub-01\"-style participant\n# sub-directories; each has session dirs with \"anat\" and \"func\" data.\nroot = Path('ColorSimilarity_fMRI_exp')\nsub_dir = root / 'sub-01'\n\n# There are four session directories per participant (src e1).\nfor ses_dir in sorted(sub_dir.glob('ses-*')):\n    anat_files = list((ses_dir / 'anat').glob('*.nii.gz'))\n    func_files = list((ses_dir / 'func').glob('*.nii.gz'))\n    print(ses_dir.name, 'anat:', len(anat_files), 'func:', len(func_files))\n    if anat_files:\n        img = nib.load(str(anat_files[0]))\n        print('  anat shape:', img.shape)",
+    "r": "library(RNifti)\n\n# Folder layout per the data descriptor (src e1):\n# \"ColorSimilarity_fMRI_exp\" top-level dir; \"sub-01\"-style participant\n# sub-directories; each has session dirs with \"anat\" and \"func\" data.\nroot <- 'ColorSimilarity_fMRI_exp'\nsub_dir <- file.path(root, 'sub-01')\n\nses_dirs <- list.dirs(sub_dir, recursive = FALSE)\nses_dirs <- ses_dirs[grepl('ses-', basename(ses_dirs))]\n\nfor (ses_dir in ses_dirs) {\n  anat_files <- list.files(file.path(ses_dir, 'anat'), pattern = '\\\\.nii\\\\.gz$', full.names = TRUE)\n  func_files <- list.files(file.path(ses_dir, 'func'), pattern = '\\\\.nii\\\\.gz$', full.names = TRUE)\n  cat(basename(ses_dir), 'anat:', length(anat_files), 'func:', length(func_files), '\\n')\n  if (length(anat_files) > 0) {\n    img <- readNifti(anat_files[1])\n    print(dim(img))\n  }\n}"
+  },
+  "scope": {
+    "id": "10-1038-s41597-025-04511-0",
+    "in_scope": true,
+    "reason": "Human fMRI dataset during cognitive task (color perception/consciousness study). Modality (fMRI) is explicitly in-scope. Publicly available in BIDS format on OpenNeuro; reusable by students. Research domain (neural basis of consciousness, visual perception) is fundamental neuroscience.",
+    "modality_primary": "fMRI",
+    "disease_tags": []
+  },
+  "literature": {
+    "dataset_doi": "10.18112/openneuro.ds005684.v1.0.0",
+    "data_descriptor_doi": "10.1038/s41597-025-04511-0",
+    "openalex_work_id": "https://openalex.org/W4408197500",
+    "method": "OpenAlex citation graph — GET /works/doi:10.1038/s41597-025-04511-0 resolved to W4408197500, then GET /works?filter=cites:W4408197500&per_page=25&select=id,doi,title,publication_year,cited_by_count. Both calls succeeded (no rate-limit this run). Task/method labels below were assigned by reading each citing work's OpenAlex-provided title, primary_topic, and reconstructed abstract (from abstract_inverted_index).",
+    "n_citing_works": 7,
+    "citing_works": [
+      {
+        "title": "On a confusion about there being two types of consciousness",
+        "year": 2025,
+        "doi": "10.1016/j.tics.2025.11.012",
+        "openalex_id": "https://openalex.org/W4417441547",
+        "task": "theoretical/conceptual citation (phenomenal vs. access consciousness debate)",
+        "method": "n/a - opinion/theory piece",
+        "uses_dataset_directly": false
+      },
+      {
+        "title": "Common Phenomenal and Neural Substrate Geometry in Visual Motion Perception",
+        "year": 2025,
+        "doi": "10.1101/2025.10.01.679834",
+        "openalex_id": "https://openalex.org/W4414770407",
+        "task": "neural-phenomenal correspondence / representational geometry, extended to visual motion (not color)",
+        "method": "structural/relational qualia characterization compared to neural representational geometry",
+        "uses_dataset_directly": false
+      },
+      {
+        "title": "Robust individual alignment of color qualia structures: toward a structure-based taxonomy of divergent color experiences",
+        "year": 2026,
+        "doi": "10.64898/2026.02.13.705699",
+        "openalex_id": "https://openalex.org/W7129098063",
+        "task": "subtyping (individual-to-individual color qualia structure alignment / taxonomy of typical vs. divergent color experiences)",
+        "method": "unsupervised structural alignment (Gromov-Wasserstein-type) of pairwise color-similarity structures across individuals",
+        "uses_dataset_directly": "likely - same paradigm/lab, builds a taxonomy from qualia-structure alignment"
+      },
+      {
+        "title": "Systematic comparison of color representations between humans and deep neural networks: towards predicting human color perception in a vast color space",
+        "year": 2025,
+        "doi": "10.64898/2025.12.10.693611",
+        "openalex_id": "https://openalex.org/W4417302832",
+        "task": "foundation-model / representational-alignment (benchmarking DNN color representations against human color similarity structure)",
+        "method": "human-vs-DNN representational comparison across a large color space",
+        "uses_dataset_directly": "likely - uses human color-similarity judgments as ground truth for DNN comparison"
+      },
+      {
+        "title": "Qualia structures collapse for geometric shapes, but not faces, when spatial attention is withdrawn",
+        "year": 2025,
+        "doi": "10.1093/nc/niaf053",
+        "openalex_id": "https://openalex.org/W4417416920",
+        "task": "biomarker/subtyping (attentional modulation of qualia-structure alignment), paradigm extended to geometric shapes and faces",
+        "method": "similarity-rating paradigm under attentional manipulation + structural alignment analysis (same lab, different stimulus classes)",
+        "uses_dataset_directly": false
+      },
+      {
+        "title": "A multi-level visual representation dataset for large-scale non-financial information disclosure",
+        "year": 2026,
+        "doi": "10.1038/s41597-026-06848-6",
+        "openalex_id": "https://openalex.org/W7131079033",
+        "task": "unrelated domain (corporate ESG/sustainability-report visual analysis); appears to cite only as a Scientific Data data-descriptor precedent",
+        "method": "n/a",
+        "uses_dataset_directly": false
+      },
+      {
+        "title": "Measuring the Diversity of Qualia: Category-Theoretic Indices for Psychophysical Experimental Data",
+        "year": 2026,
+        "doi": "10.12688/f1000research.179638.1",
+        "openalex_id": "https://openalex.org/W7165843565",
+        "task": "subtyping/methods-development (quantifying diversity of qualia structures between groups, e.g. color-typical vs. atypical)",
+        "method": "category-theoretic diversity indices applied to pairwise-similarity dissimilarity matrices",
+        "uses_dataset_directly": "likely - same paradigm's similarity-rating data used as worked example"
+      }
+    ],
+    "dominant_tasks": [
+      "color-qualia structural analysis / subtyping (individual-differences alignment, taxonomy of divergent color experiences, diversity quantification) — mostly same-lab (Tsuchiya/Oizumi group) follow-ups",
+      "human-vs-deep-neural-network representational comparison (foundation-model benchmarking against human color similarity structure)",
+      "paradigm extension to new stimulus domains (visual motion, geometric shapes, faces) without directly reusing this dataset's color-qualia data",
+      "theoretical/conceptual citation (consciousness-structure reviews and opinion pieces, no direct data reuse)"
+    ],
+    "saturation": "low",
+    "saturation_rationale": "Only 7 works cite this data descriptor via OpenAlex's citation graph, roughly 16 months post-publication. Just 2-3 works plausibly reanalyze the underlying similarity-judgment data directly (the individual-alignment taxonomy preprint, the human-vs-DNN color comparison preprint, and the category-theoretic diversity-index paper), and these are dominated by the originating lab (Tsuchiya, Oizumi, and close collaborators) rather than independent external groups. Two works extend the qualia-structure paradigm methodologically to new, unrelated stimulus domains (visual motion; geometric shapes/faces) without touching this dataset's actual color-similarity or fMRI data. One citation is purely theoretical/conceptual (consciousness-type debate), and one appears unrelated in domain (ESG/sustainability visual-disclosure dataset), likely citing this work only as a Scientific Data data-descriptor exemplar. No external-validation, segmentation, outcome-prediction, or causal-inference use has appeared, and no independent group outside the original team has reanalyzed the with/without-report neuroimaging (fMRI) contrast itself. This indicates the dataset is still in an early, largely single-group exploitation phase with substantial white space for independent secondary analyses (e.g., decoding qualia structure directly from the fMRI data, report-vs-no-report neural correlate analyses, or cross-lab replication)."
+  },
+  "projects": [
+    {
+      "id": "p1-report-vs-noreport-causal-isolation",
+      "lens": "causal",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "question_en": "Using the dataset's built-in report vs. no-report trial manipulation as a quasi-experimental contrast, can a multivoxel pattern classifier trained to decode which of the 9 target colors was shown from occipitotemporal (V4/V8) BOLD activity in report trials also decode color identity in no-report trials — while a parallel classifier trained on prefrontal cortex activity fails to generalize the same way? This would separate brain regions carrying color-qualia information from regions that only carry information about the act of reporting.",
+      "question_es": "Usando la manipulación de ensayos con/sin reporte incorporada en el dataset como contraste cuasi-experimental, ¿puede un clasificador multivóxel entrenado para decodificar cuál de los 9 colores objetivo se presentó, a partir de la actividad BOLD occipitotemporal (V4/V8) en ensayos con reporte, también decodificar la identidad del color en ensayos sin reporte — mientras un clasificador paralelo entrenado sobre la corteza prefrontal no logra generalizar de la misma manera? Esto permitiría separar las regiones cerebrales que portan información sobre la qualia de color de aquellas que solo portan información sobre el acto de reportar.",
+      "required_variables": [
+        {
+          "variable": "task fMRI BOLD runs labeled by trial type",
+          "file_or_field": "sub-XX/ses-YY/func/*_task-*_bold.nii.gz (862 volumes/run, 4 runs/session, multiband EPI)",
+          "src": "e1"
+        },
+        {
+          "variable": "per-trial cue indicating report (circle) vs. no-report (square) condition and target color hue (0/40/80/.../320 deg HSV)",
+          "file_or_field": "sub-XX/ses-YY/func/*_events.tsv — trial onsets for cue, target color, reminder color, response",
+          "src": "e1"
+        },
+        {
+          "variable": "anatomical T1w image for coregistration and V4/V8 ROI definition",
+          "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz (MPRAGE, 1mm iso)",
+          "src": "e1"
+        },
+        {
+          "variable": "six head-motion parameters / framewise displacement for nuisance regression and run-level QC",
+          "file_or_field": "realignment motion parameters and FD, computed per functional run",
+          "src": "e1"
+        }
+      ],
+      "skills": [
+        "fMRI preprocessing (SPM12/fMRIPrep)",
+        "MVPA/decoding in Python (nilearn, scikit-learn)",
+        "BIDS data handling",
+        "basic statistics (permutation testing)"
+      ],
+      "compute": "Laptop/workstation, no GPU required; ~20-30GB local storage per few subjects (full 35-subject BIDS dataset is larger); SPM12 or fMRIPrep + nilearn.",
+      "still_open_because": "The original paper only ran a univariate GLM with 40 regressors (report vs. no-report as separate conditions) and did not attempt multivariate decoding or cross-condition (report -> no-report) generalization testing, which is the analysis that would directly test whether qualia-related information is dissociable from report-related information at the pattern level."
+    },
+    {
+      "id": "p2-cross-participant-decoder-generalization",
+      "lens": "generalization",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "question_en": "If a classifier is trained to predict trial-by-trial color-dissimilarity ratings (the -4 to +4 similarity scale) from occipitotemporal BOLD patterns using a subset of the 31 valid participants, how well does it generalize to held-out, unseen participants (leave-N-subjects-out), compared to a within-subject decoder? Is the neural code for color qualia shared enough across people to support a population-level (rather than per-person) decoder?",
+      "question_es": "Si se entrena un clasificador para predecir las calificaciones de disimilitud de color ensayo a ensayo (la escala de similitud de -4 a +4) a partir de patrones BOLD occipitotemporales usando un subconjunto de los 31 participantes válidos, ¿qué tan bien generaliza a participantes nuevos y no vistos (dejar-N-participantes-fuera), en comparación con un decodificador intra-sujeto? ¿Es el código neural de la qualia de color suficientemente compartido entre personas como para sustentar un decodificador poblacional (en lugar de uno individual)?",
+      "required_variables": [
+        {
+          "variable": "task fMRI BOLD runs for all 35 participants (31 after motion exclusion)",
+          "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz across 4 sessions x 4 runs each",
+          "src": "e1"
+        },
+        {
+          "variable": "per-trial similarity rating (-4 to 4, converted to 0-7 dissimilarity) collected via MRI-compatible trackball",
+          "file_or_field": "sub-XX/ses-YY/func/*_events.tsv response field",
+          "src": "e1"
+        },
+        {
+          "variable": "grand-average dissimilarity scores for the 45 color pairs (behavioral ground-truth/validation target)",
+          "file_or_field": "Table 4: grand average of dissimilarity scores for 45 color pairs",
+          "src": "e1"
+        },
+        {
+          "variable": "demographic table for stratifying held-out generalization (age 21-59, 17M/18F)",
+          "file_or_field": "Table 1: demographic information for all participants",
+          "src": "e1"
+        }
+      ],
+      "skills": [
+        "fMRI preprocessing",
+        "cross-validation design (leave-N-subjects-out)",
+        "MVPA/regression decoding",
+        "Python/nilearn or MATLAB"
+      ],
+      "compute": "Workstation, no GPU strictly required; moderate storage for multi-subject BOLD data; standard scikit-learn/nilearn pipeline.",
+      "still_open_because": "The paper only checked within-task consistency of dissimilarity ratings across runs (Wilcoxon signed-rank on 1st vs. 2nd half of the task, Table 4) and did not test whether a decoder trained on some participants' brain data predicts other, unseen participants' color-similarity judgments — the actual cross-person generalization question."
+    },
+    {
+      "id": "p3-behavioral-neural-individual-differences",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Do individual differences in perceptual color-discrimination ability, measured outside the scanner with the ND-100 Hue test, and in color-naming consistency (verbal + forced-choice naming of the 9 experimental colors) predict the shape of each participant's neural color-similarity representation (representational dissimilarity structure) in V4/V8, combining a behavioral test, a naming test, and fMRI that the paper reports separately but never statistically links together?",
+      "question_es": "¿Las diferencias individuales en la capacidad de discriminación perceptual de color, medidas fuera del escáner con la prueba ND-100 Hue, y en la consistencia de nombrar los colores (nombrado verbal + selección forzada de los 9 colores experimentales) predicen la forma de la representación neural de similitud de color de cada participante (estructura de disimilitud representacional) en V4/V8, combinando una prueba conductual, una prueba de nombrado y fMRI que el artículo reporta por separado pero nunca vincula estadísticamente?",
+      "required_variables": [
+        {
+          "variable": "ND-100 Hue test discrimination score per participant (color recognition capability, summary measure)",
+          "file_or_field": "Table 1, column 'ND-100 test'; raw hue-sorting behavior stored in Behavior files",
+          "src": "e1"
+        },
+        {
+          "variable": "post-scan color-naming test results: free verbal naming and forced-choice naming (from red/pink/orange/yellow/green/blue/purple/brown/white/gray/black) for the 9 colors",
+          "file_or_field": "Table 2: results of post-scan tests for all participants",
+          "src": "e1"
+        },
+        {
+          "variable": "task fMRI BOLD and per-trial color-similarity ratings for RSA/RDM construction",
+          "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz and *_events.tsv",
+          "src": "e1"
+        },
+        {
+          "variable": "anatomical T1w for V4/V8 ROI definition",
+          "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz",
+          "src": "e1"
+        }
+      ],
+      "skills": [
+        "representational similarity analysis (RSA)",
+        "fMRI preprocessing",
+        "correlation/regression statistics",
+        "Python (nilearn/rsatoolbox) or MATLAB"
+      ],
+      "compute": "Laptop-class compute sufficient; RSA on ROI-extracted patterns is lightweight once preprocessing is done.",
+      "still_open_because": "The Technical Validation section reports ND-100 scores and color-naming results purely as descriptive summary tables (Table 1, Table 2) and never correlates them with the fMRI similarity-judgment data — the brain-behavior link across these two modalities the paper collected is left unexploited."
+    },
+    {
+      "id": "p4-demographic-subgroup-differences",
+      "lens": "equity",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Do sex, age, or handedness (Edinburgh Handedness Inventory laterality quotient) moderate the magnitude or hemispheric lateralization of report-related prefrontal activity, or the strength of occipitotemporal color-qualia decoding, after controlling for trait anxiety (STAI) and depressive symptoms (BDI-II) as covariates — i.e., is the 'reporting' signature the paper describes uniform across the sampled subgroups, or does it differ by sex/age/handedness?",
+      "question_es": "¿El sexo, la edad o la lateralidad manual (cociente de lateralidad del Edinburgh Handedness Inventory) moderan la magnitud o la lateralización hemisférica de la actividad prefrontal relacionada con el reporte, o la fuerza de la decodificación de la qualia de color occipitotemporal, controlando por ansiedad rasgo (STAI) y síntomas depresivos (BDI-II) como covariables — es decir, ¿la firma de 'reporte' que describe el artículo es uniforme entre los subgrupos muestreados, o difiere según sexo/edad/lateralidad?",
+      "required_variables": [
+        {
+          "variable": "demographics: age (21-59 yrs) and sex (17 male / 18 female)",
+          "file_or_field": "Table 1: demographic information for all participants",
+          "src": "e1"
+        },
+        {
+          "variable": "Edinburgh Handedness Inventory laterality quotient per participant",
+          "file_or_field": "Table 1 / questionnaire results stored in Behavior files",
+          "src": "e1"
+        },
+        {
+          "variable": "State-Trait Anxiety Inventory (trait score) and Beck Depression Inventory-II score as covariates",
+          "file_or_field": "Table 1, STAI trait mean 43.1±10.5, BDI mean 7.9±6.8",
+          "src": "e1"
+        },
+        {
+          "variable": "task fMRI BOLD contrasting report vs. no-report trials, per participant",
+          "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz and *_events.tsv (report/no-report cue)",
+          "src": "e1"
+        }
+      ],
+      "skills": [
+        "fMRI group-level (second-level) GLM",
+        "moderation/regression statistics",
+        "basic epidemiology of subgroup analysis",
+        "SPM12 or FSL"
+      ],
+      "compute": "Workstation-class; standard second-level SPM/FSL group analysis with covariates, no GPU needed.",
+      "still_open_because": "The paper reports demographic and questionnaire variables purely descriptively (Tables 1-2) as sample characterization and quality-control checks (e.g., excluding high-motion participants); it never tests them as moderators of the report vs. no-report neural contrast, leaving subgroup (sex/age/handedness) heterogeneity in the reporting signature unexamined."
+    },
+    {
+      "id": "p5-foundation-model-few-shot-decoding",
+      "lens": "foundation-models",
+      "difficulty": 5,
+      "effort_weeks": 12,
+      "question_en": "Can a pretrained fMRI/BOLD foundation-model encoder, fine-tuned with only a handful of runs from a few of the 31 valid participants, decode trial-by-trial color-dissimilarity ratings (the -4 to +4 similarity scale converted to 0-7 dissimilarity) from held-out runs as accurately as a classical voxel-wise GLM/MVPA model trained on all available data — testing whether self-supervised pretraining reduces the amount of subject-specific data needed for this consciousness/qualia decoding task?",
+      "question_es": "¿Puede un codificador de modelo de fundación pre-entrenado para fMRI/BOLD, ajustado con solo un puñado de corridas de unos pocos de los 31 participantes válidos, decodificar las calificaciones de disimilitud de color ensayo a ensayo (la escala de similitud de -4 a +4 convertida a disimilitud de 0-7) en corridas no vistas con la misma precisión que un modelo GLM/MVPA clásico por vóxel entrenado con todos los datos disponibles — probando si el pre-entrenamiento auto-supervisado reduce la cantidad de datos específicos por sujeto necesarios para esta tarea de decodificación de qualia/consciencia?",
+      "required_variables": [
+        {
+          "variable": "full 4D preprocessed BOLD time series, 4 runs x 862 volumes/run per session, per participant",
+          "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz (TR=1000ms, multiband factor 3, 3.2mm iso)",
+          "src": "e1"
+        },
+        {
+          "variable": "trial event files with target color hue, report/no-report condition, and dissimilarity ratings",
+          "file_or_field": "sub-XX/ses-YY/func/*_events.tsv",
+          "src": "e1"
+        },
+        {
+          "variable": "anatomical T1w for co-registration/normalization to a common space required by most pretrained encoders",
+          "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz normalized to MNI (per paper's own SPM12 pipeline)",
+          "src": "e1"
+        },
+        {
+          "variable": "per-run tSNR and framewise displacement QC metrics, to select/exclude low-quality runs before fine-tuning",
+          "file_or_field": "tSNR and FD computed per functional run in Technical Validation",
+          "src": "e1"
+        }
+      ],
+      "skills": [
+        "deep learning (PyTorch)",
+        "transfer learning / fine-tuning pretrained neuroimaging models",
+        "fMRI preprocessing to MNI space",
+        "model evaluation and baseline comparison"
+      ],
+      "compute": "GPU required for fine-tuning (single consumer GPU, e.g. RTX 3090/4090, sufficient); ~50-100GB storage for full 35-subject preprocessed BIDS dataset.",
+      "still_open_because": "The paper's own analysis is a hand-specified univariate GLM with 40 regressors; it does not use any pretrained representation-learning or foundation-model approach, and does not report few-shot / low-data decoding performance, leaving open whether modern self-supervised BOLD encoders can decode this dataset's qualia-similarity structure with less subject-specific data than classical methods."
+    }
+  ],
+  "_blocks": [
+    "el id ya existe en el catálogo"
+  ]
+}

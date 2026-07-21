@@ -1,9 +1,9 @@
 {
   "generated_from": "data/databases.yml",
-  "count": 21,
+  "count": 22,
   "facets": {
     "modality": {
-      "neuroimaging": 8,
+      "neuroimaging": 9,
       "multimodal": 5,
       "bci": 2,
       "electrophysiology": 2,
@@ -13,9 +13,16 @@
     "disease": {
       "depression": 4,
       "control": 4,
+      "i": 3,
+      "a": 3,
       "dementia": 3,
       "epilepsy": 3,
       "stroke": 3,
+      "r": 2,
+      "g": 2,
+      "e": 2,
+      "n": 2,
+      "l": 2,
       "adhd": 2,
       "development": 2,
       "alzheimer": 2,
@@ -36,6 +43,10 @@
       "multiple": 2,
       "sleep-apnea": 1,
       "cognitive-impairment": 1,
+      "t": 1,
+      "m": 1,
+      " ": 1,
+      "u": 1,
       "anxiety": 1,
       "substance-use": 1,
       "mci": 1,
@@ -52,7 +63,7 @@
       "encephalopathy": 1
     },
     "access": {
-      "open": 9,
+      "open": 10,
       "registration": 6,
       "application": 3,
       "credentialed": 2,
@@ -305,6 +316,410 @@
         "sleep-apnea",
         "cognitive-impairment"
       ]
+    },
+    {
+      "id": "10-1038-s41597-025-06311-y",
+      "modality_primary": "neuroimaging",
+      "access": "open",
+      "cost": "free",
+      "n_subjects": "112 patients with trigeminal neuralgia and 48 healthy subjects (160 participants total); 58 patients also have 6-month postsurgical follow-up",
+      "years": "October 2021 to October 2024",
+      "doi": "10.1038/s41597-025-06311-y (data descriptor); 10.18112/openneuro.ds005713.v1.0.1 (dataset)",
+      "diseases": "trigeminal neuralgia",
+      "data_types": [
+        "T1-weighted structural MRI",
+        "T2-weighted structural MRI",
+        "Diffusion tensor imaging (DTI)",
+        "Resting-state functional MRI (rs-fMRI)",
+        "Clinical/demographic data (participants.tsv)"
+      ],
+      "species": "human",
+      "short_desc_en": "An open, BIDS-formatted dataset on OpenNeuro (ds005713) with structural (T1w, T2w), diffusion tensor, and resting-state fMRI data plus clinical and demographic information from 112 patients with chronic trigeminal neuralgia (58 with 6-month postsurgical follow-up) and 48 healthy controls.",
+      "access_notes": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components",
+      "name": "A large-scale dataset of pre- and postsurgical MRI data from patients with chronic trigeminal neuralgia (OpenNeuro ds005713)",
+      "access_confidence": "medium",
+      "license": "unknown (no formal license name given for the dataset; the CC BY-NC-ND 4.0 license found in Crossref metadata applies to the journal article text/TDM, not the OpenNeuro dataset)",
+      "projects": [
+        {
+          "id": "tn-mri-01-qc-generalization",
+          "question_en": "Does an MRI quality-control pipeline (MRIQC) calibrated on healthy controls generalize to pre- and post-surgical trigeminal neuralgia patients, or do surgical/pathological changes cause systematic domain shift in QC metrics (CJV, CNR, SNR, EFC, FBER, FWHM, tSNR)?",
+          "question_es": "¿Un pipeline de control de calidad de RM (MRIQC) calibrado en controles sanos generaliza a pacientes con neuralgia del trigémino pre- y posquirúrgicos, o los cambios quirúrgicos/patológicos provocan un desplazamiento de dominio sistemático en las métricas de QC (CJV, CNR, SNR, EFC, FBER, FWHM, tSNR)?",
+          "lens": "generalization",
+          "skills": [
+            "Python/pandas",
+            "basic statistics (group comparison, ROC/outlier analysis)",
+            "BIDS familiarity"
+          ],
+          "status": "open",
+          "unverified": false,
+          "difficulty": 2,
+          "effort_weeks": 3,
+          "feasibility": "feasible",
+          "novelty": "novel"
+        },
+        {
+          "id": "tn-mri-02-multimodal-pain",
+          "question_en": "In patients with trigeminal neuralgia, does combining structural connectivity (DTI-derived fractional anisotropy along trigeminal/pain-related white-matter tracts) with functional connectivity (resting-state fMRI) explain more variance in self-reported average pain intensity (BPI-facial) than either modality alone?",
+          "question_es": "En pacientes con neuralgia del trigémino, ¿combinar la conectividad estructural (anisotropía fraccional derivada de DTI en tractos de sustancia blanca relacionados con el trigémino/dolor) con la conectividad funcional (fMRI en reposo) explica más varianza en la intensidad de dolor promedio autoreportada (BPI-facial) que cualquiera de las dos modalidades por separado?",
+          "lens": "multimodal",
+          "skills": [
+            "FSL/MRtrix3 (TOPUP, eddy, tractography)",
+            "fMRI preprocessing (fMRIPrep or similar)",
+            "functional connectivity analysis",
+            "multimodal regression/fusion (e.g., ridge or CCA)"
+          ],
+          "status": "open",
+          "unverified": false,
+          "difficulty": 5,
+          "effort_weeks": 14,
+          "feasibility": "feasible_with_caveat",
+          "novelty": "partial",
+          "still_open_because": "Adjacent work exists on structural-functional relationships in trigeminal neuralgia — structure-function coupling analyses (10.1186/s10194-026-02419-7 on coupling plasticity; structural connectome work 10.3389/fnins.2026.1794457) and a systematic review of advanced TN neuroimaging (10.1097/j.pain.0000000000003365) — but none tests the specific question: whether COMBINING DTI-derived FA along trigeminal/pain tracts with resting-state functional connectivity explains INCREMENTAL variance in self-reported average pain intensity (BPI-facial) beyond either modality alone. Prior coupling studies characterize structure-function relationships or gene-expression correlates, not a head-to-head multimodal vs. single-modality predictive model of patient-reported pain severity, and none use the ds005713 cohort. The remaining delta is the explicit variance-partitioning / model-comparison of combined vs. unimodal connectivity predicting BPI-facial pain.",
+          "prior_work": [
+            {
+              "doi": "10.1186/s10194-026-02419-7",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ]
+        },
+        {
+          "id": "tn-mri-03-longitudinal-outcome",
+          "question_en": "Using the paired pre-surgical and ~6-month post-surgical MRI available for 58 patients, do longitudinal within-subject changes in structural MRI (e.g., FreeSurfer-derived subcortical/thalamic volumes from the T1w/T2w scans) track with surgical outcome (favorable vs. unfavorable pain reduction), pointing to a treatment-response correlate rather than a static pre-surgical biomarker?",
+          "question_es": "Usando la RM pareada pre- y ~6 meses posquirúrgica disponible para 58 pacientes, ¿los cambios longitudinales intrasujeto en la RM estructural (p. ej., volúmenes subcorticales/talámicos derivados con FreeSurfer a partir de las secuencias T1w/T2w) se relacionan con el desenlace quirúrgico (reducción de dolor favorable vs. desfavorable), señalando un correlato de respuesta al tratamiento en lugar de un biomarcador estático prequirúrgico?",
+          "lens": "causal",
+          "skills": [
+            "FreeSurfer recon-all (longitudinal stream)",
+            "mixed-effects/repeated-measures statistics",
+            "basic causal-inference framing (within-subject change scores)"
+          ],
+          "status": "open",
+          "unverified": false,
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "feasibility": "feasible_with_caveat",
+          "novelty": "partial",
+          "still_open_because": "The core hypothesis — that longitudinal within-subject structural change tracks surgical pain relief in TN (treatment-response correlate, not static biomarker) — is already established by DeSouza et al. 2015 (Pain, 10.1097/j.pain.0000000000000156), which showed reversal of insular cortical and trigeminal-nerve microstructural abnormalities after effective surgery. Separately, the same ds005713 dataset already has an outcome paper (Chizhikov/Brain Communications 2025, 10.1093/braincomms/fcaf178) but it used ONLY pre-surgical T1w imaging as a static predictor and did not exploit the paired post-surgical scans. The specific remaining delta: nobody has yet run the pre→~6mo-post within-subject longitudinal analysis on ds005713's 58 paired patients using FreeSurfer subcortical/thalamic volumetry, contrasting favorable vs. unfavorable pain outcomes. That exact execution (this cohort, subcortical/thalamic volumes, graded outcome stratification of longitudinal change) is unpublished, though it is a modality/cohort variation on an already-demonstrated concept.",
+          "prior_work": [
+            {
+              "doi": "10.1097/j.pain.0000000000000156",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ]
+        },
+        {
+          "id": "tn-mri-05-foundation-model-fewshot",
+          "question_en": "Can embeddings from a pretrained 3D brain-MRI foundation model, applied to this dataset's defaced T1w/T2w structural images, few-shot classify trigeminal neuralgia patients vs. matched healthy controls more accurately (and with fewer labeled examples) than a convolutional network trained from scratch on this ~160-subject cohort?",
+          "question_es": "¿Los embeddings de un modelo de fundación de RM cerebral 3D preentrenado, aplicados a las imágenes estructurales T1w/T2w desfiguradas (defaced) de este dataset, clasifican en modo few-shot a pacientes con neuralgia del trigémino frente a controles sanos emparejados con mayor precisión (y con menos ejemplos etiquetados) que una red convolucional entrenada desde cero en esta cohorte de ~160 sujetos?",
+          "lens": "foundation-models",
+          "skills": [
+            "PyTorch",
+            "transfer learning / linear probing",
+            "working with a pretrained 3D medical-imaging foundation model checkpoint",
+            "basic few-shot evaluation protocol design"
+          ],
+          "status": "open",
+          "unverified": false,
+          "difficulty": 5,
+          "effort_weeks": 9,
+          "feasibility": "feasible_with_caveat",
+          "novelty": "novel"
+        }
+      ],
+      "key_publications": [
+        {
+          "title": "Transcriptional correlates of structure-function coupling plasticity in trigeminal neuralgia: unveiling the synaptic and metabolic associations",
+          "doi": "10.1186/s10194-026-02419-7",
+          "journal": "Journal of Headache and Pain",
+          "year": 2026,
+          "authors": "Zhang J, Nie X, Fu S, Lu Y, Liu T, Zhang Z, Wu J, Tong X, Yan T",
+          "task": "biomarker / mechanism",
+          "method": "Longitudinal multimodal MRI; graph harmonic model for structure-function coupling; PLS regression against Allen Human Brain Atlas transcriptomic data",
+          "n_used": "87 TN patients (pre/post-treatment subset), 42 healthy controls, drawn from ds005713 (explicitly notes upgrading from v1.0.1 to v2.0.1 for added clinical endpoints)",
+          "finding": "Reduced global structure-function coupling in TN normalizes after surgical treatment; postoperative reorganization correlates with pain reduction; coupling changes spatially linked to synaptic/opioid-signaling and metabolic gene expression"
+        },
+        {
+          "title": "No Glymphatic Dysfunction in Trigeminal Neuralgia: A Preliminary Study",
+          "doi": "10.1002/brb3.70938",
+          "journal": "Brain and Behavior",
+          "year": 2026,
+          "authors": "Genc B, Aslan K",
+          "task": "biomarker (negative finding)",
+          "method": "DTI-ALPS (diffusion tensor image analysis along the perivascular space) index computed on diffusion MRI",
+          "n_used": "Subset of ds005713 patients vs. healthy controls, pre- and post-decompression surgery",
+          "finding": "No significant glymphatic function differences between TN patients and controls, nor pre- vs. post-surgery"
+        },
+        {
+          "title": "Cerebellar neurocan gene expression is a common pathogenic factor of trigeminal neuralgia and depression",
+          "doi": "10.1186/s10194-025-02254-2",
+          "journal": "Journal of Headache and Pain",
+          "year": 2025,
+          "authors": "(not individually retrieved)",
+          "task": "biomarker / imaging-genetics",
+          "method": "Integration of neuroimaging (ds005713 MRI) with whole-genome sequencing / SNP-based gene-tissue association analysis",
+          "n_used": "Subset of ds005713 cohort",
+          "finding": "Cerebellar NCAN gene expression implicated as shared pathogenic factor linking TN and depression"
+        },
+        {
+          "title": "Fixel-based analysis reveals distributed white matter alterations associated with pain severity in trigeminal neuralgia",
+          "doi": "10.1186/s10194-026-02306-1",
+          "journal": "Journal of Headache and Pain",
+          "year": 2026,
+          "authors": "Chu T, Xiong F, Gao F, Tian X, Tu Y",
+          "task": "biomarker (white-matter microstructure)",
+          "method": "Fixel-based analysis (fibre density, fibre-bundle cross-section, FDC) with connectivity-based fixel enhancement, FWE-corrected",
+          "n_used": "65 TN patients, 42 healthy controls (subset of ds005713)",
+          "finding": "Distributed, tract-specific white matter alterations beyond trigeminal pathways (corticospinal tract, cerebellar peduncles); macrostructural bundle measures correlate with pain severity"
+        },
+        {
+          "title": "Network control theory uncovers aberrant connectome controllability in trigeminal neuralgia",
+          "doi": "10.1186/s10194-025-02122-z",
+          "journal": "Journal of Headache and Pain",
+          "year": 2025,
+          "authors": "(not individually retrieved)",
+          "task": "biomarker (structural connectome / network dynamics)",
+          "method": "Diffusion tractography, Brainnetome-parcellated structural connectomes, network control theory metrics",
+          "n_used": "82 TN patients, 42 healthy controls (subset of ds005713)",
+          "finding": "Aberrant structural network controllability in TN relative to controls"
+        },
+        {
+          "title": "Anterior-superior hypothalamic enlargement as specific marker in episodic migraine: converging evidence from an independent discovery-replication design",
+          "doi": "10.64898/2026.06.12.26355501",
+          "journal": "medRxiv (preprint)",
+          "year": 2026,
+          "authors": "(not individually retrieved)",
+          "task": "biomarker specificity / comparator cohort (secondary use)",
+          "method": "Atlas-based automated hypothalamic subunit segmentation on structural MRI; MANOVA and Welch t-tests across two migraine discovery/replication cohorts plus two independent 'chronic pain' comparator cohorts",
+          "n_used": "119 TN patients, 55 healthy controls (near-complete ds005713 cohort), used as one of two chronic-pain comparator datasets alongside a fibromyalgia cohort",
+          "finding": "No significant hypothalamic subunit volumetric differences detected in the TN cohort, used as evidence that a left anterior-superior hypothalamic enlargement found in migraine is migraine-specific rather than a generic chronic-pain effect"
+        }
+      ],
+      "literature": {
+        "n_citing_works": 6,
+        "saturation": "medium",
+        "dominant_tasks": [
+          "biomarker",
+          "mechanism/structure-function characterization",
+          "cross-condition specificity (comparator cohort use, one instance)"
+        ]
+      },
+      "access_steps": [
+        {
+          "step_en": "Go to the OpenNeuro dataset page (accession ds005713, referenced by DOI 10.18112/openneuro.ds005713.v1.0.1)",
+          "step_es": "Ve a la pagina del dataset en OpenNeuro (accession ds005713, referenciado por el DOI 10.18112/openneuro.ds005713.v1.0.1)",
+          "url": "https://openneuro.org/datasets/ds005713",
+          "eta": "2 min"
+        },
+        {
+          "step_en": "Download the dataset directly, no account or credentialing required (open access platform)",
+          "step_es": "Descarga el dataset directamente, sin cuenta ni credencial (plataforma de acceso abierto)",
+          "eta": "depends on dataset size"
+        },
+        {
+          "step_en": "Explore the BIDS structure per participant (anat, func, dwi folders) and read participants.tsv / participants.json / README.txt for clinical and acquisition details",
+          "step_es": "Explora la estructura BIDS por participante (carpetas anat, func, dwi) y lee participants.tsv / participants.json / README.txt para detalles clinicos y de adquisicion",
+          "eta": "10-30 min"
+        }
+      ],
+      "starter_code": {
+        "python": "import pandas as pd\nimport nibabel as nib\n\n# participants.tsv holds clinical/demographic data, MRI findings,\n# Sindou neurovascular compression grade, and surgical procedure type\nparticipants = pd.read_csv('participants.tsv', sep='\\t')\nprint(participants.head())\n\n# Each subject folder has anat/, func/, dwi/ sub-folders (BIDS layout)\nt1w = nib.load('sub-001/anat/sub-001_T1w.nii.gz')\nprint(t1w.shape)",
+        "r": "library(data.table)\n\n# participants.tsv holds clinical/demographic data, MRI findings,\n# Sindou neurovascular compression grade, and surgical procedure type\nparticipants <- fread('participants.tsv')\nhead(participants)"
+      },
+      "url": "https://doi.org/10.1038/s41597-025-06311-y",
+      "last_verified": "2026-07-21",
+      "status": "published",
+      "provenance": {
+        "discovered_by": "crossref",
+        "discovered_at": "2026-07-21",
+        "pipeline_version": "enrich/2.0"
+      },
+      "verification": {
+        "verified_at": "2026-07-21",
+        "grounded_fields": [
+          "access",
+          "access_notes",
+          "cost",
+          "data_types",
+          "diseases",
+          "doi",
+          "modality_primary",
+          "n_subjects",
+          "short_desc_en",
+          "short_desc_es",
+          "species",
+          "years"
+        ],
+        "stripped_fields": [],
+        "quotes": {
+          "access": [
+            {
+              "src": "e1",
+              "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"
+            }
+          ],
+          "access_notes": [
+            {
+              "src": "e1",
+              "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"
+            }
+          ],
+          "cost": [
+            {
+              "src": "e1",
+              "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"
+            }
+          ],
+          "data_types": [
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Clinical and demographic information for each participant, along with primary MRI findings, neurovascular compression grade (according to the Sindou classification, if suitable), and surgical procedure type are provided in the “participants.tsv” file."
+            }
+          ],
+          "diseases": [
+            {
+              "src": "e1",
+              "quote": "A large-scale dataset of pre- and postsurgical MRI data from patients with chronic trigeminal neuralgia"
+            }
+          ],
+          "doi": [
+            {
+              "src": "e2",
+              "quote": "10.1038/s41597-025-06311-y"
+            },
+            {
+              "src": "e2",
+              "quote": "10.18112/openneuro.ds005713.v1.0.1"
+            }
+          ],
+          "modality_primary": [
+            {
+              "src": "e1",
+              "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"
+            }
+          ],
+          "n_subjects": [
+            {
+              "src": "e1",
+              "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"
+            },
+            {
+              "src": "e1",
+              "quote": "The study included a total of 160 participants after all the exclusion criteria were applied."
+            },
+            {
+              "src": "e1",
+              "quote": "Follow-up data six months after treatment were available for 58 patients."
+            }
+          ],
+          "short_desc_en": [
+            {
+              "src": "e1",
+              "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"
+            },
+            {
+              "src": "e1",
+              "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"
+            },
+            {
+              "src": "e1",
+              "quote": "Follow-up data six months after treatment were available for 58 patients."
+            },
+            {
+              "src": "e1",
+              "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."
+            },
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"
+            }
+          ],
+          "short_desc_es": [
+            {
+              "src": "e1",
+              "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"
+            },
+            {
+              "src": "e1",
+              "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"
+            },
+            {
+              "src": "e1",
+              "quote": "Follow-up data six months after treatment were available for 58 patients."
+            },
+            {
+              "src": "e1",
+              "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."
+            },
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"
+            },
+            {
+              "src": "e1",
+              "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"
+            }
+          ],
+          "species": [
+            {
+              "src": "e1",
+              "quote": "we provide a comprehensive dataset comprising high-resolution neuroimaging data collected from 112 patients with primary trigeminal neuralgia (TN) alongside 48 age- and sex-matched healthy control subjects"
+            }
+          ],
+          "years": [
+            {
+              "src": "e1",
+              "quote": "This prospective study was carried out at our hospital from October 2021 to October 2024"
+            }
+          ]
+        },
+        "evidence": [
+          {
+            "src_id": "e1",
+            "url": "https://www.nature.com/articles/s41597-025-06311-y?error=cookies_not_supported&code=32d18283-0096-4747-b684-1643739e3e2f",
+            "sha256": "fe78c02a28d49e51952fa77551c8159c7a110f7cd631085c45f8d6458d1d3903"
+          },
+          {
+            "src_id": "e2",
+            "url": "https://api.crossref.org/works/10.1038/s41597-025-06311-y",
+            "sha256": "42745967a2411da1a25f6c86a60de1ce3d7dd68d243ade2576522ec200713464"
+          }
+        ]
+      }
     },
     {
       "id": "abcd",
@@ -601,30 +1016,10 @@
           "confidence": 0.2
         },
         {
-          "id": "brats-q3",
-          "question_en": "Among glioblastoma patients in the BraTS survival cohort, does extent of resection (gross total vs subtotal, as recorded in the resection-status field) remain associated with overall survival after adjusting for age and preoperative enhancing tumour volume — and is the association preserved in patients over 70?",
-          "question_es": "En pacientes con glioblastoma de la cohorte de supervivencia de BraTS, ¿la extensión de la resección (resección total vs subtotal, según el campo de estado de resección) sigue asociada a la supervivencia global tras ajustar por edad y volumen tumoral realzante preoperatorio, y se mantiene esa asociación en mayores de 70 años?",
-          "difficulty": 3,
-          "effort_weeks": 8,
-          "skills": [
-            "python",
-            "statistics",
-            "neuroimaging"
-          ],
-          "extra_datasets": [
-            "tcia"
-          ],
-          "status": "open",
-          "unverified": true,
-          "clinical_rationale": "Neurosurgeons routinely debate how aggressively to resect in elderly glioblastoma patients, where the survival gain from a gross total resection may not justify the perioperative risk.",
-          "outcome_measure": "Overall survival (days from surgery; Cox proportional hazards, median OS)",
-          "subspecialty": "tumor"
-        },
-        {
           "id": "brats-q4",
           "question_en": "Does the ratio of peritumoural oedema volume to enhancing tumour volume on preoperative multiparametric MRI predict shorter overall survival in glioblastoma, independently of total tumour volume and age?",
           "question_es": "¿La razón entre el volumen de edema peritumoral y el volumen de tumor realzante en la RM multiparamétrica preoperatoria predice menor supervivencia global en glioblastoma, de forma independiente del volumen tumoral total y la edad?",
-          "difficulty": 2,
+          "difficulty": 3,
           "effort_weeks": 6,
           "skills": [
             "python",
@@ -632,10 +1027,20 @@
             "neuroimaging"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Extensive oedema is often read on rounds as a marker of infiltrative disease that limits how far a surgeon can safely resect, but whether it carries prognostic weight beyond raw tumour size changes how much it should influence the operative plan.",
           "outcome_measure": "Overall survival (days; median OS and Cox hazard ratio per unit oedema:enhancement ratio)",
-          "subspecialty": "tumor"
+          "subspecialty": "tumor",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "No identified study fits a multivariable Cox OS model that includes the oedema-to-enhancing-tumour ratio while adjusting for total tumour volume and age together; prior tests either regressed the ratio on OS univariately (null) or adjusted only for age (PFS-positive, OS-null). A confirmatory multivariable OS analysis with both covariates remains a thin but genuine gap.",
+          "prior_work": [
+            {
+              "doi": "10.3389/fimmu.2021.627650",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "brats-q5",
@@ -652,16 +1057,26 @@
             "tcia"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "A solitary metastasis, a glioblastoma and an atypical meningioma each send the patient down a different path — systemic workup for a primary, en-bloc versus piecemeal resection, or Simpson-grade planning — and the call is often made on the preoperative MRI alone.",
           "outcome_measure": "Preoperative diagnostic classification accuracy against the reference tumour-type label (AUC, confusion matrix, sensitivity for metastasis)",
-          "subspecialty": "tumor"
+          "subspecialty": "tumor",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "No published work jointly ranks dural contact, edema-to-lesion-volume ratio, lesion multiplicity, and necrotic core fraction as interpretable discriminators across both the BraTS meningioma and brain-metastasis cohorts in a single three-class analysis that treats atypical meningioma as a confounder alongside glioblastoma; existing studies are pairwise and radiomics/deep-learning based rather than descriptor-level and interpretable.",
+          "prior_work": [
+            {
+              "doi": "10.1055/s-0044-1787051",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "brats-q6",
           "question_en": "Does a volumetric prognostic threshold for enhancing tumour burden derived in one BraTS contributing institution still separate long- from short-survivors when applied unchanged to patients from the other institutions and scanners?",
           "question_es": "¿Un umbral volumétrico pronóstico de carga tumoral realzante derivado en una institución contribuyente de BraTS sigue separando supervivientes largos de cortos al aplicarse sin cambios a pacientes de las demás instituciones y escáneres?",
-          "difficulty": 4,
+          "difficulty": 5,
           "effort_weeks": 10,
           "skills": [
             "python",
@@ -672,10 +1087,20 @@
             "tcia"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Cut-offs quoted in tumour board ('over 30 cc does badly') are usually derived at a single centre, and a surgeon needs to know whether the number survives a different scanner and referral pattern before letting it steer an operative decision.",
           "outcome_measure": "Overall survival (discrimination of the threshold across sites: C-index, calibration slope, log-rank between strata within each held-out site)",
-          "subspecialty": "tumor"
+          "subspecialty": "tumor",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "The remaining delta is the explicit cross-institution/cross-scanner transportability test of a FIXED (unrecalibrated) enhancing-tumor-burden threshold on BraTS multi-site data — i.e., does a cutoff derived at one contributing site retain its survival-stratifying power when applied verbatim to patients from other sites/scanners, quantifying site/scanner-induced threshold drift. Existing work reports prognostic association or thresholds within pooled or single cohorts, not the held-fixed transport across the BraTS site/scanner distribution.",
+          "prior_work": [
+            {
+              "doi": "10.1186/s40001-025-03333-5",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         }
       ],
       "descriptor_doi": "10.1109/TMI.2014.2377694",
@@ -1276,16 +1701,26 @@
             "mimic-iv"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Prognostic scores are quoted to families as if they were universal, but a model that is well calibrated in a Boston academic ICU and badly miscalibrated in a small community ICU would systematically mislead exactly the units with least neurotrauma experience.",
           "outcome_measure": "In-hospital mortality, reported as discrimination (AUC) and calibration (slope/intercept) per hospital",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "No prior work decomposes eICU's ~200 hospitals to characterize per-site calibration drift of a bedside TBI mortality model or identifies which hospital characteristics (size, teaching status, region, case volume, unit type) predict systematic over- vs under-estimation of mortality; existing MIMIC-to-eICU TBI validation uses eICU as a single pooled cohort.",
+          "prior_work": [
+            {
+              "doi": "10.1186/s40001-025-03656-3",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "eicu-crd-ntq2",
           "question_en": "How much do ICUs vary in their early management of severe TBI — use of osmotherapy, deep sedation and vasopressors in the first 24 hours — and does that between-hospital variation explain differences in risk-adjusted mortality after accounting for APACHE score and admission GCS?",
           "question_es": "¿Cuánto varían las UCI en el manejo precoz del TCE grave —uso de osmoterapia, sedación profunda y vasopresores en las primeras 24 h— y explica esa variación entre hospitales las diferencias en mortalidad ajustada por riesgo tras tener en cuenta el APACHE y el GCS de ingreso?",
-          "difficulty": 3,
+          "difficulty": 4,
           "effort_weeks": 12,
           "skills": [
             "python",
@@ -1295,10 +1730,20 @@
             "mimic-iv"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "If risk-adjusted TBI mortality differs several-fold between ICUs that follow the same guidelines, the difference is a modifiable process-of-care problem rather than case mix, which is precisely the argument for regionalising neurotrauma care.",
           "outcome_measure": "Risk-adjusted in-hospital mortality, modelled with hospital-level random effects (median odds ratio)",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "Remaining delta: the specific variance-partition question — how much between-hospital variation in these three early (first-24h) treatments explains risk-adjusted in-hospital mortality once APACHE and admission GCS are accounted for. Prior CENTER-TBI work uses GCS/IMPACT adjustment and 6-month GOSE functional outcome and treats therapies as an aggregate intensity index, not APACHE-adjusted mortality decomposed by these three specific early therapies; the APACHE framing implies a generic critical-care registry (ANZICS/ICNARC/MIMIC-type) not yet applied to this question.",
+          "prior_work": [
+            {
+              "doi": "10.1186/s13054-020-03370-y",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "epilepsy-icu-second-line-asd-choice",
@@ -1782,10 +2227,20 @@
             "eicu-crd"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "RESCUEicp and DECRA left neurosurgeons with the uncomfortable result that craniectomy buys survival but often at the cost of severe disability, so real-world data on who actually walks out to home rather than to a nursing facility directly informs the consent conversation at 3 a.m.",
           "outcome_measure": "In-hospital mortality and discharge disposition (home vs facility) as a proxy for dichotomised GOS-E; secondary: ICU length of stay",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "The survival question is answered by RESCUEicp (RCT; 6-month GOS-E, not disposition) and related propensity studies, but no study emulates a target trial in an adult ICU severe-TBI + documented intracranial-hypertension cohort with the discharge-home-versus-facility disposition outcome and the specified early-timing (<48h) contrast; the disposition endpoint and the TTE-on-observational-data framing for this exact PICO remain unaddressed.",
+          "prior_work": [
+            {
+              "doi": "10.1089/neu.2021.0378",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "mimic-iv-ntq2",
@@ -1798,16 +2253,26 @@
             "statistics"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Every neuro-ICU has a house preference between hypertonic saline and mannitol despite no definitive trial, and knowing which agent precedes fewer crash craniectomies or renal injuries would settle a daily bedside argument.",
           "outcome_measure": "In-hospital mortality; secondary: ICU length of stay and rate of subsequent decompressive craniectomy",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "No published adult severe-TBI cohort compares first-line hypertonic saline vs mannitol on the specific triad of in-hospital mortality, ICU length of stay, AND rate of subsequent surgical decompression, adjusted for baseline GCS, sodium, creatinine and injury severity. Existing adjusted clinical-outcome comparisons are pediatric; adult adult work is either an unreported RCT or limited to ICP/CPP physiologic endpoints. The decompressive-craniectomy outcome in an adjusted adult osmotherapy cohort is the principal remaining delta.",
+          "prior_work": [
+            {
+              "doi": "10.1001/jamanetworkopen.2025.0438",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "mimic-iv-ntq3",
           "question_en": "In patients aged 65 and over admitted with traumatic intracranial haemorrhage, does pre-injury anticoagulant or antiplatelet therapy predict a worse hospital course — measured as need for craniotomy, blood-product transfusion, and in-hospital mortality — and does the association differ between direct oral anticoagulants and warfarin?",
           "question_es": "En pacientes de 65 años o más ingresados por hemorragia intracraneal traumática, ¿el tratamiento anticoagulante o antiagregante previo a la lesión predice un peor curso hospitalario —medido como necesidad de craneotomía, transfusión de hemoderivados y mortalidad intrahospitalaria— y difiere la asociación entre anticoagulantes orales directos y warfarina?",
-          "difficulty": 2,
+          "difficulty": 3,
           "effort_weeks": 8,
           "skills": [
             "python",
@@ -1817,10 +2282,20 @@
             "eicu-crd"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "The anticoagulated elderly fall patient is the single most common neurotrauma consult, and whether a DOAC really carries the same haematoma-expansion risk as warfarin determines how aggressively we reverse and how long we observe before discharge.",
           "outcome_measure": "In-hospital mortality; secondary: craniotomy/craniectomy rate and transfusion requirement",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "No prior study evaluates all three hospital-course endpoints together (need for craniotomy, blood-product transfusion, in-hospital mortality) in a 65-and-over traumatic intracranial haemorrhage cohort while also stratifying the antithrombotic effect by DOAC versus warfarin; existing works cover mortality alone, hemorrhage incidence alone, or DOAC-vs-warfarin on bleeding occurrence rather than this surgical/transfusion/mortality triad.",
+          "prior_work": [
+            {
+              "doi": "10.4103/jets.jets_139_20",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "mimic-iv-ntq4",
@@ -1836,10 +2311,20 @@
             "eicu-crd"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Prognostic conversations with families still hinge on the admission GCS even though clinicians instinctively trust the trend more, and quantifying how much the 72-hour trajectory adds would change when withdrawal-of-care discussions are appropriate.",
           "outcome_measure": "In-hospital mortality and discharge disposition; model comparison by AUC/net reclassification versus admission GCS alone",
-          "subspecialty": "trauma"
+          "subspecialty": "trauma",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "The specific package is unpublished: (1) GCS trajectory characterized by both slope and variability (not just delta or improvement/deterioration), (2) the fixed first-72-ICU-hour window, (3) an explicit head-to-head incremental-value test versus single admission GCS, and (4) the dual outcome of in-hospital mortality AND discharge destination. Prior work covers pieces (serial/delta GCS prognosis; trajectory modeling of non-GCS variables) but not this combination.",
+          "prior_work": [
+            {
+              "doi": "10.1093/braincomms/fcag055",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         },
         {
           "id": "epilepsy-icu-benzo-dosing",
@@ -2546,8 +3031,8 @@
           "extra_datasets": [
             "brats"
           ],
-          "status": "open",
-          "unverified": true,
+          "status": "closed",
+          "unverified": false,
           "clinical_rationale": "IDH-mutant and 1p/19q-codeleted gliomas benefit most from aggressive early resection, so a preoperative read that shifts the molecular prior changes whether the patient goes to craniotomy or to biopsy first.",
           "outcome_measure": "Diagnostic accuracy for molecular class (AUC, sensitivity/specificity, and calibration against biopsy-confirmed IDH and 1p/19q status)",
           "subspecialty": "tumor"
@@ -2567,10 +3052,20 @@
             "brats"
           ],
           "status": "open",
-          "unverified": true,
+          "unverified": false,
           "clinical_rationale": "Surgeons select healthier patients with more accessible tumours for aggressive resection, so the survival benefit quoted in retrospective series may be partly selection rather than surgery — which matters when counselling a borderline candidate.",
           "outcome_measure": "Overall survival (propensity-score-adjusted hazard ratio and adjusted median OS difference)",
-          "subspecialty": "tumor"
+          "subspecialty": "tumor",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "The exact TCGA-GBM/TCGA-LGG propensity-score reanalysis, and specifically the inclusion of eloquent-vs-non-eloquent tumour location as a confounder (a variable TCGA does not natively provide), has not been published; prior work establishes the molecular-subtype confounding on institutional cohorts but not on TCGA and not with this three-way propensity-score design.",
+          "prior_work": [
+            {
+              "doi": "10.1016/j.bas.2025.105867",
+              "what_was_done": "trabajo previo cercano"
+            }
+          ],
+          "feasibility": "feasible_with_caveat"
         }
       ],
       "descriptor_doi": "10.1007/s10278-013-9622-7"

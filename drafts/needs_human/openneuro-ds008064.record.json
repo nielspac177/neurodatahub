@@ -1,0 +1,561 @@
+{
+  "id": "openneuro-ds008064",
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'Modalities: mri' is verbatim in e2 and directly establishes the value 'mri'."
+        },
+        {
+          "field": "species",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with no evidence array, which is correct: 'human' is never stated verbatim in e2 (only inferable from 'participants' + clinical depression diagnosis). The 'needs' text accurately describes this gap; no unverified claim is made."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy.' is verbatim in e2 README and directly establishes 'treatment-resistant depression (TRD)' as the disease/condition."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'Number of subjects: 28' is verbatim in e2 and directly establishes the value '28'."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with no evidence array, which is correct: only 'Created: 2026-06-29T19:45:23.022Z' (verbatim present in e2) exists, and that is a snapshot-upload timestamp, not a stated study/data-collection period. The 'needs' text accurately reflects this; no unverified years claim is made."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "All four cited quotes ('- T1-weighted anatomical MRI', '- T2-weighted anatomical MRI', '- Diffusion-weighted imaging (DTI)', '- Functional MRI (fMRI):\\n  - Goal priming task\\n  - Resting-state fMRI') appear verbatim in the e2 README bullet list and directly establish the five listed data types (the nested fMRI sub-bullets are reasonably split into two list entries)."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'License: CC0' is verbatim in e2 and directly establishes the value 'CC0'."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008064.v1.0.0' is verbatim in e2 and directly establishes the DOI value."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "Quote 'OpenNeuro dataset ds008064 (snapshot 1.0.0)' is verbatim as the first line of e2 and directly establishes 'OpenNeuro' as the provider."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with no evidence array, which is correct: no study site or institutional affiliation is stated anywhere in e2 (only author names). The 'needs' text accurately reflects this gap."
+        },
+        {
+          "field": "access",
+          "verdict": "UNSUPPORTED",
+          "note": "The cited quote 'License: CC0' is verbatim, but it only establishes the license field, not the 'access' field. A CC0 public-domain dedication states reuse rights, not that the dataset is openly/freely accessible without restriction (no registration, no gating, etc. is ever stated). Treating 'License: CC0' as proof of 'access':'open' is an inference beyond what the quote states; this should be UNSUPPORTED absent an explicit access statement."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with no evidence array, which is correct: e2 contains no explicit access-procedure text, and e1 (the landing page) is documented in the evidence file as returning 0 chars. The 'needs' text accurately reflects this gap."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with no evidence array, which is correct: no pricing statement appears anywhere in the fetched evidence. The 'needs' text accurately reflects this gap."
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "SUPPORTED",
+          "note": "All three cited quotes (License: CC0; the TRD/rTMS/psychotherapy README sentence; 'The dataset includes structural and functional MRI data collected before and after the treatment protocol, including:') are verbatim in e2. Combined with the already-supported n_subjects (28) and data_types facts, the summary is a faithful synthesis of grounded facts and does not introduce unsupported claims."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "SUPPORTED",
+          "note": "Same underlying verbatim quotes as short_desc_en (License: CC0; TRD/rTMS/psychotherapy sentence; structural/functional MRI sentence). The Spanish text is a faithful translation of the already-grounded English summary and introduces no new unsupported claims."
+        }
+      ]
+    },
+    "access": {
+      "id": "openneuro-ds008064",
+      "access": "open",
+      "license": "CC0",
+      "confidence": "high",
+      "evidence_quote": "License: CC0",
+      "reasoning": "The repository_record source (e2) explicitly states 'License: CC0' for this OpenNeuro dataset. CC0 is a public domain dedication with no usage restrictions, and OpenNeuro datasets are downloadable directly from the dataset page without requiring an account, registration, or approval step. This matches the 'open' access category: anyone can download immediately, no account."
+    },
+    "novelty": [
+      {
+        "project_id": "ds008064-neuromod-01",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1016/j.ijchp.2023.100382",
+        "still_open_because": "The prior work (Neacsiu/Duke group, ijchp 2023, \"Network-level dynamics underlying a combined rTMS and psychotherapy treatment for MDD\") analyzes connectivity change from this same combined fMRI-guided rTMS + psychotherapy TRD trial, so the dataset and pre/post design overlap. BUT it differs on the two load-bearing elements of the question: (1) it uses TASK-based connectomes from an idiographic goal-priming/emotion-regulation task, not RESTING-STATE functional connectivity; and (2) it contrasts pooled pre- vs post-treatment against healthy-volunteer normative patterns, NOT an ACTIVE vs SHAM rTMS contrast. The specific comparison — whether active fMRI-guided rTMS yields a larger session-1-to-session-2 change in resting-state FC than sham — remains unpublished. The group's other rTMS-vs-sham RCTs (jad 2022; bbr 2026) are separate cohorts (emotional dysregulation / cognitive restructuring, not the 28-patient SST-vs-mindfulness TRD cohort) and report physiological/behavioral outcomes, not resting-state FC change.",
+        "queries_run": [
+          "OpenAlex: individualized fMRI-guided rTMS Self-System Therapy treatment-resistant depression",
+          "Europe PMC: fMRI-guided rTMS resting-state functional connectivity treatment-resistant depression sham",
+          "Europe PMC: 'Self-System Therapy' rTMS mindfulness depression",
+          "OpenAlex: title.search Self-System Therapy fMRI-guided rTMS TRD",
+          "Europe PMC: Strauman Self-System Therapy rTMS depression",
+          "Europe PMC: Neacsiu rTMS Self-System Therapy mindfulness treatment-resistant depression",
+          "Europe PMC: (Neacsiu OR Strauman OR LaBar) AND resting-state AND rTMS AND depression",
+          "Europe PMC: AUTH:Neacsiu AND (rTMS OR TMS) AND depression (all works)",
+          "Europe PMC core fetch: DOI 10.1016/j.ijchp.2023.100382 and 10.1016/j.jad.2022.01.053 and 10.1016/j.bbr.2026.116199 abstracts"
+        ]
+      },
+      {
+        "project_id": "ds008064-multimodal-01",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1038/s44184-026-00206-5",
+        "still_open_because": "The closest prior work (Impaired regional structure-function coupling as novel neurophenotype in TRD, npj Mental Health Research 2026, DOI 10.1038/s44184-026-00206-5) establishes the BASELINE half of the question: it integrates DWI structural and resting-state functional MRI to compute regional structure-function coupling (SFC) in 72 TRD patients and shows characteristic SFC decoupling (right middle frontal gyrus, left inferior parietal lobule, etc.) linked to symptoms. However, it is explicitly CROSS-SECTIONAL, on a different (Chinese, ChiCTR2200055320) cohort, and does NOT track any treatment. The specific remaining delta is the LONGITUDINAL, within-subject component: whether SC-FC coupling shifts from session 1 to session 2 after 6 weeks of individualized fMRI-guided rTMS plus Self-System Therapy/mindfulness. I found no study — on this named dataset or any comparable one — that measures a treatment-induced change in structure-function coupling in TRD. Searches returned only cross-sectional coupling work, a narrative review of TMS+mindfulness synergy (10.3389/fpsyt.2026.1805825), and unrelated rTMS-connectivity change studies, none combining DWI-derived SC, rs-fMRI FC coupling, and a pre/post rTMS+psychotherapy design.",
+        "queries_run": [
+          "OpenAlex: structural functional connectivity coupling treatment resistant depression rTMS",
+          "EuropePMC: structure-function coupling depression rTMS diffusion resting-state",
+          "OpenAlex: structure-function coupling diffusion resting-state depression treatment longitudinal",
+          "EuropePMC: fMRI-guided rTMS Self-System Therapy mindfulness treatment-resistant depression",
+          "EuropePMC: longitudinal structure-function coupling change brain stimulation depression",
+          "EuropePMC: structure-function coupling change after rTMS depression baseline follow-up",
+          "EuropePMC core fetch DOI:10.1038/s44184-026-00206-5"
+        ]
+      },
+      {
+        "project_id": "ds008064-causal-01",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1016/j.ijchp.2023.100382",
+        "queries_run": [
+          "OpenAlex: fMRI-guided rTMS Self-System Therapy treatment-resistant depression",
+          "EuropePMC: rTMS goal priming prefrontal striatal depression self-system therapy",
+          "EuropePMC: individualized fMRI-guided rTMS self-system therapy mindfulness TRD",
+          "OpenAlex: goal priming task rTMS difference-in-differences prefrontal striatal depression",
+          "EuropePMC: self-system therapy goal priming fMRI regulatory focus depression",
+          "EuropePMC: rTMS psychotherapy depression match mismatch trials prefrontal striatal active sham",
+          "EuropePMC: idiographic goal priming task rTMS depression fMRI activation",
+          "OpenAlex: goal priming task regulatory focus match mismatch fMRI depression striatum prefrontal"
+        ],
+        "still_open_because": "The same research program and the identical idiographic goal-priming task were used in the prior work (10.1016/j.ijchp.2023.100382), but that paper (a) analyzed task-based functional CONNECTIVITY (connectome/network normalization), not task-evoked activation amplitude in prefrontal/striatal ROIs; (b) benchmarked pre/post patient change against healthy-volunteer normative patterns rather than running a difference-in-differences contrast; and critically (c) did NOT contrast active-vs-sham rTMS arms, did not use the match-vs-mismatch trial contrast, and reported only a single-arm pre/post comparison. The proposed DiD (pre/post × active-vs-sham) on match-vs-mismatch task-evoked prefrontal/striatal activation is therefore a distinct, unpublished causal-inference analysis on this dataset. Caveat: the dataset's stated arms are SST vs. mindfulness psychotherapy, so an 'active-vs-sham rTMS' contrast presupposes a sham-rTMS arm that must be confirmed to exist in the data before the design is executable."
+      },
+      {
+        "project_id": "ds008064-foundation-01",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: foundation model fMRI fine-tuning few-shot depression rTMS",
+          "OpenAlex: pretrained self-supervised brain MRI foundation model few-shot transfer small sample fMRI",
+          "OpenAlex: neuroimaging foundation model fine-tune detect treatment signature connectivity baseline",
+          "OpenAlex: self-supervised pretraining resting-state fMRI fine-tune treatment response depression",
+          "OpenAlex: fMRI foundation model transfer learning small clinical cohort psychiatric",
+          "EuropePMC: foundation model fine-tuning resting-state fMRI rTMS depression treatment response",
+          "EuropePMC: few-shot fine-tuning pretrained fMRI model longitudinal treatment response small cohort",
+          "EuropePMC: fMRI-guided rTMS Self-System Therapy treatment-resistant depression",
+          "EuropePMC: pretrained brain network model versus functional connectivity features small sample treatment prediction"
+        ],
+        "still_open_because": "No publication applies few-shot fine-tuning of a public self-supervised sMRI/fMRI foundation-model checkpoint to this cohort (OpenNeuro ds008064, n=28) in a session-1-vs-session-2 resting-state design to detect a treatment-related signature, nor benchmarks it against a from-scratch connectivity-feature baseline on the same small sample. Adjacent precedent exists for the general method (fMRI representation-learning / foundation-model fine-tuning and deep-learning treatment-response prediction, e.g. 10.1101/2025.07.02.662710 and 10.1038/s41467-026-71555-0), so the approach is not conceptually new, but the specific dataset, within-subject paired-session paradigm, and few-shot-vs-scratch comparison are unpublished."
+      },
+      {
+        "project_id": "ds008064-generalization-01",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: fMRI-guided rTMS Self-System Therapy mindfulness treatment-resistant depression",
+          "OpenAlex: resting-state functional connectivity classifier active sham rTMS depression generalization",
+          "EuropePMC: rTMS Self-System Therapy mindfulness treatment-resistant depression fMRI",
+          "EuropePMC: resting-state connectivity classify active sham rTMS depression",
+          "EuropePMC: \"Self-System Therapy\" rTMS fMRI depression",
+          "EuropePMC: functional connectivity machine learning distinguish active sham TMS cross-arm generalization"
+        ],
+        "still_open_because": "No prior work builds a resting-state FC classifier to distinguish active-vs-sham rTMS on this dataset, let alone tests cross-arm (SST-trained to mindfulness-tested) generalization as a subgroup/domain-generalization proxy. Publications on this exact dataset (Neacsiu 2018 J ECT 10.1097/YCT.0000000000000545; Davis et al. 2023 Int J Clin Health Psychol 10.1016/j.ijchp.2023.100382, a network-level analysis; Neacsiu et al. 2026 Behav Brain Res 10.1016/j.bbr.2026.116199) do not perform active/sham classification or cross-arm transfer. The nearest ML \"fails-to-generalize\" result (Ning et al. 2026 PLoS Comput Biol 10.1371/journal.pcbi.1014154) is TMS-EEG complexity predicting TBS neurophysiological responses in healthy subjects, not fMRI FC, not active/sham classification, not this cohort."
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "ds008064-neuromod-01",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "Treatment arm assignment (active vs. sham rTMS) — evidence only shows README prose describing the study design, not a confirmed subject-level group field (e.g., participants.tsv/phenotype column) in the distributed data; the dataset title additionally frames the group contrast as 'Self-System Therapy versus mindfulness exercises' rather than 'active vs. sham rTMS', creating ambiguity about which (if any) single group variable is actually released and usable for this exact question"
+        ],
+        "difficulty": 4,
+        "effort_weeks": 11,
+        "reason": "Two of three claimed variables (rs-fMRI sessions 1/2, T1w anatomical) are directly confirmed in the repository record. The third (treatment-arm label) is only inferred from README prose about the study design, not confirmed as an actual released subject-level field, and the dataset title's mention of a 'Self-System Therapy vs. mindfulness' contrast conflicts with the simple active-vs-sham framing the question assumes -- a student must verify the phenotype/participants file actually contains a usable, unblinded arm variable before starting. Even setting that aside, this is a heavier project than claimed: 27.7GB across 5 modalities x 2 sessions x 28 subjects requires a full rs-fMRI preprocessing + parcellation + connectivity pipeline before any pre/post group comparison is possible, and N~14/arm makes a whole-brain FC group x time interaction underpowered without careful ROI-level reduction and correction. Feasible in a 15-week semester only if the student starts preprocessing immediately and confirms the arm-label field exists in week 1; 8 weeks and difficulty 3 as originally claimed is optimistic."
+      },
+      {
+        "project_id": "ds008064-multimodal-01",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 16,
+        "missing_variables": [],
+        "reason": "All three claimed variables are directly confirmed in the repository record (e2): DTI, resting-state fMRI (\"rest\" task present in Tasks list), and T1w/T2w anatomicals are all explicitly listed, and Sessions: 1, 2 confirms the two-timepoint design needed for the pre/post comparison. N=28 TRD patients is adequate (not \"far too small\") for a within-subject longitudinal SC-FC coupling analysis — no missing variables.\n\nHowever, the claimed 12-week effort is optimistic and the difficulty is underrated. This isn't a \"load a CSV and correlate\" project: it requires (1) building/adapting a full diffusion tractography pipeline (motion/eddy/distortion correction, fODF estimation, whole-brain tractography, atlas-based structural connectome construction) for 56 scans (28 subjects x 2 sessions), (2) an independent resting-state fMRI preprocessing + denoising + parcellated FC-matrix pipeline, (3) a defensible SC-FC coupling metric, and (4) paired pre/post statistics with multiple-comparison correction — plus realistic QC attrition (some subjects/sessions will fail DTI or fMRI QC, likely shrinking usable N below 28). Tractography alone is compute- and expertise-intensive and commonly the long pole even for trained connectomics researchers; a student without an existing pipeline will likely spend 4-6 weeks just getting a working structural connectome before touching the actual coupling question. OpenNeuro access itself is immediate (open, CC0, no DUA), so access latency is not the bottleneck — pipeline-build time is. Feasible only if the student uses an established automated pipeline (e.g., QSIPrep for diffusion + fMRIPrep for functional) and has cluster/GPU compute lined up on day one; otherwise this risks not finishing within a 15-week semester. Recommend scoping down (e.g., single atlas, single coupling metric, accept possible subject attrition) or extending effort/timeline expectations."
+      },
+      {
+        "project_id": "ds008064-causal-01",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "Treatment arm assignment (active vs. sham rTMS) as a per-subject, machine-readable field (e.g., participants.tsv/phenotype column) — evidence only shows a general README sentence describing the study cohort split, not a confirmed distributed variable; RCT datasets of this type often blind/embargo this label separately from the imaging release"
+        ],
+        "difficulty": 4,
+        "effort_weeks": 12,
+        "reason": "Task fMRI conditions (Prevmatch/Promatch/Prevmismatch/Promismatch, sessions 1&2) and T1w anatomical are confirmed in the evidence. The treatment-arm label the whole DiD design hinges on is not confirmed to be present as a usable per-subject variable in the distributed data — only a narrative README sentence supports it, and RCT/blinded-trial datasets commonly restrict that field. With n=28 total (~14/arm), the group x session x condition interaction is also underpowered for a confident causal claim, and the full fMRIPrep + first/second-level GLM + ROI + mixed-effects DiD pipeline across 2 sessions x multiple task runs realistically exceeds the claimed 9 weeks once QC and debugging are included."
+      },
+      {
+        "project_id": "ds008064-foundation-01",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 12,
+        "missing_variables": [
+          "Treatment-arm/group assignment (active vs. sham rTMS; Self-System Therapy vs. mindfulness) needed to define what makes a signature 'treatment-related' rather than a generic pre/post-scan or retest effect — the evidence confirms sessions 1 and 2 and the two therapy conditions exist qualitatively in the README, but no participants.tsv/phenotype field or per-subject group label is shown in the record, so it cannot be confirmed as an extractable variable in the distributed data."
+        ],
+        "reason": "Both literally claimed variables are confirmed in the evidence: resting-state fMRI and T1-weighted anatomical MRI are both explicitly listed in the README modality bullet list (e2). So on a strict variable-presence check this passes. However the actual research question — detecting a 'treatment-related signature' via session-1-vs-session-2 classification — has three compounding problems that push this to FEASIBLE_WITH_CAVEAT rather than clean FEASIBLE. (1) n=28 total, split across at least two crossed study arms (active/sham rTMS x SST/mindfulness), leaves roughly 6-8 subjects per cell; a 'few-shot fine-tune vs. from-scratch baseline' comparison on this is going to produce noisy, likely non-significant results that a student could easily over-interpret — this is explicitly the over-optimism trap the task warns about. (2) Session-1-vs-session-2 classification by itself confounds treatment effect with scan-rescan/retest variability and time-in-study; without confirmed access to which subjects got active vs. sham stimulation, the 'signature' being detected is ambiguous, and that group-label field is not verified present in the evidence (only inferred qualitatively from the README prose, not from a listed participants.tsv or phenotype field). (3) Practical engineering load is real: ~27.7GB across 1111 files needs fMRIPrep-grade preprocessing (registration, confound regression, connectivity matrix construction) before any modeling starts, plus locating and adapting a public pretrained sMRI/fMRI foundation-model checkpoint to this input space (non-trivial engineering, since most public checkpoints have idiosyncratic input/preprocessing requirements) and building a from-scratch connectivity baseline for comparison. Realistic timeline: ~1-2 weeks data access/download, ~2-3 weeks preprocessing pipeline and debugging, ~2-3 weeks locating/adapting a foundation-model checkpoint and building the fine-tuning harness, ~2 weeks building and tuning the from-scratch baseline, ~2 weeks evaluation/statistics, ~1-2 weeks writeup — roughly 12 weeks of realistic effort, which is tight but fits inside a 15-week semester only if nothing derails (checkpoint incompatibility, preprocessing failures, or small-sample instability are all plausible derailments). Given the small-n statistical fragility and the unconfirmed treatment-label variable, this is doable as a methods/feasibility-style project but a student should be warned explicitly that a clean, statistically convincing 'foundation model beats baseline' result is unlikely at n=28, and that they must independently verify group/treatment-arm labels exist in the BIDS participants.tsv before committing to the design."
+      },
+      {
+        "project_id": "ds008064-generalization-01",
+        "verdict": "INFEASIBLE",
+        "missing_variables": [
+          "Treatment/psychotherapy arm assignment (SST vs. mindfulness) as a per-subject label in participants.tsv or a phenotype file — evidence only shows narrative study description, no confirmed data column",
+          "Active vs. sham rTMS condition label per subject — likely blinded/withheld in this RCT's public release; not confirmed present in the distributed dataset"
+        ],
+        "difficulty": 4,
+        "effort_weeks": 11,
+        "reason": "Evidence confirms resting-state fMRI across 2 sessions exists, but the two group-label variables the whole classifier design depends on (psychotherapy arm, active/sham condition) are never shown to exist as actual per-subject data fields — only as prose describing the study. This is a blinded, sham-controlled RCT, so withholding these labels from the public BIDS release (pending unblinding/author contact) is plausible and unverifiable from the given evidence. Independently, n=28 split across a 2x2 arm-by-condition design (~7/cell) is too small to support a credible claim about cross-arm generalization of a high-dimensional FC classifier, even if labels are obtained. Original difficulty/effort (3/8wk) underweights both the label-availability risk (potential multi-week author-contact delay with no guaranteed resolution) and the FC pipeline + small-N ML analysis workload; revised to difficulty 4 / ~11 weeks assuming best case, but the project should not proceed until arm/condition labels are verified to exist in the actual downloaded dataset."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/2.0",
+  "name": "Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        }
+      ]
+    },
+    "species": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence; 'participants' with a clinical depression diagnosis implies human but is never stated verbatim)",
+      "evidence": []
+    },
+    "diseases": {
+      "value": "treatment-resistant depression (TRD)",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."
+        }
+      ]
+    },
+    "n_subjects": {
+      "value": "28",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 28"
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp 'Created: 2026-06-29T19:45:23.022Z' was present in fetched evidence, which is an upload date, not the study period)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted anatomical MRI",
+        "T2-weighted anatomical MRI",
+        "Diffusion-weighted imaging (DTI)",
+        "Functional MRI (fMRI): Goal priming task",
+        "Functional MRI (fMRI): Resting-state fMRI"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "- T1-weighted anatomical MRI"
+        },
+        {
+          "src": "e2",
+          "quote": "- T2-weighted anatomical MRI"
+        },
+        {
+          "src": "e2",
+          "quote": "- Diffusion-weighted imaging (DTI)"
+        },
+        {
+          "src": "e2",
+          "quote": "- Functional MRI (fMRI):\n  - Goal priming task\n  - Resting-state fMRI"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008064.v1.0.0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008064.v1.0.0"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008064 (snapshot 1.0.0)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "Study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence; landing page source e1 was fetched but returned empty content, chars: 0)",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download page (no explicit pricing statement in fetched evidence)",
+      "evidence": []
+    },
+    "short_desc_en": {
+      "value": "An OpenNeuro dataset released under CC0 containing structural and functional MRI (T1w, T2w, diffusion-weighted imaging, task-based and resting-state fMRI) from 28 participants with treatment-resistant depression who underwent six weeks of active or sham rTMS combined with psychotherapy.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes structural and functional MRI data collected before and after the treatment protocol, including:"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos de OpenNeuro publicado bajo licencia CC0 con resonancia magnetica estructural y funcional (T1w, T2w, imagen de difusion, fMRI de tarea y en reposo) de 28 participantes con depresion resistente al tratamiento que recibieron seis semanas de rTMS activo o simulado combinado con psicoterapia.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes structural and functional MRI data collected before and after the treatment protocol, including:"
+        }
+      ]
+    }
+  },
+  "access_steps": [],
+  "starter_code": {},
+  "scope": {
+    "id": "openneuro-ds008064",
+    "in_scope": true,
+    "reason": "Human psychiatric neuroimaging dataset (28 subjects with treatment-resistant depression). Contains structural MRI (T1/T2), DTI, and fMRI (task + resting-state) investigating neural mechanisms of rTMS combined with psychotherapy. Reusable dataset published on OpenNeuro. Fits squarely within psychiatric/neurological research scope for student use.",
+    "disease_tags": [
+      "major depression",
+      "treatment-resistant depression"
+    ],
+    "modality_primary": "fMRI"
+  },
+  "literature": {
+    "dataset_doi": "doi:10.18112/openneuro.ds008064.v1.0.0",
+    "dataset_title": "Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression",
+    "openalex_work_id": "https://openalex.org/W7166566292",
+    "dataset_publication_date": "2026-06-29",
+    "n_citing_works": 0,
+    "saturation": "low",
+    "dominant_tasks": [],
+    "key_publications": [],
+    "summary_en": "This OpenNeuro dataset (ds008064.v1.0.0) was only published/registered on 2026-06-29, i.e. about three weeks before this search (2026-07-21). Resolving the DOI in OpenAlex returns work id W7166566292 with cited_by_count = 0 and referenced_works_count = 0 -- no works currently cite this dataset record. A direct OpenAlex citation-graph query (filter=cites:W7166566292) was run live and returned zero results (meta.count = 0), confirming no works currently cite this dataset. As a fallback/corroboration, Europe PMC was searched for the dataset identifier '\"ds008064\"' and returned 0 hits, confirming no indexed literature currently references this specific dataset accession. Conclusion: as of 2026-07-21, no published work has yet used this specific OpenNeuro dataset. The dataset represents genuine white space -- the citation graph is empty, consistent with its very recent (~3-week-old) publication date, leaving essentially no time for secondary analyses to be produced, reviewed, and indexed.",
+    "notes": "Both the OpenAlex filter=cites:W7166566292 query and a Europe PMC search on \"ds008064\" returned zero results, independently corroborating the work's own cited_by_count=0 field. No rate-limit issues were encountered in this session."
+  },
+  "projects": [
+    {
+      "id": "ds008064-neuromod-01",
+      "lens": "neuromodulation",
+      "question_en": "In this 28-patient treatment-resistant depression cohort, does active individualized fMRI-guided rTMS produce a larger pre-to-post (session 1 to session 2) change in resting-state functional connectivity than sham rTMS?",
+      "question_es": "En esta cohorte de 28 pacientes con depresión resistente al tratamiento, ¿la rTMS activa individualizada guiada por fMRI produce un cambio pre-post (sesión 1 a sesión 2) mayor en la conectividad funcional en reposo que la rTMS simulada (sham)?",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "compute": "Single workstation (16+ GB RAM) or university cluster account; fMRIPrep run for ~28 subjects x 2 sessions is CPU-bound, roughly 1-2 days wall-clock on a shared cluster node, no GPU required.",
+      "skills": [
+        "BIDS/fMRIPrep preprocessing",
+        "resting-state functional connectivity (nilearn/CONN)",
+        "paired/mixed-effects statistics",
+        "basic neuroanatomy of depression circuitry"
+      ],
+      "required_variables": [
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2 (pre- and post-treatment)",
+          "src_id": "e2",
+          "evidence_quote": "Functional MRI (fMRI): ... Resting-state fMRI",
+          "note": "Session structure confirmed by 'Sessions: 1, 2' in the same source."
+        },
+        {
+          "name": "T1-weighted anatomical MRI (for registration/parcellation)",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI"
+        },
+        {
+          "name": "Treatment arm assignment (active vs. sham rTMS)",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy"
+        }
+      ],
+      "still_open_because": "Dataset was created 2026-06-29 (per e2 'Created' field), less than a month before this evidence snapshot, so no secondary analyses of it exist yet in the published literature."
+    },
+    {
+      "id": "ds008064-multimodal-01",
+      "lens": "multimodal",
+      "question_en": "Within the same TRD patients, how does baseline (session 1) structural connectivity derived from diffusion-weighted imaging relate to baseline resting-state functional connectivity, and does this structure-function coupling shift from session 1 to session 2 after six weeks of rTMS plus psychotherapy?",
+      "question_es": "Dentro de los mismos pacientes con depresión resistente al tratamiento, ¿cómo se relaciona la conectividad estructural basal (sesión 1) obtenida por imagen de difusión con la conectividad funcional en reposo basal, y cambia este acoplamiento estructura-función de la sesión 1 a la sesión 2 tras seis semanas de rTMS más psicoterapia?",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "compute": "Diffusion tractography (MRtrix3 or DSI Studio) is compute-heavy; recommend HPC/cluster access or a lab GPU workstation; roughly a week of queued jobs for 28 subjects x 2 sessions of whole-brain tractography.",
+      "skills": [
+        "diffusion MRI preprocessing (eddy/topup)",
+        "tractography and structural connectome construction (MRtrix3)",
+        "resting-state functional connectivity",
+        "graph-theoretic coupling metrics",
+        "Python or MATLAB"
+      ],
+      "required_variables": [
+        {
+          "name": "Diffusion-weighted imaging (DTI), sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Diffusion-weighted imaging (DTI)"
+        },
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI"
+        },
+        {
+          "name": "T1-weighted (and T2-weighted) anatomical MRI, for parcellation and DWI-to-anatomical registration",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI\nT2-weighted anatomical MRI"
+        }
+      ],
+      "still_open_because": "The README (e2) documents structural, diffusion, and functional MRI as separate offerings but describes no prior analysis combining them; this is a brand-new dataset (created 2026-06-29) with no downstream publications yet."
+    },
+    {
+      "id": "ds008064-causal-01",
+      "lens": "causal",
+      "question_en": "Using a difference-in-differences design across the pre/post sessions and the active-vs-sham rTMS arms, does active rTMS cause a larger shift in task-evoked prefrontal/striatal activation during the goal-priming task's match vs. mismatch trials than sham rTMS?",
+      "question_es": "Usando un diseño de diferencias-en-diferencias entre las sesiones pre/post y los grupos de rTMS activa vs. simulada (sham), ¿la rTMS activa causa un cambio mayor en la activación prefrontal/estriatal evocada por la tarea durante los ensayos de coincidencia vs. no-coincidencia (match vs. mismatch) de la tarea de goal-priming, en comparación con la rTMS simulada?",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "compute": "Single workstation; task-fMRI GLM per subject/session is lightweight (minutes per run); the full pipeline (fMRIPrep + first/second-level GLM) is feasible on a laptop or shared department server.",
+      "skills": [
+        "task-fMRI GLM (FSL FEAT, SPM, or nilearn)",
+        "difference-in-differences / mixed-effects modeling",
+        "experimental design reasoning for quasi-causal inference from RCT-like arms"
+      ],
+      "required_variables": [
+        {
+          "name": "Task fMRI runs for the goal-priming task: Prevmatch, Promatch, Prevmismatch, Promismatch conditions, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Tasks: Prevmatch, Promatch, Promismatch, rest, Prevmismatch ... Goal priming task"
+        },
+        {
+          "name": "Treatment arm assignment (active vs. sham rTMS)",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy"
+        },
+        {
+          "name": "T1-weighted anatomical MRI (for normalization to standard space)",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI"
+        }
+      ],
+      "still_open_because": "No publication yet exists using this dataset (created 2026-06-29); the goal-priming task's four match/mismatch conditions across two sessions provide the ingredients for a within-subject causal contrast that has not been run."
+    },
+    {
+      "id": "ds008064-foundation-01",
+      "lens": "foundation-models",
+      "question_en": "Can an existing pretrained neuroimaging foundation model (e.g., a public self-supervised sMRI/fMRI checkpoint) be fine-tuned in a few-shot regime on this 28-patient cohort's session-1-vs-session-2 resting-state scans to detect a treatment-related signature, and how does it compare to a connectivity-feature baseline trained from scratch on the same small sample?",
+      "question_es": "¿Puede ajustarse (fine-tuning) un modelo de fundación de neuroimagen preentrenado y disponible públicamente (p. ej. un checkpoint auto-supervisado de sMRI/fMRI) en régimen de pocos ejemplos (few-shot) sobre los escaneos en reposo de sesión-1-vs-sesión-2 de esta cohorte de 28 pacientes para detectar una firma relacionada con el tratamiento, y cómo se compara con una línea base de características de conectividad entrenada desde cero en la misma muestra pequeña?",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "compute": "Single consumer/lab GPU (e.g., one RTX-class GPU) is sufficient for fine-tuning only (not pretraining); a public pretrained checkpoint must be downloaded, not trained from scratch, to stay within one student's semester.",
+      "skills": [
+        "PyTorch",
+        "transfer learning / fine-tuning pretrained vision or fMRI foundation models",
+        "small-N cross-validation design (leave-one-subject-out)",
+        "resting-state fMRI preprocessing"
+      ],
+      "required_variables": [
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2 (used as the fine-tuning/probe target: session/treatment-state classification)",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI"
+        },
+        {
+          "name": "T1-weighted anatomical MRI (for co-registration/normalization into the pretrained model's expected input space)",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI"
+        }
+      ],
+      "still_open_because": "The dataset is too new (created 2026-06-29) for any foundation-model transfer study to have been attempted on it yet; N=28 is exactly the small-sample regime where a few-shot transfer-learning evaluation is a realistic, well-scoped student contribution rather than training a foundation model outright."
+    },
+    {
+      "id": "ds008064-generalization-01",
+      "lens": "generalization",
+      "question_en": "If a resting-state functional-connectivity classifier is trained to distinguish active-rTMS from sham-rTMS patients using data from patients in one psychotherapy arm (Self-System Therapy), does it generalize to correctly classify patients from the other arm (mindfulness exercises), as a within-dataset proxy for domain/subgroup generalization?",
+      "question_es": "Si se entrena un clasificador de conectividad funcional en reposo para distinguir pacientes con rTMS activa de rTMS simulada usando datos de pacientes de un brazo de psicoterapia (Self-System Therapy), ¿generaliza para clasificar correctamente a pacientes del otro brazo (ejercicios de mindfulness), como aproximación intra-conjunto de datos a la generalización entre dominios/subgrupos?",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "compute": "Single workstation; connectivity feature extraction plus a simple classifier (logistic regression / SVM / random forest) is CPU-only and runs in hours, not days.",
+      "skills": [
+        "resting-state functional connectivity",
+        "machine learning classification with small samples",
+        "cross-validation design (leave-one-arm-out, leave-one-subject-out)",
+        "careful interpretation of small-N generalization results"
+      ],
+      "required_variables": [
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI"
+        },
+        {
+          "name": "Treatment/psychotherapy arm assignment (active vs. sham rTMS; Self-System Therapy vs. mindfulness exercises)",
+          "src_id": "e2",
+          "evidence_quote": "Name: Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression ... received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy"
+        }
+      ],
+      "still_open_because": "This is a within-dataset stress test only (the evidence does not show a second, external dataset the model could be transported to), explicitly framed as a proxy for the generalization lens rather than true external-domain validation -- a genuine cross-site test would require an additional public TRD neuroimaging dataset not evidenced here."
+    }
+  ],
+  "_blocks": [
+    "'open' con una sola derivación — requiere confirmación",
+    "el id ya existe en el catálogo"
+  ]
+}

@@ -1,0 +1,553 @@
+{
+  "id": "openneuro-ds008055",
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"Modalities: mri\" appears verbatim in e2 and directly establishes modality_primary = mri."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "Quote matches e2 verbatim (\"The release includes T1w anatomical scans, resting-state fMRI, and task fMRI runs related to scientific creativity and verbal creativity.\") and supports the three listed data types."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an evidence-gap rationale rather than an asserted claim; the source text indeed never gives a health/diagnostic status, only task names, so the null + needs statement is accurate."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"DatasetDOI: doi:10.18112/openneuro.ds008055.v1.0.4\" appears verbatim in e2 and establishes the DOI."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"License: CC0\" appears verbatim in e2 and directly establishes the license."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"OpenNeuro dataset ds008055 (snapshot 1.0.4)\" appears verbatim in e2 and establishes provider = OpenNeuro."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an evidence-gap rationale; e2 indeed contains no country/city/institution field, so the null + needs statement is accurate."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"Number of subjects: 108\" appears verbatim in e2 and directly establishes n_subjects."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an evidence-gap rationale; e2 only contains an upload timestamp (Created: 2026-06-28T15:33:11.402Z), not an acquisition date range, so the null + needs statement is accurate."
+        },
+        {
+          "field": "species",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an evidence-gap rationale; e2 never states \"human\" verbatim (it is only implied by MRI/participant language), so the null + needs statement is accurate."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an evidence-gap rationale; e2 states a license (CC0) but never an explicit cost/terms-of-use statement, so the null + needs statement is accurate."
+        },
+        {
+          "field": "access",
+          "verdict": "SUPPORTED",
+          "note": "Both quotes (\"License: CC0\" and \"This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.\") appear verbatim in e2 and together reasonably support access = open (CC0 public-domain license + explicit description as a public release)."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "Quote \"This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.\" appears verbatim in e2 and matches the value exactly."
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "UNSUPPORTED",
+          "note": "The cited task-SCT quote only describes one of four tasks in the release (rest, SCT, ID, TVC) and the dataset's own data_types field lists T1w anatomical scans and resting-state fMRI alongside task fMRI. Characterizing the whole dataset as simply a 'Task fMRI dataset on scientific creativity' overgeneralizes from a single-task quote and omits the anatomical/resting-state modalities and the 'verbal creativity' scope explicitly present in the same source (e2: 'related to scientific creativity and verbal creativity'). The quotes sit near the claim but do not establish the summary's overall framing."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "UNSUPPORTED",
+          "note": "Same issue as short_desc_en (this is its Spanish translation, citing identical evidence): the task-SCT quote covers only one of four tasks and ignores the anatomical/resting-state data and 'verbal creativity' scope documented elsewhere in e2, so labeling the dataset as solely a task-fMRI creativity dataset is not established by the cited quotes."
+        }
+      ]
+    },
+    "access": {
+      "id": "openneuro-ds008055",
+      "license": "CC0",
+      "access": "open",
+      "confidence": "high",
+      "evidence_quote": "License: CC0",
+      "cost": "free",
+      "reasoning": "The repository record explicitly states 'License: CC0'. CC0 is a public domain dedication placing no restrictions on use, and OpenNeuro datasets under CC0 are downloadable directly without requiring account registration, credentialing, or a data use agreement."
+    },
+    "novelty": [
+      {
+        "project_id": "ds008055-causal-sct-contrast",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: scientific creativity fMRI hypothesis generation task",
+          "OpenAlex: scientific creativity task fMRI brain activation",
+          "OpenAlex: Scientific Creativity MRI Dataset task-SCT hypothesis generation",
+          "OpenAlex: hypothesis generation fMRI prefrontal activation control condition",
+          "EuropePMC: scientific creativity fMRI hypothesis generation",
+          "EuropePMC: scientific creativity task fMRI brain activation",
+          "EuropePMC: 'scientific creativity task' hypothesis generation fMRI control (0 hits)",
+          "EuropePMC: 'scientific creativity' MRI dataset openneuro BIDS (0 hits)"
+        ],
+        "still_open_because": "No publication was found that analyzes the specific 'Scientific Creativity MRI Dataset' or a 'task-SCT' paradigm contrasting hypothesis generation against a matched control condition to map task-driven activation increases, nor any work assessing the consistency of such an effect across participants with complete event coverage. Existing creativity-fMRI literature covers adjacent constructs (creative problem solving, creative ideation, divergent thinking, artistic creativity) but not this dataset-specific contrast; the exact dataset name and task-SCT term return zero hits in both databases."
+      },
+      {
+        "project_id": "ds008055-multimodal-struct-func",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1016/j.neuroimage.2018.02.067",
+        "still_open_because": "Adjacent multimodal creativity work exists but does not answer this question. \"Neural and genetic determinants of creativity\" (10.1016/j.neuroimage.2018.02.067) and \"Neural, genetic, and cognitive signatures of creativity\" (2024, 10.1038/s42003-024-07007-6) combine structural and functional MRI, but they use each modality independently as predictors of creative ability/behavior. Neither tests structure-function COUPLING — i.e., whether individual variation in T1w cortical anatomy correlates with resting-state FC strength itself within creativity-related networks. That specific within-brain coupling analysis, in the same 108-participant Scientific Creativity MRI Dataset, does not appear in any indexed publication. The remaining delta is the anatomy-to-FC-strength relationship (not anatomy/FC-to-creativity), and the use of this particular dataset/cohort.",
+        "queries_run": [
+          "OpenAlex: scientific creativity MRI cortical structure functional connectivity",
+          "EuropePMC: creativity cortical thickness resting-state functional connectivity 108 participants",
+          "OpenAlex: structural covariance cortical thickness creativity resting-state connectivity",
+          "EuropePMC: 'Scientific Creativity' MRI dataset brain structure function",
+          "OpenAlex: creativity 108 participants T1 cortical thickness resting state functional connectivity",
+          "EuropePMC: creativity brain structure-function coupling cortical morphology intrinsic connectivity default mode executive"
+        ]
+      },
+      {
+        "project_id": "ds008055-generalization-cross-task",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: Scientific Creativity Task fMRI verbal creativity cross-task decoding",
+          "EuropePMC: scientific creativity fMRI task decoding verbal creativity",
+          "OpenAlex: Taxonomy of Verbal Creativity task fMRI",
+          "OpenAlex: Scientific Creativity MRI Dataset task-SCT task-TVC",
+          "EuropePMC: 'scientific creativity' MRI dataset verbal creativity taxonomy",
+          "OpenAlex: scientific creativity 54 participants verbal creativity 35 fMRI generalization decoding",
+          "EuropePMC: cross-task decoding creativity fMRI generalization multivariate"
+        ],
+        "still_open_because": "No prior study found that trains a task-relevant activity decoder on the Scientific Creativity Task and tests cross-task transfer to analogous verbal-creativity conditions in the Taxonomy of Verbal Creativity task. Adjacent literature covers within-task creativity decoding (e.g. ERP/EEG creative-ideation decoding, resting-state creativity prediction, semantic-control fMRI), but none report this specific SCT->TVC cross-paradigm generalization on this dataset. No analysis paper for the 'Scientific Creativity MRI Dataset' surfaced at all."
+      },
+      {
+        "project_id": "ds008055-neuromod-ifg-target",
+        "verdict": "NOVEL",
+        "queries_run": [
+          "OpenAlex: scientific creativity fMRI hypothesis generation neuromodulation target",
+          "EuropePMC: scientific creativity task fMRI inferior frontal gyrus stimulation target",
+          "OpenAlex: scientific creativity task fMRI category switching inferior frontal gyrus",
+          "OpenAlex: resting-state functional connectivity creativity candidate stimulation target reproducible",
+          "EuropePMC: 'scientific creativity' task fMRI 108 subjects",
+          "EuropePMC: functional connectivity derive TMS target creativity ideation",
+          "OpenAlex: connectome based targeting TMS creative ideation task activation resting connectivity",
+          "EuropePMC: 'Scientific Creativity MRI Dataset' (0 hits)"
+        ],
+        "still_open_because": "No published study derives a reproducible neuromodulation target for creative ideation by combining task-fMRI activation and resting-state connectivity from this dataset. Adjacent but distinct work exists: connectivity-based TMS target derivation is established in depression (e.g., SGC-connectivity targeting), and creativity stimulation studies target DLPFC/IFG empirically (e.g., 10.1002/jocb.562, 10.1093/cercor/bhw080), but none fuse group task activation + rest FC from a scientific-creativity cohort to generate a candidate target. The specific research question remains unaddressed."
+      },
+      {
+        "project_id": "ds008055-foundation-pretrain-transfer",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.3389/fnins.2023.1199312",
+        "still_open_because": "The core methodological claim — that self-supervised pretraining on fMRI improves downstream task-fMRI classification — is already demonstrated in Chen et al., \"Self-supervised pretraining improves the performance of classification of task functional magnetic resonance imaging\" (Front. Neurosci. 2023, 10.3389/fnins.2023.1199312), so the general mechanism is NOT novel. However, no published work applies this to the specific \"Scientific Creativity MRI Dataset\" or its Idea Diversity task: searches for the dataset name, the creativity/idea-generation-decoding pairing, and the exact resting-state->task transfer setting returned only the general-method paper and unrelated creativity-neuroscience reviews. The remaining, still-open deltas are: (1) pretraining specifically on the resting-state corpus of THIS dataset (108 runs) and transferring to its creativity task rather than a generic cognitive-task benchmark; (2) the FEW-SHOT regime on an extremely small fully-annotated cohort (19 participants with complete event coverage), which the prior paper does not address (it used larger task-fMRI training sets, not few-shot creativity decoding); and (3) demonstrating that creativity/idea-diversity task states in particular are recoverable from rsfMRI-pretrained representations. So the underlying transfer principle is published, but this dataset-specific, few-shot, creativity-decoding instantiation is not.",
+        "queries_run": [
+          "OpenAlex: self-supervised pretraining fMRI few-shot task classification creativity",
+          "EuropePMC: self-supervised fMRI pretraining few-shot task decoding",
+          "OpenAlex: scientific creativity fMRI idea diversity task",
+          "OpenAlex: resting-state fMRI self-supervised pretraining task decoding transfer small sample",
+          "EuropePMC: creativity fMRI idea generation divergent thinking decoding machine learning",
+          "EuropePMC: self-supervised resting-state fMRI foundation model few-shot transfer task",
+          "EuropePMC: \"scientific creativity\" fMRI dataset idea diversity"
+        ]
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "ds008055-causal-sct-contrast",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [],
+        "difficulty": 4,
+        "effort_weeks": 13,
+        "reason": "All three claimed variables are confirmed in the evidence (e2 README text): task-SCT BOLD runs (54 participants/108 runs), task-SCT event files with the exact 54/107/53-full-coverage figures matching verbatim, and defaced T1w anatomicals. No file was literally listed (e1 landing-page fetch was empty), but the README is specific enough to trust the file-pattern inference given standard BIDS conventions it describes (SBRef, fieldmaps linked via metadata). Access is low-friction: CC0, public, no DUA, so latency risk is minimal. However, the claimed difficulty=2/effort=8wk badly underestimates the work: this is raw, unpreprocessed BIDS data with no derivatives mentioned anywhere, so the student must build a full task-fMRI pipeline themselves — susceptibility/motion correction using the linked fieldmaps, normalization to the defaced T1w, first-level GLM per subject/run for hypothesis-generation vs. matched-control, then a second-level group analysis across the 53 fully-covered participants with multiple-comparisons correction to assess consistency. That is a standard graduate task-fMRI project scope, commonly 10-14 weeks even with an existing fMRIPrep/cluster setup, and could overrun a 15-week semester if the student lacks prior pipeline/compute access. Downgraded to FEASIBLE_WITH_CAVEAT: the data support the question, but the project is analytically much harder and longer than claimed and assumes preprocessing infrastructure is available on day one."
+      },
+      {
+        "project_id": "ds008055-multimodal-struct-func",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "SBRef images matched to functional runs (README states only 'most' functional runs have matched SBRef — not confirmed for full 108-subject cohort)",
+          "Fieldmap EPI files (README states 'included where available' — explicitly not guaranteed for all subjects/runs, requiring fallback distortion-correction handling)"
+        ],
+        "difficulty": 4,
+        "effort_weeks": 13,
+        "reason": "All four raw file types exist in the dataset per the OpenNeuro README, but two (SBRef, fieldmaps) are explicitly only partially available ('most runs', 'where available'), not guaranteed across the full 108-subject cohort as the claim sheet implies — students will need per-subject fallback distortion-correction logic. Beyond that evidence gap, the actual analysis is heavier than the claimed difficulty/effort suggests: it requires running FreeSurfer recon-all on 108 T1w volumes (~650-1000 CPU-hours) to derive cortical anatomy metrics not present in the raw data, building/adapting a full rs-fMRI preprocessing pipeline (fMRIPrep-class) with inconsistent fieldmap coverage, defining a creativity-network atlas/ROI set from cited literature, computing connectivity strength, and relating it to structural metrics across the cohort — plus managing a ~192GB, 2188-file download. This is a legitimate, well-supported project (n=108 is fine for the stats, references are provided), but 10 weeks is optimistic for a student without dedicated cluster access; 13 weeks and difficulty 4/5 is more realistic within a 15-week semester including download/setup latency."
+      },
+      {
+        "project_id": "ds008055-generalization-cross-task",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "Condition/trial-type schema in events.tsv for task-SCT vs task-TVC — evidence (e2) only names the tasks (\"hypothesis generation and a matched control condition\" for SCT; no condition breakdown given for TVC) and never enumerates trial-type labels, so it cannot be confirmed that TVC actually contains conditions 'analogous' to SCT's for a cross-task generalization design.",
+          "Overlap between the 54 task-SCT participants and the 35 task-TVC participants — evidence gives counts per task but never states whether these are the same, overlapping, or disjoint sets of the 108 total subjects, which materially changes whether this is a within-subject transfer test or a between-cohort one."
+        ],
+        "difficulty": 5,
+        "effort_weeks": 16,
+        "reason": "The three literal file/variable claims are supported by evidence e2: task-SCT (54 participants/107 runs with usable events, out of 108 raw runs), task-TVC (35 participants/70 runs, full event coverage), and defaced T1w anatomicals are all explicitly described in the README text, so nothing is outright absent. However the claimed 4-difficulty/12-week estimate is optimistic for what the question actually requires. (1) This is raw, unpreprocessed BIDS fMRI — no derivatives/fMRIPrep outputs are mentioned — and the full release is 176GB/2188 files across 108 subjects; even restricting to the ~89 needed subjects, a student must run and debug fMRIPrep (incl. fieldmap handling on defaced anatomicals) themselves, which alone commonly eats 3-4 weeks including QC/reruns. (2) The 'cross-task generalization' design presupposes that task-TVC has creativity-vs-control conditions comparable to task-SCT's hypothesis-generation-vs-control contrast, and that overlap/non-overlap between the 54 SCT and 35 TVC subjects is known — neither is established by the evidence text, so real analysis-design risk exists before any modeling starts. (3) Building an MVPA/decoding pipeline that trains on one task and tests generalization on a structurally different task (different trial timing/design) is itself an advanced, iteration-heavy analysis, not a routine one. Stacking BIDS validation/preprocessing + condition-mapping investigation + decoding pipeline + statistics/writeup pushes realistic effort to ~15-16 weeks for a single student, i.e., it just clears or slightly exceeds a 15-week semester depending on prior fMRIPrep/cluster experience — hence FEASIBLE_WITH_CAVEAT rather than a clean FEASIBLE, and a difficulty/effort bump from the claimed 4/12 weeks to 5/16 weeks."
+      },
+      {
+        "project_id": "ds008055-neuromod-ifg-target",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "missing_variables": [
+          "task-SCT data for 'the same 108 subjects' as resting-state — README states task-SCT covers only 54 of the 108 participants (108 runs = 54 subjects x 2 runs, usable events for ~53-54); the question's combined task+rest same-cohort design is not supported as stated, effective N drops to ~54"
+        ],
+        "difficulty": 4,
+        "effort_weeks": 12,
+        "reason": "Core data (task-SCT with hypothesis-generation events, 108-subject resting-state, defaced T1w) is real and matches the README, but the question's premise of task+rest data 'from the same 108 subjects' is contradicted by the dataset's own README: only 54 of 108 subjects have task-SCT data at all. That's still a workable N for task-fMRI, but the claimed 108-subject fusion is false as described. Beyond the count error, the project itself (fMRIPrep-grade preprocessing of a 190GB BIDS release, GLM activation mapping, IFG seed-based rsFC, plus a reproducibility check to justify calling the result a 'candidate neuromodulation target') is graduate-level neuroimaging pipeline work, not a stats-on-a-spreadsheet task. The claimed 3/9-weeks underrates compute time, pipeline debugging, and the validation+writing tail; 4/12-weeks is a more realistic budget and only fits a 15-week term with a capable student and existing HPC access."
+      },
+      {
+        "project_id": "ds008055-foundation-pretrain-transfer",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 16,
+        "missing_variables": [
+          "Behavioral/idea-diversity outcome labels (semantic diversity scores for generated ideas) needed as the classification target for task-ID — not confirmed to exist in the release; README only documents BOLD scans and event *timing* files (onset/duration/trial_type), not scored behavioral outcomes.",
+          "Preprocessed/derivative fMRI data (e.g., fMRIPrep outputs) — not mentioned in evidence; only raw defaced BIDS BOLD is confirmed, meaning full preprocessing of 108 rest + 150 task-ID runs must be built from scratch before any modeling begins."
+        ],
+        "reason": "All three literally-claimed file/count variables check out exactly against the OpenNeuro README (task-rest 108/108; task-ID 25 participants/150 runs with 19/114 fully event-annotated; SBRef present for most runs). However the proposed analysis needs a classification LABEL for 'idea diversity' that is not confirmed anywhere in the evidence -- events.tsv gives trial timing, not diversity scores -- so the core dependent variable for the downstream task may not exist in this imaging release. Combined with the fact that only raw (not preprocessed) BOLD is available, requiring the student to build a full fMRI preprocessing pipeline for 108+150 runs before any self-supervised pretraining can even start, plus a genuinely research-grade SSL model to build, plus a fragile n=19 few-shot evaluation set, the claimed difficulty=4/effort=12wk underestimates the work. Realistically difficulty=5, ~16 weeks, which strains a 15-week semester and is contingent on resolving the missing label variable first."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/2.0",
+  "name": "Scientific Creativity MRI Dataset",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        }
+      ]
+    },
+    "data_types": {
+      "value": [
+        "T1w anatomical scans",
+        "resting-state fMRI",
+        "task fMRI"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "The release includes T1w anatomical scans, resting-state fMRI, and task fMRI runs related to scientific creativity and verbal creativity."
+        }
+      ]
+    },
+    "diseases": {
+      "value": null,
+      "evidence": [],
+      "needs": "Participant health/diagnostic status page (e.g. participants.tsv or a phenotype/methods section) — not stated in the evidence, which only lists task names (creativity/rest paradigms), not a clinical or control-population designation."
+    },
+    "doi": {
+      "value": "10.18112/openneuro.ds008055.v1.0.4",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008055.v1.0.4"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "evidence": [],
+      "needs": "Institution/site location metadata (e.g. dataset_description.json Institution field or paper affiliations) — no country, city or institution is stated in the evidence."
+    },
+    "n_subjects": {
+      "value": "108",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 108"
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "evidence": [],
+      "needs": "Data collection/acquisition date range (e.g. dataset_description.json or paper Methods) — the evidence only gives a dataset upload timestamp (\"Created: 2026-06-28T15:33:11.402Z\"), not the years scanning actually took place."
+    },
+    "species": {
+      "value": null,
+      "evidence": [],
+      "needs": "Explicit species declaration (e.g. dataset_description.json or Methods) — the evidence never states \"human\" verbatim; it is implied by MRI/participants language but not asserted."
+    },
+    "cost": {
+      "value": null,
+      "evidence": [],
+      "needs": "Explicit cost/terms-of-use statement — the evidence gives the license (CC0) but never states the data are free of charge."
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory."
+        }
+      ]
+    },
+    "access_notes": {
+      "value": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory."
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "Task fMRI dataset on scientific creativity with a matched experimental control condition, shared openly on OpenNeuro under a CC0 license.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition."
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Dataset de fMRI de tarea sobre creatividad científica con una condición de control experimental emparejada, compartido abiertamente en OpenNeuro bajo licencia CC0.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition."
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    }
+  },
+  "access_steps": [],
+  "starter_code": {},
+  "scope": {
+    "in_scope": true,
+    "reason": "Human fMRI dataset (108 subjects) investigating scientific creativity using task-based and resting-state fMRI with full BIDS structure. Cognitive neuroscience research, publicly available on OpenNeuro with CC0 license. Meets criterion: human neuro/psych data (MRI/fMRI), reusable, student-accessible.",
+    "modality_primary": "fMRI",
+    "disease_tags": []
+  },
+  "literature": {
+    "dataset_name": "Scientific Creativity MRI Dataset",
+    "doi": "10.18112/openneuro.ds008055.v1.0.4",
+    "openalex_work_id": "https://openalex.org/W7166593980",
+    "n_citing_works": 0,
+    "citing_works": [],
+    "dominant_tasks": [],
+    "key_publications": [],
+    "saturation": "low",
+    "notes": "Dataset was published on OpenNeuro 2026-06-29 (v1.0.1) through 2026-07-01 (v1.0.4), only ~3 weeks before this query (2026-07-21). Queried OpenAlex works?filter=cites:W7166593980 (0 results) and Europe PMC full-text search for the exact dataset title (0 results, hitCount=0). No secondary/citing publications exist yet for any version of this dataset (all four DOI versions show cited_by_count=0 in OpenAlex). This is expected given the dataset's very recent release date rather than evidence of low interest; saturation is set to 'low' to reflect that essentially no analyses using this dataset have been published yet, not that the space is exhausted."
+  },
+  "projects": [
+    {
+      "id": "ds008055-causal-sct-contrast",
+      "question_en": "Which brain regions show a task-driven increase in activity during hypothesis generation compared to the matched control condition in the Scientific Creativity Task (task-SCT), and is this effect consistent across the participants with complete event coverage?",
+      "question_es": "¿Qué regiones cerebrales muestran un aumento de actividad atribuible a la tarea durante la generación de hipótesis en comparación con la condición de control equiparada de la Tarea de Creatividad Científica (task-SCT), y es este efecto consistente en los participantes con cobertura completa de eventos?",
+      "lens": "causal",
+      "difficulty": 2,
+      "effort_weeks": 8,
+      "required_variables": [
+        {
+          "name": "task-SCT BOLD runs (hypothesis generation vs. matched control condition)",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "task-SCT event files (condition onsets/durations, hypothesis generation vs. control; 54 participants/107 runs with usable events, 53 participants with full coverage)",
+          "file": "sub-*/func/*task-SCT*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "T1w anatomical scans (defaced) for registration/normalization",
+          "file": "sub-*/anat/*_T1w.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": [
+        "fMRI GLM (SPM/FSL/nilearn)",
+        "BIDS",
+        "basic inferential statistics"
+      ],
+      "compute": "single workstation with 16GB+ RAM; roughly 1-2 CPU-days for 1st/2nd-level GLM across ~53 subjects",
+      "still_open_because": "The README documents the task-SCT design (hypothesis generation vs. matched control) with 53/54 participants having full event coverage, but gives no indication that a within-dataset task-vs-control contrast analysis has been run on this new release."
+    },
+    {
+      "id": "ds008055-multimodal-struct-func",
+      "question_en": "Does individual variation in cortical anatomy from the T1w scans relate to resting-state functional connectivity strength within creativity-related networks in the same cohort of 108 participants?",
+      "question_es": "¿La variación individual en la anatomía cortical de las imágenes T1w se relaciona con la fuerza de la conectividad funcional en reposo dentro de redes vinculadas a la creatividad, en la misma cohorte de 108 participantes?",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 10,
+      "required_variables": [
+        {
+          "name": "T1w anatomical scans, full cohort (108 subjects, defaced)",
+          "file": "sub-*/anat/*_T1w.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "Resting-state fMRI runs (108 participants/108 runs; events not expected for rest)",
+          "file": "sub-*/func/*task-rest*_bold.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "SBRef images matched to functional runs, used for registration/QC",
+          "file": "sub-*/func/*_sbref.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "Fieldmap EPI files linked to functional runs via BIDS metadata, for distortion correction",
+          "file": "sub-*/fmap/*_epi.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": [
+        "structural morphometry (FreeSurfer)",
+        "resting-state connectivity analysis (nilearn/CONN)",
+        "BIDS preprocessing"
+      ],
+      "compute": "workstation or small cluster; FreeSurfer recon-all is ~8-10 hr/subject across 108 subjects, so batch processing on a shared cluster or cloud credits is recommended",
+      "still_open_because": "The full 108-subject cohort has both T1w and resting-state fMRI, plus fieldmaps and SBRef images enabling proper distortion correction, but the release notes give no indication a structure-function coupling analysis has been performed on this dataset."
+    },
+    {
+      "id": "ds008055-generalization-cross-task",
+      "question_en": "Can a model trained to decode task-relevant brain activity from the Scientific Creativity Task (task-SCT, 54 participants) generalize to distinguish the analogous verbal-creativity conditions in the Taxonomy of Verbal Creativity task (task-TVC, 35 participants with full event coverage)?",
+      "question_es": "¿Un modelo entrenado para decodificar la actividad cerebral relevante de la Tarea de Creatividad Científica (task-SCT, 54 participantes) generaliza para distinguir las condiciones análogas de creatividad verbal en la tarea de Taxonomía de Creatividad Verbal (task-TVC, 35 participantes con cobertura completa de eventos)?",
+      "lens": "generalization",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "required_variables": [
+        {
+          "name": "task-SCT BOLD runs and events (54 participants/107 runs with usable events)",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz and sub-*/func/*task-SCT*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "task-TVC BOLD runs and events (35 participants/70 runs, full event coverage)",
+          "file": "sub-*/func/*task-TVC*_bold.nii.gz and sub-*/func/*task-TVC*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "T1w anatomical scans for cross-task spatial normalization",
+          "file": "sub-*/anat/*_T1w.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": [
+        "multivariate pattern analysis (MVPA)",
+        "cross-task transfer evaluation",
+        "nilearn/scikit-learn"
+      ],
+      "compute": "single workstation sufficient for MVPA on parcellated/ROI data; no large-scale deep learning required",
+      "still_open_because": "The README describes both task-SCT and task-TVC as probing verbal/scientific creativity constructs with full or near-full event coverage in distinct participant subsets, but no cross-task generalization test is mentioned in the release notes -- this is an unexploited within-dataset external-task validation."
+    },
+    {
+      "id": "ds008055-neuromod-ifg-target",
+      "question_en": "Can group-level task-fMRI activation during scientific hypothesis generation (task-SCT), combined with resting-state functional connectivity from the same 108 subjects, be used to derive a reproducible candidate neuromodulation target (e.g., in inferior frontal gyrus, implicated in creative category-switching per the dataset's own primary references) for future non-invasive stimulation studies aimed at enhancing creative ideation?",
+      "question_es": "¿La activación fMRI a nivel grupal durante la generación de hipótesis científicas (task-SCT), combinada con la conectividad funcional en reposo de los mismos 108 sujetos, puede usarse para derivar un blanco candidato reproducible de neuromodulación (p. ej., en el giro frontal inferior, implicado en el cambio de categoría creativo según las referencias primarias del propio conjunto de datos) para futuros estudios de estimulación no invasiva orientados a potenciar la ideación creativa?",
+      "lens": "neuromodulation",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "required_variables": [
+        {
+          "name": "task-SCT BOLD runs and events (hypothesis generation vs. control) for group activation map",
+          "file": "sub-*/func/*task-SCT*_bold.nii.gz and sub-*/func/*task-SCT*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "Resting-state fMRI (108 subjects/108 runs) for connectivity-based target refinement",
+          "file": "sub-*/func/*task-rest*_bold.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "T1w anatomical for individual/group registration and target coordinate mapping",
+          "file": "sub-*/anat/*_T1w.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": [
+        "group-level fMRI GLM analysis",
+        "seed-based/connectivity-based target mapping",
+        "basic neuroanatomy"
+      ],
+      "compute": "lab workstation; group-level GLM and connectivity analysis, no specialized hardware needed",
+      "still_open_because": "The dataset's own listed primary reference (Luchini et al.) reports inferior frontal gyrus involvement in creative category-switching via pattern-similarity analysis, not as a stimulation target; the evidence gives no indication this dataset has been used to derive or validate a connectivity-based neuromodulation target."
+    },
+    {
+      "id": "ds008055-foundation-pretrain-transfer",
+      "question_en": "Can self-supervised pretraining on the full resting-state fMRI corpus (108 participants/108 runs) produce brain-activity representations that improve few-shot classification on the smaller, fully-annotated Idea Diversity task (task-ID, 19 participants with complete event coverage)?",
+      "question_es": "¿El preentrenamiento autosupervisado sobre el corpus completo de fMRI en reposo (108 participantes/108 corridas) produce representaciones de actividad cerebral que mejoran la clasificación con pocos ejemplos en la tarea de Diversidad de Ideas (task-ID, 19 participantes con cobertura completa de eventos), más pequeña y totalmente anotada?",
+      "lens": "foundation-models",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "required_variables": [
+        {
+          "name": "Resting-state fMRI, full cohort for unsupervised pretraining (108 participants/108 runs)",
+          "file": "sub-*/func/*task-rest*_bold.nii.gz",
+          "src": "e2"
+        },
+        {
+          "name": "task-ID BOLD runs and event files for downstream fine-tuning/evaluation (25 participants/150 runs total; events available for 19 participants/114 runs, 19 with full coverage)",
+          "file": "sub-*/func/*task-ID*_bold.nii.gz and sub-*/func/*task-ID*_events.tsv",
+          "src": "e2"
+        },
+        {
+          "name": "SBRef images for functional-run registration/QC during preprocessing",
+          "file": "sub-*/func/*_sbref.nii.gz",
+          "src": "e2"
+        }
+      ],
+      "skills": [
+        "self-supervised learning (autoencoders/contrastive learning)",
+        "PyTorch",
+        "fMRI preprocessing (fMRIPrep)"
+      ],
+      "compute": "single GPU (e.g., RTX 3090/A5000-class) sufficient at this scale; pretraining roughly 2-4 GPU-days",
+      "still_open_because": "The rest-fMRI arm is the largest, most completely-covered acquisition in the release (108/108 runs) while task-ID is explicitly the smallest fully-annotated task (19 participants with complete events), making this a natural, currently-untested pretrain-then-few-shot-transfer pair within a single dataset."
+    }
+  ],
+  "_blocks": [
+    "el id ya existe en el catálogo"
+  ]
+}

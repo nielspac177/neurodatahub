@@ -75,8 +75,12 @@ def main():
                 removed += 1
                 continue
 
-            # Superviviente: verificado.
+            # Superviviente: verificado. Se muestra el veredicto clínico con
+            # honestidad, igual que las preguntas nuevas.
             p["unverified"] = False
+            cv = {"RELEVANT": "open", "MARGINAL": "well-studied"}.get(v.get("clinical"))
+            if cv:
+                p["clinical_verdict"] = cv
             if v.get("novelty") == "PARTIAL":
                 p["novelty"] = "partial"
                 p["still_open_because"] = v["novelty_still_open"]

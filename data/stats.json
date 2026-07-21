@@ -1,11 +1,11 @@
 {
-  "n_datasets": 21,
-  "n_projects": 69,
-  "n_projects_unverified": 37,
+  "n_datasets": 22,
+  "n_projects": 72,
+  "n_projects_unverified": 25,
   "n_datasets_missing_desc": 0,
   "stale": [],
   "by_access": {
-    "open": 9,
+    "open": 10,
     "registration": 6,
     "application": 3,
     "credentialed": 2,
@@ -13,6 +13,46 @@
   },
   "coverage_gaps": [
     {
+      "disease": " ",
+      "modality": "clinical"
+    },
+    {
+      "disease": " ",
+      "modality": "genetics"
+    },
+    {
+      "disease": " ",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": " ",
+      "modality": "bci"
+    },
+    {
+      "disease": " ",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "a",
+      "modality": "clinical"
+    },
+    {
+      "disease": "a",
+      "modality": "genetics"
+    },
+    {
+      "disease": "a",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "a",
+      "modality": "bci"
+    },
+    {
+      "disease": "a",
+      "modality": "multimodal"
+    },
+    {
       "disease": "adhd",
       "modality": "clinical"
     },
@@ -329,6 +369,26 @@
       "modality": "bci"
     },
     {
+      "disease": "e",
+      "modality": "clinical"
+    },
+    {
+      "disease": "e",
+      "modality": "genetics"
+    },
+    {
+      "disease": "e",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "e",
+      "modality": "bci"
+    },
+    {
+      "disease": "e",
+      "modality": "multimodal"
+    },
+    {
       "disease": "encephalopathy",
       "modality": "clinical"
     },
@@ -365,6 +425,26 @@
       "modality": "multimodal"
     },
     {
+      "disease": "g",
+      "modality": "clinical"
+    },
+    {
+      "disease": "g",
+      "modality": "genetics"
+    },
+    {
+      "disease": "g",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "g",
+      "modality": "bci"
+    },
+    {
+      "disease": "g",
+      "modality": "multimodal"
+    },
+    {
       "disease": "glioblastoma",
       "modality": "clinical"
     },
@@ -422,6 +502,26 @@
     },
     {
       "disease": "healthy-control",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "i",
+      "modality": "clinical"
+    },
+    {
+      "disease": "i",
+      "modality": "genetics"
+    },
+    {
+      "disease": "i",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "i",
+      "modality": "bci"
+    },
+    {
+      "disease": "i",
       "modality": "multimodal"
     },
     {
@@ -442,6 +542,46 @@
     },
     {
       "disease": "intracranial-hemorrhage",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "l",
+      "modality": "clinical"
+    },
+    {
+      "disease": "l",
+      "modality": "genetics"
+    },
+    {
+      "disease": "l",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "l",
+      "modality": "bci"
+    },
+    {
+      "disease": "l",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "m",
+      "modality": "clinical"
+    },
+    {
+      "disease": "m",
+      "modality": "genetics"
+    },
+    {
+      "disease": "m",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "m",
+      "modality": "bci"
+    },
+    {
+      "disease": "m",
       "modality": "multimodal"
     },
     {
@@ -541,6 +681,26 @@
       "modality": "bci"
     },
     {
+      "disease": "n",
+      "modality": "clinical"
+    },
+    {
+      "disease": "n",
+      "modality": "genetics"
+    },
+    {
+      "disease": "n",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "n",
+      "modality": "bci"
+    },
+    {
+      "disease": "n",
+      "modality": "multimodal"
+    },
+    {
       "disease": "ocd",
       "modality": "clinical"
     },
@@ -594,6 +754,26 @@
     },
     {
       "disease": "ptsd",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "r",
+      "modality": "clinical"
+    },
+    {
+      "disease": "r",
+      "modality": "genetics"
+    },
+    {
+      "disease": "r",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "r",
+      "modality": "bci"
+    },
+    {
+      "disease": "r",
       "modality": "multimodal"
     },
     {
@@ -713,6 +893,26 @@
       "modality": "bci"
     },
     {
+      "disease": "t",
+      "modality": "clinical"
+    },
+    {
+      "disease": "t",
+      "modality": "genetics"
+    },
+    {
+      "disease": "t",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "t",
+      "modality": "bci"
+    },
+    {
+      "disease": "t",
+      "modality": "multimodal"
+    },
+    {
       "disease": "tbi",
       "modality": "neuroimaging"
     },
@@ -750,6 +950,26 @@
     },
     {
       "disease": "treatment-resistant depression",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "u",
+      "modality": "clinical"
+    },
+    {
+      "disease": "u",
+      "modality": "genetics"
+    },
+    {
+      "disease": "u",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "u",
+      "modality": "bci"
+    },
+    {
+      "disease": "u",
       "modality": "multimodal"
     }
   ]
