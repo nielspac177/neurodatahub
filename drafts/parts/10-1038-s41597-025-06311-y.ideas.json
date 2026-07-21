@@ -1,0 +1,180 @@
+{
+  "dataset_id": "10-1038-s41597-025-06311-y",
+  "projects": [
+    {
+      "id": "tn-mriqc-domain-shift-robustness",
+      "lens": "generalization",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "skills": [
+        "basic image preprocessing (BIDS, FreeSurfer or FSL)",
+        "supervised classification (e.g. logistic regression, SVM, random forest)",
+        "using MRIQC output tables",
+        "train/test stratification design"
+      ],
+      "compute": "Laptop/workstation for classical features; a lab GPU is helpful but not required for T1w-derived morphometry",
+      "question_en": "If a classifier is trained to distinguish trigeminal-neuralgia patients from healthy controls using T1w-derived structural features, does its accuracy degrade on the subset of scans with worse MRIQC image-quality metrics (lower SNR/CNR, higher CJV), i.e. does the model implicitly rely on scan-quality shortcuts rather than disease-related anatomy — a student-scale proxy for the cross-scanner/cross-site generalization problem?",
+      "question_es": "Si se entrena un clasificador para distinguir pacientes con neuralgia del trigémino de controles sanos usando características estructurales derivadas de T1w, ¿se degrada su exactitud en el subconjunto de escaneos con peores métricas de calidad de imagen MRIQC (menor SNR/CNR, mayor CJV), es decir, el modelo depende implícitamente de atajos de calidad de escaneo en lugar de anatomía relacionada con la enfermedad? Esto sirve de proxy, a escala de estudiante, del problema de generalización entre escáneres/centros.",
+      "required_variables": [
+        {
+          "variable": "defaced T1w (and T2w) structural images per subject, anat folder",
+          "evidence": "\"the 'anat' folder contains high-resolution defaced structural images (T1w and T2w) suitable for automatic segmentation with FreeSurfer\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "per-subject MRIQC image-quality metrics (CJV, CNR, SNR, EFC, FBER, FWHM) in tsv/html form, mriqc_data folder",
+          "evidence": "\"Metrics such as the coefficient of joint variation (CJV), contrast-to-noise ratio (CNR), signal-to-noise ratio (SNR), and others were calculated for structural images... The outputs of the whole dataset MRIQC metrics are available in the 'mriqc_data' folder (in .tsv and .html formats).\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "group label (patient vs. healthy control) from folder naming convention",
+          "evidence": "\"structural and functional MRI volumes for 112 patients with PTN, organized in folders labeled sub-***, and 48 healthy volunteers in folders labeled sub-**\"",
+          "src_id": "e1"
+        }
+      ],
+      "still_open_because": "The paper reports MRIQC metrics only as a technical-validation/QC step and cites its own prior papers as testing group-level DTI/volumetric differences (FA, MPF, thalamic volume); no analysis in the paper stratifies model performance by image-quality tier or tests whether a diagnostic classifier is robust to quality-driven distribution shift."
+    },
+    {
+      "id": "tn-multimodal-outcome-prediction",
+      "lens": "multimodal",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "skills": [
+        "FreeSurfer/FSL structural segmentation",
+        "DTI preprocessing (TOPUP/eddy, tractography or tract-based FA extraction)",
+        "tabular clinical data cleaning",
+        "multimodal feature fusion and classification (e.g. logistic regression, gradient boosting)"
+      ],
+      "compute": "Workstation with FSL/FreeSurfer installed; no GPU strictly required, though DTI preprocessing benefits from one",
+      "question_en": "Does combining structural morphometry (T1w-derived regional volumes), diffusion metrics (FA/MD along trigeminal and related white-matter tracts from the 64-direction DWI), and clinical variables (pain intensity, pain duration, side of pain, neurovascular compression grade) predict which patients will have a favorable vs. unfavorable pain outcome better than any single modality alone?",
+      "question_es": "¿Combinar morfometría estructural (volúmenes regionales derivados de T1w), métricas de difusión (FA/MD a lo largo de tractos de sustancia blanca trigeminales y relacionados, a partir del DWI de 64 direcciones) y variables clínicas (intensidad del dolor, duración de la enfermedad, lado del dolor, grado de compresión neurovascular) predice mejor qué pacientes tendrán un resultado favorable o desfavorable del dolor que cualquier modalidad por sí sola?",
+      "required_variables": [
+        {
+          "variable": "T1w structural images (anat folder) for regional volumetry",
+          "evidence": "\"the 'anat' folder contains high-resolution defaced structural images (T1w and T2w) suitable for automatic segmentation with FreeSurfer\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "DWI 64-direction data (dwi/*_run-01.nii.gz) plus b0 phase-encoded runs for TOPUP distortion correction",
+          "evidence": "\"the 'dwi' folder contains diffusion tensor imaging data with 64 diffusion directions (*_run-01.nii.gz file) and three b0-only runs...acquired for spatial distortion correction with the FSL TOPUP procedure\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "participants.tsv clinical fields: pain type, pain intensity, side of pain, disease duration, pharmacological treatment",
+          "evidence": "\"the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "participants.tsv: neurovascular compression grade (Sindou classification) and surgical procedure type",
+          "evidence": "\"Clinical and demographic information for each participant, along with primary MRI findings, neurovascular compression grade (according to the Sindou classification, if suitable), and surgical procedure type are provided in the 'participants.tsv' file.\"",
+          "src_id": "e1"
+        }
+      ],
+      "still_open_because": "The paper's cited prior work from this same team analyzed DTI (FA), MPF, and thalamic volume as separate single-modality studies; none combined structural + diffusion + clinical variables into one fused outcome-prediction model, which the abstract itself flags as left to future researchers ('allowing them to independently define the focus of their specific research interests')."
+    },
+    {
+      "id": "tn-pre-post-surgery-paired-change",
+      "lens": "causal",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "skills": [
+        "longitudinal/paired image processing (FreeSurfer longitudinal stream or simple paired volumetry)",
+        "DTI tract-based statistics",
+        "paired statistical testing (paired t-test, mixed-effects models)",
+        "clinical outcome coding"
+      ],
+      "compute": "Workstation with FreeSurfer/FSL; longitudinal FreeSurfer stream benefits from a few days of batch CPU time",
+      "question_en": "Within the 58 patients who have both a presurgical scan and a 6-month postsurgical follow-up scan, does the within-subject change in structural (gray matter volume) or diffusion (FA) measures track the within-subject change in BPI-facial pain intensity (pre-op vs. 6-month follow-up), and does this relationship differ by surgical procedure type — moving beyond cross-sectional group comparison toward a paired, intervention-linked design?",
+      "question_es": "Dentro de los 58 pacientes que tienen tanto un escaneo presquirúrgico como un escaneo de seguimiento postquirúrgico a los 6 meses, ¿el cambio intrasujeto en medidas estructurales (volumen de sustancia gris) o de difusión (FA) se asocia con el cambio intrasujeto en la intensidad del dolor BPI-facial (preoperatorio vs. seguimiento a 6 meses), y esta relación difiere según el tipo de procedimiento quirúrgico? Esto va más allá de la comparación transversal entre grupos hacia un diseño pareado ligado a la intervención.",
+      "required_variables": [
+        {
+          "variable": "baseline and 6-month follow-up structural/diffusion images for the same 58 patients (sub-***fu folders)",
+          "evidence": "\"Furthermore, 6-month follow-up MRI data are available for 58 patients stored in folders labeled sub-***fu.\" and \"Follow-up data six months after treatment were available for 58 patients.\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "BPI-facial average pain intensity measured pre-op (admission) and again at 6-month follow-up",
+          "evidence": "\"The intensity of a patient's pain was evaluated at the time of hospital admission and again during a six-month follow-up via the BPI-facial tool.\" and \"The dataset contains only data on the average pain levels of patients during the week preceding hospital admission.\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "participants.tsv: surgical procedure type, to stratify the pre/post relationship by intervention",
+          "evidence": "\"...and surgical procedure type are provided in the 'participants.tsv' file.\"",
+          "src_id": "e1"
+        }
+      ],
+      "still_open_because": "The paper's own cited follow-up analysis (thalamic nuclei study) reports only that volume did not significantly increase at 6 months overall; it does not report a paired change-in-imaging vs. change-in-pain-score analysis stratified by procedure type, which is the natural causal-style use of this longitudinal subsample."
+    },
+    {
+      "id": "tn-idiopathic-vs-compression-subgroup-equity",
+      "lens": "equity",
+      "difficulty": 3,
+      "effort_weeks": 7,
+      "skills": [
+        "subgroup/stratified statistical analysis",
+        "basic structural and diffusion image processing",
+        "model performance evaluation by subgroup (e.g. calibration, AUC by stratum)",
+        "clinical variable interpretation"
+      ],
+      "compute": "Laptop/workstation; no GPU required",
+      "question_en": "Do imaging biomarkers of trigeminal neuralgia (structural/diffusion abnormalities) and the accuracy of a patient-vs-control classifier hold up equally well in the neurovascular-compression-confirmed subgroup (Sindou-graded conflict) versus the idiopathic subgroup with no identified compression — a harder-to-diagnose, often-underserved patient population — and does this also hold across the reported sex imbalance (56% female surgical patients vs. 89% female outpatient/conservative patients)?",
+      "question_es": "¿Los biomarcadores de imagen de la neuralgia del trigémino (anomalías estructurales/de difusión) y la exactitud de un clasificador paciente-vs-control se mantienen igual de bien en el subgrupo con compresión neurovascular confirmada (grado Sindou) frente al subgrupo idiopático sin compresión identificada —una población de pacientes más difícil de diagnosticar y con frecuencia desatendida— y esto se mantiene también a través del desequilibrio de sexo reportado (56% mujeres en pacientes quirúrgicos vs. 89% mujeres en pacientes ambulatorios/conservadores)?",
+      "required_variables": [
+        {
+          "variable": "participants.tsv: neurovascular compression grade (Sindou classification), used to split compression-confirmed vs. idiopathic subgroups",
+          "evidence": "\"Patients with neurovascular conflict identified via MRI received microvascular decompression... Patients without neurovascular conflict (idiopathic TN) were treated with either radiofrequency rhizotomy...or balloon compression\" and \"neurovascular compression grade (according to the Sindou classification, if suitable)...are provided in the 'participants.tsv' file\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "per-participant age and sex, recorded across the matched surgical (56% female), outpatient (89% female), and control (55% female) groups",
+          "evidence": "\"103 patients were diagnosed with trigeminal neuralgia...(ages 30-84, 56% female). Additionally, nine patients receiving conservative outpatient management...(ages 39-71, 89% female). Sex- and age-matched healthy controls (n = 48, ages 38-75, 55% female)\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "T1w/T2w structural and DWI images per subject for computing the imaging biomarkers to be compared across subgroups",
+          "evidence": "\"the 'anat' folder contains high-resolution defaced structural images (T1w and T2w)...the 'dwi' folder contains diffusion tensor imaging data with 64 diffusion directions\"",
+          "src_id": "e1"
+        }
+      ],
+      "still_open_because": "The paper's cited prior analyses (FA, MPF, thalamic volume) report whole-sample patient-vs-control differences and do not stratify results by compression-confirmed vs. idiopathic etiology or by sex, despite the dataset explicitly recording both, so it is unknown whether the reported biomarkers generalize equally across these subgroups."
+    },
+    {
+      "id": "tn-procedure-selection-decision-support",
+      "lens": "neuromodulation",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "skills": [
+        "structural/diffusion feature extraction",
+        "multiclass classification (MVD vs. radiofrequency rhizotomy vs. balloon compression)",
+        "clinical outcome labeling",
+        "model interpretability (feature importance)"
+      ],
+      "compute": "Workstation with FSL/FreeSurfer; no GPU strictly required",
+      "question_en": "Can presurgical imaging (neurovascular compression grade plus T1w/DWI-derived structural and diffusion features) and clinical variables predict, ahead of the current clinical workflow, which of the three interventions (microvascular decompression, radiofrequency rhizotomy, or balloon compression) will produce a favorable pain outcome for a given patient — i.e. can imaging support target/procedure selection the way biomarker-guided target selection is used in other neuromodulation contexts?",
+      "question_es": "¿Puede la imagen presquirúrgica (grado de compresión neurovascular más características estructurales y de difusión derivadas de T1w/DWI) junto con variables clínicas predecir, antes del flujo clínico actual, cuál de las tres intervenciones (descompresión microvascular, rizotomía por radiofrecuencia o compresión con balón) producirá un resultado favorable del dolor para un paciente dado —es decir, puede la imagen apoyar la selección de blanco/procedimiento como se usa la selección de blanco guiada por biomarcadores en otros contextos de neuromodulación?",
+      "required_variables": [
+        {
+          "variable": "participants.tsv: surgical procedure type actually performed (MVD / radiofrequency rhizotomy / balloon compression), used as the multiclass label",
+          "evidence": "\"Patients with neurovascular conflict identified via MRI received microvascular decompression...Patients without neurovascular conflict (idiopathic TN) were treated with either radiofrequency rhizotomy...or balloon compression\" and \"surgical procedure type are provided in the 'participants.tsv' file\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "participants.tsv: neurovascular compression grade (Sindou classification), a key presurgical decision input",
+          "evidence": "\"neurovascular compression grade (according to the Sindou classification, if suitable)...are provided in the 'participants.tsv' file\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "T1w/T2w structural and DWI (64-direction) images for feature extraction",
+          "evidence": "\"the 'anat' folder contains high-resolution defaced structural images (T1w and T2w)...the 'dwi' folder contains diffusion tensor imaging data with 64 diffusion directions\"",
+          "src_id": "e1"
+        },
+        {
+          "variable": "BPI-facial pain intensity pre-op and at 6-month follow-up, to define the favorable/unfavorable outcome label",
+          "evidence": "\"The surgical outcome was classified as favorable or unfavorable on the basis of the extent of pain reduction following the procedure\" and \"The intensity of a patient's pain was evaluated at the time of hospital admission and again during a six-month follow-up via the BPI-facial tool.\"",
+          "src_id": "e1"
+        }
+      ],
+      "still_open_because": "The paper states that procedure choice was based on clinical/neuroimaging judgment (compression present vs. absent) but does not build or validate a predictive model that jointly uses imaging features and clinical variables to forecast procedure-specific outcome before surgery; the abstract explicitly leaves such applied questions open for other researchers."
+    }
+  ]
+}

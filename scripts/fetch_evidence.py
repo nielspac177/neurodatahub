@@ -30,6 +30,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
+import yaml
+
 from scripts.lib import keys as K
 from scripts.lib import state
 from scripts.lib.http import get_json, qs, UA
@@ -220,6 +222,26 @@ def main():
     candidates = state.read_jsonl("candidates")
     if not candidates:
         sys.exit("No hay candidatos. Corre primero: python scripts/harvest_run.py")
+
+    # La cola es append-only, así que sigue listando lo ya publicado. Se filtra
+    # contra el catálogo por claves autoritativas; fiarse de que exista el
+    # archivo de evidencia funcionaba por accidente, no por diseño.
+    db = ROOT / "data" / "databases.yml"
+    published = set()
+    if db.exists():
+        for r in yaml.safe_load(db.read_text(encoding="utf-8")) or []:
+            published.update(K.authoritative(K.all_keys(r)))
+            published.add(r["id"])
+
+    def already(c):
+        if any(k in published for k in K.authoritative(K.all_keys(c))):
+            return True
+        return slug(c) in published
+
+    before = len(candidates)
+    candidates = [c for c in candidates if not already(c)]
+    if before != len(candidates):
+        print(f"  {before - len(candidates)} candidatos ya publicados, omitidos")
 
     candidates.sort(key=lambda c: -c.get("score", 0))
     DRAFTS.mkdir(parents=True, exist_ok=True)

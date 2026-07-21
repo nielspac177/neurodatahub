@@ -1,0 +1,7 @@
+{
+  "id": "10-1038-s41597-021-01077-5",
+  "in_scope": false,
+  "reason": "Cancer genomics dataset (breast cancer and lymphoblast cell line WGS/WES) focused on somatic mutation detection for precision oncology. Not neurological, neurosurgical, psychiatric, or BCI-related. Out of scope.",
+  "modality_primary": "genomics",
+  "disease_tags": ["cancer"]
+}

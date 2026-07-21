@@ -1,0 +1,8 @@
+{
+  "id": "openneuro-ds008070",
+  "access": "open",
+  "license": "CC0",
+  "confidence": "high",
+  "evidence_quote": "License: CC0",
+  "reasoning": "The repository record (src_id e2, OpenNeuro dataset record) explicitly states 'License: CC0'. CC0 is a public domain dedication placing no restrictions on use; combined with OpenNeuro's standard practice of direct download links on the dataset page, this is classified as open access (no account, no approval step required)."
+}

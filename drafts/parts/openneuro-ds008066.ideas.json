@@ -1,0 +1,209 @@
+{
+  "dataset_id": "openneuro-ds008066",
+  "projects": [
+    {
+      "id": "ds008066-cross-subject-generalization",
+      "lens": "generalization",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Does a machine-learning model trained to decode choice-set size (3 vs 9 vs 24 options) and decoy condition from BOLD activity in a subset of the 40 participants generalize to held-out participants it has never seen (leave-N-subjects-out cross-validation), or does classification accuracy collapse outside the training sample?",
+      "question_es": "¿Un modelo de aprendizaje automático entrenado para decodificar el tamaño del conjunto de opciones (3 vs 9 vs 24) y la condición de señuelo (decoy) a partir de la actividad BOLD en un subconjunto de los 40 participantes generaliza a participantes no vistos durante el entrenamiento (validación cruzada dejando fuera N sujetos), o el rendimiento de clasificación se derrumba fuera de la muestra de entrenamiento?",
+      "required_variables": [
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2",
+          "note": "README states each participant has 'three functional BOLD runs of the choice task' across 40 subjects"
+        },
+        {
+          "variable": "trial_type event labels (d3/d9/d24/n3/n9/n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README: events.tsv has columns onset, duration, trial_type; six condition labels are defined"
+        },
+        {
+          "variable": "T1w anatomical image (for registration/normalization)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'one anatomical T1-weighted image' per participant"
+        },
+        {
+          "variable": "subject count / de-identified subject labels (N=40)",
+          "file": "dataset-level (participants folder structure)",
+          "src_id": "e2",
+          "note": "repository_record: 'Number of subjects: 40'; README: 'Participant identifiers were replaced with de-identified subject labels'"
+        }
+      ],
+      "skills": [
+        "BIDS data handling",
+        "fMRIPrep or manual preprocessing (motion correction, normalization)",
+        "nilearn/scikit-learn decoding",
+        "cross-validation design"
+      ],
+      "compute": "Standard workstation/HPC CPU node for preprocessing (~16-32GB RAM); GPU optional, useful only for faster decoding sweeps",
+      "still_open_because": "The dataset is a brand-new (2026-06-29) raw-only release with no derivatives or published decoding analyses; whether a decoder trained on part of the 40 participants transfers to unseen participants has not been tested."
+    },
+    {
+      "id": "ds008066-anatomical-roi-integration",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 10,
+      "question_en": "When individual anatomical ROIs are defined from each participant's own T1-weighted image (rather than a group template), does the choice-overload BOLD response in those subject-specific regions differ from what a standard group-normalized analysis would show?",
+      "question_es": "Cuando se definen ROIs anatómicas individuales a partir de la propia imagen T1 de cada participante (en lugar de una plantilla grupal), ¿la respuesta BOLD de sobrecarga de elección en esas regiones específicas del sujeto difiere de lo que mostraría un análisis estándar normalizado a una plantilla grupal?",
+      "required_variables": [
+        {
+          "variable": "T1w anatomical image",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'one anatomical T1-weighted image', RMS-combined from repeated acquisition, defaced with SPM"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "events.tsv (onset, duration, trial_type)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        },
+        {
+          "variable": "single-band reference images (per-run, for accurate functional-to-anatomical registration)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_sbref.nii.gz",
+          "src_id": "e2",
+          "note": "README: 'three single-band reference images, one corresponding to each BOLD run'"
+        }
+      ],
+      "skills": [
+        "FreeSurfer or ANTs anatomical segmentation",
+        "fMRI first-level GLM (SPM/FSL/nilearn)",
+        "co-registration of functional to anatomical space",
+        "basic statistics for comparing analysis pipelines"
+      ],
+      "compute": "Workstation with ~50GB free disk per subject for FreeSurfer reconstruction; CPU-only, can run overnight per subject batch",
+      "still_open_because": "The dataset ships raw structural and functional scans together but the README describes only the task/decoy manipulation; no analysis has combined the anatomical scan with the functional runs to test individualized vs. template-based ROI definition."
+    },
+    {
+      "id": "ds008066-decoy-causal-contrast",
+      "lens": "causal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Because the presence of a decoy option was experimentally assigned within each run (decoy conditions d3/d9/d24 vs. matched no-decoy conditions n3/n9/n24), does adding a decoy causally increase BOLD activity in choice-related regions when option-set size is held constant?",
+      "question_es": "Dado que la presencia de un señuelo (decoy) fue asignada experimentalmente dentro de cada corrida (condiciones con señuelo d3/d9/d24 frente a condiciones equivalentes sin señuelo n3/n9/n24), ¿añadir un señuelo aumenta causalmente la actividad BOLD en regiones relacionadas con la elección cuando el tamaño del conjunto de opciones se mantiene constante?",
+      "required_variables": [
+        {
+          "variable": "trial_type values (d3, d9, d24, n3, n9, n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README defines six experimental conditions: decoy (d3/d9/d24) and no-decoy (n3/n9/n24) matched by option count 3/9/24"
+        },
+        {
+          "variable": "onset and duration columns (fixed 10s event duration)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2",
+          "note": "README: 'Each event has a duration of 10 seconds'"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for registration)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "task-choice_events.json (additional condition descriptions)",
+          "file": "task-choice_events.json",
+          "src_id": "e2",
+          "note": "README: 'Additional condition descriptions are provided in task-choice_events.json'"
+        }
+      ],
+      "skills": [
+        "Event-related GLM design (SPM/FSL/nilearn)",
+        "Contrast specification",
+        "Multiple comparisons correction",
+        "Basic experimental-design/causal-inference reasoning"
+      ],
+      "compute": "Standard CPU workstation for first-level and group-level GLM; no GPU needed",
+      "still_open_because": "The decoy-vs-no-decoy manipulation matched by set size is built into the task design and documented in the README, but the release contains no derivatives or contrast maps, so this causal comparison has not been run."
+    },
+    {
+      "id": "ds008066-overload-target-mapping",
+      "lens": "neuromodulation",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "question_en": "Within the six documented conditions (three set sizes x decoy/no-decoy), does activity in a priori decision-related regions (e.g., dorsolateral prefrontal / anterior cingulate cortex, defined from each subject's T1w) increase parametrically as the number of options rises from 3 to 9 to 24 -- identifying a candidate biomarker region for future neuromodulation (e.g., TMS) studies of choice overload/decision fatigue?",
+      "question_es": "Dentro de las seis condiciones documentadas (tres tamaños de conjunto x señuelo/sin señuelo), ¿la actividad en regiones de decisión definidas a priori (p. ej., corteza prefrontal dorsolateral / cingulada anterior, delimitadas a partir de la T1 de cada sujeto) aumenta de forma paramétrica al pasar de 3 a 9 y a 24 opciones, identificando una región biomarcadora candidata para futuros estudios de neuromodulación (p. ej., TMS) sobre sobrecarga de elección/fatiga de decisión?",
+      "required_variables": [
+        {
+          "variable": "trial_type with set-size levels nested in decoy/no-decoy (d3/d9/d24, n3/n9/n24)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        },
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for ROI/parcellation)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "task-choice_events.json (condition descriptions)",
+          "file": "task-choice_events.json",
+          "src_id": "e2"
+        }
+      ],
+      "skills": [
+        "ROI-based fMRI analysis",
+        "Parametric modulation GLM",
+        "nilearn/SPM/FSL",
+        "Literature review of decision-fatigue neuroanatomy"
+      ],
+      "compute": "CPU workstation; no GPU required",
+      "still_open_because": "No published analysis of this raw-only release has tested a parametric option-count effect as a candidate neuromodulation target; the six-condition design documented in the README is well suited to this but currently unexploited."
+    },
+    {
+      "id": "ds008066-foundation-model-transfer",
+      "lens": "foundation-models",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "question_en": "Can a publicly available pretrained fMRI foundation model, fine-tuned on a small subset of this dataset's 40 participants, few-shot-decode choice-set size and decoy condition from held-out participants' BOLD runs better than a model trained from scratch on this dataset alone?",
+      "question_es": "¿Puede un modelo de fundación de fMRI disponible públicamente, ajustado (fine-tuned) con un pequeño subconjunto de los 40 participantes de este dataset, decodificar en modo few-shot el tamaño del conjunto de opciones y la condición de señuelo en participantes no vistos, con mejor desempeño que un modelo entrenado desde cero solo con este dataset?",
+      "required_variables": [
+        {
+          "variable": "BOLD functional runs (3 per subject)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_bold.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "single-band reference images (for realistic preprocessing/distortion correction pipeline)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_sbref.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "T1w anatomical image (for spatial normalization into the foundation model's expected space)",
+          "file": "sub-<ID>/anat/sub-<ID>_T1w.nii.gz",
+          "src_id": "e2"
+        },
+        {
+          "variable": "trial_type labels (fine-tuning/evaluation targets)",
+          "file": "sub-<ID>/func/sub-<ID>_task-choice_run-<N>_events.tsv",
+          "src_id": "e2"
+        }
+      ],
+      "skills": [
+        "Transfer learning / fine-tuning pretrained neuroimaging models",
+        "PyTorch",
+        "fMRI preprocessing to a standard template space",
+        "Few-shot evaluation design"
+      ],
+      "compute": "Single consumer/lab GPU (16-24GB VRAM) for fine-tuning; CPU preprocessing beforehand",
+      "still_open_because": "This is a brand-new (2026-06-29) raw release with no derivatives or published analyses yet, so no one has tested whether existing fMRI foundation models transfer to its specific decoy/choice-overload task."
+    }
+  ]
+}

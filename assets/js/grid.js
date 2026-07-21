@@ -19,7 +19,11 @@ export function createGrid({ root, statusEl, emptyEl, headingEl, strings, countK
     for (const row of JSON.parse(island.textContent)) index.set(row.id, row.hay);
   }
 
-  const values = (card, attr) => (card.dataset[attr] || '').split(/\s+/).filter(Boolean);
+  // Separador '|' y NO espacios: una habilidad como
+  // "leave-subject-out cross-validation" contiene espacios, así que separar
+  // por espacio la partía en tokens y el chip no casaba nunca. El filtro de
+  // habilidades estaba roto al 100% por esto.
+  const values = (card, attr) => (card.dataset[attr] || '').split('|').filter(Boolean);
 
   function matches(card, state) {
     for (const [key, cfg] of Object.entries(FACETS)) {

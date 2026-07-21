@@ -1,0 +1,160 @@
+{
+  "dataset_id": "openneuro-ds008037",
+  "projects": [
+    {
+      "id": "ds008037-tep-site-signatures",
+      "lens": "neuromodulation",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "skills": [
+        "TMS-EEG preprocessing (TESA/EEGLAB)",
+        "TMS-artifact and muscle-artifact rejection",
+        "ERP/TEP quantification",
+        "basic supervised classification (e.g. linear SVM, LDA)"
+      ],
+      "compute": "Laptop/workstation; classical EEG pipeline, no GPU required",
+      "question_en": "Do TMS-evoked EEG potentials (TEPs) show distinct spatiotemporal signatures across the three cortical stimulation sites (prefrontal, premotor, parietal) compared with the shoulder control condition, and can a simple classifier decode which site was stimulated from single-trial TEPs?",
+      "question_es": "¿Los potenciales evocados por TMS (TEPs) en el EEG muestran firmas espaciotemporales distintas entre los tres sitios de estimulación cortical (prefrontal, premotora, parietal) frente a la condición control de hombro, y puede un clasificador simple decodificar qué sitio fue estimulado a partir de los TEPs de ensayo único?",
+      "required_variables": [
+        {
+          "variable": "tmseeg recordings labeled by stimulation site (prefrontal cortex / premotor cortex / parietal cortex / shoulder control)",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "EEG modality flag confirming eeg data type is present for the tmseeg task",
+          "evidence": "\"Modalities: eeg, beh\" / \"Tasks: TMS-EEG, Working memory, Resting state...\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Most public TMS-EEG releases include only one or two stimulation sites; a within-subject 3-site-plus-control design across 123 subjects is unusually well powered for site-specific TEP decoding, and this exact release has not yet been analyzed in published work (dataset created 2026-06-26)."
+    },
+    {
+      "id": "ds008037-tms-causal-site-effect",
+      "lens": "causal",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "skills": [
+        "causal contrast / quasi-experimental design",
+        "TEP amplitude and global mean field power quantification",
+        "linear mixed-effects modeling",
+        "multiple-comparisons correction across sites/electrodes"
+      ],
+      "compute": "Laptop/workstation; classical EEG pipeline, no GPU required",
+      "question_en": "Using the shoulder stimulation as a built-in sham-like control, what is the causal effect of prefrontal, premotor, and parietal TMS on evoked cortical EEG activity once the peripheral (somatosensory/auditory) contamination common to all four sites is subtracted out?",
+      "question_es": "Usando la estimulación en el hombro como control tipo sham incorporado, ¿cuál es el efecto causal de la TMS prefrontal, premotora y parietal sobre la actividad cortical evocada en el EEG una vez restada la contaminación periférica (somatosensorial/auditiva) común a los cuatro sitios?",
+      "required_variables": [
+        {
+          "variable": "tmseeg recordings at the three active cortical sites (prefrontal, premotor, parietal)",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "tmseeg recordings at the shoulder control site, used as the causal comparator",
+          "evidence": "\"...and shoulder as a control condition\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "TMS-EEG papers typically report per-site evoked responses descriptively but rarely exploit an explicit peripheral-control condition to formally isolate the cortical-specific causal component from generic sensory confounds, which this dataset's design permits directly."
+    },
+    {
+      "id": "ds008037-eeg-behavior-wm-factor",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "skills": [
+        "EEG spectral/ERP feature extraction",
+        "behavioral scoring and cleaning",
+        "factor analysis / PCA / structural equation modeling",
+        "basic statistics"
+      ],
+      "compute": "Laptop; no GPU required",
+      "question_en": "Can EEG features from the working-memory task be combined with behavioral scores from the multi-task cognitive battery (n-back, operation span, symmetry span, backward digit span) to build a single latent multimodal factor of working-memory capacity that outperforms either modality alone?",
+      "question_es": "¿Se pueden combinar las características de EEG de la tarea de memoria de trabajo con las puntuaciones conductuales de la batería cognitiva multitarea (n-back, operation span, symmetry span, backward digit span) para construir un único factor latente multimodal de capacidad de memoria de trabajo que supere a cada modalidad por separado?",
+      "required_variables": [
+        {
+          "variable": "working-memory EEG and behavioural data (workingmemory task)",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "behavioral battery scores: n-back (nback), operation span (opn), symmetry span (sym), backwards digit span (bds)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising ... backwards digit span (bds) ... n-back (nback), operation span (opn) ... and symmetry span (sym) tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Working-memory EEG and independent behavioral WM span tasks are collected in the same 123 subjects here but were not designed together in most prior EEG-WM datasets, so a joint latent-factor analysis linking EEG and multi-task behavior is a genuinely open combination for this release."
+    },
+    {
+      "id": "ds008037-rest-eeg-generalization",
+      "lens": "generalization",
+      "difficulty": 3,
+      "effort_weeks": 9,
+      "skills": [
+        "resting-state EEG preprocessing",
+        "spectral/connectivity feature extraction",
+        "regression / regularized ML (ridge, elastic net)",
+        "cross-task validation design"
+      ],
+      "compute": "Laptop/workstation; no GPU required",
+      "question_en": "Does a resting-state EEG model trained to predict performance on the working-memory task generalize to predict performance on the separate behavioral battery tasks (n-back, operation span, symmetry span) that it never saw during training, i.e. is there a task-general EEG biomarker of working-memory capacity?",
+      "question_es": "¿Un modelo de EEG en reposo entrenado para predecir el rendimiento en la tarea de memoria de trabajo generaliza para predecir el rendimiento en las tareas conductuales independientes de la batería (n-back, operation span, symmetry span) que nunca vio durante el entrenamiento, es decir, existe un biomarcador de EEG general de la capacidad de memoria de trabajo?",
+      "required_variables": [
+        {
+          "variable": "de-identified resting-state EEG recordings (rest task)",
+          "evidence": "\"de-identified resting-state EEG recordings (rest)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "working-memory EEG+behavioral data (workingmemory task) used for the training target",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "held-out behavioral battery scores: n-back (nback), operation span (opn), symmetry span (sym)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising ... n-back (nback), operation span (opn) ... and symmetry span (sym) tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Cross-task generalization of resting-state EEG biomarkers is rarely tested within a single cohort because most public EEG datasets include only one WM-related task; this release's rest + WM-EEG + independent behavioral battery in the same 123 subjects is an uncommon setup for testing task-general vs. task-specific biomarkers."
+    },
+    {
+      "id": "ds008037-eeg-foundation-model",
+      "lens": "foundation-models",
+      "difficulty": 5,
+      "effort_weeks": 12,
+      "skills": [
+        "deep learning (PyTorch)",
+        "self-supervised learning (contrastive or masked-autoencoding objectives)",
+        "EEG signal preprocessing and epoching",
+        "linear probing / few-shot evaluation design"
+      ],
+      "compute": "GPU workstation or cloud GPU instance (e.g. single consumer GPU sufficient given ~123 subjects of EEG)",
+      "question_en": "Can a self-supervised EEG encoder pretrained jointly on the resting-state, working-memory, and TMS-EEG recordings from the same 123 subjects learn representations that transfer, via a simple linear probe, to predicting scores on the held-out behavioral battery tasks with only a handful of labeled subjects per task?",
+      "question_es": "¿Puede un codificador de EEG auto-supervisado, preentrenado conjuntamente con los registros de reposo, memoria de trabajo y TMS-EEG de los mismos 123 sujetos, aprender representaciones que transfieran, mediante una sonda lineal simple, a predecir las puntuaciones de las tareas conductuales de la batería no vistas, usando solo un puñado de sujetos etiquetados por tarea?",
+      "required_variables": [
+        {
+          "variable": "resting-state EEG recordings (rest task) across 123 subjects, for pretraining corpus",
+          "evidence": "\"de-identified resting-state EEG recordings (rest)\" and \"Number of subjects: 123\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "working-memory EEG recordings (workingmemory task), for pretraining corpus",
+          "evidence": "\"working-memory EEG and behavioural data (workingmemory)\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "TMS-EEG recordings (tmseeg task, all four sites), for pretraining corpus",
+          "evidence": "\"TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition\"",
+          "src_id": "e2"
+        },
+        {
+          "variable": "behavioral battery scores used as few-shot probe labels (e.g. sst, gng, sbs, clt, ort, bar)",
+          "evidence": "\"behavioural data from a multi-task cognitive battery comprising the bar (bar) ... colour (clt), go/no-go (gng) ... orientation (ort), symbol search (sbs), stop-signal (sst) ... tasks\"",
+          "src_id": "e2"
+        }
+      ],
+      "still_open_because": "Most EEG foundation-model work pretrains on large single-modality corpora (e.g. sleep or rest only); this dataset's within-subject combination of resting, task, and TMS-perturbed EEG from the same 123 individuals is a rare testbed for whether one pretrained encoder transfers across physiologically distinct EEG regimes to few-shot behavioral prediction, which has not yet been studied on this release."
+    }
+  ]
+}

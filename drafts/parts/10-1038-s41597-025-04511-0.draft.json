@@ -1,0 +1,269 @@
+{
+  "id": "10-1038-s41597-025-04511-0",
+  "name": "A neuroimaging dataset during sequential color qualia similarity judgments with and without reports",
+  "fields": {
+    "modality_primary": {
+      "value": "neuroimaging",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "A neuroimaging dataset during sequential color qualia similarity judgments with and without reports"
+        },
+        {
+          "src": "e1",
+          "quote": "In this study, we present the fMRI dataset that captures relational similarity judgments among two out of nine color qualia per trial from 35 participants."
+        }
+      ]
+    },
+    "diseases": {
+      "value": ["control"],
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": "Data are freely available at OpenNeuro, converted to BIDS 1.9.0 format, after removal of personally identifiable information. The Scientific Data article itself carries a CC BY-NC-ND 4.0 license per Crossref metadata, but no statement in the fetched evidence gives the OpenNeuro dataset's own reuse license.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "after personally identifiable information was removed"
+        },
+        {
+          "src": "e2",
+          "quote": "\"URL\": \"https://creativecommons.org/licenses/by-nc-nd/4.0\""
+        }
+      ]
+    },
+    "license": {
+      "value": null,
+      "needs": "OpenNeuro ds005684 dataset page/README (License field) — the fetched evidence only states the CC BY-NC-ND 4.0 license of the Scientific Data article (via Crossref), not a stated reuse license for the underlying OpenNeuro dataset itself",
+      "evidence": []
+    },
+    "cost": {
+      "value": "free",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "n_subjects": {
+      "value": "35 participants (17 male, 18 female; aged 21-59 years); 4 excluded for excessive head motion",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "Due to excessive head motion, we excluded four participants (see Technical Validation)."
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro ds005684 dataset page or a Methods passage giving explicit data-acquisition dates (only the publication date, 2025-03-06, and article-processing timestamps are present in the fetched evidence)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted structural MRI (MPRAGE)",
+        "Task-based multiband T2*-weighted BOLD fMRI (EPI)",
+        "Behavioral files (color similarity judgment responses)",
+        "Color vision test results (Ishihara test, ND-100 Hue test)",
+        "Questionnaire data (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II)"
+      ],
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Structural images were acquired using a T1-weighted magnetization-prepared rapid gradient-echo (MPRAGE) protocol"
+        },
+        {
+          "src": "e1",
+          "quote": "Functional images were acquired using a multiband, T2*-weighted gradient-echo echo planar imaging sequence"
+        },
+        {
+          "src": "e1",
+          "quote": "In the Behavior files, the results of the color comparison in the color similarity rating task conducted in the MRI scanner and the questionnaire results are stored."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        }
+      ]
+    },
+    "region": {
+      "value": "Japan (Chiba)",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "This consent process was approved by the Ethics Committee of the National Institutes for Quantum Science and Technology in Chiba, Japan, under approval number 18-028."
+        }
+      ]
+    },
+    "doi": {
+      "value": "10.18112/openneuro.ds005684.v1.0.0 (dataset); 10.1038/s41597-025-04511-0 (data descriptor)",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0"
+        },
+        {
+          "src": "e2",
+          "quote": "\"DOI\": \"10.1038/s41597-025-04511-0\""
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "An fMRI dataset from 35 healthy adults performing a one-back color similarity judgment task with report and no-report trial conditions, plus color vision tests (Ishihara, ND-100 Hue) and questionnaires (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II), converted to BIDS format and made freely available on OpenNeuro.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        },
+        {
+          "src": "e1",
+          "quote": "This dataset also includes a “no-report” condition in half of the trials to assess the impact of overt reporting."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Conjunto de datos de fMRI de 35 adultos sanos que realizaron una tarea de juicio de similitud de color tipo one-back con ensayos de reporte y de no-reporte, junto con pruebas de visión del color (Ishihara, ND-100 Hue) y cuestionarios (Edinburgh Handedness Inventory, State-Trait Anxiety Inventory, Beck Depression Inventory-II), convertido a formato BIDS y disponible libremente en OpenNeuro.",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        },
+        {
+          "src": "e1",
+          "quote": "All participants had no history of neurological or psychiatric disorders and did not take any medications that might interfere with task performance or fMRI data."
+        },
+        {
+          "src": "e1",
+          "quote": "This dataset also includes a “no-report” condition in half of the trials to assess the impact of overt reporting."
+        },
+        {
+          "src": "e1",
+          "quote": "We assessed participants’ color vision with the Ishihara test and the ND-100 Hue test."
+        },
+        {
+          "src": "e1",
+          "quote": "The Edinburgh Handedness Inventory was used to assess handedness"
+        },
+        {
+          "src": "e1",
+          "quote": "The State-Trait Anxiety Inventory"
+        },
+        {
+          "src": "e1",
+          "quote": "Beck Depression Inventory-II"
+        },
+        {
+          "src": "e1",
+          "quote": "All DICOM files and behavior files were put in this folder after these files were converted to Brain Imaging Data Structure (BIDS) format version 1.9.0."
+        },
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository"
+        }
+      ]
+    },
+    "species": {
+      "value": "human",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "Thirty-five adults (17 male and 18 female participants, aged 21–59 years [ M ± SD : 40.6 ± 12.5 years]) were paid to participate in the study."
+        }
+      ]
+    }
+  },
+  "access_steps": [
+    {
+      "step_en": "Go to the dataset's OpenNeuro DOI page and download directly — open access, no account or registration required",
+      "step_es": "Ir a la página del DOI del dataset en OpenNeuro y descargar directamente — acceso abierto, sin cuenta ni registro",
+      "eta": "5-10 min",
+      "url": "https://doi.org/10.18112/openneuro.ds005684.v1.0.0",
+      "evidence": [
+        {
+          "src": "e1",
+          "quote": "All data in this dataset are freely available at the OpenNeuro repository (OpenNeuro: https://doi.org/10.18112/openneuro.ds005684.v1.0.0"
+        }
+      ]
+    }
+  ],
+  "starter_code": {
+    "python": "import nibabel as nib\nfrom pathlib import Path\n\n# Folder layout per the data descriptor (src e1):\n# \"ColorSimilarity_fMRI_exp\" top-level dir; \"sub-01\"-style participant\n# sub-directories; each has session dirs with \"anat\" and \"func\" data.\nroot = Path('ColorSimilarity_fMRI_exp')\nsub_dir = root / 'sub-01'\n\n# There are four session directories per participant (src e1).\nfor ses_dir in sorted(sub_dir.glob('ses-*')):\n    anat_files = list((ses_dir / 'anat').glob('*.nii.gz'))\n    func_files = list((ses_dir / 'func').glob('*.nii.gz'))\n    print(ses_dir.name, 'anat:', len(anat_files), 'func:', len(func_files))\n    if anat_files:\n        img = nib.load(str(anat_files[0]))\n        print('  anat shape:', img.shape)",
+    "r": "library(RNifti)\n\n# Folder layout per the data descriptor (src e1):\n# \"ColorSimilarity_fMRI_exp\" top-level dir; \"sub-01\"-style participant\n# sub-directories; each has session dirs with \"anat\" and \"func\" data.\nroot <- 'ColorSimilarity_fMRI_exp'\nsub_dir <- file.path(root, 'sub-01')\n\nses_dirs <- list.dirs(sub_dir, recursive = FALSE)\nses_dirs <- ses_dirs[grepl('ses-', basename(ses_dirs))]\n\nfor (ses_dir in ses_dirs) {\n  anat_files <- list.files(file.path(ses_dir, 'anat'), pattern = '\\\\.nii\\\\.gz$', full.names = TRUE)\n  func_files <- list.files(file.path(ses_dir, 'func'), pattern = '\\\\.nii\\\\.gz$', full.names = TRUE)\n  cat(basename(ses_dir), 'anat:', length(anat_files), 'func:', length(func_files), '\\n')\n  if (length(anat_files) > 0) {\n    img <- readNifti(anat_files[1])\n    print(dim(img))\n  }\n}"
+  }
+}

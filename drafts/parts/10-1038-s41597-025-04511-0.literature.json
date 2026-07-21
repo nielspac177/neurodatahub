@@ -1,0 +1,106 @@
+{
+  "dataset_doi": "10.18112/openneuro.ds005684.v1.0.0",
+  "data_descriptor_doi": "10.1038/s41597-025-04511-0",
+  "openalex_work_id": "https://openalex.org/W4408197500",
+  "resolution_note": "OpenAlex works?filter=cites: endpoint returned HTTP 402/'Insufficient budget' (rate-limited, resets at UTC midnight) in this environment; single-entity OpenAlex lookups worked. Fell back to Semantic Scholar Graph API (api.semanticscholar.org/graph/v1/paper/DOI:.../citations) as instructed for no-DOI cases, adapted here because the primary citation-list call failed. Semantic Scholar reports citationCount=10, matching the 10 records returned by the citations endpoint, so this is treated as the complete citing-works list.",
+  "n_citing_works": 10,
+  "citing_works": [
+    {
+      "title": "Systematic comparison of color representations between humans and deep neural networks: towards predicting human color perception in a vast color space",
+      "year": 2026,
+      "doi": "10.64898/2025.12.10.693611",
+      "authors": ["Nipun Ravindu Wickramanayaka", "Masafumi Oizumi"],
+      "task": "biomarker/representational-alignment (human-vs-DNN structural comparison)",
+      "method": "Gromov-Wasserstein Optimal Transport (GWOT) alignment of DNN embeddings to human color similarity structure",
+      "uses_dataset_directly": true
+    },
+    {
+      "title": "Measuring the Diversity of Qualia: Category-Theoretic Indices for Psychophysical Experimental Data",
+      "year": 2026,
+      "doi": "10.12688/f1000research.179638.1",
+      "authors": ["Kyoko Kusano", "Hayato Saigo", "Naotsugu Tsuchiya"],
+      "task": "subtyping (quantifying individual/group diversity of qualia structures)",
+      "method": "category-theoretic diversity indices (generalized magnitude, spread) applied to dissimilarity matrices",
+      "uses_dataset_directly": "likely (same paradigm's similarity-rating data)"
+    },
+    {
+      "title": "Common Phenomenal and Neural Substrate Geometry in Visual Motion Perception",
+      "year": 2026,
+      "doi": "10.1101/2025.10.01.679834",
+      "authors": ["Kallum Robinson", "A. Zeleznikow-Johnston", "Jiahao Wu", "Yumiko Yoshimura", "Naotsugu Tsuchiya"],
+      "task": "conceptual/methodological citation (qualia-structure paradigm extended to visual motion, not color)",
+      "method": "n/a - cites approach, not this dataset's data",
+      "uses_dataset_directly": false
+    },
+    {
+      "title": "A multi-level visual representation dataset for large-scale non-financial information disclosure",
+      "year": 2026,
+      "doi": "10.1038/s41597-026-06848-6",
+      "authors": ["Bingjie Li", "Binglong Xia", "Zehua Cheng", "Yitong Xu", "Zhao Duan"],
+      "task": "unrelated domain (corporate sustainability report visual analysis); appears to cite as a Scientific Data data-descriptor precedent",
+      "method": "n/a",
+      "uses_dataset_directly": false
+    },
+    {
+      "title": "Robust individual alignment of color qualia structures: toward a structure-based taxonomy of divergent color experiences",
+      "year": 2026,
+      "doi": "10.64898/2026.02.13.705699",
+      "authors": ["Y. Togashi", "Yuko Yotsumoto", "C. Hiramatsu", "Naotsugu Tsuchiya", "Masafumi Oizumi"],
+      "task": "subtyping (individual-to-individual color qualia structure alignment / taxonomy of color-neurotypical vs atypical clusters)",
+      "method": "unsupervised GWOT alignment on new 11-subject pairwise similarity ratings",
+      "uses_dataset_directly": "extends the same paradigm with new data; same lab"
+    },
+    {
+      "title": "Linking the structure of neuronal mechanisms to the structure of qualia",
+      "year": 2026,
+      "doi": "10.33735/phimisci.2025.11778",
+      "authors": ["Alexander Maier", "Naotsugu Tsuchiya"],
+      "task": "theoretical review (survey of structural approaches to qualia, cites the dataset/paradigm as an example)",
+      "method": "n/a - narrative review",
+      "uses_dataset_directly": false
+    },
+    {
+      "title": "Qualia structures collapse for geometric shapes, but not faces, when spatial attention is withdrawn",
+      "year": 2025,
+      "doi": "10.1093/nc/niaf053",
+      "authors": ["Elise G. Rowe", "Ken Takeda", "Masafumi Oizumi", "Joanita F. D'Souza", "J.V. van Boxtel", "Naotsugu Tsuchiya"],
+      "task": "biomarker/subtyping (attentional modulation of qualia-structure alignment accuracy)",
+      "method": "similarity-rating dual-task paradigm + GWOT alignment (same lab's paradigm, different stimulus sets)",
+      "uses_dataset_directly": false
+    },
+    {
+      "title": "On a confusion about there being two types of consciousness",
+      "year": 2025,
+      "doi": "10.1016/j.tics.2025.11.012",
+      "authors": ["L. Mudrik", "N. Faivre", "Michael Pitts", "Aaron Schurger"],
+      "task": "theoretical/conceptual citation (phenomenal vs access consciousness debate)",
+      "method": "n/a - opinion/theory piece",
+      "uses_dataset_directly": false
+    },
+    {
+      "title": "A large-scale heterogeneous 3D magnetic resonance brain imaging dataset for self-supervised learning (FOMO260K)",
+      "year": 2025,
+      "doi": "10.48550/arXiv.2506.14432",
+      "authors": ["Asbjørn Munk", "Stefano Cerri", "Jakob Ambsdorf", "et al."],
+      "task": "foundation-model (raw MRI aggregated as one of 910 public sources for SSL pretraining corpus)",
+      "method": "self-supervised pretraining corpus construction; not a qualia/consciousness analysis",
+      "uses_dataset_directly": "yes, but only the raw MRI volumes, not the color-qualia task/behavioral data"
+    },
+    {
+      "title": "An OpenMind for 3D Medical Vision Self-supervised Learning",
+      "year": 2024,
+      "doi": "10.1109/ICCV51701.2025.02213",
+      "authors": ["Tassilo Wald", "Constantin Ulrich", "Jonathan Suprijadi", "et al."],
+      "task": "foundation-model (114k brain MRI volumes aggregated for SSL pretraining/benchmarking)",
+      "method": "self-supervised pretraining corpus construction and benchmarking (CNN/Transformer)",
+      "uses_dataset_directly": "yes, but only the raw MRI volumes, not the color-qualia task/behavioral data"
+    }
+  ],
+  "dominant_tasks": [
+    "foundation-model pretraining corpus reuse (raw MRI aggregated into large-scale SSL datasets, unrelated to the color-qualia task itself)",
+    "color-qualia structural analysis / subtyping (individual-differences alignment, diversity quantification, attention effects) — mostly same-lab (Tsuchiya/Oizumi group) follow-ups",
+    "theoretical/conceptual citation (consciousness-structure reviews and opinion pieces, no direct data reuse)"
+  ],
+  "saturation": "low",
+  "saturation_rationale": "Only 10 citing works ~16 months post-publication. Of these, just 2-4 works actually reanalyze or extend the specific color-qualia similarity-judgment paradigm/data, and those are overwhelmingly from the originating lab (Tsuchiya, Oizumi and close collaborators) rather than independent external groups. Two additional citations reuse only the raw MRI volumes as anonymous pretraining material for unrelated self-supervised foundation-model corpora (FOMO260K, OpenMind), not the behavioral/report-vs-no-report qualia design. The remaining citations are theoretical/review pieces that cite the paradigm conceptually without touching the data. No external-validation, segmentation, outcome-prediction, or causal-inference use has yet appeared, and no independent group outside the original team has reanalyzed the with/without-report neuroimaging contrast. This indicates the dataset is still in an early, largely single-group exploitation phase with substantial white space for independent secondary analyses (e.g., decoding of qualia structure from the fMRI data itself, report-vs-no-report neural correlate analyses, or cross-lab replication)."
+}

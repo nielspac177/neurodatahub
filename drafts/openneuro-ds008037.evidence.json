@@ -1,0 +1,26 @@
+{
+  "id": "openneuro-ds008037",
+  "candidate": {
+    "title": "The neural dynamics of working memory and transcranial magnetic stimulation",
+    "url": "https://openneuro.org/datasets/ds008037",
+    "doi": "",
+    "date": "2026-06-26",
+    "venue": "OpenNeuro",
+    "source": "OpenNeuro",
+    "score": 26,
+    "discovered_by": "openneuro",
+    "discovered_at": "2026-07-21",
+    "possible_duplicate": null
+  },
+  "sources": [
+    {
+      "src_id": "e2",
+      "kind": "repository_record",
+      "url": "https://openneuro.org/datasets/ds008037",
+      "fetched_at": "2026-07-21",
+      "sha256": "409ad2333537656b930c0860c32ece36d78bb0669696e87ef7019e6768d1ef78",
+      "chars": 1174,
+      "text": "OpenNeuro dataset ds008037 (snapshot 1.0.0)\nName: The neural dynamics of working memory and transcranial magnetic stimulation\nAuthors: Mana Biabani, Nigel C. Rogasch\nLicense: CC0\nDatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0\nNumber of subjects: 123\nModalities: eeg, beh\nTasks: TMS-EEG, Working memory, Resting state, smt, opn, sym, SymbolSearch, CLT, ort, BackwardsDigitSpan, StopSignal, Go/No-Go\nSessions: \nTotal files: 7786\nSize bytes: 105318399253\nCreated: 2026-06-26T01:54:51.365Z\n\nREADME:\nThe dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks. Structural MRI data were collected as part of the broader study but are not included in this OpenNeuro release.\n\n\n"
+    }
+  ]
+}

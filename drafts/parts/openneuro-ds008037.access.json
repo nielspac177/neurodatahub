@@ -1,0 +1,8 @@
+{
+  "id": "openneuro-ds008037",
+  "access": "open",
+  "license": "CC0",
+  "confidence": "high",
+  "evidence_quote": "License: CC0",
+  "reasoning": "The repository record explicitly states the dataset's license is CC0 (Creative Commons Zero / public domain dedication). CC0 imposes no access restrictions, no account/registration, and no approval step — data can be downloaded immediately by anyone, consistent with OpenNeuro's standard open-access model. No separate access-restriction statement (e.g., DUA, credentialing requirement) appears anywhere in the evidence."
+}

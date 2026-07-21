@@ -1,0 +1,152 @@
+{
+  "id": "openneuro-ds008064",
+  "dataset_title": "Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression",
+  "evidence_note": "Only src e2 (repository_record) has non-empty text; src e1 (landing_page) was fetched empty (chars:0) and grounds nothing. All required_variables below cite e2. An equity-lens project (subgroup by sex/age/ethnicity) was deliberately omitted: no demographic breakdown is shown in the evidence, so it cannot be grounded.",
+  "projects": [
+    {
+      "id": "ds008064-neuromod-rtms-response",
+      "lens": "neuromodulation",
+      "question_en": "In this cohort of 28 patients with treatment-resistant depression, can pre-treatment (session 1) resting-state functional connectivity distinguish participants who show a favorable clinical trajectory after active rTMS from those who do not, while that same connectivity pattern fails to separate outcomes within the sham arm (a specificity check for a stimulation-linked biomarker)?",
+      "question_es": "En esta cohorte de 28 pacientes con depresión resistente al tratamiento, ¿puede la conectividad funcional en reposo antes del tratamiento (sesión 1) distinguir a quienes tendrán una trayectoria clínica favorable tras rTMS activa de quienes no la tendrán, mientras ese mismo patrón de conectividad no logra separar el desenlace dentro del brazo sham (una prueba de especificidad para un biomarcador ligado a la estimulación)?",
+      "difficulty": 3,
+      "effort_weeks": 12,
+      "required_variables": [
+        {
+          "name": "Resting-state fMRI, session 1 (pre-treatment)",
+          "src_id": "e2",
+          "evidence_quote": "Functional MRI (fMRI): ... Resting-state fMRI"
+        },
+        {
+          "name": "rTMS arm assignment (active vs sham)",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy"
+        },
+        {
+          "name": "T1-weighted anatomical MRI (for registration/parcellation)",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI"
+        }
+      ],
+      "skills": ["fMRI preprocessing (fMRIPrep)", "functional connectivity", "small-N machine learning classification", "BIDS handling"],
+      "compute": "Single workstation or lab cluster; fMRIPrep container + scikit-learn; no GPU strictly required",
+      "still_open_because": "Dataset uploaded 2026-06-29; no published analyses are indexed yet. A sham-controlled, stimulation-specific resting-state biomarker of rTMS response has not been established in this particular cohort."
+    },
+    {
+      "id": "ds008064-pre-post-connectivity-change",
+      "lens": "causal",
+      "question_en": "Does the six-week course of rTMS produce a significantly larger session-1-to-session-2 change in structural (DTI-derived white-matter) and functional (resting-state) connectivity of fronto-limbic circuits in the active-rTMS arm compared to the sham arm, consistent with a causal treatment effect rather than a purely correlational one?",
+      "question_es": "¿El curso de seis semanas de rTMS produce un cambio de sesión 1 a sesión 2 significativamente mayor en la conectividad estructural (tractografía DTI) y funcional (reposo) de circuitos frontolímbicos en el brazo de rTMS activa comparado con el brazo sham, consistente con un efecto causal del tratamiento y no solo correlacional?",
+      "difficulty": 4,
+      "effort_weeks": 14,
+      "required_variables": [
+        {
+          "name": "Diffusion-weighted imaging (DTI), sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Diffusion-weighted imaging (DTI) ... Sessions: 1, 2"
+        },
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI ... Sessions: 1, 2"
+        },
+        {
+          "name": "rTMS arm assignment (active vs sham)",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS)"
+        }
+      ],
+      "skills": ["DTI tractography", "longitudinal image registration", "linear mixed-effects modeling", "difference-in-differences design"],
+      "compute": "Moderate: tractography is compute-heavy, multi-core workstation, on the order of days for 28 subjects x 2 sessions",
+      "still_open_because": "The dataset explicitly collected data 'before and after the treatment protocol' but no pre/post causal analysis of active-vs-sham structural-functional change has yet been published on it."
+    },
+    {
+      "id": "ds008064-multimodal-fusion-response",
+      "lens": "multimodal",
+      "question_en": "Does fusing structural MRI, DTI, and task-fMRI from a goal-priming paradigm (match/mismatch conditions) with resting-state fMRI improve prediction of clinical response to combined rTMS+psychotherapy over any single modality alone, in this 28-subject treatment-resistant-depression cohort?",
+      "question_es": "¿La fusión de MRI estructural, DTI y fMRI de tarea (paradigma de priming de metas, condiciones match/mismatch) con fMRI en reposo mejora la predicción de la respuesta clínica a rTMS+psicoterapia combinadas frente a cualquier modalidad única, en esta cohorte de 28 sujetos con depresión resistente al tratamiento?",
+      "difficulty": 4,
+      "effort_weeks": 15,
+      "required_variables": [
+        {
+          "name": "T1-weighted and T2-weighted anatomical MRI",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI\n- T2-weighted anatomical MRI"
+        },
+        {
+          "name": "Diffusion-weighted imaging (DTI)",
+          "src_id": "e2",
+          "evidence_quote": "Diffusion-weighted imaging (DTI)"
+        },
+        {
+          "name": "Task fMRI, goal priming task with conditions Prevmatch, Promatch, Promismatch, Prevmismatch",
+          "src_id": "e2",
+          "evidence_quote": "Tasks: Prevmatch, Promatch, Promismatch, rest, Prevmismatch ... Functional MRI (fMRI): - Goal priming task"
+        },
+        {
+          "name": "Resting-state fMRI",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI"
+        }
+      ],
+      "skills": ["multimodal feature fusion", "cross-validation with small N", "dimensionality reduction", "task-fMRI first-level modeling"],
+      "compute": "Single GPU workstation helpful for task-fMRI modeling; classical fusion/classification steps run on CPU",
+      "still_open_because": "The dataset offers four MRI modalities plus a task paradigm rarely combined in the same TRD-rTMS cohort; no fused multimodal predictor of treatment response has been reported for it yet."
+    },
+    {
+      "id": "ds008064-foundation-model-finetune",
+      "lens": "foundation-models",
+      "question_en": "Can fine-tuning an existing pretrained 3D-MRI or fMRI foundation/self-supervised model on this dataset's structural and resting-state scans yield better treatment-response prediction than training a model from scratch on only these 28 subjects, quantifying the data-efficiency gain from foundation-model transfer in a very small clinical cohort?",
+      "question_es": "¿El ajuste fino (fine-tuning) de un modelo de fundación o auto-supervisado preentrenado en MRI 3D/fMRI, aplicado a las resonancias estructurales y de reposo de este dataset, produce mejor predicción de la respuesta al tratamiento que entrenar un modelo desde cero solo con estos 28 sujetos, cuantificando la ganancia de eficiencia de datos por transferencia en una cohorte clínica muy pequeña?",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "required_variables": [
+        {
+          "name": "T1-weighted structural MRI (encoder fine-tuning input)",
+          "src_id": "e2",
+          "evidence_quote": "T1-weighted anatomical MRI"
+        },
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI ... Sessions: 1, 2"
+        },
+        {
+          "name": "rTMS arm assignment (active vs sham) as the fine-tuning label",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS)"
+        }
+      ],
+      "skills": ["transfer learning", "PyTorch", "working with pretrained neuroimaging foundation models", "leave-one-out cross-validation for small samples"],
+      "compute": "Single consumer/lab GPU sufficient (fine-tuning only, not pretraining from scratch)",
+      "still_open_because": "This N=28 cohort is a natural low-data stress test for foundation-model transfer, but no such benchmark has yet been run on this specific, newly released dataset."
+    },
+    {
+      "id": "ds008064-cross-arm-generalization",
+      "lens": "generalization",
+      "question_en": "Do resting-state connectivity features that predict rTMS response when learned in the Self-System-Therapy psychotherapy arm generalize to predict response in the mindfulness-exercise arm of the same trial (and vice versa), or is the biomarker specific to the psychotherapy context it was paired with?",
+      "question_es": "¿Las características de conectividad en reposo que predicen la respuesta a rTMS cuando se aprenden en el brazo de Terapia del Sistema del Yo (Self-System Therapy) generalizan para predecir la respuesta en el brazo de ejercicios de mindfulness del mismo ensayo (y viceversa), o el biomarcador es específico del contexto psicoterapéutico con el que se combinó?",
+      "difficulty": 3,
+      "effort_weeks": 11,
+      "required_variables": [
+        {
+          "name": "Psychotherapy arm assignment (Self-System Therapy vs mindfulness exercises)",
+          "src_id": "e2",
+          "evidence_quote": "Name: Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression"
+        },
+        {
+          "name": "Resting-state fMRI, sessions 1 and 2",
+          "src_id": "e2",
+          "evidence_quote": "Resting-state fMRI ... Sessions: 1, 2"
+        },
+        {
+          "name": "rTMS arm assignment (active vs sham)",
+          "src_id": "e2",
+          "evidence_quote": "received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS)"
+        }
+      ],
+      "skills": ["cross-domain/held-out-group validation", "functional connectivity feature extraction", "small-N statistics"],
+      "compute": "Standard workstation, no GPU required",
+      "still_open_because": "The trial pairs rTMS with two distinct psychotherapies but the design (and evidence) do not indicate any cross-arm transfer analysis of predictive biomarkers has been done."
+    }
+  ]
+}

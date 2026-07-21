@@ -1,0 +1,92 @@
+{
+  "dataset_id": "10-1038-s41597-025-04511-0",
+  "dataset_title": "A neuroimaging dataset during sequential color qualia similarity judgments with and without reports",
+  "openneuro_accession": "ds005684",
+  "projects": [
+    {
+      "id": "p1-report-vs-noreport-causal-isolation",
+      "lens": "causal",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "question_en": "Using the dataset's built-in report vs. no-report trial manipulation as a quasi-experimental contrast, can a multivoxel pattern classifier trained to decode which of the 9 target colors was shown from occipitotemporal (V4/V8) BOLD activity in report trials also decode color identity in no-report trials — while a parallel classifier trained on prefrontal cortex activity fails to generalize the same way? This would separate brain regions carrying color-qualia information from regions that only carry information about the act of reporting.",
+      "question_es": "Usando la manipulación de ensayos con/sin reporte incorporada en el dataset como contraste cuasi-experimental, ¿puede un clasificador multivóxel entrenado para decodificar cuál de los 9 colores objetivo se presentó, a partir de la actividad BOLD occipitotemporal (V4/V8) en ensayos con reporte, también decodificar la identidad del color en ensayos sin reporte — mientras un clasificador paralelo entrenado sobre la corteza prefrontal no logra generalizar de la misma manera? Esto permitiría separar las regiones cerebrales que portan información sobre la qualia de color de aquellas que solo portan información sobre el acto de reportar.",
+      "required_variables": [
+        {"variable": "task fMRI BOLD runs labeled by trial type", "file_or_field": "sub-XX/ses-YY/func/*_task-*_bold.nii.gz (862 volumes/run, 4 runs/session, multiband EPI)", "src": "e1"},
+        {"variable": "per-trial cue indicating report (circle) vs. no-report (square) condition and target color hue (0/40/80/.../320 deg HSV)", "file_or_field": "sub-XX/ses-YY/func/*_events.tsv — trial onsets for cue, target color, reminder color, response", "src": "e1"},
+        {"variable": "anatomical T1w image for coregistration and V4/V8 ROI definition", "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz (MPRAGE, 1mm iso)", "src": "e1"},
+        {"variable": "six head-motion parameters / framewise displacement for nuisance regression and run-level QC", "file_or_field": "realignment motion parameters and FD, computed per functional run", "src": "e1"}
+      ],
+      "skills": ["fMRI preprocessing (SPM12/fMRIPrep)", "MVPA/decoding in Python (nilearn, scikit-learn)", "BIDS data handling", "basic statistics (permutation testing)"],
+      "compute": "Laptop/workstation, no GPU required; ~20-30GB local storage per few subjects (full 35-subject BIDS dataset is larger); SPM12 or fMRIPrep + nilearn.",
+      "still_open_because": "The original paper only ran a univariate GLM with 40 regressors (report vs. no-report as separate conditions) and did not attempt multivariate decoding or cross-condition (report -> no-report) generalization testing, which is the analysis that would directly test whether qualia-related information is dissociable from report-related information at the pattern level."
+    },
+    {
+      "id": "p2-cross-participant-decoder-generalization",
+      "lens": "generalization",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "question_en": "If a classifier is trained to predict trial-by-trial color-dissimilarity ratings (the -4 to +4 similarity scale) from occipitotemporal BOLD patterns using a subset of the 31 valid participants, how well does it generalize to held-out, unseen participants (leave-N-subjects-out), compared to a within-subject decoder? Is the neural code for color qualia shared enough across people to support a population-level (rather than per-person) decoder?",
+      "question_es": "Si se entrena un clasificador para predecir las calificaciones de disimilitud de color ensayo a ensayo (la escala de similitud de -4 a +4) a partir de patrones BOLD occipitotemporales usando un subconjunto de los 31 participantes válidos, ¿qué tan bien generaliza a participantes nuevos y no vistos (dejar-N-participantes-fuera), en comparación con un decodificador intra-sujeto? ¿Es el código neural de la qualia de color suficientemente compartido entre personas como para sustentar un decodificador poblacional (en lugar de uno individual)?",
+      "required_variables": [
+        {"variable": "task fMRI BOLD runs for all 35 participants (31 after motion exclusion)", "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz across 4 sessions x 4 runs each", "src": "e1"},
+        {"variable": "per-trial similarity rating (-4 to 4, converted to 0-7 dissimilarity) collected via MRI-compatible trackball", "file_or_field": "sub-XX/ses-YY/func/*_events.tsv response field", "src": "e1"},
+        {"variable": "grand-average dissimilarity scores for the 45 color pairs (behavioral ground-truth/validation target)", "file_or_field": "Table 4: grand average of dissimilarity scores for 45 color pairs", "src": "e1"},
+        {"variable": "demographic table for stratifying held-out generalization (age 21-59, 17M/18F)", "file_or_field": "Table 1: demographic information for all participants", "src": "e1"}
+      ],
+      "skills": ["fMRI preprocessing", "cross-validation design (leave-N-subjects-out)", "MVPA/regression decoding", "Python/nilearn or MATLAB"],
+      "compute": "Workstation, no GPU strictly required; moderate storage for multi-subject BOLD data; standard scikit-learn/nilearn pipeline.",
+      "still_open_because": "The paper only checked within-task consistency of dissimilarity ratings across runs (Wilcoxon signed-rank on 1st vs. 2nd half of the task, Table 4) and did not test whether a decoder trained on some participants' brain data predicts other, unseen participants' color-similarity judgments — the actual cross-person generalization question."
+    },
+    {
+      "id": "p3-behavioral-neural-individual-differences",
+      "lens": "multimodal",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Do individual differences in perceptual color-discrimination ability, measured outside the scanner with the ND-100 Hue test, and in color-naming consistency (verbal + forced-choice naming of the 9 experimental colors) predict the shape of each participant's neural color-similarity representation (representational dissimilarity structure) in V4/V8, combining a behavioral test, a naming test, and fMRI that the paper reports separately but never statistically links together?",
+      "question_es": "¿Las diferencias individuales en la capacidad de discriminación perceptual de color, medidas fuera del escáner con la prueba ND-100 Hue, y en la consistencia de nombrar los colores (nombrado verbal + selección forzada de los 9 colores experimentales) predicen la forma de la representación neural de similitud de color de cada participante (estructura de disimilitud representacional) en V4/V8, combinando una prueba conductual, una prueba de nombrado y fMRI que el artículo reporta por separado pero nunca vincula estadísticamente?",
+      "required_variables": [
+        {"variable": "ND-100 Hue test discrimination score per participant (color recognition capability, summary measure)", "file_or_field": "Table 1, column 'ND-100 test'; raw hue-sorting behavior stored in Behavior files", "src": "e1"},
+        {"variable": "post-scan color-naming test results: free verbal naming and forced-choice naming (from red/pink/orange/yellow/green/blue/purple/brown/white/gray/black) for the 9 colors", "file_or_field": "Table 2: results of post-scan tests for all participants", "src": "e1"},
+        {"variable": "task fMRI BOLD and per-trial color-similarity ratings for RSA/RDM construction", "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz and *_events.tsv", "src": "e1"},
+        {"variable": "anatomical T1w for V4/V8 ROI definition", "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz", "src": "e1"}
+      ],
+      "skills": ["representational similarity analysis (RSA)", "fMRI preprocessing", "correlation/regression statistics", "Python (nilearn/rsatoolbox) or MATLAB"],
+      "compute": "Laptop-class compute sufficient; RSA on ROI-extracted patterns is lightweight once preprocessing is done.",
+      "still_open_because": "The Technical Validation section reports ND-100 scores and color-naming results purely as descriptive summary tables (Table 1, Table 2) and never correlates them with the fMRI similarity-judgment data — the brain-behavior link across these two modalities the paper collected is left unexploited."
+    },
+    {
+      "id": "p4-demographic-subgroup-differences",
+      "lens": "equity",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "question_en": "Do sex, age, or handedness (Edinburgh Handedness Inventory laterality quotient) moderate the magnitude or hemispheric lateralization of report-related prefrontal activity, or the strength of occipitotemporal color-qualia decoding, after controlling for trait anxiety (STAI) and depressive symptoms (BDI-II) as covariates — i.e., is the 'reporting' signature the paper describes uniform across the sampled subgroups, or does it differ by sex/age/handedness?",
+      "question_es": "¿El sexo, la edad o la lateralidad manual (cociente de lateralidad del Edinburgh Handedness Inventory) moderan la magnitud o la lateralización hemisférica de la actividad prefrontal relacionada con el reporte, o la fuerza de la decodificación de la qualia de color occipitotemporal, controlando por ansiedad rasgo (STAI) y síntomas depresivos (BDI-II) como covariables — es decir, ¿la firma de 'reporte' que describe el artículo es uniforme entre los subgrupos muestreados, o difiere según sexo/edad/lateralidad?",
+      "required_variables": [
+        {"variable": "demographics: age (21-59 yrs) and sex (17 male / 18 female)", "file_or_field": "Table 1: demographic information for all participants", "src": "e1"},
+        {"variable": "Edinburgh Handedness Inventory laterality quotient per participant", "file_or_field": "Table 1 / questionnaire results stored in Behavior files", "src": "e1"},
+        {"variable": "State-Trait Anxiety Inventory (trait score) and Beck Depression Inventory-II score as covariates", "file_or_field": "Table 1, STAI trait mean 43.1±10.5, BDI mean 7.9±6.8", "src": "e1"},
+        {"variable": "task fMRI BOLD contrasting report vs. no-report trials, per participant", "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz and *_events.tsv (report/no-report cue)", "src": "e1"}
+      ],
+      "skills": ["fMRI group-level (second-level) GLM", "moderation/regression statistics", "basic epidemiology of subgroup analysis", "SPM12 or FSL"],
+      "compute": "Workstation-class; standard second-level SPM/FSL group analysis with covariates, no GPU needed.",
+      "still_open_because": "The paper reports demographic and questionnaire variables purely descriptively (Tables 1-2) as sample characterization and quality-control checks (e.g., excluding high-motion participants); it never tests them as moderators of the report vs. no-report neural contrast, leaving subgroup (sex/age/handedness) heterogeneity in the reporting signature unexamined."
+    },
+    {
+      "id": "p5-foundation-model-few-shot-decoding",
+      "lens": "foundation-models",
+      "difficulty": 5,
+      "effort_weeks": 12,
+      "question_en": "Can a pretrained fMRI/BOLD foundation-model encoder, fine-tuned with only a handful of runs from a few of the 31 valid participants, decode trial-by-trial color-dissimilarity ratings (the -4 to +4 similarity scale converted to 0-7 dissimilarity) from held-out runs as accurately as a classical voxel-wise GLM/MVPA model trained on all available data — testing whether self-supervised pretraining reduces the amount of subject-specific data needed for this consciousness/qualia decoding task?",
+      "question_es": "¿Puede un codificador de modelo de fundación pre-entrenado para fMRI/BOLD, ajustado con solo un puñado de corridas de unos pocos de los 31 participantes válidos, decodificar las calificaciones de disimilitud de color ensayo a ensayo (la escala de similitud de -4 a +4 convertida a disimilitud de 0-7) en corridas no vistas con la misma precisión que un modelo GLM/MVPA clásico por vóxel entrenado con todos los datos disponibles — probando si el pre-entrenamiento auto-supervisado reduce la cantidad de datos específicos por sujeto necesarios para esta tarea de decodificación de qualia/consciencia?",
+      "required_variables": [
+        {"variable": "full 4D preprocessed BOLD time series, 4 runs x 862 volumes/run per session, per participant", "file_or_field": "sub-XX/ses-YY/func/*_bold.nii.gz (TR=1000ms, multiband factor 3, 3.2mm iso)", "src": "e1"},
+        {"variable": "trial event files with target color hue, report/no-report condition, and dissimilarity ratings", "file_or_field": "sub-XX/ses-YY/func/*_events.tsv", "src": "e1"},
+        {"variable": "anatomical T1w for co-registration/normalization to a common space required by most pretrained encoders", "file_or_field": "sub-XX/ses-YY/anat/*_T1w.nii.gz normalized to MNI (per paper's own SPM12 pipeline)", "src": "e1"},
+        {"variable": "per-run tSNR and framewise displacement QC metrics, to select/exclude low-quality runs before fine-tuning", "file_or_field": "tSNR and FD computed per functional run in Technical Validation", "src": "e1"}
+      ],
+      "skills": ["deep learning (PyTorch)", "transfer learning / fine-tuning pretrained neuroimaging models", "fMRI preprocessing to MNI space", "model evaluation and baseline comparison"],
+      "compute": "GPU required for fine-tuning (single consumer GPU, e.g. RTX 3090/4090, sufficient); ~50-100GB storage for full 35-subject preprocessed BIDS dataset.",
+      "still_open_because": "The paper's own analysis is a hand-specified univariate GLM with 40 regressors; it does not use any pretrained representation-learning or foundation-model approach, and does not report few-shot / low-data decoding performance, leaving open whether modern self-supervised BOLD encoders can decode this dataset's qualia-similarity structure with less subject-specific data than classical methods."
+    }
+  ]
+}

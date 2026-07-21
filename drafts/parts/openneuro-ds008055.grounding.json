@@ -1,0 +1,79 @@
+{
+  "verdicts": [
+    {
+      "field": "modality_primary",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"Modalities: mri\" appears verbatim in e2 and directly establishes modality_primary = mri."
+    },
+    {
+      "field": "data_types",
+      "verdict": "SUPPORTED",
+      "note": "Quote matches e2 verbatim (\"The release includes T1w anatomical scans, resting-state fMRI, and task fMRI runs related to scientific creativity and verbal creativity.\") and supports the three listed data types."
+    },
+    {
+      "field": "diseases",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an evidence-gap rationale rather than an asserted claim; the source text indeed never gives a health/diagnostic status, only task names, so the null + needs statement is accurate."
+    },
+    {
+      "field": "doi",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"DatasetDOI: doi:10.18112/openneuro.ds008055.v1.0.4\" appears verbatim in e2 and establishes the DOI."
+    },
+    {
+      "field": "license",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"License: CC0\" appears verbatim in e2 and directly establishes the license."
+    },
+    {
+      "field": "provider",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"OpenNeuro dataset ds008055 (snapshot 1.0.4)\" appears verbatim in e2 and establishes provider = OpenNeuro."
+    },
+    {
+      "field": "region",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an evidence-gap rationale; e2 indeed contains no country/city/institution field, so the null + needs statement is accurate."
+    },
+    {
+      "field": "n_subjects",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"Number of subjects: 108\" appears verbatim in e2 and directly establishes n_subjects."
+    },
+    {
+      "field": "years",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an evidence-gap rationale; e2 only contains an upload timestamp (Created: 2026-06-28T15:33:11.402Z), not an acquisition date range, so the null + needs statement is accurate."
+    },
+    {
+      "field": "species",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an evidence-gap rationale; e2 never states \"human\" verbatim (it is only implied by MRI/participant language), so the null + needs statement is accurate."
+    },
+    {
+      "field": "cost",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an evidence-gap rationale; e2 states a license (CC0) but never an explicit cost/terms-of-use statement, so the null + needs statement is accurate."
+    },
+    {
+      "field": "access",
+      "verdict": "SUPPORTED",
+      "note": "Both quotes (\"License: CC0\" and \"This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.\") appear verbatim in e2 and together reasonably support access = open (CC0 public-domain license + explicit description as a public release)."
+    },
+    {
+      "field": "access_notes",
+      "verdict": "SUPPORTED",
+      "note": "Quote \"This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.\" appears verbatim in e2 and matches the value exactly."
+    },
+    {
+      "field": "short_desc_en",
+      "verdict": "UNSUPPORTED",
+      "note": "The cited task-SCT quote only describes one of four tasks in the release (rest, SCT, ID, TVC) and the dataset's own data_types field lists T1w anatomical scans and resting-state fMRI alongside task fMRI. Characterizing the whole dataset as simply a 'Task fMRI dataset on scientific creativity' overgeneralizes from a single-task quote and omits the anatomical/resting-state modalities and the 'verbal creativity' scope explicitly present in the same source (e2: 'related to scientific creativity and verbal creativity'). The quotes sit near the claim but do not establish the summary's overall framing."
+    },
+    {
+      "field": "short_desc_es",
+      "verdict": "UNSUPPORTED",
+      "note": "Same issue as short_desc_en (this is its Spanish translation, citing identical evidence): the task-SCT quote covers only one of four tasks and ignores the anatomical/resting-state data and 'verbal creativity' scope documented elsewhere in e2, so labeling the dataset as solely a task-fMRI creativity dataset is not established by the cited quotes."
+    }
+  ]
+}

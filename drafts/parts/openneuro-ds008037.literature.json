@@ -1,0 +1,14 @@
+{
+  "dataset_doi": "doi:10.18112/openneuro.ds008037.v1.0.0",
+  "dataset_title": "The neural dynamics of working memory and transcranial magnetic stimulation",
+  "openalex_work_id": "https://openalex.org/W7167798138",
+  "dataset_publication_date": "2026-07-09",
+  "n_citing_works": 0,
+  "citing_works": [],
+  "task_classification": {},
+  "method_classification": {},
+  "dominant_tasks": [],
+  "key_publications": [],
+  "saturation": "low",
+  "notes": "OpenAlex resolves the DOI to work id W7167798138 (cited_by_count: 0, counts_by_year: []). The filter query works?filter=cites:W7167798138 returns no results consistent with that zero count. A fallback Europe PMC search for the dataset accession ds008037 also returns zero hits. The dataset was only published on OpenNeuro on 2026-07-09 (12 days before this analysis on 2026-07-21), so no citing literature has had time to appear yet. This is an unused/very new dataset, not a saturated one -- 'low' saturation reflects total absence of citing works rather than exhaustive-but-narrow use."
+}

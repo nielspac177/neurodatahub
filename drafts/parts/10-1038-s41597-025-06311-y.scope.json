@@ -1,0 +1,10 @@
+{
+  "in_scope": true,
+  "reason": "Human clinical neurological cohort (trigeminal neuralgia) with multimodal MRI data (T1w, T2w, DTI, resting-state fMRI); pre- and post-surgical neuroimaging with clinical outcomes and pain assessments; freely available on OpenNeuro in BIDS format for neurosurgical and neuroscience research.",
+  "modality_primary": "MRI/fMRI",
+  "disease_tags": [
+    "trigeminal neuralgia",
+    "chronic pain",
+    "neurosurgery"
+  ]
+}

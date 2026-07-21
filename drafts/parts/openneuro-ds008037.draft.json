@@ -1,0 +1,142 @@
+{
+  "id": "openneuro-ds008037",
+  "name": "The neural dynamics of working memory and transcranial magnetic stimulation",
+  "fields": {
+    "modality_primary": {
+      "value": "eeg",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: eeg, beh"
+        }
+      ]
+    },
+    "diseases": {
+      "value": null,
+      "needs": "Participant clinical/health status — not stated in the OpenNeuro repository record or README (check participants.tsv or the dataset_description.json for inclusion/exclusion criteria).",
+      "evidence": []
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008037.v1.0.0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008037.v1.0.0"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "n_subjects": {
+      "value": "123",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008037 (snapshot 1.0.0)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "Study site / author institution location — not stated in the repository record; check the dataset_description.json or an associated publication for author affiliations.",
+      "evidence": []
+    },
+    "species": {
+      "value": null,
+      "needs": "Explicit species confirmation — the record never states 'human', though 'de-identified' recordings plus cognitive/behavioural tasks (working memory, TMS-EEG, digit span, etc.) strongly suggest human participants; check dataset_description.json or the accompanying paper to confirm.",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset Access/Download page or terms of use for this specific dataset, for any restrictions beyond the CC0 license.",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset page — no explicit cost/pricing statement appears in the repository record.",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "resting-state EEG recordings (rest)",
+        "working-memory EEG and behavioural data (workingmemory)",
+        "TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition",
+        "behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        },
+        {
+          "src": "e2",
+          "quote": "Modalities: eeg, beh"
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "An open (CC0) OpenNeuro EEG dataset from 123 participants combining resting-state EEG, working-memory EEG and behavioural data, TMS-EEG recordings from four stimulation sites (prefrontal cortex, premotor cortex, parietal cortex, and a shoulder control site), and behavioural data from a multi-task cognitive battery.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Conjunto de datos abierto (CC0) de OpenNeuro con 123 participantes que combina EEG en reposo, EEG y datos conductuales de memoria de trabajo, registros de TMS-EEG desde cuatro sitios de estimulación (corteza prefrontal, corteza premotora, corteza parietal y un sitio de control en el hombro), y datos conductuales de una batería cognitiva multi-tarea.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 123"
+        },
+        {
+          "src": "e2",
+          "quote": "The dataset includes de-identified resting-state EEG recordings (rest), working-memory EEG and behavioural data (workingmemory), TMS-EEG recordings (tmseeg) from four stimulation sites including prefrontal cortex, premotor cortex, parietal cortex, and shoulder as a control condition, as well as behavioural data from a multi-task cognitive battery comprising the bar (bar), backwards digit span (bds), colour (clt), go/no-go (gng), n-back (nback), operation span (opn), orientation (ort), symbol search (sbs), stop-signal (sst), and symmetry span (sym) tasks."
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "Data collection period — not stated in the repository record. The 'Created: 2026-06-26T01:54:51.365Z' timestamp reflects the OpenNeuro upload/snapshot date, not the study period; check the associated publication or dataset_description.json.",
+      "evidence": []
+    }
+  }
+}

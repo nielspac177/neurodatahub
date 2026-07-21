@@ -1,0 +1,99 @@
+{
+  "id": "openneuro-ds008070",
+  "dataset_title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+  "evidence_note": "Only src e2 (repository_record) has non-empty text; src e1 (landing_page) was fetched empty (chars:0) and grounds nothing. All required_variables below cite e2, which shows: Number of subjects: 5; Modalities: mri; Tasks: audio; Total files: 334; Size bytes: 10911636735; and a title/README confirming a 'Whole-Brain Densely Sampled Single-Subject Task fMRI' design built to evaluate statistical inference-testing approaches. A multimodal-lens project was deliberately omitted: the evidence shows a single modality (mri) and a single task (audio), with no second modality (e.g., EEG, genetics, clinical) to combine. An equity-lens project was also omitted: no demographic breakdown (age/sex/ethnicity) or participants.tsv content is shown in the evidence, so subgroup analysis cannot be grounded.",
+  "projects": [
+    {
+      "id": "ds008070-crosssubject-inference-generalization",
+      "lens": "generalization",
+      "question_en": "This dataset was built specifically to evaluate approaches for inference testing in single-subject task fMRI. Does the choice of statistical inference method (e.g., a parametric voxel-wise threshold vs. a permutation-based test) for detecting task-audio activation in one of these 5 subjects' densely-sampled runs generalize to the other 4 subjects, or does each subject require a different inference approach to reach a stable, reproducible activation map?",
+      "question_es": "Este dataset fue construido específicamente para evaluar enfoques de inferencia estadística en fMRI de tarea de un solo sujeto. ¿La elección del método de inferencia estadística (p. ej., un umbral paramétrico por vóxel frente a una prueba basada en permutaciones) para detectar activación en la tarea auditiva en uno de estos 5 sujetos con muestreo denso de corridas se generaliza a los otros 4 sujetos, o cada sujeto requiere un enfoque de inferencia distinto para lograr un mapa de activación estable y reproducible?",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "required_variables": [
+        {
+          "name": "Task-audio functional MRI (BOLD) runs, mri modality",
+          "src_id": "e2",
+          "evidence_quote": "Modalities: mri\nTasks: audio"
+        },
+        {
+          "name": "5 subjects, each densely sampled with multiple runs of the same audio task",
+          "src_id": "e2",
+          "evidence_quote": "Number of subjects: 5 ... Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data"
+        }
+      ],
+      "skills": ["fMRI preprocessing (fMRIPrep/FSL/AFNI)", "first-level GLM analysis", "permutation vs. parametric inference statistics", "Python or MATLAB scripting"],
+      "compute": "Standard workstation; ~11 GB dataset download; no GPU required, though several hours of CPU time per subject for GLM plus permutation testing",
+      "still_open_because": "The dataset's own title states it was built to evaluate inference-testing approaches, but the released repository record gives no indication that cross-subject generalizability of the winning inference method has itself been tested against the dataset's other subjects — that comparison is a natural, still-open student-scale question."
+    },
+    {
+      "id": "ds008070-within-subject-run-trajectory",
+      "lens": "causal",
+      "question_en": "Because each of the 5 subjects contributed many repeated runs of the same audio task (a 'densely sampled' single-subject design), can a simple longitudinal or change-point model detect a systematic drift (habituation, learning, or fatigue) in each subject's task-audio activation magnitude across their sequence of runs, and does modeling that drift change which brain regions survive statistical thresholding?",
+      "question_es": "Dado que cada uno de los 5 sujetos aportó muchas corridas repetidas de la misma tarea auditiva (un diseño de muestreo denso en un solo sujeto), ¿puede un modelo longitudinal o de punto de cambio sencillo detectar una deriva sistemática (habituación, aprendizaje o fatiga) en la magnitud de activación a la tarea auditiva de cada sujeto a lo largo de su secuencia de corridas, y modelar esa deriva cambia qué regiones cerebrales sobreviven el umbral estadístico?",
+      "difficulty": 3,
+      "effort_weeks": 7,
+      "required_variables": [
+        {
+          "name": "Task-audio BOLD runs in acquisition order, per subject (334 total files across 5 subjects implies many runs per subject)",
+          "src_id": "e2",
+          "evidence_quote": "Tasks: audio ... Total files: 334"
+        },
+        {
+          "name": "5-subject densely-sampled single-subject design",
+          "src_id": "e2",
+          "evidence_quote": "Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data ... Number of subjects: 5"
+        }
+      ],
+      "skills": ["longitudinal/mixed-effects modeling", "fMRI first-level modeling", "change-point detection", "R or Python statistics"],
+      "compute": "Standard workstation, no GPU required",
+      "still_open_because": "The evidence shows a densely-sampled repeated-runs design purpose-built for inference-method testing, but nothing in the record indicates any published analysis of within-subject temporal drift across those repeated runs — the causal/longitudinal angle is untouched."
+    },
+    {
+      "id": "ds008070-foundation-model-fewshot-decoding",
+      "lens": "foundation-models",
+      "question_en": "Using a publicly available pretrained fMRI/BOLD self-supervised foundation model, can few-shot fine-tuning on only a handful of one subject's densely-sampled task-audio runs match the decoding accuracy (task-block vs. rest) of a classifier trained from scratch on that same subject's full run set, quantifying how much of this dataset's dense per-subject sampling a foundation model can substitute for?",
+      "question_es": "Usando un modelo de fundación auto-supervisado preentrenado y disponible públicamente para fMRI/BOLD, ¿puede el ajuste fino few-shot con solo un puñado de corridas de la tarea auditiva de un sujeto (dentro de su muestreo denso) igualar la precisión de decodificación (bloque de tarea vs. reposo) de un clasificador entrenado desde cero con el conjunto completo de corridas de ese mismo sujeto, cuantificando cuánto del muestreo denso por sujeto de este dataset puede sustituir un modelo de fundación?",
+      "difficulty": 4,
+      "effort_weeks": 10,
+      "required_variables": [
+        {
+          "name": "Task-audio BOLD runs (multiple per subject)",
+          "src_id": "e2",
+          "evidence_quote": "Modalities: mri\nTasks: audio"
+        },
+        {
+          "name": "5-subject, densely-sampled (many-run) design enabling a few-shot vs. full-data comparison",
+          "src_id": "e2",
+          "evidence_quote": "Number of subjects: 5 ... Whole-Brain Densely Sampled Single-Subject Task fMRI Data"
+        }
+      ],
+      "skills": ["PyTorch", "transfer learning / fine-tuning", "nibabel/Nilearn data handling", "classification evaluation"],
+      "compute": "Single GPU (e.g., Colab Pro, >=16GB VRAM) for fine-tuning; ~11 GB dataset download",
+      "still_open_because": "No indication in the evidence that this newly released (created 2026-06-30) dataset has been used as a foundation-model few-shot benchmark; its dense per-subject sampling makes it a natural but so-far-unexploited testbed for that question."
+    },
+    {
+      "id": "ds008070-precision-target-stability",
+      "lens": "neuromodulation",
+      "question_en": "Precision functional mapping for individualized neuromodulation targeting (e.g., TMS) requires many minutes of stable, subject-specific task data. Using each of the 5 subjects' many densely-sampled task-audio runs, how many runs must be accumulated before that subject's peak auditory-cortex activation coordinate stabilizes within a clinically usable tolerance (e.g., <5mm), and does the number of runs needed differ meaningfully across the 5 subjects?",
+      "question_es": "El mapeo funcional de precisión para dirigir neuromodulación individualizada (p. ej., TMS) requiere muchos minutos de datos de tarea estables y específicos del sujeto. Usando las numerosas corridas de la tarea auditiva con muestreo denso de cada uno de los 5 sujetos, ¿cuántas corridas deben acumularse antes de que la coordenada de activación pico en la corteza auditiva de ese sujeto se estabilice dentro de una tolerancia clínicamente utilizable (p. ej., <5mm), y difiere de forma relevante el número de corridas necesarias entre los 5 sujetos?",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "required_variables": [
+        {
+          "name": "Task-audio BOLD runs, multiple per subject (densely sampled)",
+          "src_id": "e2",
+          "evidence_quote": "Modalities: mri\nTasks: audio ... Whole-Brain Densely Sampled Single-Subject Task fMRI Data"
+        },
+        {
+          "name": "5 subjects",
+          "src_id": "e2",
+          "evidence_quote": "Number of subjects: 5"
+        }
+      ],
+      "skills": ["single-subject GLM analysis", "peak-coordinate/cluster extraction", "bootstrap/resampling stability analysis", "Python or MATLAB"],
+      "compute": "Standard workstation, no GPU required",
+      "still_open_because": "The dense multi-run single-subject design is exactly the kind of data precision-targeting studies need, but the evidence record shows this dataset was built for inference-method evaluation, not for a target-stability/neuromodulation-readiness analysis, so that use is untested."
+    }
+  ]
+}

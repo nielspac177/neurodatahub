@@ -1,0 +1,6 @@
+{
+  "in_scope": true,
+  "reason": "Human fMRI dataset (108 subjects) investigating scientific creativity using task-based and resting-state fMRI with full BIDS structure. Cognitive neuroscience research, publicly available on OpenNeuro with CC0 license. Meets criterion: human neuro/psych data (MRI/fMRI), reusable, student-accessible.",
+  "modality_primary": "fMRI",
+  "disease_tags": []
+}

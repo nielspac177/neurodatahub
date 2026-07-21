@@ -1,0 +1,145 @@
+{
+  "id": "openneuro-ds008055",
+  "name": "Scientific Creativity MRI Dataset",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        }
+      ]
+    },
+    "data_types": {
+      "value": [
+        "T1w anatomical scans",
+        "resting-state fMRI",
+        "task fMRI"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "The release includes T1w anatomical scans, resting-state fMRI, and task fMRI runs related to scientific creativity and verbal creativity."
+        }
+      ]
+    },
+    "diseases": {
+      "value": null,
+      "evidence": [],
+      "needs": "Participant health/diagnostic status page (e.g. participants.tsv or a phenotype/methods section) — not stated in the evidence, which only lists task names (creativity/rest paradigms), not a clinical or control-population designation."
+    },
+    "doi": {
+      "value": "10.18112/openneuro.ds008055.v1.0.4",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008055.v1.0.4"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "evidence": [],
+      "needs": "Institution/site location metadata (e.g. dataset_description.json Institution field or paper affiliations) — no country, city or institution is stated in the evidence."
+    },
+    "n_subjects": {
+      "value": "108",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 108"
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "evidence": [],
+      "needs": "Data collection/acquisition date range (e.g. dataset_description.json or paper Methods) — the evidence only gives a dataset upload timestamp (\"Created: 2026-06-28T15:33:11.402Z\"), not the years scanning actually took place."
+    },
+    "species": {
+      "value": null,
+      "evidence": [],
+      "needs": "Explicit species declaration (e.g. dataset_description.json or Methods) — the evidence never states \"human\" verbatim; it is implied by MRI/participants language but not asserted."
+    },
+    "cost": {
+      "value": null,
+      "evidence": [],
+      "needs": "Explicit cost/terms-of-use statement — the evidence gives the license (CC0) but never states the data are free of charge."
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory."
+        }
+      ]
+    },
+    "access_notes": {
+      "value": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "This OpenNeuro copy is a public, defaced release derived from the project BIDS directory."
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "Task fMRI dataset on scientific creativity with a matched experimental control condition, shared openly on OpenNeuro under a CC0 license.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition."
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Dataset de fMRI de tarea sobre creatividad científica con una condición de control experimental emparejada, compartido abiertamente en OpenNeuro bajo licencia CC0.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition."
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008055 (snapshot 1.0.4)"
+        }
+      ]
+    }
+  }
+}

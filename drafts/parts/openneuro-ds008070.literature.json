@@ -1,0 +1,24 @@
+{
+  "dataset_doi": "doi:10.18112/openneuro.ds008070.v1.0.0",
+  "dataset_title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+  "openalex_work_id": "https://openalex.org/W7166847277",
+  "openalex_cited_by_count": 0,
+  "dataset_publication_date": "2026-07-01",
+  "source_preprint": {
+    "title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+    "authors": ["Medina MC", "Reddy NA", "Bright MG", "Sitek KR"],
+    "doi": "10.64898/2026.06.29.735344",
+    "server": "bioRxiv",
+    "pubYear": 2026,
+    "firstPublicationDate": "2026-06-30",
+    "citedByCount": 0
+  },
+  "method": "Resolved DOI to OpenAlex work id W7166847277 (cited_by_count: 0, no results from cites:W7166847277 filter query — OpenAlex citation index confirms zero citing works). Cross-checked via Europe PMC search on dataset name and on 'ds008070' identifier: only the originating bioRxiv preprint itself was found (citedByCount: 0), no downstream citing works.",
+  "n_citing_works": 0,
+  "citing_works": [],
+  "dominant_tasks": [],
+  "dominant_methods": [],
+  "key_publications": [],
+  "saturation": "low",
+  "notes": "This dataset/preprint was published extremely recently (bioRxiv posted 2026-06-30; OpenNeuro DOI created 2026-07-01/02), only ~3 weeks before this analysis (today: 2026-07-21). No citing works exist yet in OpenAlex or Europe PMC. This is a brand-new resource with essentially no downstream literature to map — saturation is low simply because there has not been time for anyone to use it, not because the space has been explored and found empty. Re-check in 6-12 months for actual uptake."
+}

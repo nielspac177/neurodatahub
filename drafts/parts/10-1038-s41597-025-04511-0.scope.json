@@ -1,0 +1,7 @@
+{
+  "id": "10-1038-s41597-025-04511-0",
+  "in_scope": true,
+  "reason": "Human fMRI dataset during cognitive task (color perception/consciousness study). Modality (fMRI) is explicitly in-scope. Publicly available in BIDS format on OpenNeuro; reusable by students. Research domain (neural basis of consciousness, visual perception) is fundamental neuroscience.",
+  "modality_primary": "fMRI",
+  "disease_tags": []
+}

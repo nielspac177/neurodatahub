@@ -1,0 +1,6 @@
+{
+  "in_scope": true,
+  "reason": "Human neurophysiological dataset with EEG recordings (resting-state, working-memory, TMS-EEG). Multiple brain stimulation sites (prefrontal cortex, premotor cortex, parietal cortex) with control condition. 123 subjects with cognitive behavioral data. EEG is an explicitly in-scope modality. Directly applicable to neuroscience, cognitive neuroscience, and neuromodulation research. Public, reusable OpenNeuro dataset suitable for student research.",
+  "modality_primary": "EEG",
+  "disease_tags": []
+}

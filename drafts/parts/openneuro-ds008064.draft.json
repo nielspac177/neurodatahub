@@ -1,0 +1,104 @@
+{
+  "id": "openneuro-ds008064",
+  "name": "Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {"src": "e2", "quote": "Modalities: mri"}
+      ]
+    },
+    "species": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence)",
+      "evidence": []
+    },
+    "diseases": {
+      "value": "treatment-resistant depression (TRD)",
+      "evidence": [
+        {"src": "e2", "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."}
+      ]
+    },
+    "n_subjects": {
+      "value": "28",
+      "evidence": [
+        {"src": "e2", "quote": "Number of subjects: 28"}
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp was present in fetched evidence)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted anatomical MRI",
+        "T2-weighted anatomical MRI",
+        "Diffusion-weighted imaging (DTI)",
+        "Functional MRI (fMRI): Goal priming task",
+        "Functional MRI (fMRI): Resting-state fMRI"
+      ],
+      "evidence": [
+        {"src": "e2", "quote": "- T1-weighted anatomical MRI"},
+        {"src": "e2", "quote": "- T2-weighted anatomical MRI"},
+        {"src": "e2", "quote": "- Diffusion-weighted imaging (DTI)"},
+        {"src": "e2", "quote": "- Functional MRI (fMRI):\n  - Goal priming task\n  - Resting-state fMRI"}
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008064.v1.0.0",
+      "evidence": [
+        {"src": "e2", "quote": "DatasetDOI: doi:10.18112/openneuro.ds008064.v1.0.0"}
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {"src": "e2", "quote": "OpenNeuro dataset ds008064 (snapshot 1.0.0)"}
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence)",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download page (no explicit pricing statement in fetched evidence)",
+      "evidence": []
+    },
+    "short_desc_en": {
+      "value": "An OpenNeuro dataset released under CC0 containing structural and functional MRI (T1w, T2w, diffusion-weighted imaging, task-based and resting-state fMRI) from 28 participants with treatment-resistant depression who underwent six weeks of active or sham rTMS combined with psychotherapy.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."},
+        {"src": "e2", "quote": "The dataset includes structural and functional MRI data collected before and after the treatment protocol, including:"}
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos de OpenNeuro publicado bajo licencia CC0 con resonancia magnetica estructural y funcional (T1w, T2w, imagen de difusion, fMRI de tarea y en reposo) de 28 participantes con depresion resistente al tratamiento que recibieron seis semanas de rTMS activo o simulado combinado con psicoterapia.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy."},
+        {"src": "e2", "quote": "The dataset includes structural and functional MRI data collected before and after the treatment protocol, including:"}
+      ]
+    }
+  }
+}

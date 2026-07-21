@@ -1,0 +1,96 @@
+{
+  "dataset": "A large-scale dataset of pre- and postsurgical MRI data from patients with chronic trigeminal neuralgia (OpenNeuro ds005713)",
+  "data_descriptor_doi": "10.1038/s41597-025-06311-y",
+  "dataset_doi": "10.18112/openneuro.ds005713.v1.0.1",
+  "openalex_work_id": "https://openalex.org/W4417304259",
+  "resolution_method": "OpenAlex DOI lookup for the work id succeeded, but OpenAlex list/filter endpoints (cites: filter) returned HTTP 429 'Rate limit exceeded / Insufficient budget' for the remainder of the session. Fell back to Semantic Scholar Graph API (paper citations) cross-checked against a Europe PMC full-text search for the literal accession string \"ds005713\" to confirm genuine dataset reuse (vs. incidental/self-citation of the data descriptor).",
+  "n_citing_works": 5,
+  "citing_works_note": "Semantic Scholar's citation graph returned 3 citing papers, one of which (a companion olfactory-groove-meningioma data descriptor by the same Novosibirsk group) cites the TN paper only as a methodological/format precedent and does NOT reuse ds005713 data -- excluded. Europe PMC full-text search for the accession string \"ds005713\" independently surfaced 5 papers (excluding the original data descriptor itself) that explicitly state they pulled MRI/clinical data from the OpenNeuro ds005713 repository; these are the works counted here as genuine dataset users.",
+  "dominant_tasks": [
+    "biomarker",
+    "mechanism/structure-function characterization"
+  ],
+  "task_breakdown": {
+    "biomarker": 5,
+    "outcome-prediction": 0,
+    "segmentation": 0,
+    "subtyping": 0,
+    "causal": 0,
+    "external-validation": 0,
+    "foundation-model": 0
+  },
+  "methods_used": [
+    "diffusion tensor imaging / fixel-based analysis (white matter microstructure)",
+    "structure-function coupling via graph harmonic modeling",
+    "DTI-ALPS index (glymphatic function)",
+    "network control theory / structural connectome controllability",
+    "imaging-transcriptomics (Allen Human Brain Atlas + PLS regression with spin-test permutation)",
+    "imaging-genetics integration with whole-genome sequencing / GWAS-derived SNPs"
+  ],
+  "key_publications": [
+    {
+      "title": "Transcriptional correlates of structure-function coupling plasticity in trigeminal neuralgia: unveiling the synaptic and metabolic associations",
+      "doi": "10.1186/s10194-026-02419-7",
+      "journal": "Journal of Headache and Pain",
+      "year": 2026,
+      "authors": "Zhang J, Nie X, Fu S, Lu Y, Liu T, Zhang Z, Wu J, Tong X, Yan T",
+      "task": "biomarker / mechanism",
+      "method": "Longitudinal multimodal MRI; graph harmonic model for structure-function coupling; PLS regression against Allen Human Brain Atlas transcriptomic data",
+      "n_used": "87 TN patients (pre/post-treatment subset), 42 healthy controls, drawn from ds005713 (explicitly notes upgrading from v1.0.1 to v2.0.1 for added clinical endpoints)",
+      "finding": "Reduced global structure-function coupling in TN normalizes after surgical treatment; postoperative reorganization correlates with pain reduction; coupling changes spatially linked to synaptic/opioid-signaling and metabolic gene expression"
+    },
+    {
+      "title": "No Glymphatic Dysfunction in Trigeminal Neuralgia: A Preliminary Study",
+      "doi": "10.1002/brb3.70938",
+      "journal": "Brain and Behavior",
+      "year": 2026,
+      "authors": "Genc B, Aslan K",
+      "task": "biomarker (negative finding)",
+      "method": "DTI-ALPS (diffusion tensor image analysis along the perivascular space) index computed on diffusion MRI",
+      "n_used": "Subset of ds005713 patients vs. healthy controls, pre- and post-decompression surgery",
+      "finding": "No significant glymphatic function differences between TN patients and controls, nor pre- vs. post-surgery"
+    },
+    {
+      "title": "Cerebellar neurocan gene expression is a common pathogenic factor of trigeminal neuralgia and depression",
+      "doi": "10.1186/s10194-025-02254-2",
+      "journal": "Journal of Headache and Pain",
+      "year": 2025,
+      "authors": "(not individually retrieved)",
+      "task": "biomarker / imaging-genetics",
+      "method": "Integration of neuroimaging (ds005713 MRI) with whole-genome sequencing / SNP-based gene-tissue association analysis",
+      "n_used": "Subset of ds005713 cohort",
+      "finding": "Cerebellar NCAN gene expression implicated as shared pathogenic factor linking TN and depression"
+    },
+    {
+      "title": "Fixel-based analysis reveals distributed white matter alterations associated with pain severity in trigeminal neuralgia",
+      "doi": "10.1186/s10194-026-02306-1",
+      "journal": "Journal of Headache and Pain",
+      "year": 2026,
+      "authors": "Chu T, Xiong F, Gao F, Tian X, Tu Y",
+      "task": "biomarker (white-matter microstructure)",
+      "method": "Fixel-based analysis (fibre density, fibre-bundle cross-section, FDC) with connectivity-based fixel enhancement, FWE-corrected",
+      "n_used": "65 TN patients, 42 healthy controls (subset of ds005713)",
+      "finding": "Distributed, tract-specific white matter alterations beyond trigeminal pathways (corticospinal tract, cerebellar peduncles); macrostructural bundle measures correlate with pain severity"
+    },
+    {
+      "title": "Network control theory uncovers aberrant connectome controllability in trigeminal neuralgia",
+      "doi": "10.1186/s10194-025-02122-z",
+      "journal": "Journal of Headache and Pain",
+      "year": 2025,
+      "authors": "(not individually retrieved)",
+      "task": "biomarker (structural connectome / network dynamics)",
+      "method": "Diffusion tractography, Brainnetome-parcellated structural connectomes, network control theory metrics",
+      "n_used": "82 TN patients, 42 healthy controls (subset of ds005713)",
+      "finding": "Aberrant structural network controllability in TN relative to controls"
+    }
+  ],
+  "excluded_as_non_reuse": [
+    {
+      "title": "Multimodal brain MRI and clinical data in olfactory groove meningioma: a prospective data report",
+      "doi": "10.3389/fradi.2026.1809871",
+      "reason": "Same Novosibirsk author group (Filimonova, Pashkov, Moysak, Martirosyan, Kurilov, Rzaev) citing their own prior TN data descriptor as a methodological/BIDS-formatting precedent for a NEW, unrelated dataset (olfactory groove meningioma) -- not an analysis performed on ds005713 itself."
+    }
+  ],
+  "saturation": "medium",
+  "saturation_rationale": "The data descriptor was published 2025-12-12 (~7 months before this analysis), yet 5 independent secondary-analysis papers already exist -- unusually fast uptake for a niche clinical MRI dataset. However, all 5 cluster tightly around the same class of task: univariate/graph-theoretic neuroimaging biomarker discovery (diffusion microstructure, structure-function coupling, connectome controllability, glymphatic index, imaging-genetics) comparing TN patients vs. controls or pre- vs. post-surgery. No one has yet used ds005713 for supervised outcome-prediction modeling (e.g., predicting surgical pain relief from baseline imaging), lesion/nerve segmentation, TN subtyping, causal/treatment-effect estimation, external validation of a classifier trained elsewhere, or foundation-model fine-tuning. So: the 'easy' descriptive/biomarker comparisons are being harvested quickly (borderline high there), but the higher-value ML/predictive/segmentation white space is still completely open, which keeps overall saturation at medium rather than high."
+}

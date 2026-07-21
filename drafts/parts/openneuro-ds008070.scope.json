@@ -1,0 +1,7 @@
+{
+  "id": "openneuro-ds008070",
+  "in_scope": true,
+  "reason": "Human whole-brain fMRI dataset (N=5, task-based audio paradigm) published on OpenNeuro in BIDS-compliant format. Directly suitable for neuroimaging research and training. Standard approved modality (fMRI) for neuroscience applications.",
+  "modality_primary": "fMRI",
+  "disease_tags": []
+}

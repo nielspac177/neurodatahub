@@ -1,0 +1,10 @@
+{
+  "id": "openneuro-ds008064",
+  "in_scope": true,
+  "reason": "Human psychiatric neuroimaging dataset (28 subjects with treatment-resistant depression). Contains structural MRI (T1/T2), DTI, and fMRI (task + resting-state) investigating neural mechanisms of rTMS combined with psychotherapy. Reusable dataset published on OpenNeuro. Fits squarely within psychiatric/neurological research scope for student use.",
+  "disease_tags": [
+    "major depression",
+    "treatment-resistant depression"
+  ],
+  "modality_primary": "fMRI"
+}

@@ -1,0 +1,135 @@
+{
+  "id": "10-1038-s41597-025-06311-y",
+  "name": "A large-scale dataset of pre- and postsurgical MRI data from patients with chronic trigeminal neuralgia (OpenNeuro ds005713)",
+  "fields": {
+    "modality_primary": {
+      "value": "neuroimaging",
+      "evidence": [
+        {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"}
+      ]
+    },
+    "species": {
+      "value": "human",
+      "evidence": [
+        {"src": "e1", "quote": "we provide a comprehensive dataset comprising high-resolution neuroimaging data collected from 112 patients with primary trigeminal neuralgia (TN) alongside 48 age- and sex-matched healthy control subjects"}
+      ]
+    },
+    "diseases": {
+      "value": "trigeminal neuralgia",
+      "evidence": [
+        {"src": "e1", "quote": "A large-scale dataset of pre- and postsurgical MRI data from patients with chronic trigeminal neuralgia"}
+      ]
+    },
+    "n_subjects": {
+      "value": "112 patients with trigeminal neuralgia and 48 healthy subjects (160 participants total); 58 patients also have 6-month postsurgical follow-up",
+      "evidence": [
+        {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"},
+        {"src": "e1", "quote": "The study included a total of 160 participants after all the exclusion criteria were applied."},
+        {"src": "e1", "quote": "Follow-up data six months after treatment were available for 58 patients."}
+      ]
+    },
+    "years": {
+      "value": "October 2021 to October 2024",
+      "evidence": [
+        {"src": "e1", "quote": "This prospective study was carried out at our hospital from October 2021 to October 2024"}
+      ]
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted structural MRI",
+        "T2-weighted structural MRI",
+        "Diffusion tensor imaging (DTI)",
+        "Resting-state functional MRI (rs-fMRI)",
+        "Clinical/demographic data (participants.tsv)"
+      ],
+      "evidence": [
+        {"src": "e1", "quote": "High-resolution 3D T1-weighted gradient echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "High-resolution 3D T2-weighted turbo spin echo imaging with the following acquisition parameters"},
+        {"src": "e1", "quote": "Diffusion tensor imaging (DTI) with the following acquisition parameters"},
+        {"src": "e1", "quote": "Resting-state functional MRI (rs-fMRI) was conducted with the following parameters"},
+        {"src": "e1", "quote": "Clinical and demographic information for each participant, along with primary MRI findings, neurovascular compression grade (according to the Sindou classification, if suitable), and surgical procedure type are provided in the “participants.tsv” file."}
+      ]
+    },
+    "license": {
+      "value": null,
+      "needs": "OpenNeuro dataset page (ds005713) explicit data-license terms; the only license found in evidence (CC BY-NC-ND 4.0, src e2) is the Crossref content-domain/text-mining license for the journal article, not confirmed as the dataset's own license",
+      "evidence": []
+    },
+    "doi": {
+      "value": "10.1038/s41597-025-06311-y (data descriptor); 10.18112/openneuro.ds005713.v1.0.1 (dataset)",
+      "evidence": [
+        {"src": "e2", "quote": "10.1038/s41597-025-06311-y"},
+        {"src": "e2", "quote": "10.18112/openneuro.ds005713.v1.0.1"}
+      ]
+    },
+    "provider": {
+      "value": "Federal Center of Neurosurgery",
+      "evidence": [
+        {"src": "e1", "quote": "Ethics approval for the research protocol was given by the local ethics committee of the Federal Center of Neurosurgery, dated 25.05.21 (protocol # 7)."}
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "Dataset/landing page stating the study site's country or city (evidence only names the MRI scanner manufacturer's country, The Netherlands, and the hospital name, not the study location)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"}
+      ]
+    },
+    "access_notes": {
+      "value": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components",
+      "evidence": [
+        {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"}
+      ]
+    },
+    "cost": {
+      "value": "free",
+      "evidence": [
+        {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"}
+      ]
+    },
+    "short_desc_en": {
+      "value": "An open, BIDS-formatted dataset on OpenNeuro (ds005713) with structural (T1w, T2w), diffusion tensor, and resting-state fMRI data plus clinical and demographic information from 112 patients with chronic trigeminal neuralgia (58 with 6-month postsurgical follow-up) and 48 healthy controls.",
+      "evidence": [
+        {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"},
+        {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"},
+        {"src": "e1", "quote": "Follow-up data six months after treatment were available for 58 patients."},
+        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."}
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos abierto en formato BIDS alojado en OpenNeuro (ds005713) con resonancia magnetica estructural (T1w, T2w), tensor de difusion y fMRI en reposo, ademas de informacion clinica y demografica, de 112 pacientes con neuralgia del trigemino cronica (58 con seguimiento postquirurgico a 6 meses) y 48 controles sanos.",
+      "evidence": [
+        {"src": "e1", "quote": "The dataset is freely available on the open access OpenNeuro platform in BIDS format and includes all the required components"},
+        {"src": "e1", "quote": "we present a large dataset of neuroimaging data from patients with chronic trigeminal neuralgia (112 patients and 48 healthy subjects)"},
+        {"src": "e1", "quote": "Follow-up data six months after treatment were available for 58 patients."},
+        {"src": "e1", "quote": "In addition to the MRI data, the dataset consists of clinical and demographic information about the patients, including the type, intensity, and side of pain; duration of the disease; and data on pharmacological treatment."}
+      ]
+    }
+  },
+  "access_steps": [
+    {
+      "step_en": "Go to the OpenNeuro dataset page (accession ds005713, referenced by DOI 10.18112/openneuro.ds005713.v1.0.1)",
+      "step_es": "Ve a la pagina del dataset en OpenNeuro (accession ds005713, referenciado por el DOI 10.18112/openneuro.ds005713.v1.0.1)",
+      "url": "https://openneuro.org/datasets/ds005713",
+      "eta": "2 min"
+    },
+    {
+      "step_en": "Download the dataset directly, no account or credentialing required (open access platform)",
+      "step_es": "Descarga el dataset directamente, sin cuenta ni credencial (plataforma de acceso abierto)",
+      "eta": "depends on dataset size"
+    },
+    {
+      "step_en": "Explore the BIDS structure per participant (anat, func, dwi folders) and read participants.tsv / participants.json / README.txt for clinical and acquisition details",
+      "step_es": "Explora la estructura BIDS por participante (carpetas anat, func, dwi) y lee participants.tsv / participants.json / README.txt para detalles clinicos y de adquisicion",
+      "eta": "10-30 min"
+    }
+  ],
+  "starter_code": {
+    "python": "import pandas as pd\nimport nibabel as nib\n\n# participants.tsv holds clinical/demographic data, MRI findings,\n# Sindou neurovascular compression grade, and surgical procedure type\nparticipants = pd.read_csv('participants.tsv', sep='\\t')\nprint(participants.head())\n\n# Each subject folder has anat/, func/, dwi/ sub-folders (BIDS layout)\nt1w = nib.load('sub-001/anat/sub-001_T1w.nii.gz')\nprint(t1w.shape)",
+    "r": "library(data.table)\n\n# participants.tsv holds clinical/demographic data, MRI findings,\n# Sindou neurovascular compression grade, and surgical procedure type\nparticipants <- fread('participants.tsv')\nhead(participants)"
+  }
+}

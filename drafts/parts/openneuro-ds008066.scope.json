@@ -1,0 +1,15 @@
+{
+  "id": "openneuro-ds008066",
+  "in_scope": true,
+  "decision_date": "2026-07-21",
+  "primary_modality": "fMRI",
+  "rationale": "Human neuroimaging dataset (fMRI) with 40 participants, properly anonymized and organized in BIDS format. Explicitly matches in-scope criteria: functional MRI is a core neuroimaging modality for neuro/psych research. Data is reusable (CC0 license), published on OpenNeuro, and appropriate for student education in neuroimaging analysis.",
+  "scope_criteria_met": [
+    "Human neuroimaging data (fMRI)",
+    "Reusable research dataset",
+    "Properly anonymized and published",
+    "Standard format (BIDS)",
+    "Educational value for students"
+  ],
+  "out_of_scope_characteristics": []
+}

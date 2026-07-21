@@ -1,0 +1,130 @@
+{
+  "id": "openneuro-ds008066",
+  "name": "Choice Overload fMRI Dataset",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {"src": "e2", "quote": "Modalities: mri"}
+      ]
+    },
+    "species": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence)",
+      "evidence": []
+    },
+    "diseases": {
+      "value": null,
+      "needs": "participants.tsv / methods section on participant health status (not stated in fetched evidence; README only describes the choice task, not clinical/health characteristics of participants)",
+      "evidence": []
+    },
+    "n_subjects": {
+      "value": "40",
+      "evidence": [
+        {"src": "e2", "quote": "Number of subjects: 40"}
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp was present in fetched evidence: Created: 2026-06-29T22:52:57.881Z)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "T1-weighted anatomical MRI",
+        "Functional BOLD MRI (choice task, three runs)",
+        "Single-band reference (SBRef) images",
+        "Events.tsv files (task events, one per BOLD run)"
+      ],
+      "evidence": [
+        {"src": "e2", "quote": "one anatomical T1-weighted image"},
+        {"src": "e2", "quote": "three functional BOLD runs of the choice task"},
+        {"src": "e2", "quote": "three single-band reference images, one corresponding to each BOLD run"},
+        {"src": "e2", "quote": "one events.tsv file for each BOLD run"}
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008066.v1.0.0",
+      "evidence": [
+        {"src": "e2", "quote": "DatasetDOI: doi:10.18112/openneuro.ds008066.v1.0.0"}
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {"src": "e2", "quote": "OpenNeuro dataset ds008066 (snapshot 1.0.0)"}
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence)",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download page (no explicit pricing statement in fetched evidence)",
+      "evidence": []
+    },
+    "short_desc_en": {
+      "value": "An OpenNeuro dataset (ds008066) released under CC0 containing raw MRI data from 40 participants performing a choice overload fMRI task with six decoy/no-decoy conditions (3, 9, or 24 options), organized in BIDS format with one T1-weighted anatomical image and three functional BOLD runs (each with a single-band reference image and an events.tsv file) per participant.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "Number of subjects: 40"},
+        {"src": "e2", "quote": "This dataset contains raw MRI data from a choice overload fMRI task. Data are organized in BIDS format."},
+        {"src": "e2", "quote": "Participants completed a choice task with six experimental conditions"},
+        {"src": "e2", "quote": "one anatomical T1-weighted image"},
+        {"src": "e2", "quote": "three functional BOLD runs of the choice task"}
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos de OpenNeuro (ds008066) publicado bajo licencia CC0 con datos crudos de resonancia magnetica de 40 participantes que realizan una tarea de sobrecarga de eleccion con seis condiciones de senuelo/sin senuelo (3, 9 o 24 opciones), organizado en formato BIDS con una imagen anatomica T1 y tres corridas funcionales BOLD (cada una con su imagen de referencia de banda unica y su archivo events.tsv) por participante.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "Number of subjects: 40"},
+        {"src": "e2", "quote": "This dataset contains raw MRI data from a choice overload fMRI task. Data are organized in BIDS format."},
+        {"src": "e2", "quote": "Participants completed a choice task with six experimental conditions"},
+        {"src": "e2", "quote": "one anatomical T1-weighted image"},
+        {"src": "e2", "quote": "three functional BOLD runs of the choice task"}
+      ]
+    }
+  },
+  "access_steps": [
+    {
+      "step_en": "Go to the OpenNeuro dataset page (accession ds008066, referenced by DOI 10.18112/openneuro.ds008066.v1.0.0)",
+      "step_es": "Ve a la pagina del dataset en OpenNeuro (accession ds008066, referenciado por el DOI 10.18112/openneuro.ds008066.v1.0.0)",
+      "url": "https://openneuro.org/datasets/ds008066",
+      "eta": "2 min"
+    },
+    {
+      "step_en": "Download the dataset directly, no account or credentialing required (CC0 license, open access platform)",
+      "step_es": "Descarga el dataset directamente, sin cuenta ni credencial (licencia CC0, plataforma de acceso abierto)",
+      "eta": "depends on bandwidth (685 files, ~27 GB total per repository record)"
+    },
+    {
+      "step_en": "Explore the BIDS structure per participant (one T1w anatomical image, three BOLD functional runs, three single-band reference images) and read each run's events.tsv (onset, duration, trial_type) plus task-choice_events.json for condition descriptions",
+      "step_es": "Explora la estructura BIDS por participante (una imagen anatomica T1, tres corridas funcionales BOLD, tres imagenes de referencia de banda unica) y lee el events.tsv de cada corrida (onset, duration, trial_type) ademas de task-choice_events.json para las descripciones de las condiciones",
+      "eta": "10-30 min"
+    }
+  ],
+  "starter_code": {
+    "python": "import pandas as pd\nimport nibabel as nib\n\n# Each functional run has a companion events.tsv with columns: onset, duration, trial_type\nevents = pd.read_csv('sub-01/func/sub-01_task-choice_run-1_events.tsv', sep='\\t')\nprint(events['trial_type'].value_counts())  # six conditions: d3, d9, d24, n3, n9, n24\n\n# One T1-weighted anatomical image per participant (BIDS layout)\nt1w = nib.load('sub-01/anat/sub-01_T1w.nii.gz')\nprint(t1w.shape)",
+    "r": "library(data.table)\n\n# Each functional run has a companion events.tsv with columns: onset, duration, trial_type\nevents <- fread('sub-01/func/sub-01_task-choice_run-1_events.tsv')\ntable(events$trial_type)  # six conditions: d3, d9, d24, n3, n9, n24"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "dataset": "Choice Overload fMRI Dataset",
+  "doi": "doi:10.18112/openneuro.ds008066.v1.0.0",
+  "openalex_work_id": "https://openalex.org/W7167693789",
+  "n_citing_works": 0,
+  "citing_works": [],
+  "dominant_tasks": [],
+  "methods": [],
+  "saturation": "low",
+  "notes": "OpenAlex record for this dataset (W7167693789) shows publication_date 2026-07-08 and cited_by_count 0; the OpenAlex citation-graph query (filter=cites:W7167693789) could not be completed live due to an API rate-limit/budget error ('Insufficient budget... dailyRemainingUsd:0'), but the work's own cited_by_count field (0) is authoritative and consistent with a dataset published only ~13 days before this search. A Europe PMC fallback search for the dataset accession ('ds008066') returned 0 hits, and a broader 'Choice Overload fMRI' keyword search returned 13 hits, none of which reference this OpenNeuro dataset (all predate its 2026-07-08 publication date and are unrelated prior literature on choice-overload neuroscience). No genuine citing/using works were identified by any method.",
+  "summary_en": "The 'Choice Overload fMRI Dataset' (OpenNeuro ds008066, v1.0.0) was published on OpenNeuro on 2026-07-08, only about two weeks before this literature scan (2026-07-21). Its OpenAlex record (W7167693789) reports cited_by_count = 0, and no works could be found citing or reanalyzing it via either the OpenAlex citation graph or a Europe PMC keyword fallback search. No papers have yet used this dataset for outcome-prediction, biomarker, segmentation, subtyping, causal, external-validation, or foundation-model analyses. The literature space around this specific dataset is completely unsaturated (effectively virgin) simply because it has not existed long enough to be cited; this reflects dataset novelty/recency rather than lack of interest.",
+  "key_publications": []
+}

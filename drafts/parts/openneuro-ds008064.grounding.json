@@ -1,0 +1,80 @@
+{
+  "id": "openneuro-ds008064",
+  "verdicts": [
+    {
+      "field": "modality_primary",
+      "verdict": "SUPPORTED",
+      "note": "Quote 'Modalities: mri' appears verbatim in e2 and directly establishes the value 'mri'."
+    },
+    {
+      "field": "species",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an accurate 'needs' note; e2 text contains no species/organism metadata, so the absence-of-evidence claim is correct and no unverified claim is made."
+    },
+    {
+      "field": "diseases",
+      "verdict": "SUPPORTED",
+      "note": "Quote matches e2 README verbatim ('This dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy.') and directly establishes the disease population."
+    },
+    {
+      "field": "n_subjects",
+      "verdict": "SUPPORTED",
+      "note": "Quote 'Number of subjects: 28' appears verbatim in e2 and directly establishes the value '28'."
+    },
+    {
+      "field": "years",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an accurate 'needs' note; e2 only contains a snapshot 'Created' timestamp (2026-06-29T19:45:23.022Z), not study data-collection dates, so the claim of absence is correct."
+    },
+    {
+      "field": "data_types",
+      "verdict": "SUPPORTED",
+      "note": "All four quotes ('- T1-weighted anatomical MRI', '- T2-weighted anatomical MRI', '- Diffusion-weighted imaging (DTI)', and the fMRI sub-bullet block listing 'Goal priming task' and 'Resting-state fMRI') appear verbatim in the e2 README and directly establish each listed data type."
+    },
+    {
+      "field": "license",
+      "verdict": "SUPPORTED",
+      "note": "Quote 'License: CC0' appears verbatim in e2 and directly establishes the value 'CC0'."
+    },
+    {
+      "field": "doi",
+      "verdict": "SUPPORTED",
+      "note": "Quote 'DatasetDOI: doi:10.18112/openneuro.ds008064.v1.0.0' appears verbatim in e2 and directly establishes the DOI value."
+    },
+    {
+      "field": "provider",
+      "verdict": "SUPPORTED",
+      "note": "Quote 'OpenNeuro dataset ds008064 (snapshot 1.0.0)' appears verbatim as the first line of e2 and establishes OpenNeuro as the provider."
+    },
+    {
+      "field": "region",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an accurate 'needs' note; e2 contains no institutional/site/geographic information, only author names, so the absence claim is correct."
+    },
+    {
+      "field": "access",
+      "verdict": "UNSUPPORTED",
+      "note": "The only cited quote ('License: CC0') establishes the license, not the access mechanism/status. CC0 governs reuse rights, not whether/how the data can be accessed; no evidence text states the data is openly downloadable or describes an access procedure, so this quote does not genuinely establish 'access':'open'."
+    },
+    {
+      "field": "access_notes",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an accurate 'needs' note; e2 contains no explicit access-procedure text."
+    },
+    {
+      "field": "cost",
+      "verdict": "SUPPORTED",
+      "note": "Value is null with an accurate 'needs' note; e2 contains no pricing statement."
+    },
+    {
+      "field": "short_desc_en",
+      "verdict": "SUPPORTED",
+      "note": "All three cited quotes ('License: CC0', the TRD/rTMS README sentence, and the 'structural and functional MRI data collected before and after the treatment protocol' sentence) appear verbatim in e2 and collectively support the synthesized description; data-type details (T1w, T2w, DTI, task/resting fMRI) trace back to the already-verified data_types quotes."
+    },
+    {
+      "field": "short_desc_es",
+      "verdict": "SUPPORTED",
+      "note": "Same underlying verbatim quotes as short_desc_en; the Spanish text is an accurate translation of those supported facts (CC0 license, 28 TRD participants, six weeks active/sham rTMS with psychotherapy, structural/functional MRI including T1w, T2w, DWI, task and resting-state fMRI)."
+    }
+  ]
+}

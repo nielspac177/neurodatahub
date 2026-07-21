@@ -304,6 +304,45 @@ def _rating(errors, label, value, field):
 # --------------------------------------------------------------------- #
 # Normalización / migración
 # --------------------------------------------------------------------- #
+# El ideador devuelve a veces frases enteras como "habilidad" ("explicit
+# reporting of demographic limits (single-site Japanese volunteer sample…)").
+# Eso no es filtrable: produce un chip por proyecto y ninguno se reutiliza.
+# Se mapea a un vocabulario corto y lo que no encaja se descarta.
+SKILL_MAP = {
+    "python": ["python", "pandas", "numpy", "scipy"],
+    "r": ["r statistics", " r ", "rstudio", "data.table"],
+    "machine-learning": ["scikit-learn", "sklearn", "machine learning", "classifier",
+                         "random forest", "regression model", "xgboost"],
+    "deep-learning": ["pytorch", "tensorflow", "keras", "neural network",
+                      "self-supervised", "transformer", "cnn"],
+    "statistics": ["statistic", "mixed model", "power analysis", "effect size",
+                   "bayesian", "psychometric", "survival analysis", "multiple comparison"],
+    "causal-inference": ["causal", "propensity", "instrumental variable",
+                         "mediation", "confound"],
+    "neuroimaging": ["fmri", "mri", "nibabel", "bids", "fmriprep", "freesurfer",
+                     "voxel", "rdm", "representational similarity", "mriqc", "roi"],
+    "signal-processing": ["eeg", "meg", "ieeg", "mne", "spectral", "filter",
+                          "time-frequency", "edf", "polysomnograph", "psg", "yasa"],
+    "genomics": ["gwas", "polygenic", "variant", "genotype", "plink", "snp"],
+    "clinical-data": ["ehr", "icd", "sql", "chartevents", "clinical timeseries",
+                      "electronic health record", "phenotyp"],
+    "validation": ["cross-validation", "external validation", "leave-subject-out",
+                   "leave-one-out", "generalization", "tripod", "calibration",
+                   "held-out", "reproducib"],
+}
+
+
+def normalize_skills(skills):
+    """Frases libres -> etiquetas cortas y reutilizables."""
+    out = []
+    for raw in skills or []:
+        low = f" {str(raw).lower()} "
+        for tag, needles in SKILL_MAP.items():
+            if any(n in low for n in needles) and tag not in out:
+                out.append(tag)
+    return out
+
+
 def projects_of(record):
     """Proyectos de un registro, migrando `open_questions` heredados.
 
@@ -359,6 +398,7 @@ def flatten_projects(records):
     for r in records:
         for p in projects_of(r):
             item = dict(p)
+            item["skills"] = normalize_skills(p.get("skills"))
             item["dataset_id"] = r["id"]
             item["dataset_name"] = r["name"]
             item["dataset_url"] = r.get("url")

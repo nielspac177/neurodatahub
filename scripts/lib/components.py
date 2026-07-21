@@ -122,7 +122,7 @@ def dataset_card(r, lang, root):
 
     return (
         f'<li class="{classes("card", "card--dataset", mod and f"card--{mod}")}" '
-        f'{attr(data_id=r["id"], data_modality=mod, data_access=r.get("access"), data_category=" ".join(r.get("disease_category") or []))}>'
+        f'{attr(data_id=r["id"], data_modality=mod, data_access=r.get("access"), data_category="|".join(r.get("disease_category") or []))}>'
         f'<div class="card__head">'
         f'<h3 class="card__title"><a href="{href}">{esc(r["name"])}</a></h3>'
         f'{modality_badge(mod, lang)}'
@@ -248,7 +248,7 @@ def project_card(p, lang, root):
 
     return (
         f'<li class="{classes("card", "card--project", mod and f"card--{mod}")}" '
-        f'{attr(data_id=p.get("id"), data_dataset=p["dataset_id"], data_modality=mod, data_access=p.get("access_hardest"), data_difficulty=p.get("difficulty") or "", data_lens=p.get("lens") or "", data_skills=" ".join(p.get("skills") or []))}>'
+        f'{attr(data_id=p.get("id"), data_dataset=p["dataset_id"], data_modality=mod, data_access=p.get("access_hardest"), data_difficulty=p.get("difficulty") or "", data_lens=p.get("lens") or "", data_skills="|".join(p.get("skills") or []))}>'
         f'<h3 class="card__title"><a href="{ds_href}#{esc(p.get("id", ""))}">{esc(q)}</a></h3>'
         f'{pips(p.get("difficulty"), lang, "difficulty")}'
         f'{skills}'

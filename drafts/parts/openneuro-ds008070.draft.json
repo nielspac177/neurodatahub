@@ -1,0 +1,100 @@
+{
+  "id": "openneuro-ds008070",
+  "name": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+  "fields": {
+    "modality_primary": {
+      "value": "mri",
+      "evidence": [
+        {"src": "e2", "quote": "Modalities: mri"}
+      ]
+    },
+    "species": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / participants.tsv species metadata (not stated in fetched evidence)",
+      "evidence": []
+    },
+    "diseases": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / README participant description (no diseases or clinical population stated in fetched evidence)",
+      "evidence": []
+    },
+    "n_subjects": {
+      "value": "5",
+      "evidence": [
+        {"src": "e2", "quote": "Number of subjects: 5"}
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro dataset_description.json / CHANGES log with study data-collection dates (only a snapshot-creation timestamp was present in fetched evidence)",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "mri",
+        "audio"
+      ],
+      "evidence": [
+        {"src": "e2", "quote": "Modalities: mri"},
+        {"src": "e2", "quote": "Tasks: audio"}
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "doi": {
+      "value": "doi:10.18112/openneuro.ds008070.v1.0.0",
+      "evidence": [
+        {"src": "e2", "quote": "DatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0"}
+      ]
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {"src": "e2", "quote": "OpenNeuro dataset ds008070 (snapshot 1.0.0)"}
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "study site / institutional affiliation page (not present in fetched OpenNeuro record or README)",
+      "evidence": []
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"}
+      ]
+    },
+    "access_notes": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download terms page (no explicit access-procedure text in fetched evidence)",
+      "evidence": []
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro dataset access/download page (no explicit pricing statement in fetched evidence)",
+      "evidence": []
+    },
+    "short_desc_en": {
+      "value": "An OpenNeuro dataset released under CC0 containing whole-brain, densely sampled single-subject task fMRI data (audio task) from 5 subjects, used to evaluate approaches for inference testing on this type of data.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data"},
+        {"src": "e2", "quote": "Number of subjects: 5"},
+        {"src": "e2", "quote": "Tasks: audio"}
+      ]
+    },
+    "short_desc_es": {
+      "value": "Un conjunto de datos de OpenNeuro publicado bajo licencia CC0 con fMRI de tarea (tarea de audio) muestreada densamente en 5 sujetos individuales de cerebro completo, usado para evaluar enfoques de pruebas de inferencia sobre este tipo de datos.",
+      "evidence": [
+        {"src": "e2", "quote": "License: CC0"},
+        {"src": "e2", "quote": "Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data"},
+        {"src": "e2", "quote": "Number of subjects: 5"},
+        {"src": "e2", "quote": "Tasks: audio"}
+      ]
+    }
+  }
+}
