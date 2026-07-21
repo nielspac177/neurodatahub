@@ -7,7 +7,7 @@
  * su lugar la casilla sigue siendo operable, se revierte la marca y se anuncia
  * el límite, dejando el foco donde el usuario lo puso.
  */
-import { announceNow } from './a11y.js';
+import { announceNow } from './a11y.js?v=2f5873b8';
 
 const MAX = 4;
 const KEY = 'cmp';

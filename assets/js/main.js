@@ -4,13 +4,13 @@
  * Módulos ES nativos, sin empaquetador ni transpilación: el sitio se
  * despliega tal cual en GitHub Pages.
  */
-import { createStore } from './store.js';
-import { decode, applyToUrl, emptyFilters } from './url.js';
-import { wireFilters } from './filters.js';
-import { createGrid } from './grid.js';
-import { wireTheme } from './theme.js';
-import { wireClipboard } from './clipboard.js';
-import { wireCompare, wireComparePage } from './compare.js';
+import { createStore } from './store.js?v=2f5873b8';
+import { decode, applyToUrl, emptyFilters } from './url.js?v=2f5873b8';
+import { wireFilters } from './filters.js?v=2f5873b8';
+import { createGrid } from './grid.js?v=2f5873b8';
+import { wireTheme } from './theme.js?v=2f5873b8';
+import { wireClipboard } from './clipboard.js?v=2f5873b8';
+import { wireCompare, wireComparePage } from './compare.js?v=2f5873b8';
 
 function readStrings() {
   const el = document.getElementById('i18n');

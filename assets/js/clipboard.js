@@ -4,7 +4,7 @@
  * Los botones se marcan como operativos sólo desde aquí: si el módulo no
  * carga, no queda un botón muerto en la página.
  */
-import { announceNow } from './a11y.js';
+import { announceNow } from './a11y.js?v=2f5873b8';
 
 export function wireClipboard(strings) {
   const buttons = document.querySelectorAll('.snippet__copy');

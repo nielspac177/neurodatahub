@@ -4,7 +4,7 @@
  * Los chips son checkboxes nativos, así que la lectura del estado es leer el
  * formulario. No hay estado paralelo que se pueda desincronizar del DOM.
  */
-import { FACETS, emptyFilters } from './url.js';
+import { FACETS, emptyFilters } from './url.js?v=2f5873b8';
 
 const DEBOUNCE_MS = 120;
 

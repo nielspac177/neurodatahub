@@ -18,6 +18,7 @@ Uso:
 import argparse
 import hashlib
 import json
+import re
 import sys
 from datetime import date
 from pathlib import Path
@@ -60,17 +61,49 @@ def dump(path, payload):
     )
 
 
+# Imports relativos dentro de los módulos ES: `from './x.js'`,
+# `import './x.js'`, `import('./x.js')`. Se les añade el mismo ?v= que al HTML.
+_IMPORT_RX = re.compile(r"""(from\s+|import\s*\(?\s*)(['"])(\.{1,2}/[^'"?]+\.js)(\?v=[a-f0-9]+)?(['"])""")
+
+
+def _strip_import_versions(text):
+    """Quita cualquier ?v= de los imports, para hashear el contenido limpio."""
+    return _IMPORT_RX.sub(lambda m: m.group(1) + m.group(2) + m.group(3) + m.group(5), text)
+
+
 def asset_version():
     """Hash corto de CSS+JS, para romper caché sólo cuando cambian de verdad.
 
-    Debe ser determinista: el HTML generado se commitea, así que un valor que
-    cambiara en cada corrida produciría un PR con ruido cada domingo.
+    Se hashea el JS SIN sus ?v= de import, de modo que el hash dependa sólo del
+    código real. Si no, incrustar el hash en los imports lo cambiaría en la
+    siguiente corrida (huevo y gallina) y el build dejaría de ser estable.
     """
     h = hashlib.sha1()
     for p in sorted((ROOT / "assets").rglob("*")):
-        if p.suffix in (".css", ".js"):
+        if p.suffix == ".css":
             h.update(p.read_bytes())
+        elif p.suffix == ".js":
+            h.update(_strip_import_versions(p.read_text(encoding="utf-8")).encode("utf-8"))
     return h.hexdigest()[:8]
+
+
+def stamp_module_imports(version):
+    """Añade ?v=<version> a los imports relativos de cada módulo ES.
+
+    El cache-busting del <script> de entrada NO alcanza a los imports internos:
+    `main.js?v=H` importa `./grid.js` SIN versión, así que el navegador puede
+    servir un grid.js viejo en caché aunque main.js sea nuevo. Ese fue el bug:
+    tras desplegar un arreglo en grid.js, los usuarios que volvían seguían con
+    el grid.js antiguo y los filtros multivalor dejaban de funcionar.
+
+    Idempotente: primero quita cualquier ?v= previo y luego pone el actual.
+    """
+    for p in (ROOT / "assets" / "js").rglob("*.js"):
+        text = _strip_import_versions(p.read_text(encoding="utf-8"))
+        stamped = _IMPORT_RX.sub(
+            lambda m: f"{m.group(1)}{m.group(2)}{m.group(3)}?v={version}{m.group(5)}", text)
+        if stamped != p.read_text(encoding="utf-8"):
+            p.write_text(stamped, encoding="utf-8")
 
 
 def build_stats(records, projects):
@@ -154,6 +187,7 @@ def main():
         dump(OUT_PACKS, {"count": len(packs), "packs": packs})
 
     pages.ASSET_V = asset_version()
+    stamp_module_imports(pages.ASSET_V)   # cache-bust también los imports internos
     written = pages.build_all(records, projects, ROOT, packs=packs)
 
     print(f"OK: {len(records)} bases -> {OUT_DB.relative_to(ROOT)}")

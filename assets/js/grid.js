@@ -5,8 +5,8 @@
  * `hidden`, que las quita a la vez del árbol de accesibilidad y del orden de
  * tabulación. No se construye HTML ni se vuelve a analizar nada.
  */
-import { FACETS } from './url.js';
-import { announce } from './a11y.js';
+import { FACETS } from './url.js?v=2f5873b8';
+import { announce } from './a11y.js?v=2f5873b8';
 
 export function createGrid({ root, statusEl, emptyEl, headingEl, strings, countKey }) {
   const cards = Array.from(root.querySelectorAll('[data-id]'));
