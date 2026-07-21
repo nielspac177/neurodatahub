@@ -1,0 +1,35 @@
+{
+  "id": "openneuro-ds008070",
+  "candidate": {
+    "title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+    "url": "https://openneuro.org/datasets/ds008070",
+    "doi": "",
+    "date": "2026-06-30",
+    "venue": "OpenNeuro",
+    "source": "OpenNeuro",
+    "score": 27,
+    "discovered_by": "openneuro",
+    "discovered_at": "2026-07-21",
+    "possible_duplicate": null
+  },
+  "sources": [
+    {
+      "src_id": "e1",
+      "kind": "landing_page",
+      "url": "https://openneuro.org/datasets/ds008070",
+      "fetched_at": "2026-07-21",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chars": 0,
+      "text": ""
+    },
+    {
+      "src_id": "e2",
+      "kind": "repository_record",
+      "url": "https://openneuro.org/datasets/ds008070",
+      "fetched_at": "2026-07-21",
+      "sha256": "d68ded89662fac2011fd0df6c6bb67dd6f73556dde9a0a300037fe6cb65cacf4",
+      "chars": 750,
+      "text": "OpenNeuro dataset ds008070 (snapshot 1.0.0)\nName: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data\nAuthors: Michelle C Medina, Neha A Reddy, Molly G Bright, Kevin R Sitek\nLicense: CC0\nDatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0\nNumber of subjects: 5\nModalities: mri\nTasks: audio\nSessions: \nTotal files: 334\nSize bytes: 10911636735\nCreated: 2026-06-30T15:24:26.365Z\n\nREADME:\nPlease use the following reference if you use these data:  Michelle C. Medina, Neha A. Reddy, Molly G. Bright, Kevin R. Sitek (2026) Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data; bioRxiv 2026.06.29.735344; doi: https://doi.org/10.64898/2026.06.29.735344"
+    }
+  ]
+}

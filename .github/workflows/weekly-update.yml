@@ -1,10 +1,20 @@
 name: Weekly dataset scan
 
-# Corre cada domingo 06:00 UTC + permite disparo manual desde la pestaña Actions.
+# Domingo 06:00 UTC + disparo manual desde la pestaña Actions.
+#
+# Este job es la mitad DETERMINISTA del pipeline: enumera, deduplica, tría y
+# valida. No necesita ninguna clave de API y nunca escribe en
+# data/databases.yml. El enriquecimiento con LLM y la verificación adversarial
+# corren en local sobre las colas que este job produce.
 on:
   schedule:
     - cron: "0 6 * * 0"
   workflow_dispatch:
+    inputs:
+      backfill:
+        description: "Recorrido histórico en vez de incremental"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -14,35 +24,58 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Install deps
+      - name: Instalar dependencias
         run: pip install -r requirements.txt
 
-      - name: Run discovery scan
+      - name: Calibrar el triaje antes de usarlo
+        # Control positivo: si el léxico dejara caer en 'rejected' una base ya
+        # publicada, está mal calibrado y descartaría descubrimientos buenos
+        # en silencio. Falla el job antes de escribir nada.
+        run: python scripts/calibrate_triage.py
+
+      - name: Descubrimiento (enumeración + dedup + triaje)
         env:
           OPENALEX_MAILTO: ${{ secrets.OPENALEX_MAILTO }}
-        run: python scripts/research_update.py --days 14 --max-per-query 5
+        run: |
+          python scripts/harvest_run.py \
+            ${{ inputs.backfill && '--backfill --limit 400' || '' }}
 
-      - name: Rebuild site data
-        run: python scripts/build.py
+      - name: Salud de enlaces y cambios en términos de acceso
+        # No falla el job: un portal caído un domingo no debe bloquear el
+        # escaneo. Lo que hace es acumular racha de fallos y levantar
+        # access_recheck, que reaudit_queue.py convierte en prioridad.
+        run: python scripts/audit_links.py || true
 
-      - name: Create Pull Request
+      - name: Cola de re-auditoría (delta de citas + antigüedad)
+        run: python scripts/reaudit_queue.py --top 20 || true
+
+      - name: Validar el catálogo
+        run: python scripts/build.py --check
+
+      - name: Verificar contraste WCAG de los tokens
+        run: python scripts/check_contrast.py
+
+      - name: Abrir PR de revisión
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "chore: weekly dataset scan"
+          commit-message: "chore: escaneo semanal de datasets"
           branch: bot/weekly-scan
           delete-branch: true
-          title: "🔄 Weekly dataset scan"
-          body-path: data/candidates.md
+          title: "🔄 Escaneo semanal de datasets"
+          body-path: reports/latest-scan.md
           labels: automated, review-needed
+          # El HTML generado NO va aquí: está en .gitignore y lo reconstruye
+          # deploy-pages.yml. Sólo se commitea el estado del descubrimiento.
           add-paths: |
-            data/candidates.json
-            data/candidates.md
+            state/
+            queue/
+            reports/
             data/databases.json
+            data/projects.json
+            data/stats.json

@@ -1,0 +1,35 @@
+{
+  "id": "openneuro-ds008064",
+  "candidate": {
+    "title": "Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression",
+    "url": "https://openneuro.org/datasets/ds008064",
+    "doi": "",
+    "date": "2026-06-29",
+    "venue": "OpenNeuro",
+    "source": "OpenNeuro",
+    "score": 28,
+    "discovered_by": "openneuro",
+    "discovered_at": "2026-07-21",
+    "possible_duplicate": null
+  },
+  "sources": [
+    {
+      "src_id": "e1",
+      "kind": "landing_page",
+      "url": "https://openneuro.org/datasets/ds008064",
+      "fetched_at": "2026-07-21",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chars": 0,
+      "text": ""
+    },
+    {
+      "src_id": "e2",
+      "kind": "repository_record",
+      "url": "https://openneuro.org/datasets/ds008064",
+      "fetched_at": "2026-07-21",
+      "sha256": "f9f409e70a28105843f16c6b659d9ea1eb67f47a06c761b3ed3c8d3e4af7d381",
+      "chars": 1378,
+      "text": "OpenNeuro dataset ds008064 (snapshot 1.0.0)\nName: Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises in treatment-resistant depression\nAuthors: Beynel, Lysianne, Baker, Neil, Wiener, Eva, Ekpo, Ekaete, Abboud, Cristina, Dannhauer, Moritz, Rezaee, Zeynab, Deng, Zhi, Feuer, Elyssa, Hynd, Megan, Rhode, Paul, Jones, Eudora, Mukhtar, Fahad, Regenold, William, Luber, Bruce, Strauman, Tim, Lisanby, Sarah H\nLicense: CC0\nDatasetDOI: doi:10.18112/openneuro.ds008064.v1.0.0\nNumber of subjects: 28\nModalities: mri\nTasks: Prevmatch, Promatch, Promismatch, rest, Prevmismatch\nSessions: 1, 2\nTotal files: 1111\nSize bytes: 27723084329\nCreated: 2026-06-29T19:45:23.022Z\n\nREADME:\nThis dataset contains neuroimaging data from 28 participants with treatment-resistant depression (TRD) who received six weeks of active or sham repetitive transcranial magnetic stimulation (rTMS) combined with psychotherapy.\n\nThe dataset includes structural and functional MRI data collected before and after the treatment protocol, including:\n\n- T1-weighted anatomical MRI\n- T2-weighted anatomical MRI\n- Diffusion-weighted imaging (DTI)\n- Functional MRI (fMRI):\n  - Goal priming task\n  - Resting-state fMRI\n\nThe dataset is intended to support research investigating neural mechanisms associated with rTMS combined with psychotherapy in treatment-resistant depression."
+    }
+  ]
+}

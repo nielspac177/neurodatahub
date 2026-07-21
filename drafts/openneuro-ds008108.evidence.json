@@ -1,0 +1,35 @@
+{
+  "id": "openneuro-ds008108",
+  "candidate": {
+    "title": "A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obstructive Sleep Apnea",
+    "url": "https://openneuro.org/datasets/ds008108",
+    "doi": "",
+    "date": "2026-07-07",
+    "venue": "OpenNeuro",
+    "source": "OpenNeuro",
+    "score": 37,
+    "discovered_by": "openneuro",
+    "discovered_at": "2026-07-21",
+    "possible_duplicate": null
+  },
+  "sources": [
+    {
+      "src_id": "e1",
+      "kind": "landing_page",
+      "url": "https://openneuro.org/datasets/ds008108",
+      "fetched_at": "2026-07-21",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chars": 0,
+      "text": ""
+    },
+    {
+      "src_id": "e2",
+      "kind": "repository_record",
+      "url": "https://openneuro.org/datasets/ds008108",
+      "fetched_at": "2026-07-21",
+      "sha256": "2d69b3d2c1fa288218c02d12b53818e9701d8dfee8e7dc2f5598a166ad28ff86",
+      "chars": 3349,
+      "text": "OpenNeuro dataset ds008108 (snapshot 1.0.0)\nName: A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obstructive Sleep Apnea\nAuthors: Wei Guo, Wei Tian, Wanqi Chen, Tao Jiang, Dong Chen, Fengyu Cong, Fan Li\nLicense: CC0\nDatasetDOI: doi:10.18112/openneuro.ds008108.v1.0.0\nNumber of subjects: 142\nModalities: eeg, mri, beh\nTasks: rest, sleep\nSessions: postNap, postSleep, nightSleep, preNap, preSleep\nTotal files: 5603\nSize bytes: 75106494412\nCreated: 2026-07-07T01:25:41.785Z\n\nREADME:\n# A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obstructive Sleep Apnea\n﻿\n## 1. Overview\nThe dataset includes behavioral, polysomnography (PSG), neuroimaging, and questionnaire recordings collected from 142 participants, including patients with OSA and matched healthy controls.All data have been rigorously curated to comply with the Brain Imaging Data Structure (BIDS) standard.\n﻿\n## 2. Experimental Design (Longitudinal Sessions)\nThe experimental protocol utilizes a test-retest multi-session design spanning a 24-hour period to support the investigation of cognitive impairment in OSA.The directory structure is organized into the following sessions (`ses-`):\n* `ses-preSleep`: Evening baseline cognitive assessment.\n* `ses-nightSleep`: Nocturnal polysomnography (PSG) recording.\n* `ses-postSleep`: Morning cognitive assessment immediately following nocturnal sleep.\n* `ses-preNap`: Early afternoon cognitive assessment prior to a diurnal nap.\n* `ses-postNap`: Late afternoon assessment following the nap, including structural and resting-state functional MRI scans.\n﻿\n## 3. Cognitive Assessment Battery (`task-cognitive`)\nDuring the waking sessions (`ses-preSleep`, `ses-postSleep`, `ses-preNap`, `ses-postNap`), participants completed a continuous cognitive assessment battery:\n1.  **PPT**: Picture Pairing Task\n2.  **SART**: Sustained Attention to Response Task\n3.  **MST**: Motor Skills Task\n4.  **PVT**: Psychomotor Vigilance Task\n﻿\n## 4. Data Modalities & Technical Notes\n* **Polysomnography (PSG)**: Standard multi-channel PSG (`.edf`) was recorded continuously during the `ses-nightSleep` session.\n* **Magnetic Resonance Imaging (MRI)**: High-resolution T1-weighted structural scans (`anat`) and resting-state BOLD functional scans (`func`) were acquired once at the `ses-postNap` timepoint to investigate structural divergence and cognitive network reorganization.\n* **Behavioral Data (`beh`)**: Task performance metrics (e.g., reaction times, error rates) are provided in tab-separated `.tsv` format, isolated by session.\n﻿\n## 5. Directory Structure Highlight\n```text\ndataset/\n├── README.md\n├── dataset_description.json\n├── sub-001/\n│   ├── ses-preSleep/  (Behavioral)\n│   ├── ses-nightSleep/ (PSG EDF)\n│   ├── ses-postSleep/ (Behavioral)\n│   ├── ses-preNap/    (Behavioral)\n│   └── ses-postNap/   (Behavioral, T1w MRI, rs-fMRI)\n└── ...\n```\n﻿\n## 6. Contributors\n* Wei Guo, , Wei Tian, Wanqi Chen, Tao Jiang, Dong Chen, Fengyu Cong, and Fan Li\n﻿\n**Institution:** School of Biomedical Engineering, Faculty of Medicine, Dalian University of Technology\n﻿\n## 7. License and Usage\nThis dataset is released under the CC0 license. If you use this data in your research or utilize our custom analysis pipelines, please cite the accompanying dataset descriptor publication and the provided Dataset DOI.\n﻿"
+    }
+  ]
+}

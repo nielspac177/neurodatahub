@@ -1,451 +1,2370 @@
-# NeuroDataHub — fuente de verdad del catálogo
-# Un registro por base de datos. Editar aquí; el sitio se regenera con scripts/build.py
-# Campos de acceso: open | registration | credentialed | dua | application
-# modality_primary: clinical | neuroimaging | genetics | electrophysiology | bci | multimodal | aggregator
-
 - id: mimic-iv
   name: MIMIC-IV
-  version: "3.1"
+  version: '3.1'
   modality_primary: clinical
-  modality_secondary: [waveforms]
-  diseases: [stroke, tbi, delirium, sepsis, intracranial-hemorrhage]
-  disease_category: [neurosurgical, neurological]
+  modality_secondary:
+  - waveforms
+  diseases:
+  - stroke
+  - tbi
+  - delirium
+  - sepsis
+  - intracranial-hemorrhage
+  disease_category:
+  - neurosurgical
+  - neurological
   provider: PhysioNet / MIT-LCP
   url: https://physionet.org/content/mimiciv/3.1/
   access: credentialed
-  access_notes: "Requiere credencial PhysioNet + curso CITI 'Data or Specimens Only Research'."
+  access_notes: Requiere credencial PhysioNet + curso CITI 'Data or Specimens Only Research'.
   license: PhysioNet Credentialed Health Data License 1.5.0
   cost: free
-  n_subjects: "~65,000 estancias en UCI / ~180,000 pacientes"
-  years: "2008-2019"
-  data_types: [EHR, signos vitales, laboratorios, notas clínicas, ICD, medicación]
-  region: "EE.UU. (Beth Israel Deaconess, Boston)"
-  short_desc_es: "Base de cuidados intensivos de un solo centro, desidentificada, con datos granulares de UCI; referencia estándar para modelos predictivos clínicos."
-  short_desc_en: "Single-center, de-identified critical care database with granular ICU data; the standard benchmark for clinical prediction models."
+  n_subjects: ~65,000 estancias en UCI / ~180,000 pacientes
+  years: 2008-2019
+  data_types:
+  - EHR
+  - signos vitales
+  - laboratorios
+  - notas clínicas
+  - ICD
+  - medicación
+  region: EE.UU. (Beth Israel Deaconess, Boston)
+  short_desc_es: Base de cuidados intensivos de un solo centro, desidentificada, con datos granulares
+    de UCI; referencia estándar para modelos predictivos clínicos.
+  short_desc_en: Single-center, de-identified critical care database with granular ICU data; the standard
+    benchmark for clinical prediction models.
   key_publications:
-    - "Predicción de mortalidad, sepsis y lesión renal aguda en UCI"
-    - "NLP sobre notas clínicas (extracción, resumen, LLMs clínicos)"
-    - "Estudios de equidad/sesgo algorítmico en modelos de UCI"
-  open_questions:
-    - "¿Predecir deterioro neurológico agudo (delirium, hemorragia) integrando notas + señales, con validación externa en eICU?"
-    - "¿Modelos de fundación clínicos preentrenados en MIMIC que transfieran few-shot a tareas neuroquirúrgicas?"
-  last_verified: "2026-07-21"
-  tags: [benchmark, longitudinal, single-center]
+  - Predicción de mortalidad, sepsis y lesión renal aguda en UCI
+  - NLP sobre notas clínicas (extracción, resumen, LLMs clínicos)
+  - Estudios de equidad/sesgo algorítmico en modelos de UCI
+  last_verified: '2026-07-21'
+  tags:
+  - benchmark
+  - longitudinal
+  - single-center
+  projects:
+  - id: mimic-iv-q1
+    question_en: Can acute neurological deterioration (delirium, haemorrhage) be predicted by combining
+      clinical notes with waveform signals, and does it externally validate on eICU?
+    question_es: ¿Predecir deterioro neurológico agudo (delirium, hemorragia) integrando notas + señales,
+      con validación externa en eICU?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: mimic-iv-q2
+    question_en: Do clinical foundation models pre-trained on MIMIC transfer few-shot to neurosurgical
+      tasks?
+    question_es: ¿Modelos de fundación clínicos preentrenados en MIMIC que transfieran few-shot a tareas
+      neuroquirúrgicas?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1038/s41597-022-01899-x
+  doi: 10.13026/6mm1-ek67
+  access_steps:
+  - step_en: Create a free PhysioNet account
+    step_es: Crea una cuenta gratuita en PhysioNet
+    url: https://physionet.org/register/
+    eta_en: 5 min
+    eta_es: 5 min
+  - step_en: Complete the CITI 'Data or Specimens Only Research' course and upload the certificate
+    step_es: Completa el curso CITI 'Data or Specimens Only Research' y sube el certificado
+    eta_en: 4-6 h
+    eta_es: 4-6 h
+  - step_en: Submit the credentialing request; a human reviews it
+    step_es: Envía la solicitud de credencial; la revisa una persona
+    eta_en: 3-14 days
+    eta_es: 3-14 días
+  - step_en: Sign the data use agreement on the project page, then download
+    step_es: Firma el acuerdo de uso en la página del proyecto y descarga
+    eta_en: 10 min
+    eta_es: 10 min
+  starter_code:
+    python: 'import pandas as pd
 
+
+      # Tras descargar y descomprimir el volcado con credencial.
+
+      adm = pd.read_csv(''mimiciv/hosp/admissions.csv.gz'')
+
+      dx  = pd.read_csv(''mimiciv/hosp/diagnoses_icd.csv.gz'')
+
+
+      # Ingresos con un diagnóstico cerebrovascular (ICD-10 I60-I69)
+
+      stroke = dx[dx.icd_code.str.startswith((''I60'',''I61'',''I62'',''I63''), na=False)]
+
+      print(adm.merge(stroke, on=''hadm_id'').subject_id.nunique(), ''pacientes'')'
+    r: 'library(data.table)
+
+      adm <- fread(''mimiciv/hosp/admissions.csv.gz'')
+
+      dx  <- fread(''mimiciv/hosp/diagnoses_icd.csv.gz'')
+
+      stroke <- dx[grepl(''^I6[0-3]'', icd_code)]
+
+      length(unique(merge(adm, stroke, by=''hadm_id'')$subject_id))'
 - id: eicu-crd
   name: eICU Collaborative Research Database
-  version: "2.0"
+  version: '2.0'
   modality_primary: clinical
   modality_secondary: []
-  diseases: [stroke, tbi, sepsis, delirium]
-  disease_category: [neurosurgical, neurological]
+  diseases:
+  - stroke
+  - tbi
+  - sepsis
+  - delirium
+  disease_category:
+  - neurosurgical
+  - neurological
   provider: PhysioNet / Philips eICU
   url: https://physionet.org/content/eicu-crd/2.0/
   access: credentialed
-  access_notes: "Credencial PhysioNet + curso CITI."
+  access_notes: Credencial PhysioNet + curso CITI.
   license: PhysioNet Credentialed Health Data License 1.5.0
   cost: free
-  n_subjects: "~200,000 ingresos, 335 UCIs, ~200 hospitales"
-  years: "2014-2015"
-  data_types: [EHR, signos vitales, laboratorios, APACHE, medicación]
-  region: "EE.UU. (multicéntrico)"
-  short_desc_es: "Base multicéntrica de UCI de EE.UU.; ideal para validación externa y estudios de generalización entre hospitales."
-  short_desc_en: "Multi-center US ICU database; ideal for external validation and cross-hospital generalization studies."
+  n_subjects: ~200,000 ingresos, 335 UCIs, ~200 hospitales
+  years: 2014-2015
+  data_types:
+  - EHR
+  - signos vitales
+  - laboratorios
+  - APACHE
+  - medicación
+  region: EE.UU. (multicéntrico)
+  short_desc_es: Base multicéntrica de UCI de EE.UU.; ideal para validación externa y estudios de generalización
+    entre hospitales.
+  short_desc_en: Multi-center US ICU database; ideal for external validation and cross-hospital generalization
+    studies.
   key_publications:
-    - "Validación externa de modelos entrenados en MIMIC"
-    - "Benchmarks de mortalidad y severidad multicéntricos"
-  open_questions:
-    - "¿Qué modelos generalizan de un hospital a otro y cuáles colapsan por cambio de dominio (site shift)?"
-  last_verified: "2026-07-21"
-  tags: [benchmark, multi-center]
+  - Validación externa de modelos entrenados en MIMIC
+  - Benchmarks de mortalidad y severidad multicéntricos
+  last_verified: '2026-07-21'
+  tags:
+  - benchmark
+  - multi-center
+  projects:
+  - id: eicu-crd-q1
+    question_en: Which models generalise from one hospital to another, and which collapse under site shift?
+    question_es: ¿Qué modelos generalizan de un hospital a otro y cuáles colapsan por cambio de dominio
+      (site shift)?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1038/sdata.2018.178
+  doi: 10.13026/C2WM1R
+  access_steps:
+  - step_en: Same PhysioNet credentialing as MIMIC-IV — do it once, it covers both
+    step_es: 'Misma credencial PhysioNet que MIMIC-IV: se hace una vez y sirve para ambas'
+    url: https://physionet.org/settings/credentialing/
+    eta_en: see MIMIC-IV
+    eta_es: ver MIMIC-IV
+  - step_en: Sign the eICU-specific data use agreement
+    step_es: Firma el acuerdo de uso específico de eICU
+    eta_en: 10 min
+    eta_es: 10 min
+  starter_code:
+    python: 'import pandas as pd
 
+
+      pat = pd.read_csv(''eicu/patient.csv.gz'')
+
+      # unitvisitnumber > 1 marca reingresos a UCI
+
+      print(pat.groupby(''hospitalid'').size().describe())'
 - id: ppmi
   name: PPMI (Parkinson's Progression Markers Initiative)
-  version: "rolling"
+  version: rolling
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [parkinson, movement-disorders]
-  disease_category: [neurological, neurosurgical]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - parkinson
+  - movement-disorders
+  disease_category:
+  - neurological
+  - neurosurgical
   provider: Michael J. Fox Foundation
   url: https://www.ppmi-info.org/access-data-specimens/download-data
   access: application
-  access_notes: "Registro + aceptación de Data Use Agreement en LONI/IDA."
+  access_notes: Registro + aceptación de Data Use Agreement en LONI/IDA.
   license: PPMI Data Use Agreement
   cost: free
-  n_subjects: "Miles (PD de novo, prodrómicos, controles, portadores genéticos)"
-  years: "2010-presente"
-  data_types: [MRI, DAT-SPECT, escalas MDS-UPDRS, biofluidos, genética (LRRK2/GBA/SNCA), digital]
-  region: "Internacional (multicéntrico)"
-  short_desc_es: "Cohorte longitudinal observacional de Parkinson con imagen, biomarcadores de fluido, genética y clínica; el recurso de referencia para progresión de PD."
-  short_desc_en: "Longitudinal observational Parkinson's cohort with imaging, fluid biomarkers, genetics and clinical data; the reference resource for PD progression."
+  n_subjects: Miles (PD de novo, prodrómicos, controles, portadores genéticos)
+  years: 2010-presente
+  data_types:
+  - MRI
+  - DAT-SPECT
+  - escalas MDS-UPDRS
+  - biofluidos
+  - genética (LRRK2/GBA/SNCA)
+  - digital
+  region: Internacional (multicéntrico)
+  short_desc_es: Cohorte longitudinal observacional de Parkinson con imagen, biomarcadores de fluido,
+    genética y clínica; el recurso de referencia para progresión de PD.
+  short_desc_en: Longitudinal observational Parkinson's cohort with imaging, fluid biomarkers, genetics
+    and clinical data; the reference resource for PD progression.
   key_publications:
-    - "Progresión motora y subtipado de Parkinson"
-    - "Biomarcadores DAT-SPECT y α-sinucleína (seed amplification assay)"
-    - "Genética LRRK2/GBA y trayectorias de enfermedad"
-  open_questions:
-    - "¿Biomarcadores multimodales que predigan respuesta a DBS subtalámico estratificados por genotipo (GBA vs LRRK2)?"
-    - "¿Modelos de trayectoria que anticipen conversión de prodrómico a PD manifiesto?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, cohort, imaging-genetics]
-
+  - Progresión motora y subtipado de Parkinson
+  - Biomarcadores DAT-SPECT y α-sinucleína (seed amplification assay)
+  - Genética LRRK2/GBA y trayectorias de enfermedad
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - cohort
+  - imaging-genetics
+  projects:
+  - id: ppmi-q1
+    question_en: Are there multimodal biomarkers that predict subthalamic DBS response when stratified
+      by genotype (GBA vs LRRK2)?
+    question_es: ¿Biomarcadores multimodales que predigan respuesta a DBS subtalámico estratificados por
+      genotipo (GBA vs LRRK2)?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: ppmi-q2
+    question_en: Can trajectory models anticipate conversion from prodromal to manifest Parkinson's disease?
+    question_es: ¿Modelos de trayectoria que anticipen conversión de prodrómico a PD manifiesto?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1016/j.pneurobio.2011.09.005
+  access_steps:
+  - step_en: Apply for access through the LONI IDA portal
+    step_es: Solicita acceso por el portal LONI IDA
+    url: https://ida.loni.usc.edu/
+    eta_en: 30 min
+    eta_es: 30 min
+  - step_en: Agree to the PPMI Data Use Agreement (names a supervising investigator)
+    step_es: Acepta el acuerdo de uso de PPMI (exige nombrar a un investigador responsable)
+    eta_en: 1 day
+    eta_es: 1 día
+  - step_en: Wait for approval, then download via the IDA browser or its API
+    step_es: Espera la aprobación y descarga desde el navegador de IDA o su API
+    eta_en: 1-3 weeks
+    eta_es: 1-3 semanas
 - id: adni
   name: ADNI (Alzheimer's Disease Neuroimaging Initiative)
-  version: "ADNI-4"
+  version: ADNI-4
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [alzheimer, dementia, mci]
-  disease_category: [neurological]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - alzheimer
+  - dementia
+  - mci
+  disease_category:
+  - neurological
   provider: USC / LONI
-  url: https://adni.loni.usc.edu/data-samples/access-data/
+  url: https://adni.loni.usc.edu/data-samples/adni-data/#AccessData
   access: application
-  access_notes: "Solicitud de acceso vía IDA/LONI con aprobación."
+  access_notes: Solicitud de acceso vía IDA/LONI con aprobación.
   license: ADNI Data Use Agreement
   cost: free
-  n_subjects: "Miles (controles, MCI, AD) en fases sucesivas"
-  years: "2004-presente"
-  data_types: [MRI, PET amiloide/tau/FDG, cognición, CSF, genética (APOE, GWAS)]
-  region: "EE.UU. y Canadá (multicéntrico)"
-  short_desc_es: "Cohorte longitudinal de envejecimiento y Alzheimer con imagen multimodal, biomarcadores y genética; base de miles de estudios de predicción de conversión."
-  short_desc_en: "Longitudinal aging/Alzheimer's cohort with multimodal imaging, biomarkers and genetics; basis of thousands of conversion-prediction studies."
+  n_subjects: Miles (controles, MCI, AD) en fases sucesivas
+  years: 2004-presente
+  data_types:
+  - MRI
+  - PET amiloide/tau/FDG
+  - cognición
+  - CSF
+  - genética (APOE
+  - GWAS)
+  region: EE.UU. y Canadá (multicéntrico)
+  short_desc_es: Cohorte longitudinal de envejecimiento y Alzheimer con imagen multimodal, biomarcadores
+    y genética; base de miles de estudios de predicción de conversión.
+  short_desc_en: Longitudinal aging/Alzheimer's cohort with multimodal imaging, biomarkers and genetics;
+    basis of thousands of conversion-prediction studies.
   key_publications:
-    - "Predicción de conversión MCI→AD"
-    - "Atrofia hipocampal, PET amiloide/tau como biomarcadores"
-    - "Modelos multimodales imagen + genética + CSF"
-  open_questions:
-    - "¿Generalizan los modelos de conversión a poblaciones no representadas (diversidad étnica y de escáner)?"
-    - "¿Biomarcadores digitales/pasivos que complementen la imagen costosa?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, cohort, imaging-genetics]
-
+  - Predicción de conversión MCI→AD
+  - Atrofia hipocampal, PET amiloide/tau como biomarcadores
+  - Modelos multimodales imagen + genética + CSF
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - cohort
+  - imaging-genetics
+  projects:
+  - id: adni-q1
+    question_en: Do MCI-to-AD conversion models generalise to under-represented populations, across both
+      ethnicity and scanner diversity?
+    question_es: ¿Generalizan los modelos de conversión a poblaciones no representadas (diversidad étnica
+      y de escáner)?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: adni-q2
+    question_en: Can passive or digital biomarkers substitute for, or complement, expensive imaging?
+    question_es: ¿Biomarcadores digitales/pasivos que complementen la imagen costosa?
+    status: open
+    unverified: true
+    confidence: 0.2
+  access_steps:
+  - step_en: Submit an ADNI data access application (needs an institutional affiliation)
+    step_es: Envía una solicitud de acceso a ADNI (requiere afiliación institucional)
+    url: https://adni.loni.usc.edu/data-samples/adni-data/#AccessData
+    eta_en: 1 h
+    eta_es: 1 h
+  - step_en: The Data Sharing and Publication Committee reviews the request
+    step_es: El comité de publicación y compartición revisa la solicitud
+    eta_en: 2-6 weeks
+    eta_es: 2-6 semanas
+  - step_en: Download through LONI IDA once approved
+    step_es: Descarga por LONI IDA una vez aprobada
+    eta_en: hours (the data is large)
+    eta_es: horas (los datos son grandes)
+  descriptor_doi: 10.1002/jmri.21049
 - id: openneuro
   name: OpenNeuro
-  version: "rolling"
+  version: rolling
   modality_primary: neuroimaging
-  modality_secondary: [electrophysiology]
-  diseases: [multiple, control, development]
-  disease_category: [neurological, psychiatric, neurosurgical]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - multiple
+  - control
+  - development
+  disease_category:
+  - neurological
+  - psychiatric
+  - neurosurgical
   provider: Stanford / Poldrack Lab
   url: https://openneuro.org/
   access: open
-  access_notes: "Mayoría bajo CC0; algunos datasets con restricciones."
+  access_notes: Mayoría bajo CC0; algunos datasets con restricciones.
   license: CC0 (predominante)
   cost: free
-  n_subjects: "Cientos de datasets, decenas de miles de sujetos"
-  years: "2017-presente"
-  data_types: [MRI, fMRI, dMRI, EEG, MEG, iEEG, PET (formato BIDS)]
-  region: "Internacional"
-  short_desc_es: "Repositorio abierto de neuroimagen y electrofisiología en estándar BIDS; el mayor punto de entrada para datasets abiertos reutilizables."
-  short_desc_en: "Open repository of neuroimaging and electrophysiology in the BIDS standard; the largest entry point for reusable open datasets."
+  n_subjects: Cientos de datasets, decenas de miles de sujetos
+  years: 2017-presente
+  data_types:
+  - MRI
+  - fMRI
+  - dMRI
+  - EEG
+  - MEG
+  - iEEG
+  - PET (formato BIDS)
+  region: Internacional
+  short_desc_es: Repositorio abierto de neuroimagen y electrofisiología en estándar BIDS; el mayor punto
+    de entrada para datasets abiertos reutilizables.
+  short_desc_en: Open repository of neuroimaging and electrophysiology in the BIDS standard; the largest
+    entry point for reusable open datasets.
   key_publications:
-    - "Reanálisis y meta-análisis multi-dataset"
-    - "Desarrollo de pipelines (fMRIPrep, MRIQC) y benchmarks"
-  open_questions:
-    - "¿Modelos de fundación entrenados sobre el agregado BIDS que transfieran entre tareas y poblaciones?"
-    - "¿Reproducibilidad de hallazgos clínicos al reanalizar con pipelines estandarizados?"
-  last_verified: "2026-07-21"
-  tags: [BIDS, open, aggregator]
+  - Reanálisis y meta-análisis multi-dataset
+  - Desarrollo de pipelines (fMRIPrep, MRIQC) y benchmarks
+  last_verified: '2026-07-21'
+  tags:
+  - BIDS
+  - open
+  - aggregator
+  projects:
+  - id: openneuro-q1
+    question_en: Do foundation models trained on the aggregate BIDS corpus transfer across tasks and populations?
+    question_es: ¿Modelos de fundación entrenados sobre el agregado BIDS que transfieran entre tareas
+      y poblaciones?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: openneuro-q2
+    question_en: How reproducible are published clinical findings when reanalysed with standardised pipelines?
+    question_es: ¿Reproducibilidad de hallazgos clínicos al reanalizar con pipelines estandarizados?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.7554/eLife.71774
+  starter_code:
+    bash: '# Sin cuenta. openneuro-py descarga sólo lo que pidas.
 
+      pip install openneuro-py
+
+      openneuro-py download --dataset=ds000117 --target-dir=./ds000117
+
+
+      # Ver qué hay antes de bajar 40 GB:
+
+      openneuro-py download --dataset=ds000117 --include=participants.tsv'
+    python: "import openneuro as on\non.download(dataset='ds000117', target_dir='./ds000117',\n      \
+      \      include=['participants.tsv', 'sub-01/anat'])"
 - id: uk-biobank
   name: UK Biobank
-  version: "rolling"
+  version: rolling
   modality_primary: multimodal
-  modality_secondary: [genetics, neuroimaging, clinical]
-  diseases: [stroke, dementia, depression, multiple]
-  disease_category: [neurological, psychiatric]
+  modality_secondary:
+  - genetics
+  - neuroimaging
+  - clinical
+  diseases:
+  - stroke
+  - dementia
+  - depression
+  - multiple
+  disease_category:
+  - neurological
+  - psychiatric
   provider: UK Biobank Ltd.
   url: https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access
   access: application
-  access_notes: "Aplicación institucional con revisión y tarifa de acceso; requiere aprobación ética."
+  access_notes: Aplicación institucional con revisión y tarifa de acceso; requiere aprobación ética.
   license: UK Biobank Material Transfer / Access Agreement
   cost: paid
-  n_subjects: "~500,000 participantes (~100,000 con imagen)"
-  years: "2006-presente"
-  data_types: [genotipado/WES/WGS, MRI cerebral/corporal, historia clínica, estilo de vida]
-  region: "Reino Unido"
-  short_desc_es: "Biobanco poblacional a gran escala con genética, imagen cerebral y desenlaces clínicos vinculados; motor de la imaging-genetics moderna."
-  short_desc_en: "Large-scale population biobank with genetics, brain imaging and linked clinical outcomes; the engine of modern imaging-genetics."
+  n_subjects: ~500,000 participantes (~100,000 con imagen)
+  years: 2006-presente
+  data_types:
+  - genotipado/WES/WGS
+  - MRI cerebral/corporal
+  - historia clínica
+  - estilo de vida
+  region: Reino Unido
+  short_desc_es: Biobanco poblacional a gran escala con genética, imagen cerebral y desenlaces clínicos
+    vinculados; motor de la imaging-genetics moderna.
+  short_desc_en: Large-scale population biobank with genetics, brain imaging and linked clinical outcomes;
+    the engine of modern imaging-genetics.
   key_publications:
-    - "GWAS de rasgos de imagen cerebral (IDPs)"
-    - "Riesgo poligénico y envejecimiento cerebral (brain age)"
-    - "Asociaciones estilo de vida–estructura cerebral"
-  open_questions:
-    - "¿Puntuaciones poligénicas transdiagnósticas que mapeen a circuitos comunes como dianas de neuromodulación?"
-    - "¿Predicción de ictus/demencia incidente combinando genética + imagen + EHR?"
-  last_verified: "2026-07-21"
-  tags: [biobank, imaging-genetics, population]
-
+  - GWAS de rasgos de imagen cerebral (IDPs)
+  - Riesgo poligénico y envejecimiento cerebral (brain age)
+  - Asociaciones estilo de vida–estructura cerebral
+  last_verified: '2026-07-21'
+  tags:
+  - biobank
+  - imaging-genetics
+  - population
+  projects:
+  - id: uk-biobank-q1
+    question_en: Do transdiagnostic polygenic scores map onto shared circuits that could serve as neuromodulation
+      targets?
+    question_es: ¿Puntuaciones poligénicas transdiagnósticas que mapeen a circuitos comunes como dianas
+      de neuromodulación?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: uk-biobank-q2
+    question_en: Can incident stroke or dementia be predicted by combining genetics, imaging and EHR?
+    question_es: ¿Predicción de ictus/demencia incidente combinando genética + imagen + EHR?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1371/journal.pmed.1001779
+  access_steps:
+  - step_en: Register as a researcher in the Access Management System
+    step_es: Regístrate como investigador en el Access Management System
+    url: https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access
+    eta_en: 1 h
+    eta_es: 1 h
+  - step_en: Submit a scientific application describing the analysis
+    step_es: Envía una solicitud científica describiendo el análisis
+    eta_en: 1-2 weeks of writing
+    eta_es: 1-2 semanas de redacción
+  - step_en: Pay the access fee — this is NOT free; budget for it before planning a project
+    step_es: Paga la tarifa de acceso — NO es gratis; presupuéstala antes de planificar
+    eta_en: depends on scope
+    eta_es: según el ámbito
+  - step_en: Approval, then data delivered to your approved compute environment
+    step_es: Aprobación y entrega de datos a tu entorno de cómputo aprobado
+    eta_en: 4-12 weeks
+    eta_es: 4-12 semanas
 - id: brats
   name: BraTS (Brain Tumor Segmentation Challenge)
-  version: "2024"
+  version: '2024'
   modality_primary: neuroimaging
   modality_secondary: []
-  diseases: [glioma, glioblastoma, meningioma, brain-metastasis]
-  disease_category: [neurosurgical]
+  diseases:
+  - glioma
+  - glioblastoma
+  - meningioma
+  - brain-metastasis
+  disease_category:
+  - neurosurgical
   provider: MICCAI / TCIA
   url: https://www.synapse.org/brats
   access: registration
-  access_notes: "Registro en Synapse; datos derivados de TCIA y colecciones asociadas."
-  license: "Variable (CC BY / TCIA data usage)"
+  access_notes: Registro en Synapse; datos derivados de TCIA y colecciones asociadas.
+  license: Variable (CC BY / TCIA data usage)
   cost: free
-  n_subjects: "Cientos-miles de estudios MRI multiparamétricos anotados"
-  years: "2012-presente"
-  data_types: [MRI multiparamétrica (T1, T1c, T2, FLAIR), máscaras de segmentación]
-  region: "Internacional (multicéntrico)"
-  short_desc_es: "Reto y dataset de referencia para segmentación de tumores cerebrales y predicción de biomarcadores; base del deep learning en neurooncología."
-  short_desc_en: "Reference challenge/dataset for brain tumor segmentation and biomarker prediction; foundation of deep learning in neuro-oncology."
+  n_subjects: Cientos-miles de estudios MRI multiparamétricos anotados
+  years: 2012-presente
+  data_types:
+  - MRI multiparamétrica (T1
+  - T1c
+  - T2
+  - FLAIR)
+  - máscaras de segmentación
+  region: Internacional (multicéntrico)
+  short_desc_es: Reto y dataset de referencia para segmentación de tumores cerebrales y predicción de
+    biomarcadores; base del deep learning en neurooncología.
+  short_desc_en: Reference challenge/dataset for brain tumor segmentation and biomarker prediction; foundation
+    of deep learning in neuro-oncology.
   key_publications:
-    - "Segmentación automática de glioma (nnU-Net y sucesores)"
-    - "Predicción de supervivencia y estado de MGMT"
-    - "Aprendizaje federado entre instituciones (BraTS Federated)"
-  open_questions:
-    - "¿Firmas radiómicas que predigan subtipo molecular o metilación MGMT sin biopsia, robustas entre centros y escáneres?"
-    - "¿Segmentación que generalice a resonancias postquirúrgicas y de bajo campo?"
-  last_verified: "2026-07-21"
-  tags: [challenge, segmentation, oncology]
-
+  - Segmentación automática de glioma (nnU-Net y sucesores)
+  - Predicción de supervivencia y estado de MGMT
+  - Aprendizaje federado entre instituciones (BraTS Federated)
+  last_verified: '2026-07-21'
+  tags:
+  - challenge
+  - segmentation
+  - oncology
+  projects:
+  - id: brats-q1
+    question_en: Can radiomic signatures predict molecular subtype or MGMT methylation without biopsy,
+      robustly across centres and scanners?
+    question_es: ¿Firmas radiómicas que predigan subtipo molecular o metilación MGMT sin biopsia, robustas
+      entre centros y escáneres?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: brats-q2
+    question_en: Does tumour segmentation generalise to post-surgical and low-field MRI?
+    question_es: ¿Segmentación que generalice a resonancias postquirúrgicas y de bajo campo?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1109/TMI.2014.2377694
+  starter_code:
+    python: "import nibabel as nib\nimport numpy as np\n\nseg = nib.load('BraTS2021_00000/BraTS2021_00000_seg.nii.gz')\n\
+      d = seg.get_fdata()\n# Etiquetas: 1 núcleo necrótico, 2 edema, 4 tumor realzante\nfor lab in (1,\
+      \ 2, 4):\n    print(lab, int((d == lab).sum()), 'vóxeles')"
 - id: tcia
   name: TCIA (The Cancer Imaging Archive)
-  version: "rolling"
+  version: rolling
   modality_primary: neuroimaging
-  modality_secondary: [genetics]
-  diseases: [glioma, glioblastoma, brain-tumor]
-  disease_category: [neurosurgical]
+  modality_secondary:
+  - genetics
+  diseases:
+  - glioma
+  - glioblastoma
+  - brain-tumor
+  disease_category:
+  - neurosurgical
   provider: NCI / University of Arkansas
   url: https://www.cancerimagingarchive.net/
   access: registration
-  access_notes: "Mayoría de colecciones públicas; algunas con solicitud."
-  license: "Variable por colección (frecuente CC BY)"
+  access_notes: Mayoría de colecciones públicas; algunas con solicitud.
+  license: Variable por colección (frecuente CC BY)
   cost: free
-  n_subjects: "Múltiples colecciones (TCGA-GBM, TCGA-LGG, IvyGAP, etc.)"
-  years: "2011-presente"
-  data_types: [MRI, CT, PET, patología digital, vínculos genómicos (TCGA)]
-  region: "Internacional"
-  short_desc_es: "Archivo de imagen oncológica con colecciones cerebrales enlazadas a datos genómicos (TCGA); clave para radiogenómica."
-  short_desc_en: "Cancer imaging archive with brain collections linked to genomic data (TCGA); key for radiogenomics."
+  n_subjects: Múltiples colecciones (TCGA-GBM, TCGA-LGG, IvyGAP, etc.)
+  years: 2011-presente
+  data_types:
+  - MRI
+  - CT
+  - PET
+  - patología digital
+  - vínculos genómicos (TCGA)
+  region: Internacional
+  short_desc_es: Archivo de imagen oncológica con colecciones cerebrales enlazadas a datos genómicos (TCGA);
+    clave para radiogenómica.
+  short_desc_en: Cancer imaging archive with brain collections linked to genomic data (TCGA); key for
+    radiogenomics.
   key_publications:
-    - "Radiogenómica de glioma (imagen ↔ mutaciones IDH, 1p/19q)"
-    - "Datasets para segmentación y pronóstico"
-  open_questions:
-    - "¿Modelos imagen→genómica que reduzcan necesidad de biopsia en gliomas de difícil acceso?"
-  last_verified: "2026-07-21"
-  tags: [oncology, radiogenomics, aggregator]
-
+  - Radiogenómica de glioma (imagen ↔ mutaciones IDH, 1p/19q)
+  - Datasets para segmentación y pronóstico
+  last_verified: '2026-07-21'
+  tags:
+  - oncology
+  - radiogenomics
+  - aggregator
+  projects:
+  - id: tcia-q1
+    question_en: Can image-to-genomics models reduce the need for biopsy in hard-to-reach gliomas?
+    question_es: ¿Modelos imagen→genómica que reduzcan necesidad de biopsia en gliomas de difícil acceso?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1007/s10278-013-9622-7
 - id: abcd
   name: ABCD Study (Adolescent Brain Cognitive Development)
-  version: "5.x"
+  version: 5.x
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [adhd, depression, anxiety, substance-use, development]
-  disease_category: [psychiatric]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - adhd
+  - depression
+  - anxiety
+  - substance-use
+  - development
+  disease_category:
+  - psychiatric
   provider: NIH / NDA
   url: https://nda.nih.gov/abcd
   access: dua
-  access_notes: "Acceso vía NIMH Data Archive (NDA) con Data Use Certification."
+  access_notes: Acceso vía NIMH Data Archive (NDA) con Data Use Certification.
   license: NDA Data Use Certification
   cost: free
-  n_subjects: "~11,800 niños seguidos longitudinalmente"
-  years: "2016-presente"
-  data_types: [MRI/fMRI, cognición, salud mental, genética, ambiente]
-  region: "EE.UU. (21 sitios)"
-  short_desc_es: "Mayor estudio longitudinal del desarrollo cerebral adolescente en EE.UU.; central para psiquiatría del neurodesarrollo."
-  short_desc_en: "Largest longitudinal study of adolescent brain development in the US; central to neurodevelopmental psychiatry."
+  n_subjects: ~11,800 niños seguidos longitudinalmente
+  years: 2016-presente
+  data_types:
+  - MRI/fMRI
+  - cognición
+  - salud mental
+  - genética
+  - ambiente
+  region: EE.UU. (21 sitios)
+  short_desc_es: Mayor estudio longitudinal del desarrollo cerebral adolescente en EE.UU.; central para
+    psiquiatría del neurodesarrollo.
+  short_desc_en: Largest longitudinal study of adolescent brain development in the US; central to neurodevelopmental
+    psychiatry.
   key_publications:
-    - "Predicción de rasgos cognitivos y de salud mental desde imagen"
-    - "Efectos de ambiente/pantallas/sueño en el desarrollo cerebral"
-  open_questions:
-    - "¿Trayectorias tempranas que predigan aparición de trastornos psiquiátricos en la adolescencia?"
-    - "¿Reproducibilidad de asociaciones cerebro-conducta con tamaños de efecto realistas?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, development, cohort]
-
+  - Predicción de rasgos cognitivos y de salud mental desde imagen
+  - Efectos de ambiente/pantallas/sueño en el desarrollo cerebral
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - development
+  - cohort
+  projects:
+  - id: abcd-q1
+    question_en: Which early developmental trajectories predict the onset of psychiatric disorders in
+      adolescence?
+    question_es: ¿Trayectorias tempranas que predigan aparición de trastornos psiquiátricos en la adolescencia?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: abcd-q2
+    question_en: How reproducible are brain-behaviour associations once realistic effect sizes are assumed?
+    question_es: ¿Reproducibilidad de asociaciones cerebro-conducta con tamaños de efecto realistas?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1016/j.dcn.2018.03.001
+  access_steps:
+  - step_en: Create an NDA (NIMH Data Archive) account
+    step_es: Crea una cuenta en NDA (NIMH Data Archive)
+    url: https://nda.nih.gov/abcd
+    eta_en: 20 min
+    eta_es: 20 min
+  - step_en: Submit a Data Use Certification signed by your institution's signing official
+    step_es: Envía la Data Use Certification firmada por el responsable institucional
+    eta_en: 1-3 weeks (depends on your institution)
+    eta_es: 1-3 semanas (depende de tu institución)
+  - step_en: Once approved, define a data package and download with the NDA tools
+    step_es: Tras la aprobación, define un paquete de datos y descarga con las herramientas de NDA
+    eta_en: hours
+    eta_es: horas
 - id: pgc
   name: PGC (Psychiatric Genomics Consortium)
-  version: "rolling"
+  version: rolling
   modality_primary: genetics
   modality_secondary: []
-  diseases: [schizophrenia, bipolar, depression, adhd, autism, ocd, ptsd]
-  disease_category: [psychiatric]
+  diseases:
+  - schizophrenia
+  - bipolar
+  - depression
+  - adhd
+  - autism
+  - ocd
+  - ptsd
+  disease_category:
+  - psychiatric
   provider: Psychiatric Genomics Consortium
   url: https://pgc.unc.edu/for-researchers/download-results/
   access: registration
-  access_notes: "Estadísticos resumidos (summary stats) descargables; datos individuales vía dbGaP."
-  license: "PGC data sharing terms"
+  access_notes: Estadísticos resumidos (summary stats) descargables; datos individuales vía dbGaP.
+  license: PGC data sharing terms
   cost: free
-  n_subjects: "Cientos de miles a millones (meta-GWAS)"
-  years: "2007-presente"
-  data_types: [GWAS summary statistics, meta-análisis]
-  region: "Internacional"
-  short_desc_es: "Mayor consorcio de genómica psiquiátrica; publica estadísticos GWAS para esquizofrenia, bipolar, depresión y más."
-  short_desc_en: "Largest psychiatric genomics consortium; publishes GWAS summary statistics for schizophrenia, bipolar, depression and more."
+  n_subjects: Cientos de miles a millones (meta-GWAS)
+  years: 2007-presente
+  data_types:
+  - GWAS summary statistics
+  - meta-análisis
+  region: Internacional
+  short_desc_es: Mayor consorcio de genómica psiquiátrica; publica estadísticos GWAS para esquizofrenia,
+    bipolar, depresión y más.
+  short_desc_en: Largest psychiatric genomics consortium; publishes GWAS summary statistics for schizophrenia,
+    bipolar, depression and more.
   key_publications:
-    - "GWAS de esquizofrenia (cientos de loci)"
-    - "Correlaciones genéticas transdiagnósticas entre trastornos"
-    - "Puntuaciones de riesgo poligénico"
-  open_questions:
-    - "¿Los factores genéticos compartidos se traducen en circuitos comunes tratables por neuromodulación?"
-    - "¿Estratificación genética que prediga respuesta a fármacos o a TMS/DBS?"
-  last_verified: "2026-07-21"
-  tags: [GWAS, consortium, summary-stats]
-
+  - GWAS de esquizofrenia (cientos de loci)
+  - Correlaciones genéticas transdiagnósticas entre trastornos
+  - Puntuaciones de riesgo poligénico
+  last_verified: '2026-07-21'
+  tags:
+  - GWAS
+  - consortium
+  - summary-stats
+  projects:
+  - id: pgc-q1
+    question_en: Do shared genetic factors translate into common circuits that neuromodulation can treat?
+    question_es: ¿Los factores genéticos compartidos se traducen en circuitos comunes tratables por neuromodulación?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: pgc-q2
+    question_en: Can genetic stratification predict response to medication, or to TMS/DBS?
+    question_es: ¿Estratificación genética que prediga respuesta a fármacos o a TMS/DBS?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1176/appi.ajp.2017.17030283
 - id: enigma
   name: ENIGMA Consortium
-  version: "rolling"
+  version: rolling
   modality_primary: genetics
-  modality_secondary: [neuroimaging]
-  diseases: [schizophrenia, depression, bipolar, ocd, ptsd, epilepsy, parkinson]
-  disease_category: [psychiatric, neurological]
+  modality_secondary:
+  - neuroimaging
+  diseases:
+  - schizophrenia
+  - depression
+  - bipolar
+  - ocd
+  - ptsd
+  - epilepsy
+  - parkinson
+  disease_category:
+  - psychiatric
+  - neurological
   provider: ENIGMA / USC
   url: https://enigma.ini.usc.edu/
   access: registration
-  access_notes: "Modelo de meta-análisis distribuido; participación por grupos de trabajo."
-  license: "ENIGMA collaboration terms"
+  access_notes: Modelo de meta-análisis distribuido; participación por grupos de trabajo.
+  license: ENIGMA collaboration terms
   cost: free
-  n_subjects: "Decenas de miles (meta-análisis de imagen)"
-  years: "2009-presente"
-  data_types: [medidas derivadas de MRI, imaging-genetics]
-  region: "Internacional"
-  short_desc_es: "Red mundial de imaging-genetics que agrega medidas cerebrales de muchos sitios para maximizar potencia estadística."
-  short_desc_en: "Global imaging-genetics network aggregating brain measures across many sites to maximize statistical power."
+  n_subjects: Decenas de miles (meta-análisis de imagen)
+  years: 2009-presente
+  data_types:
+  - medidas derivadas de MRI
+  - imaging-genetics
+  region: Internacional
+  short_desc_es: Red mundial de imaging-genetics que agrega medidas cerebrales de muchos sitios para maximizar
+    potencia estadística.
+  short_desc_en: Global imaging-genetics network aggregating brain measures across many sites to maximize
+    statistical power.
   key_publications:
-    - "Diferencias estructurales cerebrales por trastorno (efectos robustos multi-sitio)"
-    - "GWAS de volúmenes subcorticales y grosor cortical"
-  open_questions:
-    - "¿Firmas de neuroimagen transdiagnósticas que crucen fronteras diagnósticas clásicas?"
-  last_verified: "2026-07-21"
-  tags: [imaging-genetics, consortium, meta-analysis]
-
+  - Diferencias estructurales cerebrales por trastorno (efectos robustos multi-sitio)
+  - GWAS de volúmenes subcorticales y grosor cortical
+  last_verified: '2026-07-21'
+  tags:
+  - imaging-genetics
+  - consortium
+  - meta-analysis
+  projects:
+  - id: enigma-q1
+    question_en: Are there transdiagnostic neuroimaging signatures that cut across classical diagnostic
+      boundaries?
+    question_es: ¿Firmas de neuroimagen transdiagnósticas que crucen fronteras diagnósticas clásicas?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1007/s11682-013-9269-5
 - id: tuh-eeg
   name: TUH EEG Corpus (Temple University Hospital)
-  version: "rolling"
+  version: rolling
   modality_primary: electrophysiology
   modality_secondary: []
-  diseases: [epilepsy, seizure, encephalopathy]
-  disease_category: [neurological]
+  diseases:
+  - epilepsy
+  - seizure
+  - encephalopathy
+  disease_category:
+  - neurological
   provider: Temple University
   url: https://isip.piconepress.com/projects/nedc/html/tuh_eeg/
   access: registration
-  access_notes: "Registro/solicitud gratuita para uso de investigación."
-  license: "TUH EEG data agreement"
+  access_notes: Registro/solicitud gratuita para uso de investigación.
+  license: TUH EEG data agreement
   cost: free
-  n_subjects: "Decenas de miles de registros EEG clínicos"
-  years: "2002-presente"
-  data_types: [EEG clínico, informes, subconjuntos de crisis y EEG anormal]
-  region: "EE.UU. (Philadelphia)"
-  short_desc_es: "El mayor corpus abierto de EEG clínico; referencia para detección de crisis y clasificación de EEG normal/anormal."
-  short_desc_en: "The largest open corpus of clinical EEG; reference for seizure detection and normal/abnormal EEG classification."
+  n_subjects: Decenas de miles de registros EEG clínicos
+  years: 2002-presente
+  data_types:
+  - EEG clínico
+  - informes
+  - subconjuntos de crisis y EEG anormal
+  region: EE.UU. (Philadelphia)
+  short_desc_es: El mayor corpus abierto de EEG clínico; referencia para detección de crisis y clasificación
+    de EEG normal/anormal.
+  short_desc_en: The largest open corpus of clinical EEG; reference for seizure detection and normal/abnormal
+    EEG classification.
   key_publications:
-    - "Detección automática de crisis y eventos"
-    - "Clasificación de EEG anormal con deep learning"
-  open_questions:
-    - "¿Modelos de fundación de EEG auto-supervisados que transfieran a detección de crisis Y a decodificación BCI?"
-    - "¿Generalización a EEG ambulatorio/portátil de bajo costo?"
-  last_verified: "2026-07-21"
-  tags: [EEG, clinical, large-scale]
+  - Detección automática de crisis y eventos
+  - Clasificación de EEG anormal con deep learning
+  last_verified: '2026-07-21'
+  tags:
+  - EEG
+  - clinical
+  - large-scale
+  projects:
+  - id: tuh-eeg-q1
+    question_en: Do self-supervised EEG foundation models transfer to BOTH seizure detection and BCI decoding?
+    question_es: ¿Modelos de fundación de EEG auto-supervisados que transfieran a detección de crisis
+      Y a decodificación BCI?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: tuh-eeg-q2
+    question_en: Does performance generalise to low-cost ambulatory or wearable EEG?
+    question_es: ¿Generalización a EEG ambulatorio/portátil de bajo costo?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.3389/fnins.2016.00196
+  starter_code:
+    python: 'import mne
 
+
+      raw = mne.io.read_raw_edf(''aaaaaaaa_s001_t000.edf'', preload=True)
+
+      # Los montajes varían entre registros: normaliza antes de agrupar.
+
+      print(raw.ch_names[:8])'
 - id: chb-mit
   name: CHB-MIT Scalp EEG Database
-  version: "1.0.0"
+  version: 1.0.0
   modality_primary: electrophysiology
   modality_secondary: []
-  diseases: [epilepsy, seizure]
-  disease_category: [neurological, neurosurgical]
+  diseases:
+  - epilepsy
+  - seizure
+  disease_category:
+  - neurological
+  - neurosurgical
   provider: PhysioNet / Children's Hospital Boston
   url: https://physionet.org/content/chbmit/1.0.0/
   access: open
-  access_notes: "Descarga abierta en PhysioNet."
-  license: "Open Data Commons / PhysioNet open"
+  access_notes: Descarga abierta en PhysioNet.
+  license: Open Data Commons / PhysioNet open
   cost: free
-  n_subjects: "23 pacientes pediátricos con epilepsia intratable"
-  years: "publicado 2010"
-  data_types: [EEG de cuero cabelludo con crisis anotadas]
-  region: "EE.UU. (Boston)"
-  short_desc_es: "Dataset clásico de EEG pediátrico con crisis anotadas; el benchmark más usado para predicción/detección de crisis."
-  short_desc_en: "Classic pediatric EEG dataset with annotated seizures; the most-used benchmark for seizure prediction/detection."
+  n_subjects: 23 pacientes pediátricos con epilepsia intratable
+  years: publicado 2010
+  data_types:
+  - EEG de cuero cabelludo con crisis anotadas
+  region: EE.UU. (Boston)
+  short_desc_es: Dataset clásico de EEG pediátrico con crisis anotadas; el benchmark más usado para predicción/detección
+    de crisis.
+  short_desc_en: Classic pediatric EEG dataset with annotated seizures; the most-used benchmark for seizure
+    prediction/detection.
   key_publications:
-    - "Predicción de crisis (preictal vs interictal)"
-    - "Detección de crisis en tiempo real"
-  open_questions:
-    - "¿Predicción de crisis que generalice entre pacientes (cross-subject) sin reentrenar?"
-  last_verified: "2026-07-21"
-  tags: [EEG, epilepsy, benchmark]
+  - Predicción de crisis (preictal vs interictal)
+  - Detección de crisis en tiempo real
+  last_verified: '2026-07-21'
+  tags:
+  - EEG
+  - epilepsy
+  - benchmark
+  projects:
+  - id: chb-mit-q1
+    question_en: Can seizure prediction generalise across patients (cross-subject) without per-patient
+      retraining?
+    question_es: ¿Predicción de crisis que generalice entre pacientes (cross-subject) sin reentrenar?
+    status: open
+    unverified: true
+    confidence: 0.2
+  doi: 10.13026/C2K01R
+  starter_code:
+    python: '# pip install mne
 
+      import mne
+
+
+      raw = mne.io.read_raw_edf(''chb01/chb01_03.edf'', preload=True)
+
+      print(raw.info[''sfreq''], ''Hz ·'', len(raw.ch_names), ''canales'')
+
+
+      # Las crisis vienen en chb01-summary.txt, no en el EDF:
+
+      # hay que parsear los tiempos de inicio/fin a mano.
+
+      raw.filter(1., 40.).plot(duration=20)'
 - id: bci-competition-iv
   name: BCI Competition IV
-  version: "IV"
+  version: IV
   modality_primary: bci
-  modality_secondary: [electrophysiology]
-  diseases: [bci, motor, control]
-  disease_category: [transversal]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - bci
+  - motor
+  - control
+  disease_category:
+  - transversal
   provider: Berlin BCI / Graz
   url: https://www.bbci.de/competition/iv/
   access: open
-  access_notes: "Descarga abierta de los datasets de la competencia."
-  license: "BCI Competition terms (research use)"
+  access_notes: Descarga abierta de los datasets de la competencia.
+  license: BCI Competition terms (research use)
   cost: free
-  n_subjects: "Varios datasets (2a/2b motor imagery, etc.)"
-  years: "2008"
-  data_types: [EEG, ECoG, motor imagery, cinemática]
-  region: "Alemania/Austria"
-  short_desc_es: "Conjunto de datasets clásico para benchmarking de BCI (motor imagery); base de gran parte de la literatura de decoding EEG."
-  short_desc_en: "Classic set of BCI benchmarking datasets (motor imagery); foundation of much of the EEG decoding literature."
+  n_subjects: Varios datasets (2a/2b motor imagery, etc.)
+  years: '2008'
+  data_types:
+  - EEG
+  - ECoG
+  - motor imagery
+  - cinemática
+  region: Alemania/Austria
+  short_desc_es: Conjunto de datasets clásico para benchmarking de BCI (motor imagery); base de gran parte
+    de la literatura de decoding EEG.
+  short_desc_en: Classic set of BCI benchmarking datasets (motor imagery); foundation of much of the EEG
+    decoding literature.
   key_publications:
-    - "Decodificación de motor imagery (CSP, deep learning)"
-    - "Transfer learning y calibración entre sujetos"
-  open_questions:
-    - "¿Decoders plug-and-play sin calibración por sujeto que funcionen en el mundo real?"
-  last_verified: "2026-07-21"
-  tags: [BCI, motor-imagery, benchmark]
-
+  - Decodificación de motor imagery (CSP, deep learning)
+  - Transfer learning y calibración entre sujetos
+  last_verified: '2026-07-21'
+  tags:
+  - BCI
+  - motor-imagery
+  - benchmark
+  projects:
+  - id: bci-competition-iv-q1
+    question_en: Are calibration-free, plug-and-play decoders achievable that still work outside the lab?
+    question_es: ¿Decoders plug-and-play sin calibración por sujeto que funcionen en el mundo real?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.3389/fnins.2012.00055
 - id: moabb
   name: MOABB (Mother of All BCI Benchmarks)
-  version: "rolling"
+  version: rolling
   modality_primary: bci
-  modality_secondary: [electrophysiology]
-  diseases: [bci, motor, control]
-  disease_category: [transversal]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - bci
+  - motor
+  - control
+  disease_category:
+  - transversal
   provider: MOABB open-source community
   url: https://moabb.neurotechx.com/
   access: open
-  access_notes: "Meta-colección open-source que unifica múltiples datasets BCI públicos vía API de Python."
-  license: "Open source (BSD) + licencias de datasets subyacentes"
+  access_notes: Meta-colección open-source que unifica múltiples datasets BCI públicos vía API de Python.
+  license: Open source (BSD) + licencias de datasets subyacentes
   cost: free
-  n_subjects: "Agrega decenas de datasets BCI públicos"
-  years: "2018-presente"
-  data_types: [EEG (motor imagery, P300, SSVEP)]
-  region: "Internacional"
-  short_desc_es: "Marco de benchmarking reproducible que unifica muchos datasets BCI públicos para comparar algoritmos de forma justa."
-  short_desc_en: "Reproducible benchmarking framework unifying many public BCI datasets for fair algorithm comparison."
+  n_subjects: Agrega decenas de datasets BCI públicos
+  years: 2018-presente
+  data_types:
+  - EEG (motor imagery
+  - P300
+  - SSVEP)
+  region: Internacional
+  short_desc_es: Marco de benchmarking reproducible que unifica muchos datasets BCI públicos para comparar
+    algoritmos de forma justa.
+  short_desc_en: Reproducible benchmarking framework unifying many public BCI datasets for fair algorithm
+    comparison.
   key_publications:
-    - "Benchmarks reproducibles de pipelines de decoding EEG"
-    - "Comparativas de deep learning vs métodos Riemannianos"
-  open_questions:
-    - "¿Qué arquitecturas generalizan realmente entre datasets y paradigmas, y cuáles sobreajustan al benchmark?"
-  last_verified: "2026-07-21"
-  tags: [BCI, benchmark, meta-collection]
+  - Benchmarks reproducibles de pipelines de decoding EEG
+  - Comparativas de deep learning vs métodos Riemannianos
+  last_verified: '2026-07-21'
+  tags:
+  - BCI
+  - benchmark
+  - meta-collection
+  projects:
+  - id: moabb-q1
+    question_en: Which architectures genuinely generalise across datasets and paradigms, and which merely
+      overfit the benchmark?
+    question_es: ¿Qué arquitecturas generalizan realmente entre datasets y paradigmas, y cuáles sobreajustan
+      al benchmark?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1088/1741-2552/aadea0
+  starter_code:
+    python: '# pip install moabb
 
+      from moabb.datasets import BNCI2014001
+
+      from moabb.paradigms import MotorImagery
+
+
+      X, y, meta = MotorImagery().get_data(BNCI2014001(), subjects=[1])
+
+      print(X.shape, set(y))   # (n_trials, n_channels, n_times)'
 - id: oasis
   name: OASIS (Open Access Series of Imaging Studies)
-  version: "OASIS-3/4"
+  version: OASIS-3/4
   modality_primary: neuroimaging
-  modality_secondary: [clinical]
-  diseases: [alzheimer, dementia, aging]
-  disease_category: [neurological]
+  modality_secondary:
+  - clinical
+  diseases:
+  - alzheimer
+  - dementia
+  - aging
+  disease_category:
+  - neurological
   provider: WashU / Knight ADRC
   url: https://sites.wustl.edu/oasisbrains/
   access: registration
-  access_notes: "Registro y aceptación de términos de uso."
-  license: "OASIS Data Use Agreement"
+  access_notes: Registro y aceptación de términos de uso.
+  license: OASIS Data Use Agreement
   cost: free
-  n_subjects: "Cientos-miles (según release)"
-  years: "2007-presente"
-  data_types: [MRI, PET, cognición, diagnóstico clínico]
-  region: "EE.UU. (St. Louis)"
-  short_desc_es: "Serie abierta de imagen para envejecimiento y Alzheimer; muy usada para métodos de brain-age y detección de demencia."
-  short_desc_en: "Open imaging series for aging and Alzheimer's; widely used for brain-age methods and dementia detection."
+  n_subjects: Cientos-miles (según release)
+  years: 2007-presente
+  data_types:
+  - MRI
+  - PET
+  - cognición
+  - diagnóstico clínico
+  region: EE.UU. (St. Louis)
+  short_desc_es: Serie abierta de imagen para envejecimiento y Alzheimer; muy usada para métodos de brain-age
+    y detección de demencia.
+  short_desc_en: Open imaging series for aging and Alzheimer's; widely used for brain-age methods and
+    dementia detection.
   key_publications:
-    - "Estimación de edad cerebral (brain age)"
-    - "Clasificación de demencia desde MRI estructural"
-  open_questions:
-    - "¿Modelos de brain-age calibrados que sean clínicamente accionables a nivel individual?"
-  last_verified: "2026-07-21"
-  tags: [imaging, aging, open]
+  - Estimación de edad cerebral (brain age)
+  - Clasificación de demencia desde MRI estructural
+  last_verified: '2026-07-21'
+  tags:
+  - imaging
+  - aging
+  - open
+  projects:
+  - id: oasis-q1
+    question_en: Can brain-age models be calibrated well enough to be clinically actionable at the individual
+      level?
+    question_es: ¿Modelos de brain-age calibrados que sean clínicamente accionables a nivel individual?
+    status: open
+    unverified: true
+    confidence: 0.2
+  descriptor_doi: 10.1101/2019.12.13.19014902
+  starter_code:
+    python: 'import pandas as pd
+
+      df = pd.read_csv(''OASIS3_demographics.csv'')
+
+      print(df.groupby(''cdr'').size())   # CDR 0 = cognitivamente normal'
+- id: 10-1038-s41597-025-04511-0
+  modality_primary: neuroimaging
+  access: open
+  cost: free
+  n_subjects: 35 participantes (17 hombres, 18 mujeres; 21-59 anos); 4 excluidos por movimiento excesivo
+    de cabeza
+  region: Japon (Chiba)
+  doi: 10.18112/openneuro.ds005684.v1.0.0 (dataset); 10.1038/s41597-025-04511-0 (data descriptor)
+  diseases:
+  - control
+  data_types:
+  - fMRI de tarea (EPI multibanda T2*)
+  - T1w MPRAGE
+  - archivos de eventos
+  - respuestas conductuales de juicio de similitud de color
+  - cuestionarios (Edinburgh Handedness, STAI, BDI-II)
+  - pruebas de vision del color (Ishihara, ND-100 Hue)
+  species: human
+  short_desc_es: Conjunto de datos de fMRI a 3T en formato BIDS de 35 adultos sanos que realizan una tarea
+    de juicio de similitud de color one-back con nueve colores, con ensayos de reporte y de no-reporte
+    mas medidas conductuales, cuestionarios y pruebas de vision del color, publicado de forma abierta
+    en OpenNeuro.
+  access_notes: Datos depositados en OpenNeuro y descritos como de libre disponibilidad; los archivos
+    se distribuyen en formato BIDS 1.9.0 tras eliminar la informacion personal identificable.
+  name: Color Qualia Similarity Judgment fMRI Dataset (OpenNeuro ds005684)
+  access_confidence: medium
+  license: 'Not stated for the dataset. No dataset licence appears anywhere in the evidence. The only
+    licence strings present are Crossref''s article-level licence records for the Scientific Data paper:
+    "https://creativecommons.org/licenses/by-nc-nd/4.0" (content-version "tdm" and "vor"), plus the landing
+    page''s article-level tag "Open access". These cover the publication, not the OpenNeuro data records.'
+  projects:
+  - id: ds005684-loso-color-geometry
+    question_en: Does the neural representational geometry of the nine hues generalize across people and
+      across the report/no-report context — i.e., can a color-similarity model fit on N-1 participants'
+      ventral occipitotemporal patterns predict the held-out participant's behavioral dissimilarity matrix,
+      and does a decoder trained on report trials still work on no-report trials?
+    question_es: ¿La geometría representacional neural de los nueve matices generaliza entre personas
+      y entre contextos de reporte/no-reporte? Es decir, ¿un modelo de similitud de color ajustado en
+      N-1 participantes (patrones en corteza occipitotemporal ventral) predice la matriz de disimilitud
+      conductual del participante excluido, y un decodificador entrenado en ensayos con reporte sigue
+      funcionando en ensayos sin reporte?
+    lens: generalization
+    skills:
+    - BIDS / OpenNeuro data handling
+    - fMRIPrep or SPM12 preprocessing
+    - nilearn + scikit-learn (searchlight / ROI decoding)
+    - representational similarity analysis (RDM construction, Spearman/Mantel tests)
+    - permutation testing and leave-one-subject-out cross-validation
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 15
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'No paper performs the proposed neural analyses on ds005684. The data descriptor
+      itself (Hirao et al., Sci Data 2025, 10.1038/s41597-025-04511-0) contains NO MVPA, NO RSA, and NO
+      report/no-report decoder test — its Technical Validation is limited to behavioral split-half/inter-participant
+      correlations, FD/tSNR, and a univariate one-sample t-test map. All 7 works citing it were checked:
+      none re-analyze the fMRI data for color geometry. The adjacent prior work is (a) Kawakita et al.,
+      iScience 2025, "Is my ''red'' your ''red''? Evaluating structural correspondences between color
+      similarity judgments using unsupervised alignment" (10.1016/j.isci.2025.112029) plus Tsuchiya-lab
+      follow-ups (10.1073/pnas.2415346122; preprint 10.64898/2026.02.13.705699) — these establish cross-individual
+      generalization of color qualia geometry BEHAVIORALLY only, never from brain patterns; and (b) Nakagi
+      et al., iScience 2025 (10.1016/j.isci.2025.112427), which aligns neural representational structures
+      across individuals and brain areas but for natural scenes, not the nine hues, and never predicts
+      a held-out participant''s behavioral RDM. Remaining delta: (1) leave-one-participant-out neural
+      (VOTC) -> held-out behavioral color RDM prediction has not been done for color in any dataset; (2)
+      report -> no-report cross-condition decoder transfer for hue identity is untested — the closest
+      no-report structural work (Kirchberger/Tsuchiya-adjacent, 10.1093/nc/niaf053) manipulates spatial
+      attention behaviorally for shapes/faces, not hue decoding in fMRI. Caveat for the student: the behavioral-generalization
+      half of the question is largely settled, so the contribution must be framed on the neural side,
+      and N in ds005684 is small enough that leave-one-out RSA reliability should be power-checked first.'
+    prior_work:
+    - doi: 10.1016/j.isci.2025.112029
+      what_was_done: trabajo previo cercano
+  - id: ds005684-hue-test-predicts-decoding
+    question_en: Do out-of-scanner perceptual and affective phenotypes predict in-scanner neural color
+      coding — specifically, does a participant's ND-100 Hue discrimination score (and Ishihara score,
+      STAI, BDI-II, sleepiness) explain between-subject variance in the fidelity of hue decoding and in
+      behavior-brain RDM correspondence?
+    question_es: ¿Los fenotipos perceptivos y afectivos medidos fuera del escáner predicen la codificación
+      neural del color dentro del escáner? En concreto, ¿la puntuación del test ND-100 Hue (y el Ishihara,
+      STAI, BDI-II y somnolencia) explica la varianza entre sujetos en la fidelidad de decodificación
+      del matiz y en la correspondencia entre las matrices de disimilitud conductual y neural?
+    lens: multimodal
+    skills:
+    - nilearn ROI decoding (reusing derivatives)
+    - 'regression with small-n inference: bootstrap CIs, permutation tests, no p-hacking'
+    - questionnaire psychometrics
+    - honest reporting of effect-size uncertainty
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 14
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'No paper links out-of-scanner phenotypes to in-scanner neural color coding in
+      this dataset. Prior work covers the two halves separately: (1) the data descriptor itself, Nakagawa/Tsuchiya
+      et al., "A neuroimaging dataset during sequential color qualia similarity judgments with and without
+      reports," Sci Data 2025 (10.1038/s41597-025-04511-0), releases ds005684 and reports that each participant''s
+      hue discriminability was measured outside the scanner, but performs only technical-validation analyses
+      — no hue decoding, no behavior-brain RDM correspondence, and no individual-difference regression
+      on the hue/questionnaire scores; a EuropePMC citation/full-text search returned the descriptor as
+      the ONLY record mentioning ds005684, i.e. no downstream analysis paper exists yet. (2) Individual
+      differences in color qualia structure have been characterized purely behaviorally by Kawakita/Tsuchiya
+      et al., "Is my ''red'' your ''red''?", iScience 2025 (10.1016/j.isci.2025.112029) and the 2026 preprint
+      "Robust individual alignment of color qualia structures" (10.64898/2026.02.13.705699), which align
+      per-subject behavioral color similarity structures (including color-atypical observers) but never
+      touch fMRI. (3) Neural-side individual variability via unsupervised alignment exists for natural
+      scenes, not color (10.1016/j.isci.2025.112427). Remaining delta: nobody has tested whether ND-100
+      Hue / Ishihara scores, or affective-state measures (STAI, BDI-II, sleepiness), explain between-subject
+      variance in hue decoding fidelity or in behavior-brain RDM correspondence. Two caveats for the student:
+      verify that STAI/BDI-II/sleepiness are actually in the ds005684 participants.tsv (the descriptor
+      abstract mentions only the hue test), and note that N=35 with a restricted, mostly color-normal
+      Ishihara range gives low power for individual-difference correlations — the effect would need to
+      be large to detect.'
+    prior_work:
+    - doi: 10.1016/j.isci.2025.112029
+      what_was_done: trabajo previo cercano
+  - id: ds005684-report-act-causal-contrast
+    question_en: 'What is the causal effect of the act of reporting on the neural representation of color
+      qualia? Because the circle/square cue randomly assigns each trial to report or no-report, the report
+      minus no-report contrast is a within-subject randomized manipulation: which regions carry hue information
+      in both conditions (candidate qualia correlates) versus only when a report is required (post-perceptual/reporting
+      correlates), and does prefrontal activity statistically mediate the report-related change in ventral
+      hue decoding?'
+    question_es: '¿Cuál es el efecto causal del acto de reportar sobre la representacion neural de las
+      qualia de color? Dado que la clave (circulo/cuadrado) asigna cada ensayo a reporte o no-reporte,
+      el contraste reporte menos no-reporte es una manipulación aleatorizada intrasujeto: ¿que regiones
+      contienen informacion de matiz en ambas condiciones (candidatas a correlato de la quale) frente
+      a solo cuando se exige un reporte (correlatos post-perceptivos/de reporte), y media la actividad
+      prefrontal el cambio en la decodificacion ventral asociado al reporte?'
+    lens: causal
+    skills:
+    - single-trial GLM (LSS) beta series
+    - MVPA / searchlight information mapping
+    - mediation analysis (bootstrapped indirect effects) on within-subject data
+    - careful handling of motion confounds (report trials contain a trackball response)
+    - writing about the no-report paradigm literature
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 20
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The general report vs no-report NCC logic is well-trodden — Frässle et al. 2014
+      (10.1523/JNEUROSCI.4627-13.2014) showed frontal activity in binocular rivalry tracks report/introspection
+      rather than perception, and Tsuchiya et al. 2015 TICS (10.1016/j.tics.2015.10.002) codified the
+      no-report paradigm; Cogitate/adversarial-collaboration work (10.1038/s41586-025-08888-1) revisits
+      frontal vs posterior NCC with report-free conditions. But all of these operate on presence/absence
+      of a percept (rivalry, masking, face/object visibility), not on decodable low-level content. Searches
+      turned up only the data descriptor itself for ds005684 (10.1038/s41597-025-04511-0, preprint 10.1101/2024.05.16.594267),
+      with no citing analysis papers indexed. So three specific deltas remain: (1) applying the report/no-report
+      contrast to hue-identity MVPA/RSA rather than to visibility, i.e. asking which regions carry *color
+      content* in both conditions; (2) treating the trial-wise circle/square cue as a genuine within-subject
+      randomized manipulation and estimating a causal (not merely descriptive) report effect; (3) the
+      formal mediation test of whether prefrontal activity accounts for the report-related change in ventral
+      hue decoding — no located work runs a mediation model linking PFC to content-decoding strength.
+      Adjacent enough that framing must cite Frässle/Tsuchiya, but the content-level causal + mediation
+      analysis on this dataset appears undone.'
+    prior_work:
+    - doi: 10.1523/JNEUROSCI.4627-13.2014
+      what_was_done: trabajo previo cercano
+  - id: ds005684-age-sex-color-geometry
+    question_en: Is the structure of color-similarity experience stable across adult age and sex? Using
+      the 21-59 year age range and near-balanced sex split, how much do behavioral dissimilarity geometry,
+      ND-100 hue discrimination, and data quality (framewise displacement, tSNR) vary with age and sex
+      — and, given n=31 usable participants, what effect sizes could this dataset actually detect?
+    question_es: ¿Es estable la estructura de la experiencia de similitud de color a lo largo de la edad
+      adulta y entre sexos? Usando el rango de 21 a 59 años y la división casi equilibrada por sexo, ¿cuánto
+      varían la geometría conductual de disimilitud, la discriminación de matiz (ND-100) y la calidad
+      de los datos (desplazamiento por fotograma, tSNR) con la edad y el sexo, y qué tamaños de efecto
+      puede realmente detectar este dataset con n=31 participantes utilizables?
+    lens: equity
+    skills:
+    - multidimensional scaling / Procrustes alignment of individual RDMs
+    - linear models with age and sex, plus sensitivity/power analysis
+    - MRIQC-style quality metrics (FD, tSNR)
+    - explicit reporting of demographic limits (single-site Japanese volunteer sample, no reported ethnicity
+      variable)
+    status: open
+    unverified: false
+    difficulty: 3
+    effort_weeks: 11
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'Both halves of the question exist in adjacent form, but not on this dataset and
+      not jointly. (1) Age-dependence of color-similarity structure is already published by the same group:
+      Kawakita et al., "Comparing color qualia structures through a similarity task in young children
+      versus adults" (10.1073/pnas.2415346122), plus the explicit exchange "Do color similarity judgments
+      vary with age, and do they reveal anything about qualia?" (10.1073/pnas.2521506122) and the reply
+      (10.1073/pnas.2525916122) — however these contrast children vs adults, not within-adult variation
+      across 21-59 y. (2) Sex differences in ND-100 hue discrimination are published in an independent
+      356-student cohort (10.3389/fpsyg.2025.1722974), but with no link to similarity geometry or neuroimaging.
+      (3) Individual-level alignment of color qualia structures among adults exists (10.64898/2026.02.13.705699)
+      but does not model age/sex as predictors. (4) The ds005684 descriptor (10.1038/s41597-025-04511-0)
+      reports FD/tSNR QC but performs no demographic moderation. Remaining delta: nobody has tested within-adult
+      age/sex moderation of behavioral dissimilarity geometry AND ND-100 scores AND fMRI QC metrics in
+      this specific cohort, nor reported the sensitivity/minimum-detectable-effect analysis for n=31 —
+      which is likely to be the main finding (an underpowered null / precision statement), a modest but
+      genuinely unfilled contribution.'
+    prior_work:
+    - doi: 10.1073/pnas.2415346122
+      what_was_done: trabajo previo cercano
+  - id: ds005684-foundation-model-rdm-benchmark
+    question_en: Do representations from pretrained vision and vision-language foundation models predict
+      human color-similarity brain activity better than classical colorimetric models? Benchmark model-derived
+      RDMs for the nine calibrated hues (CIE/HSV distance, CNN and CLIP-style embeddings of the color
+      patches) against the behavioral dissimilarity RDM and the ventral occipitotemporal neural RDM, in
+      both report and no-report trials.
+    question_es: ¿Las representaciones de modelos de fundacion de vision y vision-lenguaje predicen la
+      actividad cerebral durante juicios de similitud de color mejor que los modelos colorimetricos clasicos?
+      Comparar matrices de disimilitud derivadas de modelos para los nueve matices calibrados (distancia
+      CIE/HSV, embeddings tipo CNN y CLIP de los parches de color) frente a la matriz conductual y a la
+      matriz neural occipitotemporal ventral, en ensayos con y sin reporte.
+    lens: foundation-models
+    skills:
+    - representational similarity analysis and model comparison (variance partitioning, noise ceiling
+      estimation)
+    - PyTorch feature extraction from open-weight pretrained models
+    - color science basics (sRGB, HSV, CIE uniform color spaces)
+    - nilearn ROI/searchlight analysis
+    - clear framing of what a model-brain RDM correlation does and does not license
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 16
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The BEHAVIORAL half is already well covered. Kawakita et al. 2024 (Sci Rep, 10.1038/s41598-024-65604-1)
+      aligned human color-similarity structures (93 colors) against LLM-derived color similarity structures
+      using Gromov-Wasserstein optimal transport, and Marjieh et al. 2024 (Sci Rep, 10.1038/s41598-024-72071-1)
+      showed GPT-family models (including a vision-co-trained GPT-4) predict human pairwise color similarity,
+      explicitly comparing text-only vs. visual-input models and recovering the color-wheel geometry against
+      classical color-space structure. Related work also exists benchmarking DNN color coding (10.1371/journal.pone.0253442)
+      and MEG color-space geometry (10.1016/j.cub.2020.10.062). What remains genuinely open: (1) no published
+      work links foundation-model image embeddings (CNN / CLIP-style patch embeddings) to a NEURAL color
+      RDM in human ventral occipitotemporal cortex — the prior model-vs-human comparisons are behavior-only;
+      (2) ds005684 (Hirao et al. 2025, 10.1038/s41597-025-04511-0) has only its own data-descriptor technical
+      validation and no reuse papers found in EuropePMC (query "ds005684" OR "color qualia similarity"
+      returned only the descriptor, its preprint, and an unrelated methods paper); (3) the report vs.
+      no-report contrast — i.e., whether model-RDM fit to vOT is driven by the reporting/decision process
+      or survives without overt report — has no precedent in this literature. Note the nine-hue stimulus
+      set is small (36 pairs), which limits power to separate CIE/HSV from CNN/CLIP RDMs, so the neural
+      + no-report angle, not the behavioral benchmark, is where the novelty lies.'
+    prior_work:
+    - doi: 10.1038/s41598-024-65604-1
+      what_was_done: trabajo previo cercano
+  key_publications:
+  - doi: 10.1038/s41597-025-04511-0
+    title: A neuroimaging dataset during sequential color qualia similarity judgments with and without
+      reports
+    year: 2025
+    venue: Scientific Data
+    openalex_id: W4408197500
+    role: data descriptor (the cited work)
+    task: dataset release
+  - doi: 10.18112/openneuro.ds005684.v1.0.0
+    title: An fMRI dataset during sequential color qualia similarity judgments
+    year: 2024
+    openalex_id: W6888025080
+    role: dataset DOI; no separately indexed citations found
+    task: dataset release
+  - doi: 10.64898/2026.02.13.705699
+    title: 'Robust individual alignment of color qualia structures: toward a structure-based taxonomy
+      of divergent color experiences'
+    year: 2026
+    venue: bioRxiv
+    authors: Togashi, Yotsumoto, Hiramatsu, Tsuchiya, Oizumi
+    task: subtyping
+    method: individual-to-individual Gromov-Wasserstein unsupervised alignment on 4,371 pairwise similarity
+      ratings of 93 colors (N=11); new behavioral data, not the fMRI
+    reanalyzes_fmri: false
+  - doi: 10.64898/2025.12.10.693611
+    title: 'Systematic comparison of color representations between humans and deep neural networks: towards
+      predicting human color perception in a vast color space'
+    year: 2026
+    venue: bioRxiv
+    authors: Wickramanayaka, Oizumi
+    task: foundation-model / representational alignment
+    method: GWOT alignment of SSL vs supervised vs CLIP embeddings against human 93-color similarity structure;
+      extrapolation to 4,096 colors
+    reanalyzes_fmri: false
+  - doi: 10.1101/2025.10.01.679834
+    title: Common Phenomenal and Neural Substrate Geometry in Visual Motion Perception
+    year: 2026
+    venue: bioRxiv
+    authors: Robinson, Zeleznikow-Johnston, Wu, Yoshimura, Tsuchiya
+    task: structural linking of qualia and neural geometry
+    method: human motion dissimilarity ratings (N=171) vs mouse V1 population response geometry; RSA +
+      optimal transport
+    reanalyzes_fmri: false
+  - doi: 10.1093/nc/niaf053
+    title: Qualia structures collapse for geometric shapes, but not faces, when spatial attention is withdrawn
+    year: 2025
+    venue: Neuroscience of Consciousness
+    authors: Rowe, Takeda, Oizumi, D'Souza, van Boxtel, Tsuchiya
+    task: paradigm extension (attention manipulation)
+    method: dual-task similarity ratings; dimension reduction + unsupervised optimal transport alignment
+    reanalyzes_fmri: false
+  - doi: 10.12688/f1000research.179638.1
+    title: 'Measuring the Diversity of Qualia: Category-Theoretic Indices for Psychophysical Experimental
+      Data'
+    year: 2026
+    venue: F1000Research
+    authors: Kusano, Saigo, Tsuchiya
+    task: methods development
+    method: category-theoretic generalized magnitude and spread on dissimilarity matrices (N=120 color/emotion
+      word ratings)
+    reanalyzes_fmri: false
+  - doi: 10.33735/phimisci.2025.11778
+    title: Linking the structure of neuronal mechanisms to the structure of qualia
+    year: 2026
+    venue: Philosophy and the Mind Sciences
+    task: theoretical
+    reanalyzes_fmri: false
+  literature:
+    n_citing_works: 10
+    saturation: low
+    dominant_tasks:
+    - subtyping (individual/group qualia-structure clustering via unsupervised alignment)
+    - foundation-model / representational alignment (CLIP, SSL, supervised DNN embeddings vs human color
+      structure)
+    - methods development (Gromov-Wasserstein optimal transport; category-theoretic diversity indices)
+    - cross-species phenomenal-neural geometry comparison
+    - theoretical/conceptual citation with no data use
+  access_steps:
+  - step_en: Open the dataset DOI https://doi.org/10.18112/openneuro.ds005684.v1.0.0, which resolves to
+      the OpenNeuro record for ds005684.
+    step_es: Abrir el DOI del conjunto de datos https://doi.org/10.18112/openneuro.ds005684.v1.0.0, que
+      resuelve al registro de OpenNeuro ds005684.
+    eta_en: 1 min
+    eta_es: 1 min
+  - step_en: Download the dataset directly; the evidence states the data are freely available and describes
+      no registration, application or data use agreement.
+    step_es: Descargar el conjunto de datos directamente; la evidencia indica que los datos estan libremente
+      disponibles y no describe registro, solicitud ni acuerdo de uso de datos.
+    eta_en: minutes to hours depending on bandwidth
+    eta_es: minutos a horas según el ancho de banda
+  - step_en: 'Read the BIDS layout: participant directories (e.g. sub-01), four session directories per
+      participant, each with anat and func subdirectories including event timing files.'
+    step_es: 'Revisar la estructura BIDS: directorios por participante (p. ej. sub-01), cuatro directorios
+      de sesion por participante, cada uno con subdirectorios anat y func que incluyen archivos de tiempos
+      de eventos.'
+    eta_en: 10 min
+    eta_es: 10 min
+  starter_code:
+    python: "# OpenNeuro ds005684 - color qualia similarity fMRI (BIDS 1.9.0)\n# Layout documented in\
+      \ the data descriptor: participant dirs (e.g. \"sub-01\"),\n# four session dirs per participant,\
+      \ each with \"anat\" and \"func\";\n# func contains task fMRI plus event timing files.\nfrom pathlib\
+      \ import Path\n\nROOT = Path(\"ds005684\")  # dataset root after download\n\nsubjects = sorted(p.name\
+      \ for p in ROOT.glob(\"sub-*\") if p.is_dir())\nprint(f\"{len(subjects)} subjects:\", subjects[:5])\n\
+      \nfor sub in subjects:\n    sessions = sorted(p.name for p in (ROOT / sub).glob(\"ses-*\") if p.is_dir())\n\
+      \    anat = list((ROOT / sub).glob(\"ses-*/anat/*.nii*\"))   # T1w MPRAGE\n    func = list((ROOT\
+      \ / sub).glob(\"ses-*/func/*.nii*\"))   # task EPI runs\n    events = list((ROOT / sub).glob(\"\
+      ses-*/func/*_events.tsv\"))\n    print(sub, len(sessions), \"sessions |\",\n          len(anat),\
+      \ \"anat |\", len(func), \"func |\", len(events), \"events\")\n\n# Inspect one events file (trial\
+      \ timing, report / no-report condition)\nimport pandas as pd\nfirst_events = next(ROOT.glob(\"sub-*/ses-*/func/*_events.tsv\"\
+      ))\nprint(pd.read_csv(first_events, sep=\"\\t\").head())\n"
+    r: "# OpenNeuro ds005684 - color qualia similarity fMRI (BIDS 1.9.0)\n# Layout: sub-*/ses-*/{anat,func};\
+      \ func holds task fMRI + *_events.tsv\nroot <- \"ds005684\"  # dataset root after download\n\nsubjects\
+      \ <- list.dirs(root, recursive = FALSE, full.names = FALSE)\nsubjects <- sort(subjects[grepl(\"\
+      ^sub-\", subjects)])\ncat(length(subjects), \"subjects\\n\")\n\nfor (sub in subjects) {\n  sess\
+      \  <- list.dirs(file.path(root, sub), recursive = FALSE, full.names = FALSE)\n  sess  <- sess[grepl(\"\
+      ^ses-\", sess)]\n  anat  <- Sys.glob(file.path(root, sub, \"ses-*\", \"anat\", \"*.nii*\"))\n  func\
+      \  <- Sys.glob(file.path(root, sub, \"ses-*\", \"func\", \"*.nii*\"))\n  evs   <- Sys.glob(file.path(root,\
+      \ sub, \"ses-*\", \"func\", \"*_events.tsv\"))\n  cat(sub, length(sess), \"sessions |\", length(anat),\
+      \ \"anat |\",\n      length(func), \"func |\", length(evs), \"events\\n\")\n}\n\n# Inspect one events\
+      \ file\nev <- Sys.glob(file.path(root, \"sub-*\", \"ses-*\", \"func\", \"*_events.tsv\"))[1]\nhead(read.delim(ev,\
+      \ sep = \"\\t\"))\n"
+  url: https://doi.org/10.1038/s41597-025-04511-0
+  last_verified: '2026-07-21'
+  status: published
+  provenance:
+    discovered_by: crossref
+    discovered_at: '2026-07-21'
+    pipeline_version: enrich/1.0
+  verification:
+    verified_at: '2026-07-21'
+    grounded_fields:
+    - access
+    - access_notes
+    - cost
+    - data_types
+    - diseases
+    - doi
+    - modality_primary
+    - n_subjects
+    - provider
+    - region
+    - short_desc_en
+    - short_desc_es
+    - species
+    stripped_fields: []
+    evidence:
+    - src_id: e1
+      url: https://www.nature.com/articles/s41597-025-04511-0?error=cookies_not_supported&code=bdf1acfe-35d3-42cf-b8c7-5ba1ed9e59e7
+      sha256: f5df98b3f37ad649599af80dc363f0a80c9d40b1f6dc0b8bb8c668ecd7e3f33c
+    - src_id: e2
+      url: https://api.crossref.org/works/10.1038/s41597-025-04511-0
+      sha256: c05ca699dbc0fa32111525f71b3194e49c8c1eb8fce8502b6388150adc2f6420
+- id: openneuro-ds008055
+  modality_primary: neuroimaging
+  access: open
+  license: CC0
+  n_subjects: '108'
+  provider: OpenNeuro
+  doi: 10.18112/openneuro.ds008055.v1.0.4
+  data_types:
+  - T1w anatomical scans
+  - resting-state fMRI
+  - task fMRI
+  access_notes: This OpenNeuro copy is a public, defaced release derived from the project BIDS directory.
+  name: Scientific Creativity MRI Dataset
+  access_confidence: high
+  projects:
+  - id: ds008055-p3-within-subject-contrast-causal
+    question_en: Because task-SCT contains an experimenter-manipulated matched control condition, what
+      is the within-subject effect of the creative-generation manipulation on BOLD response and its temporal
+      dynamics across a run, and how much of that effect survives when order, run number and time-on-task
+      are modeled as confounds?
+    question_es: Dado que la task-SCT incluye una condición de control emparejada manipulada experimentalmente,
+      ¿cuál es el efecto intrasujeto de la manipulación de generacion creativa sobre la respuesta BOLD
+      y su dinámica temporal a lo largo del run, y cuánto de ese efecto persiste al modelar el orden,
+      el número de run y el tiempo en tarea como confusores?
+    lens: causal
+    skills:
+    - GLM design and HRF modeling
+    - linear mixed-effects models (subject as random effect)
+    - within-subject / repeated-measures inference
+    - careful reading of events.tsv timing semantics
+    - Python (nilearn) or FSL/SPM
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 16
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The dataset is OpenNeuro ds008055 "Scientific Creativity MRI Dataset" (Luchini
+      & Beaty, 2026; task-rest + task-SCT), and the primary analysis of exactly this paradigm is already
+      published: Beaty, Cortes, Merseal, Hardiman & Green, "Brain networks supporting scientific creative
+      thinking," Psychology of Aesthetics, Creativity, and the Arts (2025), DOI 10.1037/aca0000603 — ~47
+      STEM undergraduates, scientific hypothesis-generation blocks contrasted against an experimenter-matched
+      synonym-generation control task, with univariate contrasts plus whole-brain MVPA identifying default
+      (PCC), salience (right anterior insula) and executive-control contributions. So the core "within-subject
+      effect of the creative-generation manipulation on BOLD" is PUBLISHED and re-deriving it is largely
+      replication. The remaining delta is the second half of the question: (a) the within-run TEMPORAL
+      DYNAMICS of the generation-vs-control effect (time-resolved/parametric time-in-block or time-in-run
+      modulation of the contrast) is not reported in aca0000603 — the closest work is a different lab/paradigm
+      (verbal divergent thinking, "The time course of creativity: multivariate classification of default
+      and executive network contributions over time," Cortex 2022, S0010945222002404), which used a different
+      task and dataset; and (b) no published analysis quantifies how much of the SCT generation effect
+      SURVIVES when block/condition order, run number and cumulative time-on-task are entered as nuisance
+      regressors — i.e. a confound-robustness / sensitivity analysis of the published effect. Framing
+      the project as "temporal dynamics + confound-hardening of an already-published contrast" is defensible;
+      framing it as discovering the generation-vs-control effect is not.'
+    prior_work:
+    - doi: 10.1037/aca0000603
+      what_was_done: trabajo previo cercano
+  - id: ds008055-p4-analytic-sample-attrition
+    question_en: How much does the analysable sample shrink and shift as inclusion criteria tighten in
+      this release - from 108 participants with rest, to 54 with SCT, to 19 with complete ID event coverage
+      - and do results from the complete-data subsample differ systematically from the maximal-sample
+      results?
+    question_es: ¿Cuanto se reduce y se desplaza la muestra analizable a medida que se endurecen los criterios
+      de inclusion en esta version - de 108 participantes con reposo, a 54 con SCT, a 19 con cobertura
+      completa de eventos en ID - y difieren sistematicamente los resultados de la submuestra con datos
+      completos respecto a los de la muestra maxima?
+    lens: equity
+    skills:
+    - BIDS validation and metadata parsing
+    - datalad / openneuro selective download
+    - missing-data and sensitivity analysis
+    - reproducible reporting (Quarto / Jupyter)
+    - Python or R
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 13
+    feasibility: feasible_with_caveat
+    novelty: novel
+  literature:
+    n_citing_works: 0
+    saturation: low
+    dominant_tasks: []
+  url: https://openneuro.org/datasets/ds008055
+  last_verified: '2026-07-21'
+  status: published
+  provenance:
+    discovered_by: openneuro
+    discovered_at: '2026-07-21'
+    pipeline_version: enrich/1.0
+  verification:
+    verified_at: '2026-07-21'
+    grounded_fields:
+    - access
+    - access_notes
+    - data_types
+    - doi
+    - license
+    - modality_primary
+    - n_subjects
+    - provider
+    - short_desc_en
+    - short_desc_es
+    stripped_fields: []
+    evidence:
+    - src_id: e1
+      url: https://openneuro.org/datasets/ds008055
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    - src_id: e2
+      url: https://openneuro.org/datasets/ds008055
+      sha256: 0cb51e73172b16c73600b8f9f8593ff23e9885969694276ce69d65ad5a4b236c
+  diseases:
+  - healthy-control
+  - creativity
+  short_desc_en: Task fMRI dataset on scientific creativity with a matched experimental control condition,
+    shared openly on OpenNeuro under CC0.
+  short_desc_es: Dataset de fMRI de tarea sobre creatividad científica con condición de control emparejada,
+    publicado abiertamente en OpenNeuro bajo CC0.
+- id: openneuro-ds008064
+  modality_primary: neuroimaging
+  access: open
+  license: CC0
+  n_subjects: '28'
+  provider: OpenNeuro
+  doi: 10.18112/openneuro.ds008064.v1.0.0
+  diseases:
+  - treatment-resistant depression
+  data_types:
+  - T1-weighted anatomical MRI
+  - T2-weighted anatomical MRI
+  - Diffusion-weighted imaging (DTI)
+  - 'Functional MRI (fMRI): Goal priming task'
+  - Resting-state fMRI
+  species: human
+  short_desc_en: OpenNeuro CC0 dataset with structural, diffusion and functional MRI from 28 participants
+    with treatment-resistant depression scanned before and after six weeks of active or sham rTMS combined
+    with psychotherapy.
+  short_desc_es: Dataset de OpenNeuro con licencia CC0 que incluye MRI estructural, de difusión y funcional
+    de 28 participantes con depresión resistente al tratamiento, adquirida antes y después de seis semanas
+    de rTMS activa o simulada combinada con psicoterapia.
+  name: Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises
+    in treatment-resistant depression (OpenNeuro ds008064)
+  access_confidence: medium
+  projects:
+  - id: ds008064-p2-dwi-structural-support
+    question_en: Is the individualized functional rTMS target also structurally connected to subgenual
+      ACC, i.e. does DTI-derived white-matter connectivity from the target voxel to sgACC agree with the
+      resting-state functional target in the same subject?
+    question_es: ¿El blanco funcional individualizado de rTMS está además conectado estructuralmente al
+      CCA subgenual, es decir, la conectividad de sustancia blanca derivada de DTI entre el vóxel blanco
+      y el CCA subgenual coincide con el blanco funcional de reposo en el mismo sujeto?
+    lens: multimodal
+    skills:
+    - diffusion MRI preprocessing (eddy/topup or QSIPrep)
+    - probabilistic tractography (MRtrix3 or FSL)
+    - functional connectivity in nilearn
+    - multimodal spatial overlap statistics
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 18
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The core comparison has already been done in adjacent form. Vila-Rodriguez-adjacent
+      work "Reproducible routes: reliably navigating the connectome to enrich personalized brain stimulation
+      strategies" (Front Hum Neurosci 2024, doi:10.3389/fnhum.2024.1477049) derived, in the same individuals
+      and at two timepoints, (1) FC-guided DLPFC targets from resting-state fMRI (sgACC-anticorrelation
+      approach) and (2) SC-guided DLPFC targets from DTI tractography, and explicitly quantified intra-individual
+      differences between the two target maps, concluding SC-guided targets are more reproducible. Related
+      priors: Luber et al. 2022 (doi:10.1016/j.neuroimage.2021.118863) on DTI-based targeting of deep
+      structures from cortical TMS sites, and Brainsight-era work on cingulum-bundle DLPFC-sgACC tracts
+      and rTMS outcome (e.g. doi:10.1038/s41386-021-01256-3; doi:10.1016/j.jad.2021.12.005). Remaining
+      delta specific to ds008064: (a) no published study has run the structural-vs-functional target concordance
+      analysis in a treatment-resistant depression cohort where the functional target was actually used
+      to deliver clinical rTMS, so the prior work never links target discordance to clinical response;
+      (b) prior work compared *optimal target locations*, not the narrower question posed here — whether
+      the actually-stimulated functional target voxel has non-trivial DTI streamline connectivity to sgACC
+      in that same subject (a per-subject validity check rather than a target-generation comparison);
+      (c) ds008064 pairs this with a psychotherapy (SST) vs mindfulness arm, allowing structure-function
+      target agreement to be tested as a moderator of combined-treatment outcome, which no prior work
+      has done. Confirm ds008064 actually ships usable DWI (with sufficient directions/b-values) before
+      committing — if it is a low-angular-resolution DTI sequence, the tractography arm may be too weak
+      to distinguish agreement from noise.'
+    prior_work:
+    - doi: 10.3389/fnhum.2024.1477049
+      what_was_done: trabajo previo cercano
+  - id: ds008064-p3-goal-priming-pre-post
+    question_en: Within subjects, how does brain activation to the goal-priming task (match versus mismatch,
+      promotion versus prevention conditions) change from before to after the six-week rTMS-plus-psychotherapy
+      protocol, and how large is that change relative to the task's own test-retest noise?
+    question_es: Dentro de cada sujeto, ¿cómo cambia la activación cerebral ante la tarea de priming de
+      metas (coincidencia frente a no coincidencia, condiciones de promoción frente a prevención) desde
+      antes hasta después del protocolo de seis semanas de rTMS más psicoterapia, y qué tamaño tiene ese
+      cambio frente al propio ruido test-retest de la tarea?
+    lens: causal
+    skills:
+    - BIDS events handling
+    - task-fMRI GLM (nilearn or SPM)
+    - within-subject / paired second-level modeling
+    - reliability statistics and effect-size reporting
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 18
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: Davis, Beynel, Neacsiu, Luber, Bernhardt, Lisanby & Strauman (2023, Int J Clin
+      Health Psychol, 10.1016/j.ijchp.2023.100382) analyze exactly this cohort and exactly this idiographic
+      goal-priming task before and after the combined rTMS/psychotherapy protocol — so the pre-post design
+      is not new. But that paper reports task-based *functional connectivity/connectome* change at the
+      network level (DMN, cerebellum, limbic hyperconnectivity; fronto-parietal/visual hypoconnectivity,
+      normalizing toward healthy-volunteer patterns). It does not report univariate BOLD activation for
+      the task's own design contrasts (match vs mismatch crossed with promotion vs prevention), and it
+      provides no reliability benchmark. Related prior work characterizes those activation contrasts only
+      cross-sectionally in single sessions (Strauman et al. 2007, 10.1162/jocn.2007.19.7.1152; Eddington
+      et al. 2009, 10.1093/scan/nsp016; Detloff et al. 2020, 10.1017/pen.2019.13). The remaining delta
+      is (a) within-subject pre-post change in the match/mismatch x promotion/prevention activation contrasts
+      themselves, and (b) scaling that change against the task's own test-retest noise (e.g., ICC / within-subject
+      SDC from the repeated sessions, including the non-rTMS-active comparison arm as a change-free reference)
+      — no published work estimates reliability for this task, so effect sizes for treatment-related activation
+      change are currently uninterpretable.
+    prior_work:
+    - doi: 10.1016/j.ijchp.2023.100382
+      what_was_done: trabajo previo cercano
+  - id: ds008064-p4-external-validity-of-mdd-signatures
+    question_en: Do published resting-state functional-connectivity signatures of major depression, derived
+      on large non-refractory cohorts, still separate these 28 treatment-resistant patients from open
+      normative control data, or do they fail out of domain?
+    question_es: ¿Las firmas publicadas de conectividad funcional en reposo para la depresión mayor, derivadas
+      de grandes cohortes no refractarias, siguen separando a estos 28 pacientes resistentes al tratamiento
+      de datos normativos abiertos de control, o fallan fuera de dominio?
+    lens: generalization
+    skills:
+    - parcellation and connectome extraction (nilearn, Schaefer/Power atlases)
+    - site-effect harmonization (ComBat)
+    - scikit-learn evaluation, calibration and permutation testing
+    - careful reporting of small-N limitations
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 14
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The core claim — that rs-fMRI connectivity signatures of MDD degrade badly when
+      moved out of their training domain — is already well established, so the headline finding would
+      be a confirmation, not a discovery. Yamashita et al. 2020 (PLoS Biol, 10.1371/journal.pbio.3000966)
+      built MDD network markers on large multi-site cohorts and explicitly tested transfer to fully independent
+      cohorts and other disorders; Yamashita/Ichikawa 2020 (10.3389/fpsyt.2020.00400) quantified the multi-center
+      generalization gap directly; Flint et al. 2021 (10.1038/s41386-021-01020-7) showed depression-classifier
+      accuracies are systematically overestimated and collapse toward chance out of sample; Dinga et al.
+      2019 (10.1016/j.nicl.2019.101674, preprint 10.1101/416321) failed to replicate the Drysdale connectivity
+      biotypes. The remaining delta is narrow and mostly a special case: none of these tested transfer
+      specifically into a *treatment-resistant*, heavily medicated, rTMS-trial-enrolled sample (a clinical
+      stage shift, not just a site shift), and none paired patients with controls pulled from a *separate*
+      open dataset. That pairing is also the design''s fatal weakness — with ds008064 patients (n=28)
+      and controls from a different acquisition, scanner/site/protocol is perfectly confounded with diagnosis,
+      so a "signature still separates groups" result is uninterpretable and a "fails out of domain" result
+      is unattributable between clinical-stage effects and site effects. To be publishable the delta would
+      need reframing (e.g. multiple independent control datasets to bound the site-effect term, or normative-modeling
+      deviation scores rather than raw classification), and n=28 gives very little power to say anything
+      precise about degradation magnitude.'
+    prior_work:
+    - doi: 10.1371/journal.pbio.3000966
+      what_was_done: trabajo previo cercano
+  - id: ds008064-p5-foundation-model-fewshot
+    question_en: Can a pretrained fMRI foundation model produce embeddings of these resting-state scans
+      stable enough that a session-1 scan can be re-identified from its session-2 counterpart, and do
+      those embeddings beat conventional connectome features in a few-shot pre-versus-post classification?
+    question_es: ¿Puede un modelo de fundación de fMRI preentrenado producir representaciones de estos
+      escaneos en reposo lo bastante estables como para reidentificar un escaneo de sesión 1 a partir
+      de su homólogo de sesión 2, y superan esas representaciones a los rasgos convencionales de conectoma
+      en una clasificación pre-frente-a-post de pocos ejemplos?
+    lens: foundation-models
+    skills:
+    - PyTorch
+    - using pretrained timeseries/fMRI foundation models
+    - linear probing and few-shot evaluation protocols
+    - subject-wise cross-validation without leakage
+    - embedding-space analysis
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 16
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'Both halves of the question have close, recent antecedents, so the framing is
+      not new — but neither has been done on longitudinal clinical treatment data.
+
+
+      (1) Embedding-vs-connectome head-to-head is largely pre-answered, and negatively. "The Variance
+      Brain Foundation Models Forgot: Third-Order Statistics Predict Cognition Where Billion-Parameter
+      Models Fail" (arXiv:2606.04010, May 2026) tests three state-of-the-art brain foundation models (incl.
+      BrainLM 111M and 650M) against a plain linear readout of the ~80K-parameter FC matrix and finds
+      BFM embeddings lose on every dataset, parcellation and readout, with the gap *widening* with model
+      scale; it attributes this to pretraining destroying the third-order co-skewness structure. So "do
+      foundation-model embeddings beat conventional connectome features" already has a published answer
+      for phenotype prediction. Related benchmark work: "Foundation models for discovering robust biomarkers
+      of neurological disorders from dynamic functional connectivity", "A Brain Graph Foundation Model",
+      AdaBrain-Bench.
+
+
+      (2) Embedding-based fingerprinting/re-identification is also established, just not with a pretrained
+      foundation model: Finn-style connectome fingerprinting plus learned-embedding versions — "Functional
+      connectome fingerprinting: identifying individuals and predicting cognitive functions via autoencoder"
+      (10.1002/hbm.25394), the deep-learning variant on arXiv, tangent-space fingerprinting (10.1162/netn_a_00445),
+      and stability-over-months work (10.1523/JNEUROSCI.0480-21.2021).
+
+
+      Specific remaining delta: (a) no paper found that reports session-1/session-2 identification rate
+      for embeddings from an off-the-shelf pretrained fMRI foundation model (BrainLM / Brain-JEPA / BrainMass
+      class) used as an embedding-QC criterion; the BFM-vs-FC literature evaluates phenotype prediction,
+      not identifiability. (b) No work on ds008064 (Duke fMRI-guided rTMS + Self-System Therapy TRD trial;
+      only conventional network analyses exist, e.g. 10.1016/j.ijchp.2023.100382, 10.1097/YCT.0000000000000545).
+      (c) Few-shot *within-subject pre- vs post-treatment state* classification — a different target from
+      the cross-subject cognition/diagnosis prediction that all BFM benchmarks use — is untested.
+
+
+      Caveat for the student: given arXiv:2606.04010, the expected result on the comparison arm is that
+      FC wins, and ds008064 is a small trial (n in the tens, two sessions), so the few-shot arm will likely
+      be underpowered to publish as a positive claim. Framing it as a clinical-longitudinal reliability/negative-result
+      replication of the BFM-vs-FC finding is the defensible angle; framing it as a novel discovery is
+      not.'
+    prior_work:
+    - doi: 10.48550/arXiv.2606.04010
+      what_was_done: trabajo previo cercano
+  key_publications:
+  - note: Dataset record itself, not a citing work. OpenNeuro repository entry, type=dataset, green OA,
+      indexed via DataCite. cited_by_count = 0.
+    openalex_id: https://openalex.org/W7166566292
+    doi: 10.18112/openneuro.ds008064.v1.0.0
+    title: Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindfulness exercises
+      in treatment-resistant depression
+    publication_year: 2026
+    publication_date: '2026-06-29'
+    first_author: Lysianne Beynel
+    relation: the dataset
+    cited_by_count: 0
+  - note: Source-trial protocol/rationale paper from the originating group. Found via Europe PMC fallback
+      search, NOT via the citation graph — it does not cite the dataset DOI.
+    pmid: '30308570'
+    title: On the Concurrent Use of Self-System Therapy and Functional Magnetic Resonance Imaging-Guided
+      Transcranial Magnetic Stimulation as Treatment for Depression
+    publication_year: 2018
+    relation: originating-trial publication (not dataset reuse)
+    task: protocol / rationale
+    method: narrative + trial design
+  - note: Primary-team exploratory analysis of the combined rTMS + psychotherapy intervention. Predates
+      the public BIDS release and does not cite the dataset DOI.
+    pmid: '36922930'
+    title: 'Network-level dynamics underlying a combined rTMS and psychotherapy treatment for major depressive
+      disorder: An exploratory network analysis'
+    publication_year: 2023
+    relation: originating-trial publication (not dataset reuse)
+    task: biomarker / mechanism
+    method: exploratory functional network analysis
+  - note: Recent paper from the same research line on context/behavior-dependent rTMS effects. Surfaced
+      by keyword fallback; does not cite the dataset DOI.
+    pmid: '41941945'
+    title: 'The power of context: Enhancing repetitive transcranial magnetic stimulation effects through
+      skillful behavior'
+    publication_year: 2026
+    relation: same research line (not dataset reuse)
+    task: mechanism / commentary
+    method: review-style synthesis
+  - title: Do individualized rTMS targets derived from resting-state fMRI (the DLPFC voxel most anticorrelated
+      with subgenual ACC) land in the same place when recomputed from session 1 versus session 2 in the
+      same participant, and how far are they from the scalp-based F3/5-cm heuristic?
+    doi: 10.1016/j.brs.2018.10.004
+    task: ya publicado
+  literature:
+    n_citing_works: 0
+    saturation: low
+    dominant_tasks: []
+  url: https://openneuro.org/datasets/ds008064
+  last_verified: '2026-07-21'
+  status: published
+  provenance:
+    discovered_by: openneuro
+    discovered_at: '2026-07-21'
+    pipeline_version: enrich/1.0
+  verification:
+    verified_at: '2026-07-21'
+    grounded_fields:
+    - access
+    - access_notes
+    - data_types
+    - diseases
+    - doi
+    - license
+    - modality_primary
+    - n_subjects
+    - provider
+    - short_desc_en
+    - short_desc_es
+    - species
+    stripped_fields: []
+    evidence:
+    - src_id: e1
+      url: https://openneuro.org/datasets/ds008064
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    - src_id: e2
+      url: https://openneuro.org/datasets/ds008064
+      sha256: f9f409e70a28105843f16c6b659d9ea1eb67f47a06c761b3ed3c8d3e4af7d381
+- id: openneuro-ds008066
+  modality_primary: neuroimaging
+  access: open
+  license: CC0
+  n_subjects: '40'
+  provider: OpenNeuro
+  doi: 10.18112/openneuro.ds008066.v1.0.0
+  data_types:
+  - T1w anatomical MRI
+  - BOLD fMRI (3 runs)
+  - single-band reference images
+  - events.tsv
+  short_desc_en: BIDS-formatted raw MRI dataset of 40 subjects performing a choice task with six decoy/no-decoy
+    conditions (3, 9 or 24 options), providing per participant one T1-weighted anatomical image, three
+    BOLD runs with single-band references, and an events.tsv per run.
+  short_desc_es: Dataset de MRI cruda en formato BIDS con 40 sujetos que realizaron una tarea de elección
+    con seis condiciones (con y sin señuelo, de 3, 9 o 24 opciones), con una imagen anatómica T1w, tres
+    runs BOLD con imágenes de referencia single-band y un events.tsv por run para cada participante.
+  access_notes: Publicado en OpenNeuro bajo licencia CC0 (snapshot 1.0.0).
+  name: Choice Overload fMRI Dataset
+  access_confidence: medium
+  projects:
+  - id: ds008066-p1-loso-decoding
+    question_en: Does a multivariate classifier trained to decode option-set size (3 vs 9 vs 24) from
+      BOLD activity generalize to held-out subjects and held-out runs, or does it only work within-subject?
+    question_es: ¿Un clasificador multivariado entrenado para decodificar el tamaño del conjunto de opciones
+      (3 vs 9 vs 24) a partir de la señal BOLD generaliza a sujetos y a corridas no vistas, o solo funciona
+      intra-sujeto?
+    lens: generalization
+    skills:
+    - BIDS/fMRIPrep
+    - Python (nilearn, scikit-learn)
+    - MVPA and cross-validation design
+    - basic shell/HPC
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 15
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'Reutskaja et al. 2018 (Nat Hum Behav, 10.1038/s41562-018-0440-2) is the canonical
+      choice-overload fMRI study and establishes that BOLD in dorsal striatum and ACC varies with option-set
+      size — but it is entirely univariate/parametric GLM at the group level (inverted-U of set-size-related
+      signal), with no classifier, no single-trial pattern decoding, and no test of whether set size is
+      decodable from spatial patterns. Adjacent multivariate work exists only in other domains: a generalizable
+      electrophysiological (EEG) signature of working-memory load (10.1111/psyp.13691) and an EEG/HDDM
+      study of choice set size in choice overload (10.1016/j.neuroimage.2025.121542) — both EEG, neither
+      fMRI MVPA, and the EEG choice-overload paper does not test leave-one-subject-out transfer. Zhang
+      et al. (10.1162/jocn_a_01207) report vlPFC value updating by choice-set size, again univariate.
+      No located work trains an fMRI classifier to decode 3 vs 9 vs 24 options, and none compares within-subject/within-run
+      cross-validation against leave-one-run-out and leave-one-subject-out generalization. The remaining
+      delta — whether set-size information is carried in a subject-general spatial code or is idiosyncratic
+      (and whether apparent decoding is driven by run-level drift or trial-count/RT confounds) — is genuinely
+      unanswered. Note also that Reutskaja used set sizes 6/12/24, not 3/9/24, so the stated dataset may
+      be a different collection; the novelty judgment holds either way.'
+    prior_work:
+    - doi: 10.1038/s41562-018-0440-2
+      what_was_done: trabajo previo cercano
+  - id: ds008066-p2-structure-function
+    question_en: Do individual differences in cortical thickness and surface area of frontoparietal control
+      regions, measured from the T1w scan, predict the steepness of each participant's BOLD response to
+      increasing option-set size?
+    question_es: ¿Las diferencias individuales en grosor cortical y área de superficie de regiones frontoparietales
+      de control, medidas en la imagen T1w, predicen la pendiente de la respuesta BOLD de cada participante
+      al aumento del número de opciones?
+    lens: multimodal
+    skills:
+    - FreeSurfer recon-all + QC of surfaces
+    - first-level and subject-level GLM (nilearn or SPM)
+    - regression / mixed models
+    - multiple-comparison correction
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 16
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The group-level half is published: Reutskaja et al. 2018 (Nat Hum Behav, 10.1038/s41562-018-0440-2)
+      established that BOLD in dorsal striatum and ACC scales non-monotonically (inverted-U) with option-set
+      size — so "BOLD response to increasing option-set size" is itself a known, characterized effect,
+      and any new analysis must be framed as moderation of an already-described slope, not discovery of
+      it. What no located work does is treat the per-participant slope as a phenotype and regress it on
+      T1w-derived FreeSurfer morphometry (cortical thickness and surface area) of frontoparietal control
+      regions. Structure-function individual-difference designs of exactly this shape exist in other domains
+      (e.g. Cercor 2021 10.1093/cercor/bhaa322, independent contributions of dlPFC structure and function
+      to working memory; Cercor 2026 10.1093/cercor/bhag089, parietal thickness predicting V5 motion responses),
+      which shows the method is standard but has not been applied to set-size sensitivity. Remaining delta:
+      (1) no published test of thickness/surface-area prediction of set-size BOLD slope in any dataset,
+      and (2) no such analysis on the Choice Overload fMRI Dataset specifically. Two caveats to design
+      around before committing a student: the effect is non-monotonic, so a single "steepness" scalar
+      is under-specified (need to define slope over the ascending limb, or fit a quadratic and use the
+      linear/quadratic coefficients separately); and typical single-site choice-overload samples (n roughly
+      20-40) are badly underpowered for brain-structure-to-brain-function individual-difference correlations,
+      plus surface-based structure-function correlations carry a documented spurious-correlation risk
+      from shared surface reconstruction and smoothing (10.1162/imag_a_00478) that must be explicitly
+      controlled.'
+    prior_work:
+    - doi: 10.1038/s41562-018-0440-2
+      what_was_done: trabajo previo cercano
+  - id: ds008066-p3-decoy-by-setsize-interaction
+    question_en: Because decoy presence and option count were experimentally manipulated in a full 2x3
+      design, is the neural effect of adding a decoy causally modulated by set size (i.e., is there a
+      decoy x set-size interaction), and where in the brain?
+    question_es: Dado que la presencia de senuelo y el número de opciones se manipularon experimentalmente
+      en un diseno factorial 2x3 completo, ¿el efecto neural de anadir un senuelo esta causalmente modulado
+      por el tamano del conjunto (es decir, existe interaccion senuelo x tamano) y en que regiones?
+    lens: causal
+    skills:
+    - GLM design and contrast specification
+    - nilearn or SPM/FSL second-level analysis
+    - factorial ANOVA logic
+    - cluster-level inference and its pitfalls
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 13
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The dataset''s own source paper — Stanley & Wedell, "Neural Dynamics of Multiattribute
+      Decision Making Under Choice Overload," bioRxiv 10.1101/2025.11.18.689103 (2025-11-18, Univ. of
+      South Carolina) — is exactly this 2 (decoy present/absent) x 3 (3/9/24 options) fMRI design, so
+      the question is not novel in setup. BUT every neural analysis they report deliberately collapses
+      the crossed factor: (a) set-size effects are "linear and quadratic contrasts ... tested in separate
+      GLMs, averaging across the levels of the second experimental factor (decoy vs no decoy)", with contrast
+      vectors literally written as [-1 2 -1 -1 2 -1] and [-1 0 1 -1 0 1] — i.e. decoy-collapsed by construction;
+      (b) the decoy effect is a decoy-present > decoy-absent one-sample t-test "collapsing across set
+      size". They report main effects only: DLPFC inverse-U and ACC linear with set size; DLPFC + anterior
+      insula for decoy > no-decoy (notably NO ACC decoy effect, which they flag as a puzzle). They never
+      estimate or report a Decoy x Number interaction contrast anywhere in the imaging analysis, whole-brain
+      or ROI. Interaction terms appear only in the BEHAVIORAL data, where they ARE significant (Number
+      x Decoy on satisfaction, F(1,51)=5.68, p=.02; on "right number of options", F(1,51)=4.49, p<.05;
+      and the decoy effect itself shrinks with set size, F(1,51)=20.32, p<.001) — which makes the untested
+      neural interaction a well-motivated, directly predicted gap rather than a fishing expedition. Remaining
+      delta: fit the full 2x3 factorial second-level model on this dataset and test the decoy x set-size
+      interaction (and simple decoy effects at 3 vs 9 vs 24) in ACC/DLPFC/AIns/striatum, which could also
+      explain the paper''s unresolved null ACC decoy effect if the ACC decoy response is set-size-dependent
+      and cancels when collapsed. Note also the closest published near-neighbor Reutskaja et al. 2018
+      (Nat Hum Behav) manipulated set size only, without a crossed decoy factor.'
+    prior_work:
+    - doi: 10.1101/2025.11.18.689103
+      what_was_done: trabajo previo cercano
+  - id: ds008066-p5-tms-target-variability
+    question_en: Where are the load-sensitive frontoparietal peaks in this task located in each individual,
+      and how far do they shift from the group-average MNI coordinate — i.e., would a group-coordinate
+      TMS target actually hit the functionally active tissue in each participant?
+    question_es: ¿Dónde se ubican, en cada individuo, los picos frontoparietales sensibles a la carga
+      de eleccion, y cuánto se desplazan respecto a la coordenada MNI promedio del grupo? Es decir, ¿un
+      blanco de EMT basado en coordenadas grupales realmente alcanzaría el tejido funcionalmente activo
+      de cada participante?
+    lens: neuromodulation
+    skills:
+    - individual-level fMRI GLM in native space
+    - coordinate-space transforms (MNI <-> native) and their gotchas
+    - spatial statistics / dispersion measures
+    - TMS/neuronavigation targeting literature
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 14
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The core scientific claim is already established, not open. Sack et al. 2009
+      (J Cogn Neurosci, 10.1162/jocn.2009.21126) directly compared individual fMRI-guided TMS targeting
+      against group-average Talairach/MNI coordinates, 10-20 positioning, and probabilistic targeting
+      for a frontoparietal cognitive task, and showed group coordinates substantially degrade functional
+      hit rate and effect size (requiring ~5x the sample). Sparing et al. 2008 (HBM) and Lynch/Dosenbach
+      precision-mapping work (10.1016/j.xpro.2023.102118; 10.1016/j.biopsych.2023.11.022) further document
+      that individual functional peaks deviate on the order of 1-2 cm from group centroids and that individual-specific
+      network targeting is required. The only remaining delta is descriptive and dataset-local: nobody
+      has published the per-subject peak coordinates and group-to-individual Euclidean displacement distribution
+      for load-sensitive frontoparietal activation specifically in the Choice Overload fMRI Dataset. That
+      is a replication of a known effect in a new sample, so it can yield a dataset characterization but
+      not a novel finding — the answer ("no, a group coordinate would frequently miss") is predictable
+      from prior work. To be genuinely novel the project would need an added angle, e.g. linking individual
+      peak displacement to a behavioral choice-overload parameter, or comparing task-peak vs resting-state-network-derived
+      targets with an electric-field model in the same subjects.'
+    prior_work:
+    - doi: 10.1162/jocn.2009.21126
+      what_was_done: trabajo previo cercano
+  literature:
+    n_citing_works: 0
+    saturation: low
+    dominant_tasks: []
+  url: https://openneuro.org/datasets/ds008066
+  last_verified: '2026-07-21'
+  status: published
+  provenance:
+    discovered_by: openneuro
+    discovered_at: '2026-07-21'
+    pipeline_version: enrich/1.0
+  verification:
+    verified_at: '2026-07-21'
+    grounded_fields:
+    - access
+    - access_notes
+    - data_types
+    - doi
+    - license
+    - modality_primary
+    - n_subjects
+    - provider
+    - short_desc_en
+    - short_desc_es
+    stripped_fields: []
+    evidence:
+    - src_id: e1
+      url: https://openneuro.org/datasets/ds008066
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    - src_id: e2
+      url: https://openneuro.org/datasets/ds008066
+      sha256: fc52d76478b1658e4397955b906ce2408f36e092ee6b1c8fee4f0ecac15342a1
+  diseases:
+  - healthy-control
+  - decision-making
+- id: openneuro-ds008108
+  modality_primary: multimodal
+  access: open
+  license: CC0
+  n_subjects: '142'
+  provider: OpenNeuro / School of Biomedical Engineering, Faculty of Medicine, Dalian University of Technology
+  doi: 10.18112/openneuro.ds008108.v1.0.0
+  data_types:
+  - EEG
+  - polysomnography (PSG, .edf)
+  - T1-weighted structural MRI
+  - resting-state functional MRI (BOLD)
+  - behavioral task data (.tsv)
+  - questionnaires
+  species: human
+  short_desc_en: BIDS-formatted multimodal dataset from 142 participants (OSA patients and matched healthy
+    controls) with behavioral, polysomnography, MRI and questionnaire data across five sessions spanning
+    a 24-hour test-retest protocol.
+  short_desc_es: Conjunto multimodal en formato BIDS de 142 participantes (pacientes con apnea obstructiva
+    del sueño y controles sanos emparejados) con datos conductuales, polisomnografía, MRI y cuestionarios
+    en cinco sesiones de un protocolo test-retest de 24 horas.
+  access_notes: Released under CC0; cite the dataset descriptor publication and the Dataset DOI when using
+    the data.
+  name: A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obstructive Sleep
+    Apnea (OpenNeuro ds008108)
+  access_confidence: high
+  projects:
+  - id: ds008108-p1-session-shift-generalization
+    question_en: Does a behavioral classifier that separates OSA patients from matched controls using
+      the cognitive battery (PVT, SART, PPT, MST) trained on one session generalize to the other three
+      sessions, or is 'cognitive impairment in OSA' only detectable at specific circadian/post-sleep timepoints?
+    question_es: ¿Un clasificador conductual que separa pacientes con AOS de controles emparejados usando
+      la batería cognitiva (PVT, SART, PPT, MST), entrenado en una sesión, generaliza a las otras tres,
+      o el 'deterioro cognitivo en AOS' solo es detectable en momentos circadianos/post-sueño concretos?
+    lens: generalization
+    skills:
+    - Python/pandas
+    - scikit-learn
+    - leave-subject-out cross-validation design
+    - psychometrics of reaction-time data
+    status: open
+    unverified: false
+    difficulty: 3
+    effort_weeks: 12
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'No paper trains a multivariate classifier separating OSA patients from matched
+      controls on the PVT/SART/PPT/MST battery, and none tests train-on-one-session / test-on-other-sessions
+      generalization; nothing found cites or reuses OpenNeuro ds008108. Existing work is adjacent and
+      univariate: Djonlagic et al. (10.5664/jcsm.3692) and the CPAP follow-up (10.5664/jcsm.5794), plus
+      10.1371/journal.pone.0085918 and 10.5664/jcsm.8210, show OSA motor-sequence-learning deficits are
+      timepoint-specific (overnight consolidation impaired, encoding largely spared), and 10.1007/s00702-015-1501-6
+      reviews group-level PVT/attention deficits. Deep-learning work on sustained attention in OSA (10.1007/s41782-021-00190-0)
+      uses brain MRI, not the behavioral battery, with no cross-session analysis. Remaining delta: (a)
+      subject-level discriminative classification from behavioral features rather than group-mean comparisons,
+      and (b) an explicit session-transfer matrix quantifying whether the OSA signature is circadian/post-sleep-locked
+      or session-invariant.'
+    prior_work:
+    - doi: 10.5664/jcsm.3692
+      what_was_done: trabajo previo cercano
+  - id: ds008108-p2-psg-to-overnight-cognitive-change
+    question_en: Which PSG-derived sleep-architecture features (stage proportions, arousal-linked events,
+      spectral power) predict the within-subject overnight change in vigilance (PVT) and memory (PPT/MST),
+      and does the same feature set predict the change across the afternoon nap in the same person?
+    question_es: ¿Qué características de arquitectura del sueño derivadas de la PSG (proporciones de estadios,
+      eventos ligados a microdespertares, potencia espectral) predicen el cambio intrasujeto nocturno
+      en vigilancia (PVT) y memoria (PPT/MST), y ese mismo conjunto predice el cambio a través de la siesta
+      vespertina en la misma persona?
+    lens: causal
+    skills:
+    - MNE-Python or YASA
+    - EDF/PSG signal processing
+    - mixed-effects models (statsmodels/lme4)
+    - within-subject difference-score design
+    status: open
+    unverified: false
+    difficulty: 4
+    effort_weeks: 15
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'Both halves are individually published, but not the combination. Mullins et al.,
+      SLEEP 2023 (10.1093/sleep/zsad087) already tests NREM slow-oscillation/delta power and slow/fast
+      spindle density as correlates of OVERNIGHT declarative memory change (word-pair task pre/post PSG)
+      in older adults with OSA vs controls; the Djonlagic line (10.1371/journal.pone.0034106; 10.1371/journal.pone.0085918;
+      10.1513/annalsats.202204-315oc) covers fragmentation-driven motor and emotional consolidation in
+      sleep-disordered breathing. Separately, fragmentation/stage-shift metrics predict attentional slowing
+      in OSA (10.3390/jpm16020117, 2026), but cross-sectionally, not as a within-subject overnight delta.
+      Remaining delta: (1) no prior work applies ONE unified feature set (stage proportions + arousal-linked
+      events + spectral power) jointly to BOTH vigilance (PVT) and memory (PPT/MST) overnight change in
+      the same cohort, so shared-vs-dissociable predictor structure across cognitive domains is untested;
+      (2) no prior work tests whether that same feature set predicts change across an AFTERNOON NAP in
+      the SAME individuals. Existing nap-vs-night within-person work (10.1111/jsr.12968, Manoach group)
+      establishes only feature-level correspondence (nap spindle density estimates nocturnal spindle density),
+      not that the feature-to-cognitive-change mapping generalizes across sleep-episode type. That cross-episode
+      generalization test is the novel contribution ds008108 enables.'
+    prior_work:
+    - doi: 10.1093/sleep/zsad087
+      what_was_done: trabajo previo cercano
+  - id: ds008108-p4-sleep-eeg-signatures-as-stimulation-targets
+    question_en: Are there sleep-EEG signatures in the nocturnal PSG (slow-wave activity, spindle density
+      and coupling, spectral slope) that track overnight memory consolidation and rs-fMRI network reorganization
+      well enough to serve as candidate targets for closed-loop acoustic or transcranial stimulation in
+      OSA?
+    question_es: ¿Existen firmas de EEG de sueño en la PSG nocturna (actividad de ondas lentas, densidad
+      y acoplamiento de husos, pendiente espectral) que sigan la consolidación de memoria nocturna y la
+      reorganización de redes en rs-fMRI lo bastante bien como para ser dianas candidatas de estimulación
+      acústica o transcraneal en lazo cerrado en la AOS?
+    lens: neuromodulation
+    skills:
+    - sleep-EEG spectral analysis and spindle/slow-oscillation detection (YASA)
+    - phase-amplitude coupling
+    - signal-quality QC on clinical PSG
+    - regression with subject-level random effects
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 24
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The EEG-half of the question is already answered. Djonlagic et al., "Overnight
+      declarative memory consolidation and non-rapid eye movement sleep electroencephalographic oscillations
+      in older adults with obstructive sleep apnea" (SLEEP 2023, 10.1093/sleep/zsad087) directly tested
+      SWA, spindle density and SO-spindle coupling against overnight memory retention in OSA. Parekh et
+      al., "EEG slow oscillations and overnight spatial navigational memory performance in CPAP-treated
+      obstructive sleep apnea" (SLEEP 2025, 10.1093/sleep/zsaf046) repeats this for SOs; "Association
+      between sleep microarchitecture and cognition in obstructive sleep apnea" (SLEEP 2024, 10.1093/sleep/zsae141),
+      Zhang et al. (JCM 2023, 10.3390/jcm12020634) and the pediatric spindle work (10.1016/j.ejpn.2018.02.003)
+      cover spindle-cognition links; region-specific hd-EEG + memory change after CPAP is covered by 10.1093/sleep/zsad255.
+      Remaining delta, none of which any retrieved paper does: (1) no study links these PSG microstructural
+      metrics to rs-fMRI network reorganization (DMN/FPN/salience) measured in the same OSA participants
+      — existing OSA rs-fMRI work (e.g. 10.3389/fneur.2023.1215882, 10.1002/brb3.70698) is imaging-only
+      with no concurrent sleep-EEG or overnight memory task; (2) the aperiodic/1-f spectral slope has
+      not been evaluated as a consolidation-related marker in OSA (spectral-slope work in OSA is confined
+      to sleep-depth staging, 10.1093/sleep/zsaf130); (3) no closed-loop acoustic or transcranial stimulation
+      study exists in OSA at all — the closed-loop literature (10.1093/sleep/zsad206, 10.3390/brainsci8120204)
+      is in healthy sleepers, so an explicit effect-size-based target-nomination analysis for OSA is unclaimed.
+      Framing the project as a tri-modal (PSG microstructure -> overnight memory -> rs-fMRI network change)
+      mediation plus stimulation-target feasibility analysis in ds008108 preserves novelty; framing it
+      as "do SWA/spindles predict overnight memory in OSA" does not.'
+    prior_work:
+    - doi: 10.1093/sleep/zsad087
+      what_was_done: trabajo previo cercano
+  - id: ds008108-p5-ssl-pretrain-psg-fewshot
+    question_en: Does self-supervised pretraining on the 142 unlabeled full-night PSG recordings yield
+      representations that beat a supervised baseline in the low-label regime (10-30 labeled subjects)
+      on OSA-vs-control classification and on prediction of next-morning PVT vigilance decline?
+    question_es: ¿El preentrenamiento autosupervisado sobre los 142 registros de PSG nocturna sin etiquetar
+      produce representaciones que superen a una línea base supervisada en régimen de pocas etiquetas
+      (10-30 sujetos) en la clasificación AOS-vs-control y en la predicción del descenso de vigilancia
+      (PVT) a la mañana siguiente?
+    lens: foundation-models
+    skills:
+    - PyTorch
+    - self-supervised learning (contrastive / masked prediction on time series)
+    - EEG epoching and normalization
+    - few-shot evaluation with strict subject-level splits
+    status: open
+    unverified: false
+    difficulty: 5
+    effort_weeks: 24
+    feasibility: feasible_with_caveat
+    novelty: partial
+    still_open_because: 'The core methodological claim is already established, not open. Banville et al.,
+      "Uncovering the structure of clinical EEG signals with self-supervised learning" (J Neural Eng 2021,
+      doi:10.1088/1741-2552/abca18) explicitly demonstrated that SSL pretext tasks on unlabeled sleep
+      EEG beat fully-supervised baselines precisely in the low-labeled-subject regime, with performance
+      gaps that close as labels increase — the exact experimental design proposed here. Subsequent work
+      has generalized it: a multimodal sleep foundation model pretrained on large unlabeled PSG (Nat Med
+      2026, doi:10.1038/s41591-025-04133-4), label-efficient SSL decoding of wearable physiology (doi:10.1038/s44172-025-00467-6),
+      and OSA-specific SSL (Self-Supervised Speech Representations for Sleep Apnea Severity Prediction,
+      doi:10.1109/tbme.2026.3656326; AcceleRest masked autoencoder, doi:10.64898/2026.01.28.26345056).
+      Two genuine deltas remain: (1) no published work uses ds008108 at all — zero hits for the accession
+      or its dataset description; (2) prediction of next-morning PVT vigilance decline from PSG-derived
+      SSL representations is unaddressed — searches for PSG + PVT + ML returned only protocols, cohort
+      descriptions and conference abstracts, no predictive-modeling paper. Caveat for the student: 142
+      recordings is one to three orders of magnitude below the corpora used in the SSL-beats-supervised
+      literature, so a null result would be uninformative about SSL and merely confirm the known scaling
+      requirement; the defensible framing is the PVT-decline target (a novel label) and benchmarking against
+      an off-the-shelf sleep foundation model rather than re-running the settled SSL-vs-supervised label-efficiency
+      comparison.'
+    prior_work:
+    - doi: 10.1088/1741-2552/abca18
+      what_was_done: trabajo previo cercano
+  key_publications:
+  - role: dataset_itself
+    title: A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obstructive Sleep
+      Apnea
+    doi: 10.18112/openneuro.ds008108.v1.0.0
+    openalex_id: W7167585698
+    publication_year: 2026
+    publication_date: '2026-07-07'
+    type: dataset
+    repository: OpenNeuro
+    authors:
+    - Wei Guo
+    - Wei Tian
+    - Wanqi Chen
+    - Tao Jiang
+    - Dong Chen
+    - Fengyu Cong
+    cited_by_count: 0
+    note: OpenAlex-indexed via DataCite; no companion data-descriptor paper found in Europe PMC or DataCite
+      relatedIdentifiers
+  literature:
+    n_citing_works: 0
+    saturation: low
+    dominant_tasks: []
+  access_steps:
+  - step_en: Open the OpenNeuro dataset page for ds008108 (https://openneuro.org/datasets/ds008108), snapshot
+      1.0.0.
+    step_es: Abrir la pagina del dataset ds008108 en OpenNeuro (https://openneuro.org/datasets/ds008108),
+      snapshot 1.0.0.
+    evidence:
+    - src: e2
+      quote: OpenNeuro dataset ds008108 (snapshot 1.0.0)
+    eta_en: 1 min
+    eta_es: 1 min
+  - step_en: Download the dataset directly; no registration or agreement is described, as it is released
+      under CC0 (75,106,494,412 bytes across 5,603 files, so plan disk space and transfer time).
+    step_es: Descargar el dataset directamente; no se describe registro ni acuerdo, ya que se publica
+      bajo licencia CC0 (75.106.494.412 bytes en 5.603 archivos, prever espacio en disco y tiempo de transferencia).
+    evidence:
+    - src: e2
+      quote: This dataset is released under the CC0 license.
+    - src: e2
+      quote: 'Total files: 5603
+
+        Size bytes: 75106494412'
+    eta_en: hours (dataset is ~75 GB)
+    eta_es: horas (el dataset pesa ~75 GB)
+  - step_en: 'Verify the BIDS layout: each subject folder (e.g. sub-001) contains the five session folders
+      ses-preSleep, ses-nightSleep, ses-postSleep, ses-preNap and ses-postNap, alongside README.md and
+      dataset_description.json at the root.'
+    step_es: 'Verificar la estructura BIDS: cada carpeta de sujeto (p. ej. sub-001) contiene las cinco
+      carpetas de sesion ses-preSleep, ses-nightSleep, ses-postSleep, ses-preNap y ses-postNap, junto
+      a README.md y dataset_description.json en la raiz.'
+    evidence:
+    - src: e2
+      quote: 'dataset/
+
+        ├── README.md
+
+        ├── dataset_description.json
+
+        ├── sub-001/
+
+        │   ├── ses-preSleep/  (Behavioral)
+
+        │   ├── ses-nightSleep/ (PSG EDF)
+
+        │   ├── ses-postSleep/ (Behavioral)
+
+        │   ├── ses-preNap/    (Behavioral)
+
+        │   └── ses-postNap/   (Behavioral, T1w MRI, rs-fMRI)
+
+        └── ...'
+    eta_en: 5 min
+    eta_es: 5 min
+  starter_code:
+    python: "# ds008108 - BIDS layout documented in the dataset README (src e2, section 5).\n# Root contains\
+      \ README.md, dataset_description.json and sub-*/ folders;\n# each subject has ses-preSleep, ses-nightSleep,\
+      \ ses-postSleep, ses-preNap, ses-postNap.\nimport json\nfrom pathlib import Path\n\nROOT = Path(\"\
+      /path/to/ds008108\")  # local copy of the downloaded dataset\n\n# 1. dataset-level metadata\nwith\
+      \ open(ROOT / \"dataset_description.json\") as f:\n    print(json.load(f))\n\n# 2. subjects and\
+      \ their sessions\nsubjects = sorted(p.name for p in ROOT.glob(\"sub-*\") if p.is_dir())\nprint(len(subjects),\
+      \ \"subjects\")  # README reports 142 participants\nfor ses in (\"ses-preSleep\", \"ses-nightSleep\"\
+      , \"ses-postSleep\", \"ses-preNap\", \"ses-postNap\"):\n    print(ses, sum((ROOT / s / ses).is_dir()\
+      \ for s in subjects))\n\n# 3. nocturnal PSG is stored as .edf under ses-nightSleep\nedfs = sorted(ROOT.glob(\"\
+      sub-*/ses-nightSleep/**/*.edf\"))\nprint(len(edfs), \"PSG EDF files;\", edfs[:3])\n\n# 4. behavioral\
+      \ task metrics are .tsv, one set per waking session\ntsvs = sorted(ROOT.glob(\"sub-*/ses-*/beh/*.tsv\"\
+      ))\nprint(len(tsvs), \"behavioral TSV files;\", tsvs[:3])\n\n# 5. T1w anatomical and resting-state\
+      \ functional scans live in ses-postNap\nanat = sorted(ROOT.glob(\"sub-*/ses-postNap/anat/*\"))\n\
+      func = sorted(ROOT.glob(\"sub-*/ses-postNap/func/*\"))\nprint(len(anat), \"anat files;\", len(func),\
+      \ \"func files\")\n"
+    r: "# ds008108 - BIDS layout documented in the dataset README (src e2, section 5).\nroot <- \"/path/to/ds008108\"\
+      \  # local copy of the downloaded dataset\n\n# 1. dataset-level metadata\nmeta <- jsonlite::fromJSON(file.path(root,\
+      \ \"dataset_description.json\"))\nstr(meta)\n\n# 2. subjects and their sessions\nsubjects <- sort(basename(list.dirs(root,\
+      \ recursive = FALSE)))\nsubjects <- subjects[grepl(\"^sub-\", subjects)]\ncat(length(subjects),\
+      \ \"subjects\\n\")  # README reports 142 participants\nsessions <- c(\"ses-preSleep\", \"ses-nightSleep\"\
+      , \"ses-postSleep\", \"ses-preNap\", \"ses-postNap\")\nfor (ses in sessions) {\n  cat(ses, sum(dir.exists(file.path(root,\
+      \ subjects, ses))), \"\\n\")\n}\n\n# 3. nocturnal PSG is stored as .edf under ses-nightSleep\nedfs\
+      \ <- list.files(file.path(root, subjects, \"ses-nightSleep\"),\n                   pattern = \"\\\
+      \\.edf$\", recursive = TRUE, full.names = TRUE)\ncat(length(edfs), \"PSG EDF files\\n\")\n\n# 4.\
+      \ behavioral task metrics are .tsv, one set per waking session\ntsvs <- list.files(file.path(root,\
+      \ subjects), pattern = \"\\\\.tsv$\",\n                   recursive = TRUE, full.names = TRUE)\n\
+      beh <- tsvs[grepl(\"/beh/\", tsvs)]\ncat(length(beh), \"behavioral TSV files\\n\")\nif (length(beh))\
+      \ head(read.delim(beh[1], sep = \"\\t\"))\n\n# 5. T1w anatomical and resting-state functional scans\
+      \ live in ses-postNap\nanat <- list.files(file.path(root, subjects, \"ses-postNap\", \"anat\"),\
+      \ full.names = TRUE)\nfunc <- list.files(file.path(root, subjects, \"ses-postNap\", \"func\"), full.names\
+      \ = TRUE)\ncat(length(anat), \"anat files;\", length(func), \"func files\\n\")\n"
+  url: https://openneuro.org/datasets/ds008108
+  last_verified: '2026-07-21'
+  status: published
+  provenance:
+    discovered_by: openneuro
+    discovered_at: '2026-07-21'
+    pipeline_version: enrich/1.0
+  verification:
+    verified_at: '2026-07-21'
+    grounded_fields:
+    - access
+    - access_notes
+    - data_types
+    - diseases
+    - doi
+    - license
+    - modality_primary
+    - n_subjects
+    - provider
+    - short_desc_en
+    - short_desc_es
+    - species
+    stripped_fields: []
+    evidence:
+    - src_id: e1
+      url: https://openneuro.org/datasets/ds008108
+      sha256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    - src_id: e2
+      url: https://openneuro.org/datasets/ds008108
+      sha256: 2d69b3d2c1fa288218c02d12b53818e9701d8dfee8e7dc2f5598a166ad28ff86
+  diseases:
+  - sleep-apnea
+  - cognitive-impairment

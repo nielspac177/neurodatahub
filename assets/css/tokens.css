@@ -1,0 +1,202 @@
+/* ==========================================================================
+   tokens.css — sistema de diseño de NeuroDataHub
+   --------------------------------------------------------------------------
+   Cada matiz de modalidad existe en dos formas:
+
+     --hue-*      relleno. Sólo se usa con tinta casi negra encima
+                  (--text-on-fill). Los siete pasan >=5.96:1 así.
+     --mod-*-ink  tinta. Variante que conserva el matiz pero oscurecida hasta
+                  cumplir AA sobre fondo claro. Es la que se usa para texto,
+                  iconos y filetes de 1px.
+
+   Motivo: los siete matices originales fallan AA como texto en tema claro
+   (electrophysiology #7ee0c0 daba 1.48:1 sobre #f6f8fa — invisible). El estado
+   de acceso es el campo del que depende la decisión del estudiante, así que
+   no puede depender de un color ilegible.
+   ========================================================================== */
+
+:root {
+  /* --- primitivas: matices crudos, independientes del tema --- */
+  --hue-clinical: #4c8dff;
+  --hue-neuroimaging: #a78bfa;
+  --hue-genetics: #f4a259;
+  --hue-electrophysiology: #7ee0c0;
+  --hue-bci: #ff6b9d;
+  --hue-multimodal: #ffd166;
+  --hue-aggregator: #8aa0b2;
+
+  /* --- escala tipográfica: tercera menor (1.2), en rem para respetar el zoom --- */
+  --fs-2xs: .6875rem;
+  --fs-xs: .75rem;
+  --fs-sm: .8125rem;
+  --fs-base: .9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: clamp(1.75rem, 1.4rem + 1.4vw, 2.25rem);
+  --fs-3xl: clamp(2.1rem, 1.6rem + 2.2vw, 3rem);
+
+  --lh-tight: 1.2;
+  --lh-snug: 1.35;
+  --lh-body: 1.55;
+  --tracking-tight: -.021em;
+  --tracking-caps: .06em;
+
+  --fw-regular: 400;
+  --fw-medium: 530;
+  --fw-semibold: 620;
+  --fw-bold: 720;
+
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  /* --- espaciado: base 4px --- */
+  --sp-1: .25rem;
+  --sp-2: .375rem;
+  --sp-3: .5rem;
+  --sp-4: .75rem;
+  --sp-5: 1rem;
+  --sp-6: 1.5rem;
+  --sp-7: 2rem;
+  --sp-8: 3rem;
+  --sp-9: 4.5rem;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-pill: 999px;
+
+  --measure: 68ch;
+  --container: 1360px;
+  --container-prose: 760px;
+  --grid-min: 19rem;
+
+  --dur-fast: 110ms;
+  --dur-base: 180ms;
+  --ease: cubic-bezier(.32, .72, 0, 1);
+  --focus-width: 3px;
+  --focus-offset: 2px;
+}
+
+/* --- tema oscuro (por defecto) --- */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --canvas: #0d1117;
+  --surface: #151a21;
+  --surface-raised: #1c2530;
+  --surface-sunken: #0a0e13;
+
+  --border: #2b3644;
+  --border-strong: #3d4a5c;
+  --border-interactive: #6b7c90;   /* 3.62:1 sobre chip — cumple SC 1.4.11 */
+
+  --text: #e8eef5;                 /* 14.96:1 sobre surface */
+  --text-muted: #9fb0c0;           /*  7.86:1 */
+  --text-faint: #7f8e9e;           /*  4.62:1 sobre surface-raised, el fondo más duro */
+  --text-on-fill: #0c1016;
+
+  --accent: #63a0ff;               /* 6.66:1 sobre surface */
+  --accent-hover: #8ab6ff;
+  --accent-fill: #1f5fd8;
+  --text-on-accent: #ffffff;
+
+  --ok: #4fd1a5;
+  --warn: #ffc857;
+  --crit: #ff9d7a;
+  --focus-ring: #ffcc4d;           /* 12.61:1 sobre canvas */
+
+  --shadow-1: 0 1px 2px rgb(0 0 0 / .5);
+  --shadow-2: 0 4px 14px -4px rgb(0 0 0 / .6), 0 1px 3px rgb(0 0 0 / .4);
+  --shadow-3: 0 18px 42px -12px rgb(0 0 0 / .72);
+
+  /* En oscuro la tinta ES el matiz: todos superan 5.9:1 sobre el lienzo. */
+  --mod-clinical-ink: var(--hue-clinical);
+  --mod-neuroimaging-ink: var(--hue-neuroimaging);
+  --mod-genetics-ink: var(--hue-genetics);
+  --mod-electrophysiology-ink: var(--hue-electrophysiology);
+  --mod-bci-ink: var(--hue-bci);
+  --mod-multimodal-ink: var(--hue-multimodal);
+  --mod-aggregator-ink: var(--hue-aggregator);
+}
+
+/* --- tema claro --- */
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --canvas: #f7f9fb;
+  --surface: #ffffff;
+  --surface-raised: #eef2f7;
+  --surface-sunken: #e7ecf2;
+
+  --border: #d5dde6;
+  --border-strong: #c2ccd8;
+  --border-interactive: #6e7d8c;   /* 3.75:1 sobre chip */
+
+  --text: #131a24;                 /* 17.49:1 */
+  --text-muted: #55636f;           /*  6.18:1 */
+  --text-faint: #636f79;           /*  4.58:1 sobre surface-raised, el fondo más duro */
+  --text-on-fill: #0c1016;
+
+  --accent: #045fff;               /* 4.57:1 sobre surface-raised — sustituye a #4c8dff (3.01:1) */
+  --accent-hover: #0047c7;
+  --accent-fill: #0a63ff;
+  --text-on-accent: #ffffff;
+
+  --ok: #0f7a56;                   /* 5.05:1 — sustituye a #7ee0c0 (1.48:1) */
+  --warn: #8a5a00;                 /* 5.62:1 — sustituye a #ffd166 (1.35:1) */
+  --crit: #b3300f;                 /* 5.95:1 — sustituye a #ff9b6b (1.94:1) */
+  --focus-ring: #7a3d00;           /* 7.98:1 sobre canvas */
+
+  --shadow-1: 0 1px 2px rgb(16 24 40 / .06);
+  --shadow-2: 0 4px 12px -3px rgb(16 24 40 / .10), 0 1px 2px rgb(16 24 40 / .06);
+  --shadow-3: 0 16px 36px -10px rgb(16 24 40 / .16);
+
+  --mod-clinical-ink: #0a63ff;
+  --mod-neuroimaging-ink: #7048f5;
+  --mod-genetics-ink: #a85607;
+  --mod-electrophysiology-ink: #12795a;
+  --mod-bci-ink: #d5004a;
+  --mod-multimodal-ink: #8a6100;
+  --mod-aggregator-ink: #556e82;
+}
+
+/* Sin preferencia guardada, seguir al sistema. theme.js escribe data-theme
+   en <html> antes del primer pintado, así que esto sólo aplica al caso
+   "auto" y nunca produce un parpadeo. */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --canvas: #f7f9fb;
+    --surface: #ffffff;
+    --surface-raised: #eef2f7;
+    --surface-sunken: #e7ecf2;
+    --border: #d5dde6;
+    --border-strong: #c2ccd8;
+    --border-interactive: #6e7d8c;
+    --text: #131a24;
+    --text-muted: #55636f;
+    --text-faint: #636f79;
+    --text-on-fill: #0c1016;
+    --accent: #045fff;
+    --accent-hover: #0047c7;
+    --accent-fill: #0a63ff;
+    --text-on-accent: #ffffff;
+    --ok: #0f7a56;
+    --warn: #8a5a00;
+    --crit: #b3300f;
+    --focus-ring: #7a3d00;
+    --shadow-1: 0 1px 2px rgb(16 24 40 / .06);
+    --shadow-2: 0 4px 12px -3px rgb(16 24 40 / .10), 0 1px 2px rgb(16 24 40 / .06);
+    --shadow-3: 0 16px 36px -10px rgb(16 24 40 / .16);
+    --mod-clinical-ink: #0a63ff;
+    --mod-neuroimaging-ink: #7048f5;
+    --mod-genetics-ink: #a85607;
+    --mod-electrophysiology-ink: #12795a;
+    --mod-bci-ink: #d5004a;
+    --mod-multimodal-ink: #8a6100;
+    --mod-aggregator-ink: #556e82;
+  }
+}

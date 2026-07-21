@@ -1,0 +1,623 @@
+{
+  "id": "openneuro-ds008070",
+  "name": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data (OpenNeuro ds008070)",
+  "scope": {
+    "in_scope": true,
+    "modality_primary": "fMRI",
+    "disease_tags": [],
+    "reason": "Human whole-brain densely sampled task fMRI (auditory task, 5 subjects), CC0-licensed BIDS dataset on OpenNeuro with DOI — reusable human neuroimaging data."
+  },
+  "fields": {
+    "modality_primary": {
+      "value": "neuroimaging",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        }
+      ]
+    },
+    "diseases": {
+      "value": null,
+      "needs": "OpenNeuro ds008070 landing page (participants.tsv / dataset description) or the bioRxiv preprint 2026.06.29.735344",
+      "evidence": []
+    },
+    "provider": {
+      "value": "OpenNeuro",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "OpenNeuro dataset ds008070 (snapshot 1.0.0)"
+        }
+      ]
+    },
+    "access": {
+      "value": "open",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "access_notes": {
+      "value": "License: CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "license": {
+      "value": "CC0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        }
+      ]
+    },
+    "cost": {
+      "value": null,
+      "needs": "OpenNeuro ds008070 landing page / OpenNeuro download terms",
+      "evidence": []
+    },
+    "n_subjects": {
+      "value": "5",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 5"
+        }
+      ]
+    },
+    "years": {
+      "value": null,
+      "needs": "OpenNeuro ds008070 landing page (acquisition dates) or the bioRxiv preprint 2026.06.29.735344",
+      "evidence": []
+    },
+    "data_types": {
+      "value": [
+        "mri",
+        "task: audio"
+      ],
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        },
+        {
+          "src": "e2",
+          "quote": "Tasks: audio"
+        }
+      ]
+    },
+    "region": {
+      "value": null,
+      "needs": "OpenNeuro ds008070 landing page or the bioRxiv preprint 2026.06.29.735344 (acquisition site)",
+      "evidence": []
+    },
+    "doi": {
+      "value": "10.18112/openneuro.ds008070.v1.0.0",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "DatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0"
+        }
+      ]
+    },
+    "short_desc_en": {
+      "value": "OpenNeuro dataset ds008070: a CC0-licensed, densely sampled single-subject task fMRI dataset with 5 subjects, MRI modality and an audio task, released as snapshot 1.0.0 in June 2026.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 5"
+        },
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        },
+        {
+          "src": "e2",
+          "quote": "Tasks: audio"
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Created: 2026-06-30T15:24:26.365Z"
+        }
+      ]
+    },
+    "short_desc_es": {
+      "value": "Dataset ds008070 de OpenNeuro: datos de fMRI de tarea densamente muestreados de sujeto único, con 5 sujetos, modalidad MRI y tarea de audio, publicado bajo licencia CC0 como snapshot 1.0.0 en junio de 2026.",
+      "evidence": [
+        {
+          "src": "e2",
+          "quote": "Name: Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data"
+        },
+        {
+          "src": "e2",
+          "quote": "Number of subjects: 5"
+        },
+        {
+          "src": "e2",
+          "quote": "Modalities: mri"
+        },
+        {
+          "src": "e2",
+          "quote": "Tasks: audio"
+        },
+        {
+          "src": "e2",
+          "quote": "License: CC0"
+        },
+        {
+          "src": "e2",
+          "quote": "Created: 2026-06-30T15:24:26.365Z"
+        }
+      ]
+    }
+  },
+  "access_steps": [],
+  "starter_code": {},
+  "literature": {
+    "n_citing_works": 0,
+    "saturation": "low",
+    "dominant_tasks": [
+      "methods-benchmark (statistical inference testing)",
+      "precision/dense-sampling single-subject fMRI"
+    ],
+    "key_publications": [
+      {
+        "role": "dataset record",
+        "openalex_id": "W7166847277",
+        "doi": "10.18112/openneuro.ds008070.v1.0.0",
+        "title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+        "type": "dataset",
+        "source": "OpenNeuro",
+        "publication_year": 2026,
+        "publication_date": "2026-07-01",
+        "authors_partial": [
+          "Michelle C Medina",
+          "Neha A Reddy",
+          "Molly G Bright",
+          "Kevin R Sitek"
+        ],
+        "cited_by_count": 0,
+        "indexed_in": "DataCite"
+      },
+      {
+        "role": "companion data paper (the only work associated with the dataset)",
+        "openalex_id": "W7166658115",
+        "doi": "10.64898/2026.06.29.735344",
+        "europepmc_id": "PPR1262827",
+        "title": "Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data",
+        "type": "preprint",
+        "source": "bioRxiv",
+        "publication_year": 2026,
+        "first_publication_date": "2026-06-30",
+        "authors": [
+          "Medina MC",
+          "Reddy NA",
+          "Bright MG",
+          "Sitek KR"
+        ],
+        "cited_by_count": 0
+      }
+    ],
+    "summary_en": "Citation-graph mapping found ZERO downstream reuse. The dataset DOI 10.18112/openneuro.ds008070.v1.0.0 resolves cleanly in OpenAlex to work W7166847277 (type: dataset, source: OpenNeuro, indexed via DataCite, published 2026-07-01, authors Michelle C Medina, Neha A Reddy, Molly G Bright, Kevin R Sitek). The forward-citation query (filter=cites:W7166847277) returns meta.count = 0 with an empty results array, and the record's own cited_by_count is 0.\n\nI also traced the companion bioRxiv data paper of the same title (OpenAlex W7166658115, DOI 10.64898/2026.06.29.735344, Europe PMC PPR1262827, posted 2026-06-30). It likewise has cited_by_count = 0 and zero works citing it. Fallback keyword searches confirm this: Europe PMC for the literal accession \"ds008070\" returns 0 hits, and a phrase search on \"Densely Sampled Single-Subject Task fMRI\" returns exactly 1 hit — the originating preprint itself, no secondary users. The dataset is also not yet publicly resolvable at openneuro.org/crn/datasets/ds008070 (HTTP 404), consistent with a very fresh or embargoed release. Crossref has no record (expected — OpenNeuro DOIs are DataCite-minted).\n\nTask/method classification of citing works is therefore empty. The only characterizable analysis is the originating one, which is a methods-benchmark: comparing statistical inference-testing approaches (parametric vs. non-parametric/permutation-style whole-brain thresholding) on densely sampled, precision single-subject task fMRI. None of your target categories — outcome-prediction, biomarker, segmentation, subtyping, causal, external-validation, foundation-model — have been applied to it by anyone.\n\nSaturation is LOW, and about as low as it can be: the dataset is roughly three weeks old as of today (2026-07-21), citation indexes have not had time to accumulate anything, and no reuse of any kind exists yet. Practically every reuse direction is open — deep-phenotyping/precision-fMRI reliability analyses, test-retest and split-half stability of activation maps, individualized functional parcellation, generalization checks for cluster-inference false-positive rates beyond the authors' own comparison, using it as an external-validation set for group-derived task contrasts, and fine-tuning or benchmarking fMRI foundation models on dense within-subject repeats. Caveat: OpenAlex/Europe PMC indexing lags by weeks to months, and dataset citations are chronically under-captured because many papers name datasets only in a data-availability statement rather than the reference list — so re-run this query in a few months, and supplement with a full-text Google Scholar / Europe PMC full-text search on the accession string \"ds008070\" before concluding definitively that no unindexed reuse exists."
+  },
+  "projects": [
+    {
+      "id": "ds008070-p1-run-generalization",
+      "lens": "generalization",
+      "question_en": "Do the statistical inference decisions reported for densely sampled single-subject task fMRI survive resampling? Using the audio task runs, split each subject's data into independent halves and measure how much of the suprathreshold map replicates across halves and across the 5 subjects, as a function of how many runs are pooled.",
+      "question_es": "¿Las decisiones de inferencia estadística en fMRI de tarea con muestreo denso en sujeto único sobreviven al remuestreo? Usando las corridas de la tarea de audio, se divide la data de cada sujeto en mitades independientes y se mide qué proporción del mapa supraumbral se replica entre mitades y entre los 5 sujetos, en función de cuántas corridas se agregan.",
+      "difficulty": 2,
+      "effort_weeks": 8,
+      "compute": "Laptop + ~1 TB free disk (dataset is 10.9 GB raw; derivatives inflate it). One fMRIPrep run over 5 subjects on a workstation or free HPC allocation, then GLMs in nilearn/FSL.",
+      "skills": [
+        "BIDS",
+        "fMRIPrep or minimal preprocessing",
+        "GLM (nilearn/FSL/AFNI)",
+        "Python",
+        "multiple-comparison correction (FDR, cluster, TFCE)",
+        "Dice/overlap statistics"
+      ],
+      "still_open_because": "The companion preprint (bioRxiv 2026.06.29.735344, cited in the README, src e2) evaluates inference approaches; a split-half replication curve as a function of run count is the natural adversarial follow-up and is exactly the kind of reanalysis a student can do on CC0 data without new scanning.",
+      "required_variables": [
+        {
+          "name": "task-audio BOLD runs",
+          "why": "the only functional task in the dataset; supplies the timeseries for every GLM",
+          "grounded_in": "e2",
+          "evidence_quote": "Tasks: audio",
+          "note": "src e2, repository_record"
+        },
+        {
+          "name": "5 subjects (sub-* directories)",
+          "why": "defines the across-subject replication dimension and caps N",
+          "grounded_in": "e2",
+          "evidence_quote": "Number of subjects: 5"
+        },
+        {
+          "name": "multiple files per subject (334 total files)",
+          "why": "334 files over 5 subjects implies many runs per subject, which is what makes split-half and run-count curves possible; consistent with 'Densely Sampled' in the title",
+          "grounded_in": "e2",
+          "evidence_quote": "Total files: 334 / Size bytes: 10911636735 / 'Whole-Brain Densely Sampled Single-Subject Task fMRI Data'"
+        },
+        {
+          "name": "MRI modality in BIDS layout",
+          "why": "guarantees NIfTI + JSON sidecars readable by standard pipelines",
+          "grounded_in": "e2",
+          "evidence_quote": "Modalities: mri"
+        },
+        {
+          "name": "CC0 license",
+          "why": "permits redistribution of derivatives and public posting of the student's maps",
+          "grounded_in": "e2",
+          "evidence_quote": "License: CC0"
+        }
+      ]
+    },
+    {
+      "id": "ds008070-p2-runs-to-stable-target",
+      "lens": "neuromodulation",
+      "question_en": "How many audio-task runs are needed before an individualized auditory-cortex stimulation target stops moving? Compute the peak-activation coordinate from incrementally larger random subsets of each subject's runs and plot the Euclidean displacement of the target against run count, to derive a minimum scan-time recommendation for individualized TMS/neuronavigation targeting.",
+      "question_es": "¿Cuántas corridas de la tarea de audio hacen falta para que un blanco individualizado en corteza auditiva deje de moverse? Se calcula la coordenada del pico de activación a partir de subconjuntos aleatorios crecientes de corridas por sujeto y se grafica el desplazamiento euclidiano del blanco frente al número de corridas, para derivar una recomendación mínima de tiempo de escaneo en targeting individualizado para TMS/neuronavegación.",
+      "difficulty": 2,
+      "effort_weeks": 6,
+      "compute": "Same preprocessed derivatives as P1; the analysis itself is cheap (coordinate extraction + bootstrap).",
+      "skills": [
+        "Python/nilearn",
+        "coordinate space handling (native vs MNI)",
+        "bootstrap resampling",
+        "basic TMS targeting literature"
+      ],
+      "still_open_because": "Individualized neuromodulation targeting is usually justified with a single short localizer; a densely sampled single-subject dataset is one of the few public resources that can quantify how unstable that practice is. Nothing in the evidence indicates this stability curve has been reported.",
+      "required_variables": [
+        {
+          "name": "task-audio BOLD runs",
+          "why": "the auditory localizer contrast that defines the candidate target",
+          "grounded_in": "e2",
+          "evidence_quote": "Tasks: audio"
+        },
+        {
+          "name": "many runs per subject (334 files, 10.9 GB, 5 subjects)",
+          "why": "the run-count axis of the stability curve only exists because sampling is dense",
+          "grounded_in": "e2",
+          "evidence_quote": "Total files: 334 / Size bytes: 10911636735"
+        },
+        {
+          "name": "5 subjects",
+          "why": "gives 5 independent stability curves; enough for a descriptive, not inferential, claim",
+          "grounded_in": "e2",
+          "evidence_quote": "Number of subjects: 5"
+        },
+        {
+          "name": "BIDS MRI files with JSON sidecars",
+          "why": "TR and slice timing are needed to convert run counts into minutes of scan time",
+          "grounded_in": "e2",
+          "evidence_quote": "Modalities: mri",
+          "caveat": "Evidence does not list TR explicitly; the student must confirm it in the sidecars at download. If sidecars lack timing, the run-count axis stays in runs, not minutes."
+        }
+      ]
+    },
+    {
+      "id": "ds008070-p3-run-order-drift",
+      "lens": "causal",
+      "question_en": "Does the auditory response drift systematically over the course of a densely sampled session? Model BOLD response amplitude in the audio task as a function of run index within subject (mixed-effects, subject as random intercept) to test for habituation or scanner/state drift, and quantify how much that drift biases maps built by naively concatenating all runs.",
+      "question_es": "¿La respuesta auditiva deriva sistematicamente a lo largo de una sesion con muestreo denso? Se modela la amplitud de la respuesta BOLD en la tarea de audio en funcion del indice de corrida dentro de cada sujeto (efectos mixtos, sujeto como intercepto aleatorio) para probar habituacion o deriva de escaner/estado, y se cuantifica cuanto sesga esa deriva los mapas construidos concatenando ingenuamente todas las corridas.",
+      "difficulty": 3,
+      "effort_weeks": 8,
+      "compute": "Derivatives from P1 reused; mixed-effects modeling on extracted ROI betas is laptop-scale.",
+      "skills": [
+        "mixed-effects models (statsmodels/lme4)",
+        "GLM beta extraction",
+        "ROI definition",
+        "careful separation of run-order from time-of-day/motion confounds"
+      ],
+      "still_open_because": "Dense within-subject designs are usually analyzed as if runs were exchangeable. Run index is a within-subject, temporally ordered exposure, so it supports a within-person dose/order analysis rather than pure prediction. This is a within-session order effect, not a longitudinal disease trajectory, and the student must say so.",
+      "required_variables": [
+        {
+          "name": "run index / acquisition order of task-audio runs",
+          "why": "the exposure variable; recoverable from BIDS run- entities and acquisition timestamps",
+          "grounded_in": "e2",
+          "evidence_quote": "Tasks: audio / Total files: 334",
+          "caveat": "Evidence confirms many task-audio files but not the run- entity naming; verify at download. If runs are unnumbered, acquisition time from sidecars is the fallback."
+        },
+        {
+          "name": "task-audio BOLD timeseries",
+          "why": "supplies the amplitude outcome per run",
+          "grounded_in": "e2",
+          "evidence_quote": "Tasks: audio"
+        },
+        {
+          "name": "5 subjects",
+          "why": "random-intercept grouping factor; also the hard ceiling on generalizability of the drift estimate",
+          "grounded_in": "e2",
+          "evidence_quote": "Number of subjects: 5"
+        },
+        {
+          "name": "no sessions field",
+          "why": "the record lists no sessions, so the design must be treated as within-session run order, not multi-day longitudinal",
+          "grounded_in": "e2",
+          "evidence_quote": "Sessions: "
+        }
+      ]
+    },
+    {
+      "id": "ds008070-p4-few-run-decoding-transfer",
+      "lens": "foundation-models",
+      "question_en": "Can a self-supervised representation learned on the dense audio-task runs of four subjects decode auditory task states in a fifth held-out subject from only one or two runs? Pretrain a masked-timeseries or contrastive encoder on parcellated BOLD from 4 subjects, then few-shot fine-tune on the held-out subject and compare against a subject-specific GLM/classifier trained on the same small amount of data.",
+      "question_es": "¿Una representacion auto-supervisada aprendida sobre las corridas densas de la tarea de audio de cuatro sujetos puede decodificar estados de la tarea auditiva en un quinto sujeto retenido usando solo una o dos corridas? Se preentrena un codificador de series temporales enmascaradas o contrastivo sobre BOLD parcelado de 4 sujetos, se hace fine-tuning few-shot en el sujeto retenido y se compara contra un GLM/clasificador especifico de sujeto entrenado con la misma cantidad minima de datos.",
+      "difficulty": 4,
+      "effort_weeks": 12,
+      "compute": "One consumer GPU (or Colab/Modal). Parcellating to ~400 ROIs keeps the pretraining corpus small enough to train from scratch in hours.",
+      "skills": [
+        "PyTorch",
+        "self-supervised objectives (masking/contrastive)",
+        "brain parcellation (Schaefer/Glasser)",
+        "leave-one-subject-out evaluation",
+        "honest reporting with N=5"
+      ],
+      "still_open_because": "Foundation-model claims in fMRI are usually made on large-N shallow datasets; the deep-few-subjects regime is the opposite corner and is undersampled. With only 5 subjects this is a pilot, and the student must frame it as an existence check, not a benchmark.",
+      "required_variables": [
+        {
+          "name": "large volume of task-audio BOLD per subject (10.9 GB, 334 files)",
+          "why": "the pretraining corpus; dense per-subject sampling is what substitutes for large N",
+          "grounded_in": "e2",
+          "evidence_quote": "Size bytes: 10911636735 / Total files: 334"
+        },
+        {
+          "name": "audio task labels/events",
+          "why": "needed for the downstream decoding target and for few-shot fine-tuning",
+          "grounded_in": "e2",
+          "evidence_quote": "Tasks: audio",
+          "caveat": "The record names the task but does not enumerate events.tsv files; the student must confirm event timing files exist before committing. If absent, fall back to block-structure decoding only."
+        },
+        {
+          "name": "5 subjects",
+          "why": "defines the leave-one-subject-out split (4 pretrain / 1 held out)",
+          "grounded_in": "e2",
+          "evidence_quote": "Number of subjects: 5"
+        },
+        {
+          "name": "CC0 license and dataset DOI",
+          "why": "allows releasing pretrained weights and derivatives openly, which is the point of a foundation-model pilot",
+          "grounded_in": "e2",
+          "evidence_quote": "License: CC0 / DatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0"
+        }
+      ]
+    }
+  ],
+  "critics": {
+    "grounding": {
+      "verdicts": [
+        {
+          "field": "modality_primary",
+          "verdict": "SUPPORTED",
+          "note": "\"Modalities: mri\" appears verbatim in e2. Combined with the record title (\"Whole-Brain ... Task fMRI\") also in e2, \"neuroimaging\" is a fair category roll-up. Weak point: the cited quote alone says only \"mri\"; brain-specificity comes from an uncited part of the same source."
+        },
+        {
+          "field": "diseases",
+          "verdict": "SUPPORTED",
+          "note": "Value is null with an empty evidence array — no claim is made, so nothing to contradict. The stated \"needs\" (participants.tsv / bioRxiv 2026.06.29.735344) is consistent with e2, which cites that preprint DOI."
+        },
+        {
+          "field": "provider",
+          "verdict": "SUPPORTED",
+          "note": "\"OpenNeuro dataset ds008070 (snapshot 1.0.0)\" is verbatim in e2 and directly establishes the provider."
+        },
+        {
+          "field": "access",
+          "verdict": "UNSUPPORTED",
+          "note": "Quote \"License: CC0\" is verbatim, but it establishes a REUSE LICENSE, not an ACCESS tier. A dataset can be CC0-licensed and still gated (registration/DUA). e2 contains no statement about download conditions or access restrictions. Note also that e1 (the landing page) has chars:0 / empty text and the SHA is the empty-string hash — i.e. the landing page was never actually retrieved, so no source in the file speaks to access."
+        },
+        {
+          "field": "access_notes",
+          "verdict": "SUPPORTED",
+          "note": "The value is literally the verbatim string \"License: CC0\" from e2; as a transcribed note it is self-supporting."
+        },
+        {
+          "field": "license",
+          "verdict": "SUPPORTED",
+          "note": "\"License: CC0\" is verbatim in e2 and directly establishes the license value."
+        },
+        {
+          "field": "cost",
+          "verdict": "SUPPORTED",
+          "note": "Null with empty evidence — no claim asserted. e2 indeed says nothing about cost."
+        },
+        {
+          "field": "n_subjects",
+          "verdict": "SUPPORTED",
+          "note": "\"Number of subjects: 5\" is verbatim in e2 and directly establishes 5."
+        },
+        {
+          "field": "years",
+          "verdict": "SUPPORTED",
+          "note": "Null with empty evidence — no claim asserted. e2 gives only a snapshot creation timestamp (2026-06-30), not acquisition years, so leaving this null is correct."
+        },
+        {
+          "field": "data_types",
+          "verdict": "SUPPORTED",
+          "note": "Both \"Modalities: mri\" and \"Tasks: audio\" are verbatim in e2. Caveat: the emitted token \"task: audio\" is a reformatting of \"Tasks: audio\" (singular/lowercase), and \"audio\" is the task name, not a data type per se — the quote supports the fact but the field is mixing metadata categories."
+        },
+        {
+          "field": "region",
+          "verdict": "SUPPORTED",
+          "note": "Null with empty evidence — no claim asserted. e2 contains no site/geography information."
+        },
+        {
+          "field": "doi",
+          "verdict": "SUPPORTED",
+          "note": "\"DatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0\" is verbatim in e2 and matches the value exactly. (Correctly the dataset DOI, not the preprint DOI 10.64898/2026.06.29.735344 also present in e2; note candidate.doi in the file is empty, so e2 is the only support.)"
+        },
+        {
+          "field": "short_desc_en",
+          "verdict": "UNSUPPORTED",
+          "note": "All six quotes are verbatim, but the sentence asserts more than they establish. (1) \"snapshot 1.0.0\" is NOT covered by any cited quote — the string exists in e2's first line but that line is not cited here. (2) \"released ... in June 2026\" rests on \"Created: 2026-06-30T15:24:26.365Z\"; creation of a snapshot record is not the same as release/publication, and no cited quote says \"released\". (3) \"a ... single-subject ... dataset with 5 subjects\" is internally incoherent as written — the title phrase describes the analysis paradigm, not the dataset composition; a reader is told simultaneously that it is single-subject and that n=5. (4) \"task fMRI\" is asserted while the modality quote says only \"mri\"; fMRI comes from the title quote, which is a paper title, not a modality statement."
+        },
+        {
+          "field": "short_desc_es",
+          "verdict": "UNSUPPORTED",
+          "note": "Same defects as short_desc_en, inherited by translation: \"snapshot 1.0.0\" is not in any cited quote; \"publicado ... en junio de 2026\" overstates \"Created: 2026-06-30\"; \"sujeto único, con 5 sujetos\" is the same self-contradictory framing; \"fMRI de tarea\" goes beyond \"Modalities: mri\". Additionally \"bajo licencia CC0\" is fine, but \"publicado\" (released/published) is an inference not present in any quote."
+        }
+      ]
+    },
+    "access": {
+      "access": "open",
+      "confidence": "medium",
+      "license": "CC0",
+      "cost": "none stated (no cost or fee mentioned in evidence)",
+      "evidence_quote": "License: CC0",
+      "reasoning": "The only access-relevant statement in the evidence is the line \"License: CC0\" in source e2 (repository_record for ds008070 snapshot 1.0.0), alongside \"DatasetDOI: doi:10.18112/openneuro.ds008070.v1.0.0\". CC0 is a public-domain dedication that places no restriction on downloading, reuse, or redistribution, so the terms are classified as open. The README adds only a citation request (\"Please use the following reference if you use these data\"), which is a courtesy norm, not a legal condition or an approval gate. Confidence is medium rather than high because the evidence states the license but never explicitly describes the access mechanism: source e1 (the landing page) is empty (0 chars, sha256 of the empty string), so there is no sentence confirming that files can be downloaded without an account, and no statement about registration, DUA, credentialing, or application either way. The classification therefore rests on the license verbatim alone, not on OpenNeuro's general reputation; had a dataset-specific restriction been present it would have had to appear in this record, and none does."
+    },
+    "novelty": [
+      {
+        "project_id": "ds008070-p1-run-generalization",
+        "verdict": "PUBLISHED",
+        "prior_doi": "10.64898/2026.06.29.735344",
+        "queries_run": [
+          "OpenAlex: densely sampled single-subject task fMRI inference testing (blocked - API budget exhausted)",
+          "OpenAlex: split-half reliability precision fMRI task activation number of runs (blocked - API budget exhausted)",
+          "EuropePMC: \"densely sampled\" AND \"single-subject\" AND fMRI AND inference",
+          "EuropePMC: fMRI AND \"split-half\" AND reliability AND \"number of runs\" AND activation",
+          "EuropePMC: \"precision fMRI\" AND reliability AND \"task activation\" AND \"data quantity\"",
+          "EuropePMC: individual fMRI \"how much data\" reliable task activation maps minutes",
+          "EuropePMC: DOI:10.64898/2026.06.29.735344 (core record, full abstract)"
+        ],
+        "still_open_because": "The proposed question is the central analysis of the dataset's own companion paper: Medina MC, Reddy NA, Bright MG, Sitek KR, \"Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data\" (DOI 10.64898/2026.06.29.735344, 2026), which is the ds008070 data descriptor/methods paper. Its abstract states they \"collected whole-brain (cortex, cerebellum, brainstem) multi-echo densely sampled data of the auditory system, and evaluated activation sensitivity as well as activation stability across data subsets\" for voxel-level, cluster-level, permutation, and region-specific top-% inference schemes, explicitly reporting behavior \"even with lower scan duration\" and across subjects. That is: suprathreshold-map replication across independent data subsets, across the 5 subjects, as a function of pooled data quantity, on the audio task runs. The only deltas left are cosmetic (exact halving scheme rather than their subset construction, a single similarity metric such as Dice rather than their sensitivity/stability pair). Broader precision-fMRI reliability-vs-data-quantity literature (e.g. Lynch et al. 2020/2021 multi-echo precision imaging, Gordon et al. MSC, Spatial Bayesian GLM reliability, imag_a_00426) covers the general principle, so neither the specific nor the general form is open. Any student using this dataset should instead target something the paper did not do (e.g. brainstem/cerebellar-specific thresholding, cross-subject anatomical correspondence of surviving voxels, or transfer to a second task/modality)."
+      },
+      {
+        "project_id": "ds008070-p2-runs-to-stable-target",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.1016/j.brs.2018.10.004",
+        "still_open_because": "The exact analytic design — plotting Euclidean displacement of an individualized stimulation target against amount of fMRI data to derive a minimum-scan-time recommendation — is already established and published, but only for resting-state functional-connectivity targets in prefrontal cortex, not for task-activation peaks in auditory cortex. Ning et al. 2019 (Brain Stimulation, 10.1016/j.brs.2018.10.004) quantified inter-scan vs inter-day Euclidean distance (37 mm vs 25 mm) of rsfMRI-defined DLPFC TMS targets as a function of scan length in 100 HCP subjects and issued explicit acquisition/smoothing recommendations; Cash et al. 2021 (10.1002/hbm.25330) and Trapp/Rosen-style follow-ups (e.g. 10.1101/2024.04.16.589734, UK Biobank precision-TMS reproducibility; 10.1162/imag.a.1222) extended the same displacement-vs-data logic to other connectivity-based targets. Critically, the dataset's own paper (Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data, 10.64898/2026.06.29.735344) already evaluates \"activation stability across data subsets\" in exactly these auditory runs and reports which inference schemes remain consistent \"even with lower scan duration\" — so subset-based stability of auditory activation in ds008070 is partly covered. The remaining delta is narrow but real: (1) their stability metric is map-level (detection consistency / sensitivity per inference scheme), not the millimetre displacement of the single peak-activation coordinate that a neuronavigation system would actually use; (2) no published work reports a run-count convergence curve for task-evoked auditory-cortex peaks, including subcortical/brainstem auditory targets; and (3) no minimum-runs recommendation for task-based (as opposed to rest-based) individualized TMS targeting exists. Anyone running this must position it against, and ideally re-use the thresholding choices from, the ds008070 inference paper, or the work will read as a re-analysis of a figure that paper already contains.",
+        "queries_run": [
+          "EuropePMC: \"scan duration\" AND \"TMS target\" AND fMRI AND individualized",
+          "EuropePMC: \"TMS target\" AND \"Euclidean distance\" AND \"scan\" AND reliability",
+          "EuropePMC: \"target\" AND \"scan duration\" AND \"functional connectivity\" AND DLPFC AND reliability",
+          "EuropePMC: \"precision functional mapping\" AND \"scan time\" AND stability",
+          "EuropePMC: \"task fMRI\" AND \"scan duration\" AND \"activation peak\" AND \"individual\"",
+          "EuropePMC: \"densely sampled\" AND \"single-subject\" AND \"task fMRI\" AND inference (located dataset paper 10.64898/2026.06.29.735344)",
+          "EuropePMC: \"auditory cortex\" AND TMS AND \"fMRI-guided\" AND target AND individualized",
+          "EuropePMC: \"peak coordinate\" AND \"scan duration\" AND fMRI",
+          "EuropePMC: \"amount of data\" AND \"task activation\" AND \"individual-specific\" AND fMRI AND stability",
+          "EuropePMC: \"minimum scan time\" AND fMRI AND \"individualized target\"",
+          "OpenAlex: reliability of individual peak activation coordinate fMRI scan duration TMS target (subsequent OpenAlex calls returned HTTP rate-limit/budget errors)"
+        ]
+      },
+      {
+        "project_id": "ds008070-p3-run-order-drift",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.64898/2026.06.29.735344",
+        "queries_run": [
+          "OpenAlex: densely sampled task fMRI run order habituation auditory response (API returned rate-limit/insufficient-budget error, no results)",
+          "OpenAlex: fMRI run order effects habituation auditory task session (rate-limited)",
+          "EuropePMC: \"precision fMRI\" AND \"run order\" AND habituation",
+          "EuropePMC: \"deep phenotyping\" fMRI \"session effects\" reliability",
+          "EuropePMC: fMRI AND \"run order\" AND (habituation OR adaptation) AND \"auditory cortex\"",
+          "EuropePMC: (\"dense sampling\" OR \"densely sampled\" OR \"precision functional mapping\") AND fMRI AND (\"session order\" OR \"run order\" OR \"order effects\" OR drift)",
+          "EuropePMC: \"mixed-effects\" AND fMRI AND \"activation amplitude\" AND (\"time on task\" OR \"scan duration\" OR \"across runs\") AND habituation",
+          "EuropePMC: \"ds008070\" OR \"Inference Testing of Whole-Brain Densely Sampled\" (found the dataset's own paper)",
+          "EuropePMC: fMRI AND auditory cortex AND habituation AND (\"repeated runs\" OR \"successive runs\" OR \"across scanning runs\")",
+          "EuropePMC: fMRI AND (\"time on task\" OR \"vigilance decline\" OR \"arousal decline\") AND (\"BOLD amplitude\" OR \"activation magnitude\") AND \"scan session\"",
+          "Crossref: within-session run order effect BOLD response amplitude auditory fMRI habituation",
+          "EuropePMC: (\"concatenating runs\" OR \"concatenated runs\") AND fMRI AND (bias OR nonstationarity)",
+          "EuropePMC: \"auditory habituation\" AND fMRI AND (\"repeated stimulation\" OR \"long session\" OR \"response decrement\")",
+          "Semantic Scholar: run order effects task fMRI activation habituation within session"
+        ],
+        "still_open_because": "Two bodies of close work exist but neither answers the question. (1) The dataset's own paper (Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data, doi 10.64898/2026.06.29.735344) explicitly evaluates \"activation stability across data subsets\" of the same auditory densely-sampled runs — but it treats subsets as interchangeable samples for a sensitivity/stability comparison of inference schemes (voxel-level FDR, cluster-level, permutation, top-% t-stat). It does not model run INDEX as an ordered predictor, does not test for a monotonic trend, and does not report any habituation/drift result. (2) Auditory habituation in fMRI is established in principle (e.g. Visualization of Auditory Habituation by fMRI, doi 10.1006/nimg.2002.1308, and the fMRI-of-central-auditory-system literature), but at within-run / short repeated-stimulation timescales in small conventional samples, not as a session-length run-index effect in a precision-mapping design. Remaining delta: (a) a mixed-effects test of BOLD amplitude ~ run index with subject random intercept across the full densely sampled session, separating habituation from scanner/state drift; (b) region-resolved estimates including subcortex/brainstem, which the 2002-era auditory habituation work did not cover; (c) the fully novel piece — quantifying how much the estimated drift biases maps produced by naive concatenation of all runs, which no located work addresses for any dense-sampling dataset. Caveat: OpenAlex was unavailable (API budget exhausted), so coverage rests on Europe PMC, Crossref, and Semantic Scholar."
+      },
+      {
+        "project_id": "ds008070-p4-few-run-decoding-transfer",
+        "verdict": "PARTIAL",
+        "prior_doi": "10.48550/arXiv.2206.11417",
+        "queries_run": [
+          "OpenAlex: self-supervised pretraining fMRI few-shot transfer held-out subject decoding (API rate-limited, no results)",
+          "OpenAlex: masked timeseries transformer parcellated BOLD pretraining task state decoding (rate-limited)",
+          "EuropePMC: \"self-supervised\" AND fMRI AND \"few-shot\" AND decoding",
+          "EuropePMC: \"precision fMRI\" AND \"deep learning\" AND \"individual\" AND transfer",
+          "EuropePMC: \"dense sampling\" AND fMRI AND \"single subject\" AND classifier",
+          "EuropePMC: ds008070 OR (\"densely sampled\" AND \"task fMRI\" AND inference)",
+          "EuropePMC: \"pretraining\" AND fMRI AND \"mental state decoding\"",
+          "arXiv: abs:\"mental state decoding\" AND abs:\"self-supervised\"",
+          "arXiv: abs:\"fMRI\" AND abs:\"foundation model\" AND abs:\"few-shot\"",
+          "arXiv: abs:\"fMRI\" AND abs:\"contrastive\" AND abs:\"individual\" AND abs:\"limited data\""
+        ],
+        "still_open_because": "The core recipe is already established, so the methodological claim is not new. Thomas, Re & Poldrack, \"Self-Supervised Learning of Brain Dynamics from Broad Neuroimaging Data\" (NeurIPS 2022, arXiv:2206.11417) pretrains masked/autoregressive sequence models directly on parcellated BOLD timeseries and shows they beat baselines for downstream mental-state (task) decoding specifically in the few-shot regime. Germani et al., \"On the benefits of self-taught learning for brain decoding\" (GigaScience 2023, doi:10.1093/gigascience/giad029) makes the same point for unlabeled pretraining plus limited labeled decoding data. He et al.'s meta-matching covers \"pretrain on many subjects, transfer to a small-data target\". RABBiT (arXiv:2607.05171, 2026) does few-shot BOLD adaptation within individuals. Remaining delta: (1) an extreme low-N pretraining corpus of 4 densely-sampled subjects rather than the 1,000+ subject corpora all prior SSL work used - it is genuinely unknown whether dense within-subject sampling substitutes for corpus breadth; (2) the few-shot budget expressed in runs (1-2) inside a precision-fMRI deep-phenotyping design rather than in subjects; (3) a head-to-head against a properly specified subject-specific GLM/beta-series classifier on exactly matched data, which is the precision-fMRI field standard but is not the baseline used in the SSL papers; (4) ds008070 is a 2026 release whose only associated paper (doi:10.64898/2026.06.29.735344) concerns GLM inference testing, so no ML work exists on it. Frame the project as \"does dense within-subject sampling substitute for large-N pretraining corpora?\" rather than \"can SSL do few-shot task decoding?\" - the latter is answered."
+      }
+    ],
+    "feasibility": [
+      {
+        "project_id": "ds008070-p1-run-generalization",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 4,
+        "effort_weeks": 14,
+        "missing_variables": [
+          "runs per subject (number of task-audio BOLD runs) - never stated; '334 total files' is an inference, not a count of runs, and no file listing exists in the evidence",
+          "events.tsv / task timing files - no evidence of stimulus onsets; without them no GLM can be fit at all (this is the single hardest blocker)",
+          "TR, run duration, and number of volumes per run - determines whether within-run split-half is even statistically meaningful",
+          "preprocessed derivatives (fMRIPrep or equivalent) - evidence shows only raw BIDS 'mri' modality; all preprocessing falls on the student",
+          "T1w anatomical scans - required for registration/normalization but not confirmed by 'Modalities: mri' alone",
+          "fieldmaps / distortion-correction data - unconfirmed, and their absence changes the preprocessing pipeline"
+        ],
+        "reason": "Evidence base is unusually thin: source e1 (landing page) is empty (0 chars, sha256 of the empty string), so the ONLY substantive source is e2, a 750-char repository record. There is no file listing, no BIDS tree, and the README is a single citation sentence. Every claimed variable except three is unverified.\n\nPer-variable check:\n- task-audio BOLD runs: CONFIRMED that a task named 'audio' exists (\"Tasks: audio\"). NOT confirmed how many runs, of what length, or with what timing files.\n- 5 subjects: CONFIRMED (\"Number of subjects: 5\").\n- \"multiple files per subject (334 total files)\": NOT CONFIRMED as runs. 334 files / 5 subjects = ~67 files/subject, which under BIDS is consumed by anat, fieldmaps, JSON sidecars, and physio before you get to BOLD runs. The claim's own note (\"implies many runs per subject\") is an inference, and it is the single load-bearing assumption of the entire project. If the dataset is, say, 8 runs/subject rather than 25, the \"as a function of how many runs are pooled\" curve has too few points to be informative and the project's central deliverable collapses.\n- MRI modality in BIDS: PARTIALLY confirmed (\"Modalities: mri\"); BIDS-validity and NIfTI+JSON sidecar completeness are assumed, not shown.\n- CC0: CONFIRMED. No access latency — this is the project's one genuine strength (immediate anonymous download, no DUA, no IRB).\n\nFeasibility judgment: nothing is demonstrably absent, and N=5 is not fatal because dense single-subject sampling is deliberately a within-subject design — so not INFEASIBLE. But the claimed difficulty 2 / 8 weeks is badly optimistic:\n\n1. Preprocessing dominates. 10.9 GB of raw BIDS across 5 densely-sampled subjects means on the order of 100+ BOLD runs through fMRIPrep. Realistic wall-clock is 1-3 weeks of compute plus 2-3 weeks of debugging (container setup, FreeSurfer license, fieldmap/IntendedFor errors, disk pressure). Students almost universally budget zero weeks for this and this is exactly where they abandon.\n2. The GLM layer is not trivial. Per-run first-level modeling, then split-half partitioning, then pooling at k = 1..N runs with resampling over partitions, then a replication metric (Dice / Jaccard / correlation of unthresholded maps) at multiple thresholds and multiple inference methods. That is a real methods-development effort, not a scripting exercise — difficulty 4, not 2.\n3. Across-subject generalization with N=5 is descriptive only. The student must be told up front that the across-subject dimension supports no inferential claim; it is a qualitative consistency check. If the project is sold as \"does it replicate across subjects\", it will disappoint.\n4. Novelty caveat: the dataset was released as the companion to Medina, Reddy, Bright & Sitek (2026), \"Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Single-Subject Task fMRI Data\" (bioRxiv 2026.06.29.735344). The proposed question is close to the source paper's own stated aim. This is fine as a replication/extension but must be framed that way, and the student should read that preprint in week 1 — it is also the only realistic way to recover the missing variables (run counts, TR, timing) before committing.\n\nGate before starting: download the BIDS tree and confirm (a) events.tsv files exist, (b) runs per subject >= ~10, (c) T1w present. If events.tsv are absent, the project is INFEASIBLE as written and must be re-scoped to resting-state-style reliability metrics.\n\n14 weeks fits a 15-week semester only if download and preprocessing start in week 1 and compute is already provisioned. There is no slack."
+      },
+      {
+        "project_id": "ds008070-p2-runs-to-stable-target",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 4,
+        "effort_weeks": 12,
+        "missing_variables": [
+          "number of audio runs per subject (never stated in evidence; inferred only from '334 files' and the word 'densely' in the title — the run-count x-axis of the entire project depends on this being >=10)",
+          "task event/onset timing files (_events.tsv) needed to model the auditory localizer contrast — not listed in evidence",
+          "preprocessing status: no evidence of derivatives (fMRIPrep/FreeSurfer outputs); assume raw BIDS, which adds a large uncosted preprocessing burden",
+          "RepetitionTime / slice timing in JSON sidecars (acknowledged by the proposer; low risk since BIDS validation requires it, but unconfirmed)",
+          "compute environment (cluster/GPU or high-RAM machine) required to preprocess ~75 BOLD runs — not a dataset variable but an unstated prerequisite"
+        ],
+        "reason": "Evidence rests on a single 750-char repository record (e1 landing page is an empty fetch, sha256 = empty-string hash). It confirms 5 subjects, MRI modality, task 'audio', 334 files / 10.9 GB, CC0, and OpenNeuro hosting — so access latency is effectively zero and the core data type exists. The project is therefore not infeasible. But three of the claimed variables are inferences, not facts: runs-per-subject is never stated (334 files / 5 subjects is consistent with 10-20 runs each once anat, fieldmaps, sidecars and events are subtracted, but if it is ~6 runs the stability curve has no dynamic range and the deliverable collapses), events.tsv onsets are unlisted yet required for any localizer GLM, and nothing indicates preprocessed derivatives exist. Assuming raw BIDS, the student owns fMRIPrep across ~75 BOLD runs (12-24h/subject plus FreeSurfer, plus fieldmap/IntendedFor debugging) before any analysis begins — roughly 3-4 weeks and a compute cluster the evidence does not establish. On top of that sits per-run first-level modelling, a subset-resampling framework, and peak-coordinate extraction, which is itself unstable and forces unanticipated methodological choices (peak vs centre-of-mass, ROI masking, smoothing). Claimed difficulty 2 / 6 weeks is a classic underestimate of an end-to-end fMRI pipeline; 4 / 12 weeks fits a 15-week semester only if run count and compute access are verified in week 1. Statistically, n=5 supports five descriptive curves but cannot support the stated 'minimum scan-time recommendation' for clinical TMS targeting — that framing must be softened. Finally, the source preprint (Medina et al., bioRxiv 2026.06.29.735344) is on inference testing in densely sampled single-subject task fMRI, close enough that the student should confirm the target-stability analysis is not already a figure in it."
+      },
+      {
+        "project_id": "ds008070-p3-run-order-drift",
+        "verdict": "INFEASIBLE",
+        "difficulty": 4,
+        "effort_weeks": 14,
+        "missing_variables": [
+          "task-audio stimulus timing (events.tsv) - verified absent from every sub-*/func/ directory and from the dataset root; without it the 'BOLD response amplitude' outcome cannot be modeled at all",
+          "acquisition timestamps / date-time per run - sidecar JSONs not retrievable and OpenNeuro routinely strips AcquisitionDateTime, so temporal spacing of runs is unrecoverable",
+          "session / scan-day labels - Sessions field is empty, so within-session habituation cannot be distinguished from across-day state drift",
+          "sufficient run depth - only 4 task-audio runs per subject (run-1..run-4), not the many-run 'dense sampling' the drift question presupposes",
+          "physiological / end-tidal CO2 confound at raw level - only precomputed CO2 regressor .txt files exist in derivatives, no raw physio, so the vascular confound cannot be independently modeled"
+        ],
+        "reason": "Verified the live OpenNeuro file tree for ds008070 (the evidence JSON contained no file listing). Structure: 5 subjects, exactly 4 task-audio runs each, 3 echoes per run, AP/PA fieldmaps, plus derivatives (optimally_combined, ica_components, CO2_regressors). Run entities exist (run-1..run-4) and BOLD data exists, so two of the four claimed variables check out. But there is no events.tsv anywhere in the archive and no top-level task-audio_events.json, so the outcome variable - auditory BOLD response amplitude - has no design matrix as distributed; the proposal never listed stimulus timing as a requirement and it is the binding constraint. The exposure is also far weaker than claimed: 4 run positions x 5 subjects = 20 cells, 5 random-intercept groups, so the mixed-effects drift test is descriptive at best and the variance component is not practically identifiable. The empty Sessions field plus stripped acquisition datetimes means within-session habituation cannot be separated from across-day drift, which is the actual scientific question. Additional hidden cost: multi-echo data requires tedana/optimal-combination handling and the CO2 regressors reveal a vascular-reactivity design where end-tidal CO2 is a first-order confound on any amplitude trend. Even the salvageable methods-only reframing (compare concatenated-run vs run-wise maps) costs roughly 14 weeks at difficulty 4 given an 11 GB download, multi-echo preprocessing, and per-run GLMs - beyond the proposal's 8-week/difficulty-3 estimate and leaving no margin in a 15-week semester."
+      },
+      {
+        "project_id": "ds008070-p4-few-run-decoding-transfer",
+        "verdict": "FEASIBLE_WITH_CAVEAT",
+        "difficulty": 5,
+        "effort_weeks": 15,
+        "missing_variables": [
+          "events.tsv / audio task event timing files (task name 'audio' is confirmed but no file listing exists in the evidence; e1 landing page fetched 0 chars, so no file manifest was ever retrieved)",
+          "preprocessed/parcellated derivatives (no fMRIPrep or derivatives/ directory confirmed; project assumes 'parcellated BOLD' but only raw BIDS is evidenced)",
+          "runs-per-subject and TR/run-duration (the pretraining corpus size in timepoints is never established; 'densely sampled' is only inferred from the title and 10.9 GB / 334 files)",
+          "anatomical T1w coverage per subject (required for registration/parcellation; 'Modalities: mri' does not confirm it)"
+        ],
+        "reason": "Confirmed from e2: 5 subjects, task 'audio', 334 files / 10.9 GB, CC0, DOI — so the subject-count, licensing, and bulk-data claims all check out, and access latency is zero (open download, no DUA). Everything else in the required-variable list is asserted, not evidenced. The landing page (e1) returned 0 characters, so there is no file manifest anywhere in this record: no events.tsv, no derivatives, no run counts, no TR. The proposal's own caveat (\"the student must confirm event timing files exist\") is the crux of the downstream task, and the fallback it offers — \"block-structure decoding only\" — is not the same project, since without event labels there is no decoding target to fine-tune or to compare a GLM against. Scientific concerns that survive even if the events files exist: (1) a four-subject pretraining corpus is not a corpus. Self-supervised masked-timeseries and contrastive encoders in fMRI are trained on hundreds to thousands of subjects (HCP, UKB, ABCD); four densely sampled subjects gives strong within-subject sampling but essentially no across-subject variability, which is exactly the axis the representation must generalize along to transfer to a held-out subject. The likely outcome is that the SSL encoder loses to the subject-specific GLM baseline, which is a publishable-ish negative result but a demoralizing one for a student who framed it as a foundation-model pilot. (2) With 5 subjects there are exactly 5 leave-one-out folds, so the headline comparison rests on n=5 paired points — descriptive only, no meaningful inferential test, and the folds are not independent since each pretraining set overlaps the others by 3/4. (3) Hidden cost: the data is raw BIDS as far as the evidence shows. Running fMRIPrep over a densely sampled 5-subject dataset (10.9 GB raw, many long runs) is realistically 1-3 weeks of wall-clock on a shared cluster plus 1-2 weeks of QC and debugging, and requires HPC access secured in week 1. That preprocessing block alone is what the original 12-week estimate omits. Honest schedule: 2 wks download/BIDS validation/confirm events exist; 3 wks preprocessing + parcellation + QC; 2 wks GLM baseline; 4 wks SSL encoder implementation and training loop; 2 wks few-shot fine-tune and LOSO evaluation; 2 wks writeup. That is 15 weeks with zero slack in a 15-week semester — it fits only if the student already knows PyTorch and BIDS/fMRIPrep and the events files turn out to exist. Difficulty raised from 4 to 5: this stacks neuroimaging preprocessing, parcellation, custom SSL architecture, and few-shot transfer, any one of which is a semester project on its own. Required de-risking before commitment: download the BIDS tree and confirm events.tsv, run count, and TR in week 1; if events are absent or runs per subject are few, pivot to a within-subject dense-sampling reliability question instead."
+      }
+    ]
+  },
+  "pipeline_version": "enrich/1.0",
+  "_blocks": [
+    "'open' con una sola derivación — requiere confirmación"
+  ]
+}

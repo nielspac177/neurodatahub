@@ -1,0 +1,125 @@
+NEURODATAHUB — ACTUALIZACIÓN SEMANAL
+Tarjeta para Apple Notes. Texto plano a propósito: se pega limpio.
+Versión larga: RUNBOOK.md en el repo.
+
+────────────────────────────────────
+1. ABRIR EL AGENTE
+────────────────────────────────────
+
+Terminal:
+
+   cd ~/neurodatahub
+   claude
+
+Pegar esto en Claude Code:
+
+   Lee RUNBOOK.md y ejecuta la actualización semanal completa de
+   NeuroDataHub. Párate y enséñame lo que haya en drafts/needs_human/
+   antes de publicar nada. No hagas push: déjalo commiteado en una
+   rama y dime el comando para mergear.
+
+Eso basta. El agente saca el resto del RUNBOOK.md.
+
+
+────────────────────────────────────
+2. QUÉ VA A HACER (≈30–60 min)
+────────────────────────────────────
+
+  1. Descubrir     enumera revistas de datos (Scientific Data, Data in
+                   Brief, GigaScience) por ISSN + OpenNeuro + DANDI
+  2. Congelar      descarga y guarda las fuentes con sha256
+  3. Enriquecer    ~100 subagentes: redactor + 4 críticos adversariales
+  4. Publicar      Python re-verifica todo y mezcla lo que pasa
+  5. Mantener      enlaces muertos, cambios de licencia, recorte
+  6. Comprobar     4 gates; si uno falla, se para
+  7. Commit        en una rama, sin push
+
+El paso 3 es el caro. Los demás son gratis.
+
+
+────────────────────────────────────
+3. LO ÚNICO QUE TIENES QUE DECIDIR TÚ
+────────────────────────────────────
+
+Al final te enseñará drafts/needs_human/. Motivos típicos:
+
+  "'open' con una sola derivación"
+      → Abre la URL. ¿De verdad se descarga sin cuenta?
+        Sí → publicar.  No → corregir el acceso.
+
+  "desacuerdo: redactor=X, crítico=Y"
+      → Mira la licencia real. Ante la duda, el más restrictivo.
+
+  "N citas no verificables"
+      → El modelo se inventó frases. Descartar el registro.
+
+  "falta campo obligatorio"
+      → Completar a mano o descartar.
+
+Regla de oro: si dudas del acceso, NO lo publiques como abierto.
+Equivocarse ahí le cuesta semanas a un estudiante.
+
+
+────────────────────────────────────
+4. PUBLICAR DE VERDAD
+────────────────────────────────────
+
+Cuando estés conforme:
+
+   cd ~/neurodatahub
+   git checkout main
+   git merge weekly/AAAA-MM-DD
+   git push
+
+El push dispara el deploy de GitHub Pages. Antes de eso no hay nada
+publicado.
+
+
+────────────────────────────────────
+5. SI ALGO SE ROMPE
+────────────────────────────────────
+
+  Nada nuevo aparece
+      Normal: las marcas de agua están al día.
+      Para recorrer histórico:  python3 scripts/harvest_run.py --backfill
+
+  Se bloquea todo
+      Suele ser correcto: los críticos no coinciden en el acceso.
+      Mira el campo _blocks de cada archivo.
+
+  Falla calibrate_triage.py
+      El filtro dejaría escapar una base buena conocida.
+      Se arregla el léxico (scripts/lib/lexicon.py), NUNCA el umbral.
+
+  Falla check_contrast.py
+      Un color nuevo no cumple accesibilidad. Oscurecer hasta ≥4.5:1.
+
+  Quiero empezar de cero
+      NO borres state/seen.json salvo que quieras re-triar todo lo ya
+      descartado (miles de artículos). Casi nunca es lo que quieres.
+
+
+────────────────────────────────────
+6. VER EL SITIO EN LOCAL
+────────────────────────────────────
+
+   cd ~/neurodatahub
+   python3 scripts/build.py
+   python3 -m http.server 8000
+
+   → http://localhost:8000
+
+Nota: el HTML no se guarda en git; se regenera. Si el sitio se ve
+vacío, es que falta correr build.py.
+
+
+────────────────────────────────────
+7. LO QUE NUNCA DEBE PASAR
+────────────────────────────────────
+
+  · Editar data/databases.yml a mano para meter registros nuevos
+    (salta las reglas de veto).
+  · Publicar 'open' con una sola fuente que lo diga.
+  · Rellenar un campo que la evidencia no respalda.
+    Vacío es correcto; adivinado es un defecto.
+  · Hacer push sin haber revisado needs_human/.

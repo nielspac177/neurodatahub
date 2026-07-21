@@ -1,0 +1,756 @@
+{
+  "n_datasets": 21,
+  "n_projects": 44,
+  "n_projects_unverified": 25,
+  "n_datasets_missing_desc": 0,
+  "stale": [],
+  "by_access": {
+    "open": 9,
+    "registration": 6,
+    "application": 3,
+    "credentialed": 2,
+    "dua": 1
+  },
+  "coverage_gaps": [
+    {
+      "disease": "adhd",
+      "modality": "clinical"
+    },
+    {
+      "disease": "adhd",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "adhd",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "adhd",
+      "modality": "bci"
+    },
+    {
+      "disease": "aging",
+      "modality": "clinical"
+    },
+    {
+      "disease": "aging",
+      "modality": "genetics"
+    },
+    {
+      "disease": "aging",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "aging",
+      "modality": "bci"
+    },
+    {
+      "disease": "aging",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "alzheimer",
+      "modality": "clinical"
+    },
+    {
+      "disease": "alzheimer",
+      "modality": "genetics"
+    },
+    {
+      "disease": "alzheimer",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "alzheimer",
+      "modality": "bci"
+    },
+    {
+      "disease": "anxiety",
+      "modality": "clinical"
+    },
+    {
+      "disease": "anxiety",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "anxiety",
+      "modality": "genetics"
+    },
+    {
+      "disease": "anxiety",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "anxiety",
+      "modality": "bci"
+    },
+    {
+      "disease": "autism",
+      "modality": "clinical"
+    },
+    {
+      "disease": "autism",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "autism",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "autism",
+      "modality": "bci"
+    },
+    {
+      "disease": "autism",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "bci",
+      "modality": "clinical"
+    },
+    {
+      "disease": "bci",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "bci",
+      "modality": "genetics"
+    },
+    {
+      "disease": "bci",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "bci",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "bipolar",
+      "modality": "clinical"
+    },
+    {
+      "disease": "bipolar",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "bipolar",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "bipolar",
+      "modality": "bci"
+    },
+    {
+      "disease": "bipolar",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "brain-metastasis",
+      "modality": "clinical"
+    },
+    {
+      "disease": "brain-metastasis",
+      "modality": "genetics"
+    },
+    {
+      "disease": "brain-metastasis",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "brain-metastasis",
+      "modality": "bci"
+    },
+    {
+      "disease": "brain-metastasis",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "brain-tumor",
+      "modality": "clinical"
+    },
+    {
+      "disease": "brain-tumor",
+      "modality": "genetics"
+    },
+    {
+      "disease": "brain-tumor",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "brain-tumor",
+      "modality": "bci"
+    },
+    {
+      "disease": "brain-tumor",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "clinical"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "genetics"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "cognitive-impairment",
+      "modality": "bci"
+    },
+    {
+      "disease": "control",
+      "modality": "clinical"
+    },
+    {
+      "disease": "control",
+      "modality": "genetics"
+    },
+    {
+      "disease": "control",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "control",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "creativity",
+      "modality": "clinical"
+    },
+    {
+      "disease": "creativity",
+      "modality": "genetics"
+    },
+    {
+      "disease": "creativity",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "creativity",
+      "modality": "bci"
+    },
+    {
+      "disease": "creativity",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "clinical"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "genetics"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "bci"
+    },
+    {
+      "disease": "decision-making",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "delirium",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "delirium",
+      "modality": "genetics"
+    },
+    {
+      "disease": "delirium",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "delirium",
+      "modality": "bci"
+    },
+    {
+      "disease": "delirium",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "dementia",
+      "modality": "clinical"
+    },
+    {
+      "disease": "dementia",
+      "modality": "genetics"
+    },
+    {
+      "disease": "dementia",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "dementia",
+      "modality": "bci"
+    },
+    {
+      "disease": "depression",
+      "modality": "clinical"
+    },
+    {
+      "disease": "depression",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "depression",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "depression",
+      "modality": "bci"
+    },
+    {
+      "disease": "development",
+      "modality": "clinical"
+    },
+    {
+      "disease": "development",
+      "modality": "genetics"
+    },
+    {
+      "disease": "development",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "development",
+      "modality": "bci"
+    },
+    {
+      "disease": "encephalopathy",
+      "modality": "clinical"
+    },
+    {
+      "disease": "encephalopathy",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "encephalopathy",
+      "modality": "genetics"
+    },
+    {
+      "disease": "encephalopathy",
+      "modality": "bci"
+    },
+    {
+      "disease": "encephalopathy",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "epilepsy",
+      "modality": "clinical"
+    },
+    {
+      "disease": "epilepsy",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "epilepsy",
+      "modality": "bci"
+    },
+    {
+      "disease": "epilepsy",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "glioblastoma",
+      "modality": "clinical"
+    },
+    {
+      "disease": "glioblastoma",
+      "modality": "genetics"
+    },
+    {
+      "disease": "glioblastoma",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "glioblastoma",
+      "modality": "bci"
+    },
+    {
+      "disease": "glioblastoma",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "glioma",
+      "modality": "clinical"
+    },
+    {
+      "disease": "glioma",
+      "modality": "genetics"
+    },
+    {
+      "disease": "glioma",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "glioma",
+      "modality": "bci"
+    },
+    {
+      "disease": "glioma",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "clinical"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "genetics"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "bci"
+    },
+    {
+      "disease": "healthy-control",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "modality": "genetics"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "modality": "bci"
+    },
+    {
+      "disease": "intracranial-hemorrhage",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "mci",
+      "modality": "clinical"
+    },
+    {
+      "disease": "mci",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "mci",
+      "modality": "genetics"
+    },
+    {
+      "disease": "mci",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "mci",
+      "modality": "bci"
+    },
+    {
+      "disease": "meningioma",
+      "modality": "clinical"
+    },
+    {
+      "disease": "meningioma",
+      "modality": "genetics"
+    },
+    {
+      "disease": "meningioma",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "meningioma",
+      "modality": "bci"
+    },
+    {
+      "disease": "meningioma",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "motor",
+      "modality": "clinical"
+    },
+    {
+      "disease": "motor",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "motor",
+      "modality": "genetics"
+    },
+    {
+      "disease": "motor",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "motor",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "movement-disorders",
+      "modality": "clinical"
+    },
+    {
+      "disease": "movement-disorders",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "movement-disorders",
+      "modality": "genetics"
+    },
+    {
+      "disease": "movement-disorders",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "movement-disorders",
+      "modality": "bci"
+    },
+    {
+      "disease": "multiple",
+      "modality": "clinical"
+    },
+    {
+      "disease": "multiple",
+      "modality": "genetics"
+    },
+    {
+      "disease": "multiple",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "multiple",
+      "modality": "bci"
+    },
+    {
+      "disease": "ocd",
+      "modality": "clinical"
+    },
+    {
+      "disease": "ocd",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "ocd",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "ocd",
+      "modality": "bci"
+    },
+    {
+      "disease": "ocd",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "parkinson",
+      "modality": "clinical"
+    },
+    {
+      "disease": "parkinson",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "parkinson",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "parkinson",
+      "modality": "bci"
+    },
+    {
+      "disease": "ptsd",
+      "modality": "clinical"
+    },
+    {
+      "disease": "ptsd",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "ptsd",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "ptsd",
+      "modality": "bci"
+    },
+    {
+      "disease": "ptsd",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "schizophrenia",
+      "modality": "clinical"
+    },
+    {
+      "disease": "schizophrenia",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "schizophrenia",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "schizophrenia",
+      "modality": "bci"
+    },
+    {
+      "disease": "schizophrenia",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "seizure",
+      "modality": "clinical"
+    },
+    {
+      "disease": "seizure",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "seizure",
+      "modality": "genetics"
+    },
+    {
+      "disease": "seizure",
+      "modality": "bci"
+    },
+    {
+      "disease": "seizure",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "sepsis",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "sepsis",
+      "modality": "genetics"
+    },
+    {
+      "disease": "sepsis",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "sepsis",
+      "modality": "bci"
+    },
+    {
+      "disease": "sepsis",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "clinical"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "genetics"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "sleep-apnea",
+      "modality": "bci"
+    },
+    {
+      "disease": "stroke",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "stroke",
+      "modality": "genetics"
+    },
+    {
+      "disease": "stroke",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "stroke",
+      "modality": "bci"
+    },
+    {
+      "disease": "substance-use",
+      "modality": "clinical"
+    },
+    {
+      "disease": "substance-use",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "substance-use",
+      "modality": "genetics"
+    },
+    {
+      "disease": "substance-use",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "substance-use",
+      "modality": "bci"
+    },
+    {
+      "disease": "tbi",
+      "modality": "neuroimaging"
+    },
+    {
+      "disease": "tbi",
+      "modality": "genetics"
+    },
+    {
+      "disease": "tbi",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "tbi",
+      "modality": "bci"
+    },
+    {
+      "disease": "tbi",
+      "modality": "multimodal"
+    },
+    {
+      "disease": "treatment-resistant depression",
+      "modality": "clinical"
+    },
+    {
+      "disease": "treatment-resistant depression",
+      "modality": "genetics"
+    },
+    {
+      "disease": "treatment-resistant depression",
+      "modality": "electrophysiology"
+    },
+    {
+      "disease": "treatment-resistant depression",
+      "modality": "bci"
+    },
+    {
+      "disease": "treatment-resistant depression",
+      "modality": "multimodal"
+    }
+  ]
+}

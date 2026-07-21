@@ -1,0 +1,30 @@
+{
+  "adni": {
+    "access_page_sha256": "6a6972b71314435b7d73c3023ad6605fd364ad5a0b7e30a52d4923b5f003d4c6",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "eicu-crd": {
+    "access_page_sha256": "b91abd74372edb2f41fe6b60e21b4ebf36374c9bff863bc7be8609732fbd8438",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "mimic-iv": {
+    "access_page_sha256": "5e568ab4587e44262e030339482d7afe1a495e7263a219969d5bd064fa9df9d3",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "ppmi": {
+    "access_page_sha256": "b42a2660f48b1078f8e536bbb7c43a900a6a571b4297ea60cba735db8e59bf1e",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  }
+}
