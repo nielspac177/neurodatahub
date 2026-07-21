@@ -143,6 +143,18 @@ def resolve_access(drafted, critic, report):
     return worst, "low", f"desacuerdo: redactor={d}, crítico={c}; se toma {worst}", True
 
 
+def _cited_quotes(draft, grounded):
+    """{campo: [{src, quote}]} sólo de los campos que quedaron fundamentados."""
+    out = {}
+    for name in sorted(grounded):
+        field = (draft.get("fields") or {}).get(name) or {}
+        qs = [{"src": q.get("src"), "quote": q.get("quote")}
+              for q in (field.get("evidence") or []) if q.get("quote")]
+        if qs:
+            out[name] = qs
+    return out
+
+
 def _rating(*values):
     """Toma la valoración más pesimista y la ACOTA a un entero 1-5.
 
@@ -190,6 +202,7 @@ def build_record(draft, evidence, report, verbose=False):
     rid = draft["id"]
 
     ok_quotes, fake_quotes = check_quotes(draft, evidence)
+    cited = _cited_quotes(draft, ok_quotes)
     if fake_quotes:
         report.hallucinated_quotes += len(fake_quotes)
         if len(fake_quotes) >= 3:
@@ -343,6 +356,11 @@ def build_record(draft, evidence, report, verbose=False):
         "verified_at": date.today().isoformat(),
         "grounded_fields": sorted(ok_quotes),
         "stripped_fields": sorted(fake_quotes),
+        # Las citas que justificaron cada campo se guardan AQUÍ, en el
+        # registro. Así prune_evidence.py puede tirar el texto completo de las
+        # fuentes sin perder la cadena de custodia: queda la frase exacta, su
+        # fuente y el sha256 del documento del que salió.
+        "quotes": cited,
         "evidence": [{"src_id": s["src_id"], "url": s["url"], "sha256": s["sha256"]}
                      for s in evidence.get("sources", [])],
     }

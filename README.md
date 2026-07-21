@@ -21,6 +21,22 @@ El sistema se parte en dos, y se comunican **sólo a través de archivos commite
 
 ---
 
+## Cómo actualizar el catálogo
+
+**[RUNBOOK.md](RUNBOOK.md)** — procedimiento completo, escrito para que lo lea
+tanto un humano como un agente de Claude Code sin contexto previo.
+**[docs/apple-notes-card.txt](docs/apple-notes-card.txt)** — versión corta en
+texto plano para pegar en Apple Notes.
+
+Arranque rápido:
+
+```bash
+cd ~/neurodatahub && claude
+```
+
+> Lee RUNBOOK.md y ejecuta la actualización semanal completa de NeuroDataHub.
+> Párate y enséñame lo que haya en drafts/needs_human/ antes de publicar nada.
+
 ## El ciclo semanal
 
 ### Domingo 06:00 UTC — automático, sin intervención
@@ -119,7 +135,7 @@ Las preguntas que C3 encuentra ya publicadas pasan a `status: closed` y **siguen
 
 ```bash
 pip install -r requirements.txt
-python3 scripts/build.py            # genera 36 páginas (EN + ES) + los JSON
+python3 scripts/build.py            # genera el sitio completo (EN + ES) + los JSON
 python3 -m http.server 8000         # http://localhost:8000
 ```
 
