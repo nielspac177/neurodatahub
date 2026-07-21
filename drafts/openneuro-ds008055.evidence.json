@@ -1,0 +1,35 @@
+{
+  "id": "openneuro-ds008055",
+  "candidate": {
+    "title": "Scientific Creativity MRI Dataset",
+    "url": "https://openneuro.org/datasets/ds008055",
+    "doi": "",
+    "date": "2026-06-28",
+    "venue": "OpenNeuro",
+    "source": "OpenNeuro",
+    "score": 28,
+    "discovered_by": "openneuro",
+    "discovered_at": "2026-07-21",
+    "possible_duplicate": null
+  },
+  "sources": [
+    {
+      "src_id": "e1",
+      "kind": "landing_page",
+      "url": "https://openneuro.org/datasets/ds008055",
+      "fetched_at": "2026-07-21",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "chars": 0,
+      "text": ""
+    },
+    {
+      "src_id": "e2",
+      "kind": "repository_record",
+      "url": "https://openneuro.org/datasets/ds008055",
+      "fetched_at": "2026-07-21",
+      "sha256": "0cb51e73172b16c73600b8f9f8593ff23e9885969694276ce69d65ad5a4b236c",
+      "chars": 3341,
+      "text": "OpenNeuro dataset ds008055 (snapshot 1.0.4)\nName: Scientific Creativity MRI Dataset\nAuthors: Simone A. Luchini, Roger Beaty\nLicense: CC0\nDatasetDOI: doi:10.18112/openneuro.ds008055.v1.0.4\nNumber of subjects: 108\nModalities: mri\nTasks: Taxonomy of verbal creativity, Idea diversity, Scientific creativity task, Resting state\nSessions: \nTotal files: 2188\nSize bytes: 189786543323\nCreated: 2026-06-28T15:33:11.402Z\n\nREADME:\nScientific Creativity MRI Dataset\n================================\n\nThis dataset contains the defaced BIDS MRI release for the Scientific Creativity project. The release includes T1w anatomical scans, resting-state fMRI, and task fMRI runs related to scientific creativity and verbal creativity. T1w anatomical images were defaced with pydeface before public release.\n\nTasks\n-----\n\n- task-rest: resting-state fMRI.\n- task-SCT: Scientific Creativity Task, including hypothesis generation and a matched control condition.\n- task-ID: Idea Diversity task.\n- task-TVC: Taxonomy of Verbal Creativity task.\n\nEvent Timing Coverage\n---------------------\n\n- task-rest: 108 participants / 108 runs; events files are not expected for rest.\n- task-SCT: 54 participants / 108 runs; non-empty event files are available for 54 participants and 107 runs. 53 participants have event files for all SCT runs in this release.\n- task-ID: 25 participants / 150 runs; non-empty event files are available for 19 participants and 114 runs. 19 participants have event files for all ID runs in this release.\n- task-TVC: 35 participants / 70 runs; non-empty event files are available for 35 participants and 70 runs. 35 participants have event files for all TVC runs in this release.\n\nMost functional runs include matched SBRef images. Fieldmap EPI files are included where available and linked to the functional runs through BIDS metadata. Event files were converted from the project timing tables when available; runs without source timing tables are left without events files rather than represented with empty placeholder tables. Event rows with invalid or non-positive source timing values were omitted rather than inferred.\n\nPrimary References\n------------------\n\nBeaty, R. E., Cortes, R. A., Merseal, H. M., Hardiman, M. M., & Green, A. E. Brain networks supporting scientific creative thinking. Psychology of Aesthetics, Creativity, and the Arts. https://doi.org/10.1037/aca0000603\n\nLuchini, S. A., Patterson, J. D., Carpenter, C. M., Volle, E., Matheson, H. E., & Beaty, R. E. The inferior frontal gyrus supports category switching during creative associations: A pattern similarity analysis. Neuropsychologia. https://doi.org/10.1016/j.neuropsychologia.2026.109451\n\nZeitlen, D. C., Zhuang, K., Benedek, M., Qiu, J., & Beaty, R. E. More complex cognitive tasks increasingly connect functionally dissimilar brain regions. Journal of Cognitive Neuroscience. https://doi.org/10.1162/JOCN.a.2396\n\nRelease Notes\n-------------\n\nThis OpenNeuro copy is a public, defaced release derived from the project BIDS directory. Metadata cleanup for this release added recommended dataset-level fields, task/event sidecars, fieldmap links, SBRef sidecars, and deterministic gzip headers where possible. Remaining validator warnings primarily reflect optional scanner/acquisition fields or unavailable source timing tables; unknown values were not inferred.\n"
+    }
+  ]
+}

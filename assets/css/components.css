@@ -1,0 +1,250 @@
+/* ==========================================================================
+   components.css — chips, tarjetas, insignias, pips, pasos, fragmentos, bandeja
+   ========================================================================== */
+
+/* --------------------------------------------------------------- chips --- */
+/* Checkboxes nativos, no botones aria-pressed: el estado marcado, el nombre
+   del grupo y la posición en el conjunto se anuncian de forma nativa, y el
+   formulario funciona sin JS. */
+.chip-group { border: 0; padding: 0; margin: 0 0 var(--sp-5); }
+.chip-group__legend {
+  padding: 0; margin-bottom: var(--sp-3);
+  font-size: var(--fs-2xs); text-transform: uppercase;
+  letter-spacing: var(--tracking-caps); color: var(--text-faint);
+  font-weight: var(--fw-semibold);
+}
+.chip-group__items { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+
+.chip-group__items input[type="checkbox"] {
+  position: absolute; width: 1px; height: 1px;
+  opacity: 0; margin: 0; pointer-events: none;
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  min-height: 32px;                       /* SC 2.5.8 objetivo mínimo */
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  cursor: pointer; user-select: none; white-space: nowrap;
+  transition: background var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+}
+.chip:hover { border-color: var(--border-interactive); }
+
+input[type="checkbox"]:checked + .chip {
+  background: var(--accent-fill);
+  border-color: var(--accent-fill);
+  color: var(--text-on-accent);
+  font-weight: var(--fw-semibold);
+}
+input[type="checkbox"]:focus-visible + .chip {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+.chip__count { font-variant-numeric: tabular-nums; opacity: .65; font-size: var(--fs-xs); }
+input[type="checkbox"]:checked + .chip .chip__count { opacity: .85; }
+
+/* ------------------------------------------------------------ búsqueda --- */
+.search {
+  flex: 1 1 16rem; min-width: 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: var(--sp-3) var(--sp-4);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-base);
+}
+.search:focus-visible { border-color: var(--accent); }
+.search::placeholder { color: var(--text-faint); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  min-height: 32px;
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm); font-weight: var(--fw-medium);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--border-interactive); background: var(--surface-raised); }
+.btn--primary { background: var(--accent-fill); border-color: var(--accent-fill); color: var(--text-on-accent); }
+.btn--primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+.btn--ghost { background: transparent; border-color: transparent; color: var(--text-muted); }
+.btn--ghost:hover { color: var(--text); }
+
+/* ------------------------------------------------------------ tarjetas --- */
+.card {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--sp-3);
+  /* Padding asimétrico: el filete de modalidad ocupa el borde de entrada. */
+  padding: var(--sp-4) var(--sp-5) var(--sp-4) var(--sp-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--card-accent, var(--border-strong));
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+  transition: box-shadow var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
+}
+.card:hover { box-shadow: var(--shadow-2); }
+.card:focus-within { border-color: var(--border-interactive); }
+
+.card--clinical          { --card-accent: var(--mod-clinical-ink); }
+.card--neuroimaging      { --card-accent: var(--mod-neuroimaging-ink); }
+.card--genetics          { --card-accent: var(--mod-genetics-ink); }
+.card--electrophysiology { --card-accent: var(--mod-electrophysiology-ink); }
+.card--bci               { --card-accent: var(--mod-bci-ink); }
+.card--multimodal        { --card-accent: var(--mod-multimodal-ink); }
+.card--aggregator        { --card-accent: var(--mod-aggregator-ink); }
+
+.card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--sp-3); }
+.card__title { font-size: var(--fs-md); font-weight: var(--fw-semibold); letter-spacing: var(--tracking-tight); }
+
+/* Un solo punto de tabulación por tarjeta: el título se estira sobre ella. */
+.card__title a { color: inherit; text-decoration: none; }
+.card__title a::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+.card__title a:hover { color: var(--accent); }
+
+.card__desc { font-size: var(--fs-sm); color: var(--text-muted); line-height: var(--lh-snug); }
+.card__foot { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; margin-top: auto; padding-top: var(--sp-1); }
+
+/* Metadatos como <dl>: el lector de pantalla anuncia "Sujetos: 65.000" como
+   par, no como una cifra suelta. */
+.dl-inline { display: flex; flex-wrap: wrap; gap: var(--sp-2) var(--sp-4); font-size: var(--fs-xs); color: var(--text-muted); }
+.dl-inline > div { display: flex; gap: var(--sp-1); align-items: baseline; }
+.dl-inline dt { color: var(--text-faint); text-transform: uppercase; font-size: var(--fs-2xs); letter-spacing: var(--tracking-caps); }
+.dl-inline dd { margin: 0; font-variant-numeric: tabular-nums; }
+
+/* ---------------------------------------------------------- insignias --- */
+.badge {
+  display: inline-flex; align-items: center; gap: var(--sp-1);
+  padding: 2px var(--sp-3);
+  border-radius: var(--radius-xs);
+  font-size: var(--fs-2xs); font-weight: var(--fw-bold);
+  text-transform: uppercase; letter-spacing: var(--tracking-caps);
+  white-space: nowrap;
+}
+/* Relleno con tinta casi negra: los siete matices superan 5.96:1 así. */
+.badge--modality { color: var(--text-on-fill); }
+.badge--modality.is-clinical          { background: var(--hue-clinical); }
+.badge--modality.is-neuroimaging      { background: var(--hue-neuroimaging); }
+.badge--modality.is-genetics          { background: var(--hue-genetics); }
+.badge--modality.is-electrophysiology { background: var(--hue-electrophysiology); }
+.badge--modality.is-bci               { background: var(--hue-bci); }
+.badge--modality.is-multimodal        { background: var(--hue-multimodal); }
+.badge--modality.is-aggregator        { background: var(--hue-aggregator); }
+
+.badge--soft {
+  background: var(--surface-raised); color: var(--text-muted);
+  border: 1px solid var(--border);
+  text-transform: none; letter-spacing: 0; font-weight: var(--fw-medium);
+  font-size: var(--fs-xs);
+}
+
+/* Estado de acceso: punto + texto. Nunca sólo color (SC 1.4.1) — y estas son
+   las variables que fallaban AA en claro. */
+.access-dot {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-size: var(--fs-xs); font-weight: var(--fw-semibold);
+}
+.access-dot::before {
+  content: ""; width: .5rem; height: .5rem; border-radius: 50%;
+  background: currentColor; flex-shrink: 0;
+}
+.access-dot.is-open          { color: var(--ok); }
+.access-dot.is-registration  { color: var(--warn); }
+.access-dot.is-credentialed,
+.access-dot.is-dua,
+.access-dot.is-application   { color: var(--crit); }
+
+/* ------------------------------------------------- pips dificultad/viab --- */
+.pips { display: flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); }
+.pips__label { color: var(--text-faint); text-transform: uppercase; font-size: var(--fs-2xs); letter-spacing: var(--tracking-caps); }
+.pips__track { display: inline-flex; gap: 3px; }
+.pip { width: 7px; height: 7px; border-radius: 2px; background: var(--border-strong); }
+.pips[data-level="1"] .pip--filled, .pips[data-level="2"] .pip--filled { background: var(--ok); }
+.pips[data-level="3"] .pip--filled { background: var(--warn); }
+.pips[data-level="4"] .pip--filled, .pips[data-level="5"] .pip--filled { background: var(--crit); }
+/* La palabra es la señal primaria; los pips sólo la hacen escaneable. */
+.pips__word { font-weight: var(--fw-semibold); }
+
+/* Viabilidad: misma geometría, pips huecos, distinguible en escala de grises. */
+.pips--feasibility .pip { background: transparent; border: 1px solid var(--border-strong); }
+.pips--feasibility .pip--filled { background: var(--text-muted); border-color: var(--text-muted); }
+
+@media (forced-colors: active) {
+  .pip { border: 1px solid CanvasText; }
+  .pip--filled { background: Highlight; }
+}
+
+/* ----------------------------------------------------- pasos de acceso --- */
+.steps { list-style: none; display: flex; flex-direction: column; gap: var(--sp-4); }
+.step { display: grid; grid-template-columns: 1.75rem 1fr; gap: var(--sp-4); align-items: start; }
+.step__num {
+  display: grid; place-items: center;
+  width: 1.75rem; height: 1.75rem; border-radius: 50%;
+  background: var(--surface-raised); border: 1px solid var(--border);
+  font-size: var(--fs-xs); font-weight: var(--fw-bold); font-variant-numeric: tabular-nums;
+}
+.step__eta { color: var(--text-faint); font-size: var(--fs-xs); margin-top: 2px; }
+
+/* --------------------------------------------------- código de arranque --- */
+.snippet { border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; background: var(--surface-sunken); }
+.snippet__bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface-raised); border-bottom: 1px solid var(--border);
+}
+.snippet pre { margin: 0; padding: var(--sp-4); overflow-x: auto; font-size: var(--fs-sm); line-height: 1.5; }
+.snippet pre:focus-visible { outline: var(--focus-width) solid var(--focus-ring); outline-offset: -3px; }
+
+.tabs { display: flex; gap: var(--sp-1); }
+.tab {
+  padding: var(--sp-1) var(--sp-3); border-radius: var(--radius-xs);
+  background: transparent; border: 1px solid transparent;
+  font-size: var(--fs-xs); font-weight: var(--fw-medium); cursor: pointer; color: var(--text-muted);
+}
+.tab[aria-selected="true"] { background: var(--surface); border-color: var(--border); color: var(--text); font-weight: var(--fw-semibold); }
+
+/* ------------------------------------------------ bandeja de comparación --- */
+.cmp-tray {
+  position: sticky; bottom: 0; z-index: 30;
+  display: flex; align-items: center; gap: var(--sp-4);
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--surface); border-top: 1px solid var(--border-strong);
+  box-shadow: var(--shadow-3);
+}
+.cmp-tray[hidden] { display: none; }
+.cmp-tray__list { display: flex; flex-wrap: wrap; gap: var(--sp-2); list-style: none; }
+.cmp-tray__item {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--surface-raised); border: 1px solid var(--border);
+  border-radius: var(--radius-pill); font-size: var(--fs-xs);
+}
+
+/* Checkbox de comparación: por encima del enlace estirado de la tarjeta. */
+.card__compare { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: var(--sp-2); font-size: var(--fs-xs); color: var(--text-muted); cursor: pointer; }
+
+.cmp-table { width: 100%; border-collapse: collapse; font-size: var(--fs-sm); }
+.cmp-table caption { text-align: left; margin-bottom: var(--sp-4); color: var(--text-muted); }
+.cmp-table th, .cmp-table td { padding: var(--sp-3) var(--sp-4); border: 1px solid var(--border); text-align: left; vertical-align: top; }
+.cmp-table thead th { background: var(--surface-raised); font-weight: var(--fw-semibold); }
+.cmp-table__rowhead { background: var(--surface-raised); font-weight: var(--fw-medium); color: var(--text-muted); white-space: nowrap; }
+
+/* ------------------------------------------------------------- varios --- */
+.callout {
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid var(--border); border-left: 3px solid var(--text-faint);
+  border-radius: var(--radius-sm); background: var(--surface);
+  font-size: var(--fs-sm);
+}
+.callout--warn { border-left-color: var(--warn); }
+.callout--info { border-left-color: var(--accent); }
+
+.empty-state { grid-column: 1 / -1; text-align: center; padding: var(--sp-9) var(--sp-5); color: var(--text-muted); }
+
+.results-status { font-size: var(--fs-sm); color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+.tag-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }

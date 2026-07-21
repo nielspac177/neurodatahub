@@ -1,4 +1,26 @@
+# --- HTML generado ---------------------------------------------------------
+# NO se commitea. deploy-pages.yml corre scripts/build.py y sube el árbol
+# completo como artefacto, así que el sitio publicado siempre se regenera
+# desde data/databases.yml. Commitearlo añadiría ~300 archivos de ruido al
+# diff en cada escaneo semanal sin aportar nada.
+#
+# Para verlo en local:  python scripts/build.py && python3 -m http.server
+/index.html
+/projects/
+/compare/
+/packs/
+/datasets/
+/es/
+/sitemap.xml
+/404.html
+
+# --- Python ---
 __pycache__/
 *.pyc
-.DS_Store
 .venv/
+
+# --- SO / editor ---
+.DS_Store
+*.swp
+.idea/
+.vscode/

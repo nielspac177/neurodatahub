@@ -1,0 +1,1352 @@
+{
+  "accession:dandi:000003": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000004": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000005": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "accession:dandi:000006": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000007": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "accession:dandi:000008": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000009": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "accession:dandi:000010": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "accession:dandi:000011": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "accession:dandi:000012": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000013": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "accession:dandi:000015": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000016": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000017": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000018": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000019": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:dandi:000020": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "accession:dandi:000021": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "accession:dandi:000022": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:dandi:000023": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "accession:dandi:000024": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:dandi:000025": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000026": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "accession:dandi:000027": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000028": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 20
+  },
+  "accession:dandi:000029": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000030": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "accession:dandi:000031": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000032": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:dandi:000033": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:openneuro:ds007993": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:openneuro:ds008014": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008017": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "accession:openneuro:ds008020": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008022": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008034": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "accession:openneuro:ds008037": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "accession:openneuro:ds008039": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008055": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "accession:openneuro:ds008062": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008063": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008064": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "accession:openneuro:ds008065": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008066": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 29
+  },
+  "accession:openneuro:ds008070": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "accession:openneuro:ds008082": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "accession:openneuro:ds008083": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "accession:openneuro:ds008092": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008095": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:openneuro:ds008099": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008101": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008104": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "accession:openneuro:ds008108": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 37
+  },
+  "accession:openneuro:ds008110": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008115": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008159": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "accession:openneuro:ds008161": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "accession:openneuro:ds008162": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "accession:openneuro:ds008192": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "accession:openneuro:ds008214": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-020-00737-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-020-0389-7": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "doi:10.1038/s41597-021-00951-6": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-021-01044-0": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "doi:10.1038/s41597-021-01077-5": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "doi:10.1038/s41597-022-01270-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-022-01276-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "doi:10.1038/s41597-022-01469-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "doi:10.1038/s41597-022-01705-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-023-01959-w": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-023-02144-9": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-023-02266-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-024-02932-x": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-024-03509-4": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-04394-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-04478-y": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-04511-0": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "doi:10.1038/s41597-025-04868-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-05076-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-05451-5": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "doi:10.1038/s41597-025-05519-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-025-06311-y": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "doi:10.1038/s41597-026-07257-5": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "doi:10.1038/s41597-026-07332-x": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 9
+  },
+  "doi:10.1038/s41597-026-07636-y": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "doi:10.1038/s41597-026-07662-w": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "doi:10.1038/s41597-026-07723-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "doi:10.1038/s41597-026-07730-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/s41597-026-07842-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "doi:10.1038/sdata.2018.213": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "title:7t 3d epi pcasl high snr efficiency robustness to through plane b0 field gradien": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:8 model ensemble cmip6 derived ocean surface wave climate": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:abc": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:agenda addressing bias conflict": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:allen brain observatory neuropixels recording": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "title:allen institute visual coding neuropixels brain observatory 1 1 stimulus set": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "title:allen institute visual coding neuropixels functional connectivity stimulus set": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:auditory motor eeg one channel": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:author correction open access quantitative mri spinal cord reproducibility acros": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "title:bioclimatic atlas terrestrial arctic": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:celtic invasive plants": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "title:china s provincial process co2 emissions cement production during 1993 2019": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:choice overload fmri": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 29
+  },
+  "title:chromosomal level genome assembly batocera lineolata chevrolat 1852 coleoptera c": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:chromosome level genome assembly annotation marbled rockfish sebastiscus marmora": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:comprehensive multimodal investigating cognitive impairment obstructive sleep ap": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 37
+  },
+  "title:cortico cerebellar loop motor planning": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "title:coswara respiratory sounds symptoms remote screening sars cov 2 infection": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:covid 19 survivors close contacts eeg": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "title:distributed coding choice action engagement across mouse brain": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:dynamic urban morphology mapping chinese cities based local climate zone approac": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:eeg hedonic responses to sonic seasoning soundscapes": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:electrophysiology thalamic cortical neurons during somatosensation": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "title:enhanced phenology global drylands 2001 to 2019": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:evaluating approaches inference testing whole brain densely sampled single subje": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "title:example intracellular ephys lnmc bbp": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:excitatory inhibitory subnetworks are equally selective during decision making e": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:fnr effort study eeg": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "title:food image categorization consumer eeg vegetarian vs meat": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:global 1 km resolution daily surface longwave radiation product modis satellite ": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:hierarchical priors perceptual uncertainty psychosis proneness": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "title:hierarchicalpriors": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:human brain cell census ba 44 45": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "title:human ecog speaking consonant vowel syllables": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:imu semg induced stumble events during treadmill walking transfemoral amputees": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "title:individual encounter six african carnivore species optimized multi species densi": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 9
+  },
+  "title:individualized fmri guided rtms combined self system therapy versus mindfulness ": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "title:intergensynch": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:kriegstein2020": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:large scale pre postsurgical mri patients chronic trigeminal neuralgia": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "title:learning habits": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:learning regularities noise asrt meg": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "title:lfp mua bf": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:libribrain sherlock 1 sample": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:longevity time effect": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:longitudinal functional mri datasets finger tapping whole body movement before a": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:low noise encoding active touch by layer 4 somatosensory cortex": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "title:maintenance persistent activity frontal thalamocortical loop": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "title:map anticipatory activity mouse motor cortex": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:mediterranean marine sediment cores unlocking paleoclimatic signals last 20 000 ": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "title:methylome human skeletal muscle after acute amp chronic resistance exercise trai": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "title:mindsentences2025": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "title:mitexp10 t1w mri gadavist contrast distribution after intracerebral infusion mic": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:motor cortex circuit motor planning movement": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "title:mouse anterior lateral motor cortex alm delay response task": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:mouse spinal cord ephys": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:neural dynamics working memory transcranial magnetic stimulation": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "title:neuroimaging during sequential color qualia similarity judgments without reports": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "title:north american historical monthly spatial climate 1901 2016": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:not passive sponges when attention wanes our brains are less synchronized enviro": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:nwb based processing pipeline human single neuron activity during declarative me": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:ocd structural functional connectivity study": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:open access nature based carbon offset project boundaries": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:optimizing parameters multiband abrs to continuous speech": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:patch seq recordings human cortex june 2020": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "title:patch seq recordings mouse visual cortex": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:performance management counters live 5g 4g 2g radio access network": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "title:phenotypic variation within across transcriptomic cell types mouse motor cortex": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:physiological properties behavioral correlates hippocampal granule cells mossy c": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:pizza topping meat vegetarian word categorization consumer eeg emotiv epoc x": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:precision drawing during task fmri healthy adults individuals peripheral nerve i": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "title:pupilomiletics": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:robust neuronal dynamics premotor cortex during motor planning": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "title:scaling up soccernet multi view spatial localization re identification": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "title:scenarios future indian electricity demand accounting space cooling electric veh": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:scientific creativity mri": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "title:sdust2023gra mss new global marine gravity anomaly model determined mean sea sur": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:simulated cortical neuropixels recording ground truth": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 20
+  },
+  "title:stretch evoked motor responses brainstem are modulated by task instructions": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "title:studying deformation 3d patient specific pulmonary artery anatomies": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "title:test": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:test 2": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:test development purposes": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:test testing dandi cli": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:thermosurvey older adults experiences adaptation to urban heat climate change": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:ultra deep sequencing liquid biopsy proficiency study demonstrating analytic val": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "title:validpain2 performance nociception level index painsensor to predict detect resp": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "title:very high resolution projections over italy under different cmip5 ipcc scenarios": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "title:voltage current measurement plug load appliance identification households": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "title:whole genome exome sequencing reference datasets multi center cross platform ben": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "url:dandiarchive.org/dandiset/000003": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000004": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000005": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "url:dandiarchive.org/dandiset/000006": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000007": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "url:dandiarchive.org/dandiset/000008": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000009": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "url:dandiarchive.org/dandiset/000010": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "url:dandiarchive.org/dandiset/000011": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "url:dandiarchive.org/dandiset/000012": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000013": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "url:dandiarchive.org/dandiset/000015": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000016": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000017": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000018": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000019": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:dandiarchive.org/dandiset/000020": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:dandiarchive.org/dandiset/000021": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "url:dandiarchive.org/dandiset/000022": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:dandiarchive.org/dandiset/000023": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 15
+  },
+  "url:dandiarchive.org/dandiset/000024": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:dandiarchive.org/dandiset/000025": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000026": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 16
+  },
+  "url:dandiarchive.org/dandiset/000027": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000028": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 20
+  },
+  "url:dandiarchive.org/dandiset/000029": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000030": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 21
+  },
+  "url:dandiarchive.org/dandiset/000031": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000032": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:dandiarchive.org/dandiset/000033": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:doi.org/10.1038/s41597-020-00737-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-020-0389-7": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:doi.org/10.1038/s41597-021-00951-6": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-021-01044-0": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "url:doi.org/10.1038/s41597-021-01077-5": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "url:doi.org/10.1038/s41597-022-01270-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-022-01276-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "url:doi.org/10.1038/s41597-022-01469-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "url:doi.org/10.1038/s41597-022-01705-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-023-01959-w": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-023-02144-9": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-023-02266-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-024-02932-x": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-024-03509-4": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-04394-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-04478-y": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-04511-0": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "url:doi.org/10.1038/s41597-025-04868-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-05076-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-05451-5": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "url:doi.org/10.1038/s41597-025-05519-2": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-025-06311-y": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "url:doi.org/10.1038/s41597-026-07257-5": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "url:doi.org/10.1038/s41597-026-07332-x": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 9
+  },
+  "url:doi.org/10.1038/s41597-026-07636-y": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 5
+  },
+  "url:doi.org/10.1038/s41597-026-07662-w": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "url:doi.org/10.1038/s41597-026-07723-0": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 6
+  },
+  "url:doi.org/10.1038/s41597-026-07730-1": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/s41597-026-07842-8": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  },
+  "url:doi.org/10.1038/sdata.2018.213": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "url:openneuro.org/datasets/ds007993": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:openneuro.org/datasets/ds008014": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008017": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "url:openneuro.org/datasets/ds008020": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008022": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008034": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 22
+  },
+  "url:openneuro.org/datasets/ds008037": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 26
+  },
+  "url:openneuro.org/datasets/ds008039": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008055": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "url:openneuro.org/datasets/ds008062": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008063": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008064": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 28
+  },
+  "url:openneuro.org/datasets/ds008065": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008066": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 29
+  },
+  "url:openneuro.org/datasets/ds008070": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 27
+  },
+  "url:openneuro.org/datasets/ds008082": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 4
+  },
+  "url:openneuro.org/datasets/ds008083": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "url:openneuro.org/datasets/ds008092": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008095": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:openneuro.org/datasets/ds008099": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008101": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008104": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 24
+  },
+  "url:openneuro.org/datasets/ds008108": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 37
+  },
+  "url:openneuro.org/datasets/ds008110": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008115": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008159": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 17
+  },
+  "url:openneuro.org/datasets/ds008161": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 18
+  },
+  "url:openneuro.org/datasets/ds008162": {
+    "disposition": "candidates",
+    "first_seen": "2026-07-21",
+    "score": 23
+  },
+  "url:openneuro.org/datasets/ds008192": {
+    "disposition": "borderline",
+    "first_seen": "2026-07-21",
+    "score": 10
+  },
+  "url:openneuro.org/datasets/ds008214": {
+    "disposition": "rejected",
+    "first_seen": "2026-07-21",
+    "score": 0
+  }
+}

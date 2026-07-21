@@ -1,0 +1,160 @@
+#!/usr/bin/env python3
+"""
+strings.py — Cadenas de interfaz EN/ES.
+
+Viven junto al código, no en data/, porque cambian con las plantillas y no con
+el contenido del catálogo. El contenido (descripciones, notas de acceso,
+preguntas) sí vive en data/databases.yml con sufijos _en/_es.
+
+S(lang, key) para Python; js_strings(lang) emite el subconjunto que necesita
+el JS que genera texto en el cliente (conteos, estado vacío, bandeja).
+"""
+
+STRINGS = {
+    "en": {
+        "site_name": "NeuroDataHub",
+        "tagline": "Open datasets for neurological, neurosurgical and psychiatric research",
+        "lede": "A curated, verified catalog of clinical, neuroimaging, genetic, electrophysiology and BCI datasets — with access paths and open research questions you can actually work on.",
+        "nav_datasets": "Datasets",
+        "nav_projects": "Projects",
+        "nav_about": "About",
+        "skip": "Skip to content",
+        "search_ph": "Search datasets, diseases, tags…",
+        "search_projects_ph": "Search research questions…",
+        "filters": "Filters",
+        "clear": "Clear all",
+        "skip_filters": "Skip filters, go to results",
+        "f_modality": "Modality",
+        "f_category": "Disease area",
+        "f_access": "Access",
+        "f_difficulty": "Difficulty",
+        "f_skills": "Skills",
+        "f_lens": "Gap lens",
+        "m_datasets": "datasets",
+        "m_projects": "open questions",
+        "m_projects_one": "open question",
+        "m_open": "no-barrier access",
+        "results_heading": "Datasets",
+        "projects_heading": "Research questions",
+        "count": "{n} of {total} datasets",
+        "count_projects": "{n} of {total} questions",
+        "none": "Nothing matches these filters.",
+        "none_hint": "Try removing a filter or clearing the search.",
+        "subjects": "Subjects",
+        "years": "Years",
+        "region": "Region",
+        "license": "License",
+        "provider": "Provider",
+        "access_label": "Access",
+        "visit": "Visit official source",
+        "detail": "Details",
+        "back": "All datasets",
+        "pubs": "Published with this dataset",
+        "questions": "Open research questions",
+        "access_how": "How to get access",
+        "starter": "Starter code",
+        "copy": "Copy",
+        "copied": "Copied",
+        "difficulty": "Difficulty",
+        "feasibility": "Feasibility",
+        "unverified": "Unverified idea",
+        "unverified_note": "This question was carried over from an earlier draft and has not yet been checked against the literature for novelty or feasibility.",
+        "prior_work": "What has already been done",
+        "still_open": "Why it is still open",
+        "needs": "Needs",
+        "effort": "Effort",
+        "weeks": "weeks",
+        "compute": "Compute",
+        "theme": "Toggle theme",
+        "lang_switch": "Español",
+        "lang_code": "ES",
+        "no_data": "No data",
+        "footer": "Catalog data lives in data/databases.yml and is rebuilt by scripts/build.py. Weekly discovery runs via GitHub Actions; every record is reviewed before publishing. NeuroDataHub links to official sources and does not redistribute data.",
+        "access_open": "Open",
+        "access_registration": "Free registration",
+        "access_credentialed": "Credentialed",
+        "access_dua": "Data use agreement",
+        "access_application": "Formal application",
+    },
+    "es": {
+        "site_name": "NeuroDataHub",
+        "tagline": "Bases de datos abiertas para investigación neurológica, neuroquirúrgica y psiquiátrica",
+        "lede": "Catálogo curado y verificado de bases clínicas, de neuroimagen, genéticas, de electrofisiología y BCI — con la ruta de acceso y preguntas de investigación abiertas en las que se puede trabajar de verdad.",
+        "nav_datasets": "Bases de datos",
+        "nav_projects": "Proyectos",
+        "nav_about": "Acerca de",
+        "skip": "Ir al contenido",
+        "search_ph": "Buscar bases, enfermedades, etiquetas…",
+        "search_projects_ph": "Buscar preguntas de investigación…",
+        "filters": "Filtros",
+        "clear": "Limpiar todo",
+        "skip_filters": "Saltar filtros, ir a resultados",
+        "f_modality": "Modalidad",
+        "f_category": "Área de enfermedad",
+        "f_access": "Acceso",
+        "f_difficulty": "Dificultad",
+        "f_skills": "Habilidades",
+        "f_lens": "Lente de hueco",
+        "m_datasets": "bases de datos",
+        "m_projects": "preguntas abiertas",
+        "m_projects_one": "pregunta abierta",
+        "m_open": "acceso sin barrera",
+        "results_heading": "Bases de datos",
+        "projects_heading": "Preguntas de investigación",
+        "count": "{n} de {total} bases",
+        "count_projects": "{n} de {total} preguntas",
+        "none": "Nada coincide con estos filtros.",
+        "none_hint": "Prueba a quitar un filtro o limpiar la búsqueda.",
+        "subjects": "Sujetos",
+        "years": "Años",
+        "region": "Región",
+        "license": "Licencia",
+        "provider": "Proveedor",
+        "access_label": "Acceso",
+        "visit": "Ir a la fuente oficial",
+        "detail": "Detalle",
+        "back": "Todas las bases",
+        "pubs": "Publicado con esta base",
+        "questions": "Preguntas de investigación abiertas",
+        "access_how": "Cómo conseguir acceso",
+        "starter": "Código de arranque",
+        "copy": "Copiar",
+        "copied": "Copiado",
+        "difficulty": "Dificultad",
+        "feasibility": "Viabilidad",
+        "unverified": "Idea sin verificar",
+        "unverified_note": "Esta pregunta viene de un borrador anterior y todavía no se ha contrastado con la literatura para comprobar su novedad ni su viabilidad.",
+        "prior_work": "Lo que ya se ha hecho",
+        "still_open": "Por qué sigue abierta",
+        "needs": "Necesita",
+        "effort": "Esfuerzo",
+        "weeks": "semanas",
+        "compute": "Cómputo",
+        "theme": "Cambiar tema",
+        "lang_switch": "English",
+        "lang_code": "EN",
+        "no_data": "Sin datos",
+        "footer": "Los datos del catálogo viven en data/databases.yml y se regeneran con scripts/build.py. El descubrimiento semanal corre en GitHub Actions; cada registro se revisa antes de publicarse. NeuroDataHub enlaza a las fuentes oficiales y no redistribuye datos.",
+        "access_open": "Abierto",
+        "access_registration": "Registro gratuito",
+        "access_credentialed": "Credencial",
+        "access_dua": "Acuerdo de uso de datos",
+        "access_application": "Solicitud formal",
+    },
+}
+
+# Subconjunto que el JS necesita porque genera texto en el cliente.
+JS_KEYS = ["count", "count_projects", "none", "none_hint", "copy", "copied", "clear"]
+
+
+def S(lang, key, **fmt):
+    v = STRINGS.get(lang, STRINGS["en"]).get(key) or STRINGS["en"].get(key, key)
+    return v.format(**fmt) if fmt else v
+
+
+def js_strings(lang):
+    return {k: S(lang, k) for k in JS_KEYS}
+
+
+def access_label(lang, access):
+    return S(lang, f"access_{access}") if access else S(lang, "no_data")

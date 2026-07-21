@@ -1,0 +1,78 @@
+{
+  "generated": "2026-07-21",
+  "citation_triggers": 0,
+  "queue": [
+    {
+      "id": "ppmi",
+      "score": 2.1,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "application",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "adni",
+      "score": 2.1,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "application",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "uk-biobank",
+      "score": 2.1,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "application",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "abcd",
+      "score": 2.1,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "dua",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "mimic-iv",
+      "score": 1.9,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "credentialed",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "eicu-crd",
+      "score": 1.9,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "credentialed",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "brats",
+      "score": 1.5,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "tcia",
+      "score": 1.5,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    }
+  ]
+}

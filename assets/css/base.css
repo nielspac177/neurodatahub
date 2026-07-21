@@ -1,0 +1,81 @@
+/* ==========================================================================
+   base.css — reset, tipografía, foco, movimiento
+   ========================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: var(--lh-body);
+  background: var(--canvas);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 { margin: 0; line-height: var(--lh-tight); font-weight: var(--fw-semibold); }
+h1 { font-size: var(--fs-2xl); letter-spacing: var(--tracking-tight); font-weight: var(--fw-bold); }
+h2 { font-size: var(--fs-xl); letter-spacing: var(--tracking-tight); }
+h3 { font-size: var(--fs-md); }
+
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; }
+img, svg { max-width: 100%; height: auto; display: block; }
+
+a { color: var(--accent); text-decoration-color: color-mix(in srgb, var(--accent) 40%, transparent); text-underline-offset: .18em; }
+a:hover { color: var(--accent-hover); text-decoration-color: currentColor; }
+
+button, input, select, textarea { font: inherit; color: inherit; }
+
+code, kbd, samp, pre { font-family: var(--font-mono); font-size: .9em; }
+
+/* Cifras alineadas verticalmente al escanear una rejilla de 150 datasets. */
+.tnum { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+/* --- foco: outline (no box-shadow) para sobrevivir a alto contraste --- */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--focus-width) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+  border-radius: var(--radius-xs);
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* SC 2.4.11: la barra pegajosa no puede tapar el elemento enfocado. */
+:where(a, button, input, label, summary, [tabindex]) { scroll-margin-block: 5.5rem; }
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute; top: var(--sp-3); left: var(--sp-3);
+  z-index: 100;
+  padding: var(--sp-3) var(--sp-5);
+  background: var(--accent-fill); color: var(--text-on-accent);
+  border-radius: var(--radius-sm); font-weight: var(--fw-semibold);
+  transform: translateY(-150%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Objetivo de foco programático: recibe foco tras filtrar, sin anillo permanente. */
+.focus-target:focus { outline: none; }
+.focus-target:focus-visible { outline: var(--focus-width) solid var(--focus-ring); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
