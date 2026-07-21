@@ -35,6 +35,8 @@ SRC = ROOT / "data" / "databases.yml"
 OUT_DB = ROOT / "data" / "databases.json"
 OUT_PROJECTS = ROOT / "data" / "projects.json"
 OUT_STATS = ROOT / "data" / "stats.json"
+SRC_PACKS = ROOT / "data" / "coursepacks.yml"
+OUT_PACKS = ROOT / "data" / "coursepacks.json"
 
 
 def load():
@@ -108,7 +110,14 @@ def main():
     args = ap.parse_args()
 
     records = load()
+    packs = []
+    if SRC_PACKS.exists():
+        packs = yaml.safe_load(SRC_PACKS.read_text(encoding="utf-8")) or []
+
     errors, warnings = schema.validate(records)
+    pack_errors, pack_warnings = schema.validate_packs(packs, records)
+    errors += pack_errors
+    warnings += pack_warnings
 
     for w in warnings:
         print(f"  aviso: {w}", file=sys.stderr)
@@ -124,7 +133,7 @@ def main():
 
     if args.check:
         print(f"OK (--check): {len(records)} bases, {len(projects)} proyectos, "
-              f"{len(warnings)} avisos, 0 errores")
+              f"{len(packs)} paquetes, {len(warnings)} avisos, 0 errores")
         return
 
     # Contrato estable: esta forma la consume index.html y cualquier tercero.
@@ -141,9 +150,11 @@ def main():
         "projects": projects,
     })
     dump(OUT_STATS, build_stats(records, projects))
+    if packs:
+        dump(OUT_PACKS, {"count": len(packs), "packs": packs})
 
     pages.ASSET_V = asset_version()
-    written = pages.build_all(records, projects, ROOT)
+    written = pages.build_all(records, projects, ROOT, packs=packs)
 
     print(f"OK: {len(records)} bases -> {OUT_DB.relative_to(ROOT)}")
     print(f"    {len(projects)} proyectos -> {OUT_PROJECTS.relative_to(ROOT)}")

@@ -10,6 +10,7 @@ import { wireFilters } from './filters.js';
 import { createGrid } from './grid.js';
 import { wireTheme } from './theme.js';
 import { wireClipboard } from './clipboard.js';
+import { wireCompare, wireComparePage } from './compare.js';
 
 function readStrings() {
   const el = document.getElementById('i18n');
@@ -25,6 +26,14 @@ wireTheme(document.getElementById('theme-toggle'));
 wireClipboard(strings);
 
 const page = document.documentElement.dataset.page;
+
+// Profundidad de la página -> prefijo relativo, porque un sitio de proyecto de
+// GitHub Pages vive en /<repo>/ y una ruta absoluta se rompería.
+const root = document.querySelector('link[rel=stylesheet]')
+  ?.getAttribute('href')?.split('assets/')[0] ?? '';
+
+if (page === 'compare') wireComparePage(strings);
+if (page === 'datasets') wireCompare({ strings, root });
 
 if (page === 'datasets' || page === 'projects') {
   const form = document.getElementById('filters');

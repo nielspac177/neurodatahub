@@ -1,455 +1,831 @@
-# NeuroDataHub — fuente de verdad del catálogo
-# Un registro por base de datos. Editar aquí; el sitio se regenera con scripts/build.py
-# Campos de acceso: open | registration | credentialed | dua | application
-# modality_primary: clinical | neuroimaging | genetics | electrophysiology | bci | multimodal | aggregator
-
 - id: mimic-iv
   name: MIMIC-IV
-  version: "3.1"
+  version: '3.1'
   modality_primary: clinical
-  modality_secondary: [waveforms]
-  diseases: [stroke, tbi, delirium, sepsis, intracranial-hemorrhage]
-  disease_category: [neurosurgical, neurological]
+  modality_secondary:
+  - waveforms
+  diseases:
+  - stroke
+  - tbi
+  - delirium
+  - sepsis
+  - intracranial-hemorrhage
+  disease_category:
+  - neurosurgical
+  - neurological
   provider: PhysioNet / MIT-LCP
   url: https://physionet.org/content/mimiciv/3.1/
   access: credentialed
-  access_notes: "Requiere credencial PhysioNet + curso CITI 'Data or Specimens Only Research'."
+  access_notes: Requiere credencial PhysioNet + curso CITI 'Data or Specimens Only Research'.
   license: PhysioNet Credentialed Health Data License 1.5.0
   cost: free
-  n_subjects: "~65,000 estancias en UCI / ~180,000 pacientes"
-  years: "2008-2019"
-  data_types: [EHR, signos vitales, laboratorios, notas clínicas, ICD, medicación]
-  region: "EE.UU. (Beth Israel Deaconess, Boston)"
-  short_desc_es: "Base de cuidados intensivos de un solo centro, desidentificada, con datos granulares de UCI; referencia estándar para modelos predictivos clínicos."
-  short_desc_en: "Single-center, de-identified critical care database with granular ICU data; the standard benchmark for clinical prediction models."
+  n_subjects: ~65,000 estancias en UCI / ~180,000 pacientes
+  years: 2008-2019
+  data_types:
+  - EHR
+  - signos vitales
+  - laboratorios
+  - notas clínicas
+  - ICD
+  - medicación
+  region: EE.UU. (Beth Israel Deaconess, Boston)
+  short_desc_es: Base de cuidados intensivos de un solo centro, desidentificada, con datos granulares
+    de UCI; referencia estándar para modelos predictivos clínicos.
+  short_desc_en: Single-center, de-identified critical care database with granular ICU data; the standard
+    benchmark for clinical prediction models.
   key_publications:
-    - "Predicción de mortalidad, sepsis y lesión renal aguda en UCI"
-    - "NLP sobre notas clínicas (extracción, resumen, LLMs clínicos)"
-    - "Estudios de equidad/sesgo algorítmico en modelos de UCI"
-  open_questions:
-    - "¿Predecir deterioro neurológico agudo (delirium, hemorragia) integrando notas + señales, con validación externa en eICU?"
-    - "¿Modelos de fundación clínicos preentrenados en MIMIC que transfieran few-shot a tareas neuroquirúrgicas?"
-  last_verified: "2026-07-21"
-  tags: [benchmark, longitudinal, single-center]
-
+  - Predicción de mortalidad, sepsis y lesión renal aguda en UCI
+  - NLP sobre notas clínicas (extracción, resumen, LLMs clínicos)
+  - Estudios de equidad/sesgo algorítmico en modelos de UCI
+  last_verified: '2026-07-21'
+  tags:
+  - benchmark
+  - longitudinal
+  - single-center
+  projects:
+  - id: mimic-iv-q1
+    question_en: Can acute neurological deterioration (delirium, haemorrhage) be predicted by combining
+      clinical notes with waveform signals, and does it externally validate on eICU?
+    question_es: ¿Predecir deterioro neurológico agudo (delirium, hemorragia) integrando notas + señales,
+      con validación externa en eICU?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: mimic-iv-q2
+    question_en: Do clinical foundation models pre-trained on MIMIC transfer few-shot to neurosurgical
+      tasks?
+    question_es: ¿Modelos de fundación clínicos preentrenados en MIMIC que transfieran few-shot a tareas
+      neuroquirúrgicas?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: eicu-crd
   name: eICU Collaborative Research Database
-  version: "2.0"
+  version: '2.0'
   modality_primary: clinical
   modality_secondary: []
-  diseases: [stroke, tbi, sepsis, delirium]
-  disease_category: [neurosurgical, neurological]
+  diseases:
+  - stroke
+  - tbi
+  - sepsis
+  - delirium
+  disease_category:
+  - neurosurgical
+  - neurological
   provider: PhysioNet / Philips eICU
   url: https://physionet.org/content/eicu-crd/2.0/
   access: credentialed
-  access_notes: "Credencial PhysioNet + curso CITI."
+  access_notes: Credencial PhysioNet + curso CITI.
   license: PhysioNet Credentialed Health Data License 1.5.0
   cost: free
-  n_subjects: "~200,000 ingresos, 335 UCIs, ~200 hospitales"
-  years: "2014-2015"
-  data_types: [EHR, signos vitales, laboratorios, APACHE, medicación]
-  region: "EE.UU. (multicéntrico)"
-  short_desc_es: "Base multicéntrica de UCI de EE.UU.; ideal para validación externa y estudios de generalización entre hospitales."
-  short_desc_en: "Multi-center US ICU database; ideal for external validation and cross-hospital generalization studies."
+  n_subjects: ~200,000 ingresos, 335 UCIs, ~200 hospitales
+  years: 2014-2015
+  data_types:
+  - EHR
+  - signos vitales
+  - laboratorios
+  - APACHE
+  - medicación
+  region: EE.UU. (multicéntrico)
+  short_desc_es: Base multicéntrica de UCI de EE.UU.; ideal para validación externa y estudios de generalización
+    entre hospitales.
+  short_desc_en: Multi-center US ICU database; ideal for external validation and cross-hospital generalization
+    studies.
   key_publications:
-    - "Validación externa de modelos entrenados en MIMIC"
-    - "Benchmarks de mortalidad y severidad multicéntricos"
-  open_questions:
-    - "¿Qué modelos generalizan de un hospital a otro y cuáles colapsan por cambio de dominio (site shift)?"
-  last_verified: "2026-07-21"
-  tags: [benchmark, multi-center]
-
+  - Validación externa de modelos entrenados en MIMIC
+  - Benchmarks de mortalidad y severidad multicéntricos
+  last_verified: '2026-07-21'
+  tags:
+  - benchmark
+  - multi-center
+  projects:
+  - id: eicu-crd-q1
+    question_en: Which models generalise from one hospital to another, and which collapse under site shift?
+    question_es: ¿Qué modelos generalizan de un hospital a otro y cuáles colapsan por cambio de dominio
+      (site shift)?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: ppmi
   name: PPMI (Parkinson's Progression Markers Initiative)
-  version: "rolling"
+  version: rolling
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [parkinson, movement-disorders]
-  disease_category: [neurological, neurosurgical]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - parkinson
+  - movement-disorders
+  disease_category:
+  - neurological
+  - neurosurgical
   provider: Michael J. Fox Foundation
   url: https://www.ppmi-info.org/access-data-specimens/download-data
   access: application
-  access_notes: "Registro + aceptación de Data Use Agreement en LONI/IDA."
+  access_notes: Registro + aceptación de Data Use Agreement en LONI/IDA.
   license: PPMI Data Use Agreement
   cost: free
-  n_subjects: "Miles (PD de novo, prodrómicos, controles, portadores genéticos)"
-  years: "2010-presente"
-  data_types: [MRI, DAT-SPECT, escalas MDS-UPDRS, biofluidos, genética (LRRK2/GBA/SNCA), digital]
-  region: "Internacional (multicéntrico)"
-  short_desc_es: "Cohorte longitudinal observacional de Parkinson con imagen, biomarcadores de fluido, genética y clínica; el recurso de referencia para progresión de PD."
-  short_desc_en: "Longitudinal observational Parkinson's cohort with imaging, fluid biomarkers, genetics and clinical data; the reference resource for PD progression."
+  n_subjects: Miles (PD de novo, prodrómicos, controles, portadores genéticos)
+  years: 2010-presente
+  data_types:
+  - MRI
+  - DAT-SPECT
+  - escalas MDS-UPDRS
+  - biofluidos
+  - genética (LRRK2/GBA/SNCA)
+  - digital
+  region: Internacional (multicéntrico)
+  short_desc_es: Cohorte longitudinal observacional de Parkinson con imagen, biomarcadores de fluido,
+    genética y clínica; el recurso de referencia para progresión de PD.
+  short_desc_en: Longitudinal observational Parkinson's cohort with imaging, fluid biomarkers, genetics
+    and clinical data; the reference resource for PD progression.
   key_publications:
-    - "Progresión motora y subtipado de Parkinson"
-    - "Biomarcadores DAT-SPECT y α-sinucleína (seed amplification assay)"
-    - "Genética LRRK2/GBA y trayectorias de enfermedad"
-  open_questions:
-    - "¿Biomarcadores multimodales que predigan respuesta a DBS subtalámico estratificados por genotipo (GBA vs LRRK2)?"
-    - "¿Modelos de trayectoria que anticipen conversión de prodrómico a PD manifiesto?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, cohort, imaging-genetics]
-
+  - Progresión motora y subtipado de Parkinson
+  - Biomarcadores DAT-SPECT y α-sinucleína (seed amplification assay)
+  - Genética LRRK2/GBA y trayectorias de enfermedad
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - cohort
+  - imaging-genetics
+  projects:
+  - id: ppmi-q1
+    question_en: Are there multimodal biomarkers that predict subthalamic DBS response when stratified
+      by genotype (GBA vs LRRK2)?
+    question_es: ¿Biomarcadores multimodales que predigan respuesta a DBS subtalámico estratificados por
+      genotipo (GBA vs LRRK2)?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: ppmi-q2
+    question_en: Can trajectory models anticipate conversion from prodromal to manifest Parkinson's disease?
+    question_es: ¿Modelos de trayectoria que anticipen conversión de prodrómico a PD manifiesto?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: adni
   name: ADNI (Alzheimer's Disease Neuroimaging Initiative)
-  version: "ADNI-4"
+  version: ADNI-4
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [alzheimer, dementia, mci]
-  disease_category: [neurological]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - alzheimer
+  - dementia
+  - mci
+  disease_category:
+  - neurological
   provider: USC / LONI
   url: https://adni.loni.usc.edu/data-samples/adni-data/#AccessData
   access: application
-  access_notes: "Solicitud de acceso vía IDA/LONI con aprobación."
+  access_notes: Solicitud de acceso vía IDA/LONI con aprobación.
   license: ADNI Data Use Agreement
   cost: free
-  n_subjects: "Miles (controles, MCI, AD) en fases sucesivas"
-  years: "2004-presente"
-  data_types: [MRI, PET amiloide/tau/FDG, cognición, CSF, genética (APOE, GWAS)]
-  region: "EE.UU. y Canadá (multicéntrico)"
-  short_desc_es: "Cohorte longitudinal de envejecimiento y Alzheimer con imagen multimodal, biomarcadores y genética; base de miles de estudios de predicción de conversión."
-  short_desc_en: "Longitudinal aging/Alzheimer's cohort with multimodal imaging, biomarkers and genetics; basis of thousands of conversion-prediction studies."
+  n_subjects: Miles (controles, MCI, AD) en fases sucesivas
+  years: 2004-presente
+  data_types:
+  - MRI
+  - PET amiloide/tau/FDG
+  - cognición
+  - CSF
+  - genética (APOE
+  - GWAS)
+  region: EE.UU. y Canadá (multicéntrico)
+  short_desc_es: Cohorte longitudinal de envejecimiento y Alzheimer con imagen multimodal, biomarcadores
+    y genética; base de miles de estudios de predicción de conversión.
+  short_desc_en: Longitudinal aging/Alzheimer's cohort with multimodal imaging, biomarkers and genetics;
+    basis of thousands of conversion-prediction studies.
   key_publications:
-    - "Predicción de conversión MCI→AD"
-    - "Atrofia hipocampal, PET amiloide/tau como biomarcadores"
-    - "Modelos multimodales imagen + genética + CSF"
-  open_questions:
-    - "¿Generalizan los modelos de conversión a poblaciones no representadas (diversidad étnica y de escáner)?"
-    - "¿Biomarcadores digitales/pasivos que complementen la imagen costosa?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, cohort, imaging-genetics]
-
+  - Predicción de conversión MCI→AD
+  - Atrofia hipocampal, PET amiloide/tau como biomarcadores
+  - Modelos multimodales imagen + genética + CSF
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - cohort
+  - imaging-genetics
+  projects:
+  - id: adni-q1
+    question_en: Do MCI-to-AD conversion models generalise to under-represented populations, across both
+      ethnicity and scanner diversity?
+    question_es: ¿Generalizan los modelos de conversión a poblaciones no representadas (diversidad étnica
+      y de escáner)?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: adni-q2
+    question_en: Can passive or digital biomarkers substitute for, or complement, expensive imaging?
+    question_es: ¿Biomarcadores digitales/pasivos que complementen la imagen costosa?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: openneuro
   name: OpenNeuro
-  version: "rolling"
+  version: rolling
   modality_primary: neuroimaging
-  modality_secondary: [electrophysiology]
-  diseases: [multiple, control, development]
-  disease_category: [neurological, psychiatric, neurosurgical]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - multiple
+  - control
+  - development
+  disease_category:
+  - neurological
+  - psychiatric
+  - neurosurgical
   provider: Stanford / Poldrack Lab
   url: https://openneuro.org/
   access: open
-  access_notes: "Mayoría bajo CC0; algunos datasets con restricciones."
+  access_notes: Mayoría bajo CC0; algunos datasets con restricciones.
   license: CC0 (predominante)
   cost: free
-  n_subjects: "Cientos de datasets, decenas de miles de sujetos"
-  years: "2017-presente"
-  data_types: [MRI, fMRI, dMRI, EEG, MEG, iEEG, PET (formato BIDS)]
-  region: "Internacional"
-  short_desc_es: "Repositorio abierto de neuroimagen y electrofisiología en estándar BIDS; el mayor punto de entrada para datasets abiertos reutilizables."
-  short_desc_en: "Open repository of neuroimaging and electrophysiology in the BIDS standard; the largest entry point for reusable open datasets."
+  n_subjects: Cientos de datasets, decenas de miles de sujetos
+  years: 2017-presente
+  data_types:
+  - MRI
+  - fMRI
+  - dMRI
+  - EEG
+  - MEG
+  - iEEG
+  - PET (formato BIDS)
+  region: Internacional
+  short_desc_es: Repositorio abierto de neuroimagen y electrofisiología en estándar BIDS; el mayor punto
+    de entrada para datasets abiertos reutilizables.
+  short_desc_en: Open repository of neuroimaging and electrophysiology in the BIDS standard; the largest
+    entry point for reusable open datasets.
   key_publications:
-    - "Reanálisis y meta-análisis multi-dataset"
-    - "Desarrollo de pipelines (fMRIPrep, MRIQC) y benchmarks"
-  open_questions:
-    - "¿Modelos de fundación entrenados sobre el agregado BIDS que transfieran entre tareas y poblaciones?"
-    - "¿Reproducibilidad de hallazgos clínicos al reanalizar con pipelines estandarizados?"
-  last_verified: "2026-07-21"
-  tags: [BIDS, open, aggregator]
-
+  - Reanálisis y meta-análisis multi-dataset
+  - Desarrollo de pipelines (fMRIPrep, MRIQC) y benchmarks
+  last_verified: '2026-07-21'
+  tags:
+  - BIDS
+  - open
+  - aggregator
+  projects:
+  - id: openneuro-q1
+    question_en: Do foundation models trained on the aggregate BIDS corpus transfer across tasks and populations?
+    question_es: ¿Modelos de fundación entrenados sobre el agregado BIDS que transfieran entre tareas
+      y poblaciones?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: openneuro-q2
+    question_en: How reproducible are published clinical findings when reanalysed with standardised pipelines?
+    question_es: ¿Reproducibilidad de hallazgos clínicos al reanalizar con pipelines estandarizados?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: uk-biobank
   name: UK Biobank
-  version: "rolling"
+  version: rolling
   modality_primary: multimodal
-  modality_secondary: [genetics, neuroimaging, clinical]
-  diseases: [stroke, dementia, depression, multiple]
-  disease_category: [neurological, psychiatric]
+  modality_secondary:
+  - genetics
+  - neuroimaging
+  - clinical
+  diseases:
+  - stroke
+  - dementia
+  - depression
+  - multiple
+  disease_category:
+  - neurological
+  - psychiatric
   provider: UK Biobank Ltd.
   url: https://www.ukbiobank.ac.uk/enable-your-research/apply-for-access
   access: application
-  access_notes: "Aplicación institucional con revisión y tarifa de acceso; requiere aprobación ética."
+  access_notes: Aplicación institucional con revisión y tarifa de acceso; requiere aprobación ética.
   license: UK Biobank Material Transfer / Access Agreement
   cost: paid
-  n_subjects: "~500,000 participantes (~100,000 con imagen)"
-  years: "2006-presente"
-  data_types: [genotipado/WES/WGS, MRI cerebral/corporal, historia clínica, estilo de vida]
-  region: "Reino Unido"
-  short_desc_es: "Biobanco poblacional a gran escala con genética, imagen cerebral y desenlaces clínicos vinculados; motor de la imaging-genetics moderna."
-  short_desc_en: "Large-scale population biobank with genetics, brain imaging and linked clinical outcomes; the engine of modern imaging-genetics."
+  n_subjects: ~500,000 participantes (~100,000 con imagen)
+  years: 2006-presente
+  data_types:
+  - genotipado/WES/WGS
+  - MRI cerebral/corporal
+  - historia clínica
+  - estilo de vida
+  region: Reino Unido
+  short_desc_es: Biobanco poblacional a gran escala con genética, imagen cerebral y desenlaces clínicos
+    vinculados; motor de la imaging-genetics moderna.
+  short_desc_en: Large-scale population biobank with genetics, brain imaging and linked clinical outcomes;
+    the engine of modern imaging-genetics.
   key_publications:
-    - "GWAS de rasgos de imagen cerebral (IDPs)"
-    - "Riesgo poligénico y envejecimiento cerebral (brain age)"
-    - "Asociaciones estilo de vida–estructura cerebral"
-  open_questions:
-    - "¿Puntuaciones poligénicas transdiagnósticas que mapeen a circuitos comunes como dianas de neuromodulación?"
-    - "¿Predicción de ictus/demencia incidente combinando genética + imagen + EHR?"
-  last_verified: "2026-07-21"
-  tags: [biobank, imaging-genetics, population]
-
+  - GWAS de rasgos de imagen cerebral (IDPs)
+  - Riesgo poligénico y envejecimiento cerebral (brain age)
+  - Asociaciones estilo de vida–estructura cerebral
+  last_verified: '2026-07-21'
+  tags:
+  - biobank
+  - imaging-genetics
+  - population
+  projects:
+  - id: uk-biobank-q1
+    question_en: Do transdiagnostic polygenic scores map onto shared circuits that could serve as neuromodulation
+      targets?
+    question_es: ¿Puntuaciones poligénicas transdiagnósticas que mapeen a circuitos comunes como dianas
+      de neuromodulación?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: uk-biobank-q2
+    question_en: Can incident stroke or dementia be predicted by combining genetics, imaging and EHR?
+    question_es: ¿Predicción de ictus/demencia incidente combinando genética + imagen + EHR?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: brats
   name: BraTS (Brain Tumor Segmentation Challenge)
-  version: "2024"
+  version: '2024'
   modality_primary: neuroimaging
   modality_secondary: []
-  diseases: [glioma, glioblastoma, meningioma, brain-metastasis]
-  disease_category: [neurosurgical]
+  diseases:
+  - glioma
+  - glioblastoma
+  - meningioma
+  - brain-metastasis
+  disease_category:
+  - neurosurgical
   provider: MICCAI / TCIA
   url: https://www.synapse.org/brats
   access: registration
-  access_notes: "Registro en Synapse; datos derivados de TCIA y colecciones asociadas."
-  license: "Variable (CC BY / TCIA data usage)"
+  access_notes: Registro en Synapse; datos derivados de TCIA y colecciones asociadas.
+  license: Variable (CC BY / TCIA data usage)
   cost: free
-  n_subjects: "Cientos-miles de estudios MRI multiparamétricos anotados"
-  years: "2012-presente"
-  data_types: [MRI multiparamétrica (T1, T1c, T2, FLAIR), máscaras de segmentación]
-  region: "Internacional (multicéntrico)"
-  short_desc_es: "Reto y dataset de referencia para segmentación de tumores cerebrales y predicción de biomarcadores; base del deep learning en neurooncología."
-  short_desc_en: "Reference challenge/dataset for brain tumor segmentation and biomarker prediction; foundation of deep learning in neuro-oncology."
+  n_subjects: Cientos-miles de estudios MRI multiparamétricos anotados
+  years: 2012-presente
+  data_types:
+  - MRI multiparamétrica (T1
+  - T1c
+  - T2
+  - FLAIR)
+  - máscaras de segmentación
+  region: Internacional (multicéntrico)
+  short_desc_es: Reto y dataset de referencia para segmentación de tumores cerebrales y predicción de
+    biomarcadores; base del deep learning en neurooncología.
+  short_desc_en: Reference challenge/dataset for brain tumor segmentation and biomarker prediction; foundation
+    of deep learning in neuro-oncology.
   key_publications:
-    - "Segmentación automática de glioma (nnU-Net y sucesores)"
-    - "Predicción de supervivencia y estado de MGMT"
-    - "Aprendizaje federado entre instituciones (BraTS Federated)"
-  open_questions:
-    - "¿Firmas radiómicas que predigan subtipo molecular o metilación MGMT sin biopsia, robustas entre centros y escáneres?"
-    - "¿Segmentación que generalice a resonancias postquirúrgicas y de bajo campo?"
-  last_verified: "2026-07-21"
-  tags: [challenge, segmentation, oncology]
-
+  - Segmentación automática de glioma (nnU-Net y sucesores)
+  - Predicción de supervivencia y estado de MGMT
+  - Aprendizaje federado entre instituciones (BraTS Federated)
+  last_verified: '2026-07-21'
+  tags:
+  - challenge
+  - segmentation
+  - oncology
+  projects:
+  - id: brats-q1
+    question_en: Can radiomic signatures predict molecular subtype or MGMT methylation without biopsy,
+      robustly across centres and scanners?
+    question_es: ¿Firmas radiómicas que predigan subtipo molecular o metilación MGMT sin biopsia, robustas
+      entre centros y escáneres?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: brats-q2
+    question_en: Does tumour segmentation generalise to post-surgical and low-field MRI?
+    question_es: ¿Segmentación que generalice a resonancias postquirúrgicas y de bajo campo?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: tcia
   name: TCIA (The Cancer Imaging Archive)
-  version: "rolling"
+  version: rolling
   modality_primary: neuroimaging
-  modality_secondary: [genetics]
-  diseases: [glioma, glioblastoma, brain-tumor]
-  disease_category: [neurosurgical]
+  modality_secondary:
+  - genetics
+  diseases:
+  - glioma
+  - glioblastoma
+  - brain-tumor
+  disease_category:
+  - neurosurgical
   provider: NCI / University of Arkansas
   url: https://www.cancerimagingarchive.net/
   access: registration
-  access_notes: "Mayoría de colecciones públicas; algunas con solicitud."
-  license: "Variable por colección (frecuente CC BY)"
+  access_notes: Mayoría de colecciones públicas; algunas con solicitud.
+  license: Variable por colección (frecuente CC BY)
   cost: free
-  n_subjects: "Múltiples colecciones (TCGA-GBM, TCGA-LGG, IvyGAP, etc.)"
-  years: "2011-presente"
-  data_types: [MRI, CT, PET, patología digital, vínculos genómicos (TCGA)]
-  region: "Internacional"
-  short_desc_es: "Archivo de imagen oncológica con colecciones cerebrales enlazadas a datos genómicos (TCGA); clave para radiogenómica."
-  short_desc_en: "Cancer imaging archive with brain collections linked to genomic data (TCGA); key for radiogenomics."
+  n_subjects: Múltiples colecciones (TCGA-GBM, TCGA-LGG, IvyGAP, etc.)
+  years: 2011-presente
+  data_types:
+  - MRI
+  - CT
+  - PET
+  - patología digital
+  - vínculos genómicos (TCGA)
+  region: Internacional
+  short_desc_es: Archivo de imagen oncológica con colecciones cerebrales enlazadas a datos genómicos (TCGA);
+    clave para radiogenómica.
+  short_desc_en: Cancer imaging archive with brain collections linked to genomic data (TCGA); key for
+    radiogenomics.
   key_publications:
-    - "Radiogenómica de glioma (imagen ↔ mutaciones IDH, 1p/19q)"
-    - "Datasets para segmentación y pronóstico"
-  open_questions:
-    - "¿Modelos imagen→genómica que reduzcan necesidad de biopsia en gliomas de difícil acceso?"
-  last_verified: "2026-07-21"
-  tags: [oncology, radiogenomics, aggregator]
-
+  - Radiogenómica de glioma (imagen ↔ mutaciones IDH, 1p/19q)
+  - Datasets para segmentación y pronóstico
+  last_verified: '2026-07-21'
+  tags:
+  - oncology
+  - radiogenomics
+  - aggregator
+  projects:
+  - id: tcia-q1
+    question_en: Can image-to-genomics models reduce the need for biopsy in hard-to-reach gliomas?
+    question_es: ¿Modelos imagen→genómica que reduzcan necesidad de biopsia en gliomas de difícil acceso?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: abcd
   name: ABCD Study (Adolescent Brain Cognitive Development)
-  version: "5.x"
+  version: 5.x
   modality_primary: multimodal
-  modality_secondary: [neuroimaging, genetics, clinical]
-  diseases: [adhd, depression, anxiety, substance-use, development]
-  disease_category: [psychiatric]
+  modality_secondary:
+  - neuroimaging
+  - genetics
+  - clinical
+  diseases:
+  - adhd
+  - depression
+  - anxiety
+  - substance-use
+  - development
+  disease_category:
+  - psychiatric
   provider: NIH / NDA
   url: https://nda.nih.gov/abcd
   access: dua
-  access_notes: "Acceso vía NIMH Data Archive (NDA) con Data Use Certification."
+  access_notes: Acceso vía NIMH Data Archive (NDA) con Data Use Certification.
   license: NDA Data Use Certification
   cost: free
-  n_subjects: "~11,800 niños seguidos longitudinalmente"
-  years: "2016-presente"
-  data_types: [MRI/fMRI, cognición, salud mental, genética, ambiente]
-  region: "EE.UU. (21 sitios)"
-  short_desc_es: "Mayor estudio longitudinal del desarrollo cerebral adolescente en EE.UU.; central para psiquiatría del neurodesarrollo."
-  short_desc_en: "Largest longitudinal study of adolescent brain development in the US; central to neurodevelopmental psychiatry."
+  n_subjects: ~11,800 niños seguidos longitudinalmente
+  years: 2016-presente
+  data_types:
+  - MRI/fMRI
+  - cognición
+  - salud mental
+  - genética
+  - ambiente
+  region: EE.UU. (21 sitios)
+  short_desc_es: Mayor estudio longitudinal del desarrollo cerebral adolescente en EE.UU.; central para
+    psiquiatría del neurodesarrollo.
+  short_desc_en: Largest longitudinal study of adolescent brain development in the US; central to neurodevelopmental
+    psychiatry.
   key_publications:
-    - "Predicción de rasgos cognitivos y de salud mental desde imagen"
-    - "Efectos de ambiente/pantallas/sueño en el desarrollo cerebral"
-  open_questions:
-    - "¿Trayectorias tempranas que predigan aparición de trastornos psiquiátricos en la adolescencia?"
-    - "¿Reproducibilidad de asociaciones cerebro-conducta con tamaños de efecto realistas?"
-  last_verified: "2026-07-21"
-  tags: [longitudinal, development, cohort]
-
+  - Predicción de rasgos cognitivos y de salud mental desde imagen
+  - Efectos de ambiente/pantallas/sueño en el desarrollo cerebral
+  last_verified: '2026-07-21'
+  tags:
+  - longitudinal
+  - development
+  - cohort
+  projects:
+  - id: abcd-q1
+    question_en: Which early developmental trajectories predict the onset of psychiatric disorders in
+      adolescence?
+    question_es: ¿Trayectorias tempranas que predigan aparición de trastornos psiquiátricos en la adolescencia?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: abcd-q2
+    question_en: How reproducible are brain-behaviour associations once realistic effect sizes are assumed?
+    question_es: ¿Reproducibilidad de asociaciones cerebro-conducta con tamaños de efecto realistas?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: pgc
   name: PGC (Psychiatric Genomics Consortium)
-  version: "rolling"
+  version: rolling
   modality_primary: genetics
   modality_secondary: []
-  diseases: [schizophrenia, bipolar, depression, adhd, autism, ocd, ptsd]
-  disease_category: [psychiatric]
+  diseases:
+  - schizophrenia
+  - bipolar
+  - depression
+  - adhd
+  - autism
+  - ocd
+  - ptsd
+  disease_category:
+  - psychiatric
   provider: Psychiatric Genomics Consortium
   url: https://pgc.unc.edu/for-researchers/download-results/
   access: registration
-  access_notes: "Estadísticos resumidos (summary stats) descargables; datos individuales vía dbGaP."
-  license: "PGC data sharing terms"
+  access_notes: Estadísticos resumidos (summary stats) descargables; datos individuales vía dbGaP.
+  license: PGC data sharing terms
   cost: free
-  n_subjects: "Cientos de miles a millones (meta-GWAS)"
-  years: "2007-presente"
-  data_types: [GWAS summary statistics, meta-análisis]
-  region: "Internacional"
-  short_desc_es: "Mayor consorcio de genómica psiquiátrica; publica estadísticos GWAS para esquizofrenia, bipolar, depresión y más."
-  short_desc_en: "Largest psychiatric genomics consortium; publishes GWAS summary statistics for schizophrenia, bipolar, depression and more."
+  n_subjects: Cientos de miles a millones (meta-GWAS)
+  years: 2007-presente
+  data_types:
+  - GWAS summary statistics
+  - meta-análisis
+  region: Internacional
+  short_desc_es: Mayor consorcio de genómica psiquiátrica; publica estadísticos GWAS para esquizofrenia,
+    bipolar, depresión y más.
+  short_desc_en: Largest psychiatric genomics consortium; publishes GWAS summary statistics for schizophrenia,
+    bipolar, depression and more.
   key_publications:
-    - "GWAS de esquizofrenia (cientos de loci)"
-    - "Correlaciones genéticas transdiagnósticas entre trastornos"
-    - "Puntuaciones de riesgo poligénico"
-  open_questions:
-    - "¿Los factores genéticos compartidos se traducen en circuitos comunes tratables por neuromodulación?"
-    - "¿Estratificación genética que prediga respuesta a fármacos o a TMS/DBS?"
-  last_verified: "2026-07-21"
-  tags: [GWAS, consortium, summary-stats]
-
+  - GWAS de esquizofrenia (cientos de loci)
+  - Correlaciones genéticas transdiagnósticas entre trastornos
+  - Puntuaciones de riesgo poligénico
+  last_verified: '2026-07-21'
+  tags:
+  - GWAS
+  - consortium
+  - summary-stats
+  projects:
+  - id: pgc-q1
+    question_en: Do shared genetic factors translate into common circuits that neuromodulation can treat?
+    question_es: ¿Los factores genéticos compartidos se traducen en circuitos comunes tratables por neuromodulación?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: pgc-q2
+    question_en: Can genetic stratification predict response to medication, or to TMS/DBS?
+    question_es: ¿Estratificación genética que prediga respuesta a fármacos o a TMS/DBS?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: enigma
   name: ENIGMA Consortium
-  version: "rolling"
+  version: rolling
   modality_primary: genetics
-  modality_secondary: [neuroimaging]
-  diseases: [schizophrenia, depression, bipolar, ocd, ptsd, epilepsy, parkinson]
-  disease_category: [psychiatric, neurological]
+  modality_secondary:
+  - neuroimaging
+  diseases:
+  - schizophrenia
+  - depression
+  - bipolar
+  - ocd
+  - ptsd
+  - epilepsy
+  - parkinson
+  disease_category:
+  - psychiatric
+  - neurological
   provider: ENIGMA / USC
   url: https://enigma.ini.usc.edu/
   access: registration
-  access_notes: "Modelo de meta-análisis distribuido; participación por grupos de trabajo."
-  license: "ENIGMA collaboration terms"
+  access_notes: Modelo de meta-análisis distribuido; participación por grupos de trabajo.
+  license: ENIGMA collaboration terms
   cost: free
-  n_subjects: "Decenas de miles (meta-análisis de imagen)"
-  years: "2009-presente"
-  data_types: [medidas derivadas de MRI, imaging-genetics]
-  region: "Internacional"
-  short_desc_es: "Red mundial de imaging-genetics que agrega medidas cerebrales de muchos sitios para maximizar potencia estadística."
-  short_desc_en: "Global imaging-genetics network aggregating brain measures across many sites to maximize statistical power."
+  n_subjects: Decenas de miles (meta-análisis de imagen)
+  years: 2009-presente
+  data_types:
+  - medidas derivadas de MRI
+  - imaging-genetics
+  region: Internacional
+  short_desc_es: Red mundial de imaging-genetics que agrega medidas cerebrales de muchos sitios para maximizar
+    potencia estadística.
+  short_desc_en: Global imaging-genetics network aggregating brain measures across many sites to maximize
+    statistical power.
   key_publications:
-    - "Diferencias estructurales cerebrales por trastorno (efectos robustos multi-sitio)"
-    - "GWAS de volúmenes subcorticales y grosor cortical"
-  open_questions:
-    - "¿Firmas de neuroimagen transdiagnósticas que crucen fronteras diagnósticas clásicas?"
-  last_verified: "2026-07-21"
-  tags: [imaging-genetics, consortium, meta-analysis]
-
+  - Diferencias estructurales cerebrales por trastorno (efectos robustos multi-sitio)
+  - GWAS de volúmenes subcorticales y grosor cortical
+  last_verified: '2026-07-21'
+  tags:
+  - imaging-genetics
+  - consortium
+  - meta-analysis
+  projects:
+  - id: enigma-q1
+    question_en: Are there transdiagnostic neuroimaging signatures that cut across classical diagnostic
+      boundaries?
+    question_es: ¿Firmas de neuroimagen transdiagnósticas que crucen fronteras diagnósticas clásicas?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: tuh-eeg
   name: TUH EEG Corpus (Temple University Hospital)
-  version: "rolling"
+  version: rolling
   modality_primary: electrophysiology
   modality_secondary: []
-  diseases: [epilepsy, seizure, encephalopathy]
-  disease_category: [neurological]
+  diseases:
+  - epilepsy
+  - seizure
+  - encephalopathy
+  disease_category:
+  - neurological
   provider: Temple University
   url: https://isip.piconepress.com/projects/nedc/html/tuh_eeg/
   access: registration
-  access_notes: "Registro/solicitud gratuita para uso de investigación."
-  license: "TUH EEG data agreement"
+  access_notes: Registro/solicitud gratuita para uso de investigación.
+  license: TUH EEG data agreement
   cost: free
-  n_subjects: "Decenas de miles de registros EEG clínicos"
-  years: "2002-presente"
-  data_types: [EEG clínico, informes, subconjuntos de crisis y EEG anormal]
-  region: "EE.UU. (Philadelphia)"
-  short_desc_es: "El mayor corpus abierto de EEG clínico; referencia para detección de crisis y clasificación de EEG normal/anormal."
-  short_desc_en: "The largest open corpus of clinical EEG; reference for seizure detection and normal/abnormal EEG classification."
+  n_subjects: Decenas de miles de registros EEG clínicos
+  years: 2002-presente
+  data_types:
+  - EEG clínico
+  - informes
+  - subconjuntos de crisis y EEG anormal
+  region: EE.UU. (Philadelphia)
+  short_desc_es: El mayor corpus abierto de EEG clínico; referencia para detección de crisis y clasificación
+    de EEG normal/anormal.
+  short_desc_en: The largest open corpus of clinical EEG; reference for seizure detection and normal/abnormal
+    EEG classification.
   key_publications:
-    - "Detección automática de crisis y eventos"
-    - "Clasificación de EEG anormal con deep learning"
-  open_questions:
-    - "¿Modelos de fundación de EEG auto-supervisados que transfieran a detección de crisis Y a decodificación BCI?"
-    - "¿Generalización a EEG ambulatorio/portátil de bajo costo?"
-  last_verified: "2026-07-21"
-  tags: [EEG, clinical, large-scale]
-
+  - Detección automática de crisis y eventos
+  - Clasificación de EEG anormal con deep learning
+  last_verified: '2026-07-21'
+  tags:
+  - EEG
+  - clinical
+  - large-scale
+  projects:
+  - id: tuh-eeg-q1
+    question_en: Do self-supervised EEG foundation models transfer to BOTH seizure detection and BCI decoding?
+    question_es: ¿Modelos de fundación de EEG auto-supervisados que transfieran a detección de crisis
+      Y a decodificación BCI?
+    status: open
+    unverified: true
+    confidence: 0.2
+  - id: tuh-eeg-q2
+    question_en: Does performance generalise to low-cost ambulatory or wearable EEG?
+    question_es: ¿Generalización a EEG ambulatorio/portátil de bajo costo?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: chb-mit
   name: CHB-MIT Scalp EEG Database
-  version: "1.0.0"
+  version: 1.0.0
   modality_primary: electrophysiology
   modality_secondary: []
-  diseases: [epilepsy, seizure]
-  disease_category: [neurological, neurosurgical]
+  diseases:
+  - epilepsy
+  - seizure
+  disease_category:
+  - neurological
+  - neurosurgical
   provider: PhysioNet / Children's Hospital Boston
   url: https://physionet.org/content/chbmit/1.0.0/
   access: open
-  access_notes: "Descarga abierta en PhysioNet."
-  license: "Open Data Commons / PhysioNet open"
+  access_notes: Descarga abierta en PhysioNet.
+  license: Open Data Commons / PhysioNet open
   cost: free
-  n_subjects: "23 pacientes pediátricos con epilepsia intratable"
-  years: "publicado 2010"
-  data_types: [EEG de cuero cabelludo con crisis anotadas]
-  region: "EE.UU. (Boston)"
-  short_desc_es: "Dataset clásico de EEG pediátrico con crisis anotadas; el benchmark más usado para predicción/detección de crisis."
-  short_desc_en: "Classic pediatric EEG dataset with annotated seizures; the most-used benchmark for seizure prediction/detection."
+  n_subjects: 23 pacientes pediátricos con epilepsia intratable
+  years: publicado 2010
+  data_types:
+  - EEG de cuero cabelludo con crisis anotadas
+  region: EE.UU. (Boston)
+  short_desc_es: Dataset clásico de EEG pediátrico con crisis anotadas; el benchmark más usado para predicción/detección
+    de crisis.
+  short_desc_en: Classic pediatric EEG dataset with annotated seizures; the most-used benchmark for seizure
+    prediction/detection.
   key_publications:
-    - "Predicción de crisis (preictal vs interictal)"
-    - "Detección de crisis en tiempo real"
-  open_questions:
-    - "¿Predicción de crisis que generalice entre pacientes (cross-subject) sin reentrenar?"
-  last_verified: "2026-07-21"
-  tags: [EEG, epilepsy, benchmark]
-
+  - Predicción de crisis (preictal vs interictal)
+  - Detección de crisis en tiempo real
+  last_verified: '2026-07-21'
+  tags:
+  - EEG
+  - epilepsy
+  - benchmark
+  projects:
+  - id: chb-mit-q1
+    question_en: Can seizure prediction generalise across patients (cross-subject) without per-patient
+      retraining?
+    question_es: ¿Predicción de crisis que generalice entre pacientes (cross-subject) sin reentrenar?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: bci-competition-iv
   name: BCI Competition IV
-  version: "IV"
+  version: IV
   modality_primary: bci
-  modality_secondary: [electrophysiology]
-  diseases: [bci, motor, control]
-  disease_category: [transversal]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - bci
+  - motor
+  - control
+  disease_category:
+  - transversal
   provider: Berlin BCI / Graz
   url: https://www.bbci.de/competition/iv/
   access: open
-  access_notes: "Descarga abierta de los datasets de la competencia."
-  license: "BCI Competition terms (research use)"
+  access_notes: Descarga abierta de los datasets de la competencia.
+  license: BCI Competition terms (research use)
   cost: free
-  n_subjects: "Varios datasets (2a/2b motor imagery, etc.)"
-  years: "2008"
-  data_types: [EEG, ECoG, motor imagery, cinemática]
-  region: "Alemania/Austria"
-  short_desc_es: "Conjunto de datasets clásico para benchmarking de BCI (motor imagery); base de gran parte de la literatura de decoding EEG."
-  short_desc_en: "Classic set of BCI benchmarking datasets (motor imagery); foundation of much of the EEG decoding literature."
+  n_subjects: Varios datasets (2a/2b motor imagery, etc.)
+  years: '2008'
+  data_types:
+  - EEG
+  - ECoG
+  - motor imagery
+  - cinemática
+  region: Alemania/Austria
+  short_desc_es: Conjunto de datasets clásico para benchmarking de BCI (motor imagery); base de gran parte
+    de la literatura de decoding EEG.
+  short_desc_en: Classic set of BCI benchmarking datasets (motor imagery); foundation of much of the EEG
+    decoding literature.
   key_publications:
-    - "Decodificación de motor imagery (CSP, deep learning)"
-    - "Transfer learning y calibración entre sujetos"
-  open_questions:
-    - "¿Decoders plug-and-play sin calibración por sujeto que funcionen en el mundo real?"
-  last_verified: "2026-07-21"
-  tags: [BCI, motor-imagery, benchmark]
-
+  - Decodificación de motor imagery (CSP, deep learning)
+  - Transfer learning y calibración entre sujetos
+  last_verified: '2026-07-21'
+  tags:
+  - BCI
+  - motor-imagery
+  - benchmark
+  projects:
+  - id: bci-competition-iv-q1
+    question_en: Are calibration-free, plug-and-play decoders achievable that still work outside the lab?
+    question_es: ¿Decoders plug-and-play sin calibración por sujeto que funcionen en el mundo real?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: moabb
   name: MOABB (Mother of All BCI Benchmarks)
-  version: "rolling"
+  version: rolling
   modality_primary: bci
-  modality_secondary: [electrophysiology]
-  diseases: [bci, motor, control]
-  disease_category: [transversal]
+  modality_secondary:
+  - electrophysiology
+  diseases:
+  - bci
+  - motor
+  - control
+  disease_category:
+  - transversal
   provider: MOABB open-source community
   url: https://moabb.neurotechx.com/
   access: open
-  access_notes: "Meta-colección open-source que unifica múltiples datasets BCI públicos vía API de Python."
-  license: "Open source (BSD) + licencias de datasets subyacentes"
+  access_notes: Meta-colección open-source que unifica múltiples datasets BCI públicos vía API de Python.
+  license: Open source (BSD) + licencias de datasets subyacentes
   cost: free
-  n_subjects: "Agrega decenas de datasets BCI públicos"
-  years: "2018-presente"
-  data_types: [EEG (motor imagery, P300, SSVEP)]
-  region: "Internacional"
-  short_desc_es: "Marco de benchmarking reproducible que unifica muchos datasets BCI públicos para comparar algoritmos de forma justa."
-  short_desc_en: "Reproducible benchmarking framework unifying many public BCI datasets for fair algorithm comparison."
+  n_subjects: Agrega decenas de datasets BCI públicos
+  years: 2018-presente
+  data_types:
+  - EEG (motor imagery
+  - P300
+  - SSVEP)
+  region: Internacional
+  short_desc_es: Marco de benchmarking reproducible que unifica muchos datasets BCI públicos para comparar
+    algoritmos de forma justa.
+  short_desc_en: Reproducible benchmarking framework unifying many public BCI datasets for fair algorithm
+    comparison.
   key_publications:
-    - "Benchmarks reproducibles de pipelines de decoding EEG"
-    - "Comparativas de deep learning vs métodos Riemannianos"
-  open_questions:
-    - "¿Qué arquitecturas generalizan realmente entre datasets y paradigmas, y cuáles sobreajustan al benchmark?"
-  last_verified: "2026-07-21"
-  tags: [BCI, benchmark, meta-collection]
-
+  - Benchmarks reproducibles de pipelines de decoding EEG
+  - Comparativas de deep learning vs métodos Riemannianos
+  last_verified: '2026-07-21'
+  tags:
+  - BCI
+  - benchmark
+  - meta-collection
+  projects:
+  - id: moabb-q1
+    question_en: Which architectures genuinely generalise across datasets and paradigms, and which merely
+      overfit the benchmark?
+    question_es: ¿Qué arquitecturas generalizan realmente entre datasets y paradigmas, y cuáles sobreajustan
+      al benchmark?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: oasis
   name: OASIS (Open Access Series of Imaging Studies)
-  version: "OASIS-3/4"
+  version: OASIS-3/4
   modality_primary: neuroimaging
-  modality_secondary: [clinical]
-  diseases: [alzheimer, dementia, aging]
-  disease_category: [neurological]
+  modality_secondary:
+  - clinical
+  diseases:
+  - alzheimer
+  - dementia
+  - aging
+  disease_category:
+  - neurological
   provider: WashU / Knight ADRC
   url: https://sites.wustl.edu/oasisbrains/
   access: registration
-  access_notes: "Registro y aceptación de términos de uso."
-  license: "OASIS Data Use Agreement"
+  access_notes: Registro y aceptación de términos de uso.
+  license: OASIS Data Use Agreement
   cost: free
-  n_subjects: "Cientos-miles (según release)"
-  years: "2007-presente"
-  data_types: [MRI, PET, cognición, diagnóstico clínico]
-  region: "EE.UU. (St. Louis)"
-  short_desc_es: "Serie abierta de imagen para envejecimiento y Alzheimer; muy usada para métodos de brain-age y detección de demencia."
-  short_desc_en: "Open imaging series for aging and Alzheimer's; widely used for brain-age methods and dementia detection."
+  n_subjects: Cientos-miles (según release)
+  years: 2007-presente
+  data_types:
+  - MRI
+  - PET
+  - cognición
+  - diagnóstico clínico
+  region: EE.UU. (St. Louis)
+  short_desc_es: Serie abierta de imagen para envejecimiento y Alzheimer; muy usada para métodos de brain-age
+    y detección de demencia.
+  short_desc_en: Open imaging series for aging and Alzheimer's; widely used for brain-age methods and
+    dementia detection.
   key_publications:
-    - "Estimación de edad cerebral (brain age)"
-    - "Clasificación de demencia desde MRI estructural"
-  open_questions:
-    - "¿Modelos de brain-age calibrados que sean clínicamente accionables a nivel individual?"
-  last_verified: "2026-07-21"
-  tags: [imaging, aging, open]
-
+  - Estimación de edad cerebral (brain age)
+  - Clasificación de demencia desde MRI estructural
+  last_verified: '2026-07-21'
+  tags:
+  - imaging
+  - aging
+  - open
+  projects:
+  - id: oasis-q1
+    question_en: Can brain-age models be calibrated well enough to be clinically actionable at the individual
+      level?
+    question_es: ¿Modelos de brain-age calibrados que sean clínicamente accionables a nivel individual?
+    status: open
+    unverified: true
+    confidence: 0.2
 - id: 10-1038-s41597-025-04511-0
   modality_primary: neuroimaging
   access: open
@@ -578,7 +954,7 @@
       hue decoding?'
     question_es: '¿Cuál es el efecto causal del acto de reportar sobre la representacion neural de las
       qualia de color? Dado que la clave (circulo/cuadrado) asigna cada ensayo a reporte o no-reporte,
-      el contraste reporte menos no-reporte es una manipulacion aleatorizada intrasujeto: ¿que regiones
+      el contraste reporte menos no-reporte es una manipulación aleatorizada intrasujeto: ¿que regiones
       contienen informacion de matiz en ambas condiciones (candidatas a correlato de la quale) frente
       a solo cuando se exige un reporte (correlatos post-perceptivos/de reporte), y media la actividad
       prefrontal el cambio en la decodificacion ventral asociado al reporte?'
@@ -619,9 +995,9 @@
       ND-100 hue discrimination, and data quality (framewise displacement, tSNR) vary with age and sex
       — and, given n=31 usable participants, what effect sizes could this dataset actually detect?
     question_es: ¿Es estable la estructura de la experiencia de similitud de color a lo largo de la edad
-      adulta y entre sexos? Usando el rango de 21 a 59 anos y la division casi equilibrada por sexo, ¿cuanto
-      varian la geometria conductual de disimilitud, la discriminacion de matiz (ND-100) y la calidad
-      de los datos (desplazamiento por fotograma, tSNR) con la edad y el sexo, y que tamanos de efecto
+      adulta y entre sexos? Usando el rango de 21 a 59 años y la división casi equilibrada por sexo, ¿cuánto
+      varían la geometría conductual de disimilitud, la discriminación de matiz (ND-100) y la calidad
+      de los datos (desplazamiento por fotograma, tSNR) con la edad y el sexo, y qué tamaños de efecto
       puede realmente detectar este dataset con n=31 participantes utilizables?
     lens: equity
     skills:
@@ -848,7 +1224,6 @@
     - src_id: e2
       url: https://api.crossref.org/works/10.1038/s41597-025-04511-0
       sha256: c05ca699dbc0fa32111525f71b3194e49c8c1eb8fce8502b6388150adc2f6420
-
 - id: openneuro-ds008055
   modality_primary: neuroimaging
   access: open
@@ -869,10 +1244,10 @@
       is the within-subject effect of the creative-generation manipulation on BOLD response and its temporal
       dynamics across a run, and how much of that effect survives when order, run number and time-on-task
       are modeled as confounds?
-    question_es: Dado que la task-SCT incluye una condicion de control emparejada manipulada experimentalmente,
-      ¿cual es el efecto intrasujeto de la manipulacion de generacion creativa sobre la respuesta BOLD
-      y su dinamica temporal a lo largo del run, y cuanto de ese efecto persiste al modelar el orden,
-      el numero de run y el tiempo en tarea como confusores?
+    question_es: Dado que la task-SCT incluye una condición de control emparejada manipulada experimentalmente,
+      ¿cuál es el efecto intrasujeto de la manipulación de generacion creativa sobre la respuesta BOLD
+      y su dinámica temporal a lo largo del run, y cuánto de ese efecto persiste al modelar el orden,
+      el número de run y el tiempo en tarea como confusores?
     lens: causal
     skills:
     - GLM design and HRF modeling
@@ -961,7 +1336,6 @@
     - src_id: e2
       url: https://openneuro.org/datasets/ds008055
       sha256: 0cb51e73172b16c73600b8f9f8593ff23e9885969694276ce69d65ad5a4b236c
-
 - id: openneuro-ds008064
   modality_primary: neuroimaging
   access: open
@@ -1247,7 +1621,6 @@
     - src_id: e2
       url: https://openneuro.org/datasets/ds008064
       sha256: f9f409e70a28105843f16c6b659d9ea1eb67f47a06c761b3ed3c8d3e4af7d381
-
 - id: openneuro-ds008066
   modality_primary: neuroimaging
   access: open
@@ -1351,7 +1724,7 @@
     question_en: Because decoy presence and option count were experimentally manipulated in a full 2x3
       design, is the neural effect of adding a decoy causally modulated by set size (i.e., is there a
       decoy x set-size interaction), and where in the brain?
-    question_es: Dado que la presencia de senuelo y el numero de opciones se manipularon experimentalmente
+    question_es: Dado que la presencia de senuelo y el número de opciones se manipularon experimentalmente
       en un diseno factorial 2x3 completo, ¿el efecto neural de anadir un senuelo esta causalmente modulado
       por el tamano del conjunto (es decir, existe interaccion senuelo x tamano) y en que regiones?
     lens: causal
@@ -1393,9 +1766,9 @@
     question_en: Where are the load-sensitive frontoparietal peaks in this task located in each individual,
       and how far do they shift from the group-average MNI coordinate — i.e., would a group-coordinate
       TMS target actually hit the functionally active tissue in each participant?
-    question_es: ¿Donde se ubican, en cada individuo, los picos frontoparietales sensibles a la carga
-      de eleccion, y cuanto se desplazan respecto a la coordenada MNI promedio del grupo? Es decir, ¿un
-      blanco de EMT basado en coordenadas grupales realmente alcanzaria el tejido funcionalmente activo
+    question_es: ¿Dónde se ubican, en cada individuo, los picos frontoparietales sensibles a la carga
+      de eleccion, y cuánto se desplazan respecto a la coordenada MNI promedio del grupo? Es decir, ¿un
+      blanco de EMT basado en coordenadas grupales realmente alcanzaría el tejido funcionalmente activo
       de cada participante?
     lens: neuromodulation
     skills:
@@ -1459,7 +1832,6 @@
     - src_id: e2
       url: https://openneuro.org/datasets/ds008066
       sha256: fc52d76478b1658e4397955b906ce2408f36e092ee6b1c8fee4f0ecac15342a1
-
 - id: openneuro-ds008108
   modality_primary: multimodal
   access: open

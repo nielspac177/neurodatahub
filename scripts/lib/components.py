@@ -130,7 +130,102 @@ def dataset_card(r, lang, root):
         f'{dl_inline([(S(lang, "subjects"), r.get("n_subjects")), (S(lang, "years"), r.get("years"))])}'
         f'<p class="card__desc">{esc(desc)}</p>'
         f'{soft_badges(r.get("diseases"), limit=4)}'
-        f'<div class="card__foot">{access_dot(r.get("access"), lang)}{proj_note}</div>'
+        f'<div class="card__foot">{access_dot(r.get("access"), lang)}{proj_note}'
+        f'{compare_toggle(r, lang)}</div>'
+        f'</li>'
+    )
+
+
+def compare_toggle(r, lang):
+    """Casilla de comparación.
+
+    Va por encima del enlace estirado de la tarjeta (z-index en CSS) y su
+    nombre accesible incluye el dataset, para que en una rejilla de 21
+    tarjetas no haya 21 casillas llamadas "Comparar".
+    """
+    cid = f'cmp-{r["id"]}'
+    return (
+        f'<label class="card__compare" for="{esc(cid)}">'
+        f'<input type="checkbox" id="{esc(cid)}" data-compare="{esc(r["id"])}">'
+        f'<span aria-hidden="true">{esc(S(lang, "compare"))}</span>'
+        f'<span class="visually-hidden">{esc(S(lang, "compare_add", name=r["name"]))}</span>'
+        f'</label>'
+    )
+
+
+def compare_tray(lang, root):
+    """Bandeja pegajosa. Vacía y oculta hasta que se selecciona algo."""
+    return (
+        f'<div class="cmp-tray" id="cmp-tray" hidden role="region" '
+        f'aria-label="{esc(S(lang, "compare_tray"))}">'
+        f'<ol class="cmp-tray__list" id="cmp-tray-list"></ol>'
+        f'<a class="btn btn--primary" id="cmp-go" href="{root}compare/">'
+        f'{esc(S(lang, "compare_go"))}</a>'
+        f'<button class="btn btn--ghost" type="button" id="cmp-clear">'
+        f'{esc(S(lang, "clear"))}</button>'
+        f'</div>'
+    )
+
+
+# Filas de la tabla comparativa: (clave de cadena, función extractora).
+COMPARE_ROWS = [
+    ("modality", lambda r, lang: r.get("modality_primary")),
+    ("access_label", lambda r, lang: access_label(lang, r.get("access"))),
+    ("subjects", lambda r, lang: r.get("n_subjects")),
+    ("years", lambda r, lang: r.get("years")),
+    ("region", lambda r, lang: r.get("region")),
+    ("license", lambda r, lang: r.get("license")),
+    ("provider", lambda r, lang: r.get("provider")),
+]
+
+
+def compare_table(records, lang, root):
+    """Tabla real con th scope=row/col.
+
+    Se usa <table> y no una rejilla de divs porque las cabeceras de fila y
+    columna son justo lo que hace navegable esto en modo lectura de tablas.
+    """
+    if not records:
+        return ""
+    # Se pre-renderizan TODAS las columnas y el JS oculta las no elegidas.
+    # Sin JS la página muestra la tabla completa, que sigue siendo útil; una
+    # tabla construida en el cliente estaría simplemente vacía.
+    heads = "".join(
+        f'<th scope="col" data-ds="{esc(r["id"])}">'
+        f'<a href="{root}datasets/{esc(r["id"])}/">{esc(r["name"])}</a></th>'
+        for r in records
+    )
+    body = []
+    for key, get in COMPARE_ROWS:
+        cells = "".join(
+            f'<td data-ds="{esc(r["id"])}">{esc(get(r, lang) or "—")}</td>' for r in records)
+        body.append(f'<tr><th scope="row" class="cmp-table__rowhead">'
+                    f'{esc(S(lang, key))}</th>{cells}</tr>')
+
+    n_proj = "".join(
+        f'<td data-ds="{esc(r["id"])}">{len(schema.projects_of(r))}</td>' for r in records)
+    body.append(f'<tr><th scope="row" class="cmp-table__rowhead">'
+                f'{esc(S(lang, "questions"))}</th>{n_proj}</tr>')
+
+    return (
+        f'<div style="overflow-x:auto"><table class="cmp-table">'
+        f'<caption>{esc(S(lang, "compare_caption", n=len(records)))}</caption>'
+        f'<thead><tr><td></td>{heads}</tr></thead>'
+        f'<tbody>{"".join(body)}</tbody></table></div>'
+    )
+
+
+def pack_card(p, lang, root):
+    modules = p.get("modules") or []
+    ds = {d for m in modules for d in (m.get("datasets") or [])}
+    return (
+        f'<li class="card card--pack">'
+        f'<h3 class="card__title">'
+        f'<a href="{root}packs/{esc(p["id"])}/">'
+        f'{esc(p.get(f"title_{lang}") or p.get("title_en"))}</a></h3>'
+        f'{dl_inline([(S(lang, "level"), p.get("level")), (S(lang, "duration"), p.get(f"duration_{lang}") or p.get("duration_en")), (S(lang, "m_datasets"), len(ds))])}'
+        f'<p class="card__desc">{esc(p.get(f"summary_{lang}") or p.get("summary_en") or "")}</p>'
+        f'{soft_badges(p.get("prerequisites"), limit=5)}'
         f'</li>'
     )
 

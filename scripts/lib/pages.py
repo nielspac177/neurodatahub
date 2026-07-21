@@ -43,6 +43,12 @@ def _shell(lang, page, title, description, main, depth, alt_href, islands=""):
         "nav_label": esc(S(lang, "nav_datasets")),
         "href_datasets": f"{root}{prefix}",
         "href_projects": f"{root}{prefix}projects/",
+        "href_packs": f"{root}{prefix}packs/",
+        "href_compare": f"{root}{prefix}compare/",
+        "nav_packs": esc(S(lang, "nav_packs")),
+        "nav_compare": esc(S(lang, "nav_compare")),
+        "current_packs": 'aria-current="page"' if page in ("packs", "pack") else "",
+        "current_compare": 'aria-current="page"' if page == "compare" else "",
         "nav_datasets": esc(S(lang, "nav_datasets")),
         "nav_projects": esc(S(lang, "nav_projects")),
         "current_datasets": 'aria-current="page"' if page == "datasets" else "",
@@ -126,6 +132,7 @@ def build_home(records, projects, lang, out_root):
     </p>
   </div>
 </div>
+{C.compare_tray(lang, root)}
 """
     islands = json_script(
         [{"id": r["id"], "hay": C.dataset_haystack(r)} for r in records],
@@ -270,12 +277,132 @@ def build_detail(r, lang, out_root):
     return _write(out_root, f'{prefix}datasets/{r["id"]}/index.html', html)
 
 
-def build_all(records, projects, out_root):
+# --------------------------------------------------------------------- #
+# Comparación
+# --------------------------------------------------------------------- #
+def build_compare(records, lang, out_root):
+    depth = 1 if lang == "en" else 2
+    root = _root(depth)
+    main = f"""
+<section class="hero">
+  <div class="container">
+    <h1>{esc(S(lang, "compare_heading"))}</h1>
+    <p class="hero__lede">{esc(S(lang, "compare_empty"))}</p>
+  </div>
+</section>
+<div class="container" style="padding-block:var(--sp-7)">
+  {C.compare_table(records, lang, root)}
+</div>
+"""
+    islands = json_script(js_strings(lang), id="i18n")
+    alt = f"{root}es/compare/" if lang == "en" else f"{root}compare/"
+    html = _shell(lang, "compare",
+                  f'{S(lang, "compare_heading")} — {S(lang, "site_name")}',
+                  S(lang, "compare_empty"), main, depth, alt, islands)
+    return _write(out_root, f"{_prefix(lang)}compare/index.html", html)
+
+
+# --------------------------------------------------------------------- #
+# Paquetes de curso
+# --------------------------------------------------------------------- #
+def build_packs_index(packs, lang, out_root):
+    depth = 1 if lang == "en" else 2
+    root = _root(depth)
+    cards = "".join(C.pack_card(p, lang, root) for p in packs)
+    main = f"""
+<section class="hero">
+  <div class="container">
+    <h1>{esc(S(lang, "packs_heading"))}</h1>
+    <p class="hero__lede">{esc(S(lang, "packs_lede"))}</p>
+  </div>
+</section>
+<div class="container" style="padding-block:var(--sp-7)">
+  <ul class="grid">{cards}</ul>
+</div>
+"""
+    alt = f"{root}es/packs/" if lang == "en" else f"{root}packs/"
+    html = _shell(lang, "packs", f'{S(lang, "packs_heading")} — {S(lang, "site_name")}',
+                  S(lang, "packs_lede"), main, depth, alt,
+                  json_script(js_strings(lang), id="i18n"))
+    return _write(out_root, f"{_prefix(lang)}packs/index.html", html)
+
+
+def build_pack(pack, records, lang, out_root):
+    depth = 2 if lang == "en" else 3
+    root = _root(depth)
+    by_id = {r["id"]: r for r in records}
+    projects = {p["id"]: (p, r) for r in records for p in schema.projects_of(r) if p.get("id")}
+
+    weeks = []
+    for m in pack.get("modules") or []:
+        ds_links = " · ".join(
+            f'<a href="{root}datasets/{esc(i)}/">{esc(by_id[i]["name"])}</a>'
+            for i in (m.get("datasets") or []) if i in by_id)
+        pr = []
+        for pid in (m.get("projects") or []):
+            if pid in projects:
+                proj, owner = projects[pid]
+                q = proj.get(f"question_{lang}") or proj.get("question_en") or ""
+                pr.append(f'<li><a href="{root}datasets/{esc(owner["id"])}/#{esc(pid)}">'
+                          f'{esc(q[:120])}</a></li>')
+        notes = m.get(f"notes_{lang}") or m.get("notes_en") or ""
+        weeks.append(
+            f'<li class="step"><span class="step__num tnum" aria-hidden="true">{m.get("week", "?")}</span>'
+            f'<div><h3>{esc(m.get(f"title_{lang}") or m.get("title_en") or "")}</h3>'
+            + (f'<p>{ds_links}</p>' if ds_links else "")
+            + (f'<ul>{"".join(pr)}</ul>' if pr else "")
+            + (f'<p class="step__eta">{esc(notes)}</p>' if notes else "")
+            + "</div></li>")
+
+    outcomes = "".join(f"<li>{esc(o)}</li>"
+                       for o in (pack.get(f"learning_outcomes_{lang}")
+                                 or pack.get("learning_outcomes_en") or []))
+    sections = []
+    if outcomes:
+        sections.append(f'<section><h2>{esc(S(lang, "pack_outcomes"))}</h2>'
+                        f'<ul class="prose">{outcomes}</ul></section>')
+    if weeks:
+        sections.append(f'<section><h2>{esc(S(lang, "pack_modules"))}</h2>'
+                        f'<ol class="steps">{"".join(weeks)}</ol></section>')
+    assessment = pack.get(f"assessment_{lang}") or pack.get("assessment_en")
+    if assessment:
+        sections.append(f'<section><h2>{esc(S(lang, "pack_assessment"))}</h2>'
+                        f'<p class="prose">{esc(assessment)}</p></section>')
+
+    body = "".join(f'<div style="margin-top:var(--sp-7)">{x}</div>' for x in sections)
+    title = pack.get(f"title_{lang}") or pack.get("title_en") or pack["id"]
+    summary = pack.get(f"summary_{lang}") or pack.get("summary_en") or ""
+
+    main = f"""
+<section class="hero">
+  <div class="container">
+    <p><a href="{root}{_prefix(lang)}packs/">&larr; {esc(S(lang, "packs_heading"))}</a></p>
+    <h1>{esc(title)}</h1>
+    <p class="hero__lede">{esc(summary)}</p>
+    {C.dl_inline([(S(lang, "level"), pack.get("level")), (S(lang, "duration"), pack.get(f"duration_{lang}") or pack.get("duration_en"))])}
+    {C.soft_badges(pack.get("prerequisites"))}
+  </div>
+</section>
+<div class="container">{body}</div>
+"""
+    alt = (f'{root}es/packs/{pack["id"]}/' if lang == "en"
+           else f'{root}packs/{pack["id"]}/')
+    html = _shell(lang, "pack", f'{title} — {S(lang, "site_name")}', summary,
+                  main, depth, alt, json_script(js_strings(lang), id="i18n"))
+    return _write(out_root, f'{_prefix(lang)}packs/{pack["id"]}/index.html', html)
+
+
+def build_all(records, projects, out_root, packs=None):
     written = []
     for lang in LANGS:
         lang_projects = [p for p in projects]
         written.append(build_home(records, lang_projects, lang, out_root))
         written.append(build_projects(records, lang_projects, lang, out_root))
+        written.append(build_compare(records, lang, out_root))
         for r in records:
             written.append(build_detail(r, lang, out_root))
+        if packs:
+            written.append(build_packs_index(packs, lang, out_root))
+            for p in packs:
+                written.append(build_pack(p, records, lang, out_root))
     return written

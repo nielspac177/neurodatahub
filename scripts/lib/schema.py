@@ -13,6 +13,7 @@ Dos niveles de diagnóstico:
 Con ~150 registros, un solo campo de baja confianza no puede bloquear el deploy
 de GitHub Pages; por eso la separación.
 """
+import re
 from collections import Counter
 from datetime import date
 
@@ -144,6 +145,51 @@ def validate(records):
     return errors, warnings
 
 
+VALID_PACK_LEVEL = {"undergraduate", "graduate", "bootcamp"}
+
+
+def validate_packs(packs, records):
+    """Valida los paquetes contra el catálogo.
+
+    Cada id de `datasets:` y `projects:` debe resolver. Sin esta comprobación
+    un paquete se pudre en silencio cuando el catálogo cambia, y un docente
+    reparte un temario con enlaces muertos.
+    """
+    errors, warnings = [], []
+    if not packs:
+        return errors, warnings
+
+    ds_ids = {r["id"] for r in records}
+    proj_ids = {p["id"] for r in records for p in projects_of(r) if p.get("id")}
+    seen = set()
+
+    for i, p in enumerate(packs):
+        label = p.get("id", f"#{i}")
+        if not p.get("id"):
+            errors.append(f"[pack {label}] sin id")
+        elif p["id"] in seen:
+            errors.append(f"[pack {label}] id duplicado")
+        seen.add(p.get("id"))
+
+        if not (p.get("title_en") or p.get("title_es")):
+            errors.append(f"[pack {label}] sin título en ningún idioma")
+        if p.get("level") and p["level"] not in VALID_PACK_LEVEL:
+            errors.append(f"[pack {label}] level inválido: {p['level']}")
+
+        for m in p.get("modules") or []:
+            for d in m.get("datasets") or []:
+                if d not in ds_ids:
+                    errors.append(f"[pack {label}] semana {m.get('week')}: "
+                                  f"dataset inexistente: {d}")
+            for q in m.get("projects") or []:
+                if q not in proj_ids:
+                    errors.append(f"[pack {label}] semana {m.get('week')}: "
+                                  f"proyecto inexistente: {q}")
+        if not p.get("modules"):
+            warnings.append(f"[pack {label}] sin módulos — no hay nada que asignar")
+    return errors, warnings
+
+
 def _enum(errors, label, record, field, allowed, optional=False):
     v = record.get(field)
     if v is None or v == "":
@@ -203,6 +249,11 @@ def _validate_projects(errors, warnings, label, record, ids_seen):
         if not (p.get("question_en") or p.get("question_es")):
             errors.append(f"[{label}/{pid}] proyecto sin pregunta en ningún idioma")
 
+        bad = check_spanish_accents(p.get("question_es"))
+        if bad:
+            warnings.append(f"[{label}/{pid}] español posiblemente sin tildes: "
+                            f"{', '.join(bad[:5])}")
+
         _enum(errors, f"{label}/{pid}", p, "lens", VALID_LENS, optional=True)
         _enum(errors, f"{label}/{pid}", p, "compute", VALID_COMPUTE, optional=True)
         _enum(errors, f"{label}/{pid}", p, "status", VALID_PROJECT_STATUS, optional=True)
@@ -225,6 +276,20 @@ def _validate_projects(errors, warnings, label, record, ids_seen):
 
         if p.get("status") == "closed" and not p.get("closed_by_doi"):
             warnings.append(f"[{label}/{pid}] proyecto cerrado sin closed_by_doi")
+
+
+# Palabras españolas frecuentes que, sin tilde, son otra palabra o un error
+# claro. El pipeline LLM devolvió "anos" por "años" en una corrida; sin este
+# aviso eso se publica y nadie lo ve.
+_MISSING_ACCENT = re.compile(
+    r"\b(anos|ano|division|cuanto|cuantos|varian|geometria|discriminacion|"
+    r"tamanos|condicion|manipulacion|dinamica|numero|analisis|metodo|"
+    r"tecnica|practica|clinico|linea|dia|mas|segun|tambien)\b")
+
+
+def check_spanish_accents(text):
+    """Devuelve las palabras sospechosas de haber perdido la tilde."""
+    return sorted(set(_MISSING_ACCENT.findall(text or "")))
 
 
 def _rating(errors, label, value, field):

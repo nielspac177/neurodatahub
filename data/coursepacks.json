@@ -1,0 +1,133 @@
+{
+  "count": 2,
+  "packs": [
+    {
+      "id": "intro-eeg",
+      "title_en": "Getting started with open EEG",
+      "title_es": "Primeros pasos con EEG abierto",
+      "level": "undergraduate",
+      "duration_en": "6 weeks",
+      "duration_es": "6 semanas",
+      "summary_en": "From zero to a working seizure-detection baseline using only no-barrier EEG data. Every dataset in this pack can be downloaded the same day, so nobody waits on credentialing.",
+      "summary_es": "De cero a una línea base funcional de detección de crisis usando sólo EEG sin barrera de acceso. Todas las bases de este paquete se descargan el mismo día, así nadie espera por credenciales.",
+      "prerequisites": [
+        "python",
+        "numpy",
+        "señales-básicas"
+      ],
+      "learning_outcomes_en": [
+        "Load and epoch raw EEG with MNE-Python",
+        "Explain why chance level is not 50% in an imbalanced seizure dataset",
+        "Train and honestly evaluate a subject-wise cross-validated classifier",
+        "Report why a within-subject score does not transfer across patients"
+      ],
+      "learning_outcomes_es": [
+        "Cargar y segmentar EEG crudo con MNE-Python",
+        "Explicar por qué el nivel de azar no es 50% en un dataset de crisis desbalanceado",
+        "Entrenar y evaluar honestamente un clasificador con validación cruzada por sujeto",
+        "Explicar por qué una métrica intra-sujeto no transfiere entre pacientes"
+      ],
+      "modules": [
+        {
+          "week": 1,
+          "title_en": "Where open EEG lives, and what 'open' costs",
+          "title_es": "Dónde vive el EEG abierto, y qué cuesta que sea 'abierto'",
+          "datasets": [
+            "chb-mit"
+          ],
+          "notes_en": "Start with CHB-MIT: open download, no DUA. Read the header format before writing any code.",
+          "notes_es": "Empieza con CHB-MIT: descarga abierta, sin DUA. Lee el formato de cabecera antes de escribir código."
+        },
+        {
+          "week": 2,
+          "title_en": "Scaling up: a corpus with real clinical noise",
+          "title_es": "Escalar: un corpus con ruido clínico real",
+          "datasets": [
+            "tuh-eeg"
+          ],
+          "notes_en": "TUH needs free registration — start the request in week 1 so it does not block you here.",
+          "notes_es": "TUH exige registro gratuito: inicia la solicitud en la semana 1 para que no te bloquee aquí."
+        },
+        {
+          "week": 4,
+          "title_en": "Cross-patient generalization",
+          "title_es": "Generalización entre pacientes",
+          "datasets": [
+            "chb-mit",
+            "tuh-eeg"
+          ],
+          "projects": [
+            "chb-mit-q1"
+          ],
+          "notes_en": "The core lesson of the pack: a model that looks excellent within a patient often collapses across patients.",
+          "notes_es": "La lección central del paquete: un modelo excelente dentro de un paciente suele colapsar entre pacientes."
+        }
+      ],
+      "assessment_en": "A short report with one figure: within-subject versus cross-subject performance on the same model, and an honest paragraph on why they differ.",
+      "assessment_es": "Informe breve con una figura: rendimiento intra-sujeto frente a entre-sujetos con el mismo modelo, y un párrafo honesto sobre por qué difieren."
+    },
+    {
+      "id": "neuroimaging-ml",
+      "title_en": "Neuroimaging machine learning without a cluster",
+      "title_es": "Machine learning en neuroimagen sin clúster",
+      "level": "graduate",
+      "duration_en": "10 weeks",
+      "duration_es": "10 semanas",
+      "summary_en": "Build a defensible neuroimaging ML pipeline on a laptop. Emphasis on leakage, external validation and reporting — the three places student projects usually fail review.",
+      "summary_es": "Construir un pipeline defendible de ML en neuroimagen desde un portátil. Énfasis en fugas de información, validación externa y reporte: los tres puntos donde suelen caer los proyectos estudiantiles.",
+      "prerequisites": [
+        "python",
+        "scikit-learn",
+        "nibabel",
+        "estadística"
+      ],
+      "learning_outcomes_en": [
+        "Navigate a BIDS dataset and know what is raw versus derived",
+        "Build a leakage-free cross-validation split for imaging data",
+        "Validate externally on a cohort the model never saw",
+        "Report a model with TRIPOD-style transparency"
+      ],
+      "learning_outcomes_es": [
+        "Navegar un dataset BIDS y distinguir lo crudo de lo derivado",
+        "Construir una validación cruzada sin fugas para datos de imagen",
+        "Validar externamente en una cohorte que el modelo nunca vio",
+        "Reportar un modelo con la transparencia del estándar TRIPOD"
+      ],
+      "modules": [
+        {
+          "week": 1,
+          "title_en": "Open imaging repositories and BIDS",
+          "title_es": "Repositorios de imagen abiertos y BIDS",
+          "datasets": [
+            "openneuro"
+          ],
+          "notes_en": "OpenNeuro is open access; use it to learn BIDS before touching anything credentialed.",
+          "notes_es": "OpenNeuro es de acceso abierto; úsalo para aprender BIDS antes de tocar nada con credencial."
+        },
+        {
+          "week": 3,
+          "title_en": "A benchmark with a leaderboard, and its traps",
+          "title_es": "Un benchmark con ranking, y sus trampas",
+          "datasets": [
+            "brats"
+          ],
+          "notes_en": "BraTS is heavily mined. Read what has already been published before proposing a topic.",
+          "notes_es": "BraTS está muy explotado. Lee lo ya publicado antes de proponer un tema."
+        },
+        {
+          "week": 6,
+          "title_en": "Longitudinal cohorts and access latency",
+          "title_es": "Cohortes longitudinales y latencia de acceso",
+          "datasets": [
+            "adni",
+            "oasis"
+          ],
+          "notes_en": "ADNI needs a formal application — budget weeks, not days. OASIS is the fallback if approval is slow.",
+          "notes_es": "ADNI exige solicitud formal: presupuesta semanas, no días. OASIS es el plan B si la aprobación tarda."
+        }
+      ],
+      "assessment_en": "A model card plus an external-validation table: performance on the development cohort and on a cohort the model never saw, with calibration reported.",
+      "assessment_es": "Una model card y una tabla de validación externa: rendimiento en la cohorte de desarrollo y en una que el modelo nunca vio, con la calibración reportada."
+    }
+  ]
+}
