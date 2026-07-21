@@ -1,8 +1,158 @@
 {
+  "citedby": {
+    "counts": {
+      "10.1002/jmri.21049": {
+        "checked": "2026-07-21",
+        "count": 4412,
+        "previous": null,
+        "work_id": "W2078524519"
+      },
+      "10.1007/s10278-013-9622-7": {
+        "checked": "2026-07-21",
+        "count": 4636,
+        "previous": null,
+        "work_id": "W2083927153"
+      },
+      "10.1007/s11682-013-9269-5": {
+        "checked": "2026-07-21",
+        "count": 883,
+        "previous": null,
+        "work_id": "W2102521965"
+      },
+      "10.1016/j.dcn.2018.03.001": {
+        "checked": "2026-07-21",
+        "count": 2405,
+        "previous": null,
+        "work_id": "W2789530810"
+      },
+      "10.1016/j.pneurobio.2011.09.005": {
+        "checked": "2026-07-21",
+        "count": 1937,
+        "previous": null,
+        "work_id": "W1988494453"
+      },
+      "10.1038/s41597-022-01899-x": {
+        "checked": "2026-07-21",
+        "count": 2918,
+        "previous": null,
+        "work_id": "W4313439128"
+      },
+      "10.1038/sdata.2018.178": {
+        "checked": "2026-07-21",
+        "count": 1903,
+        "previous": null,
+        "work_id": "W2891400669"
+      },
+      "10.1088/1741-2552/aadea0": {
+        "checked": "2026-07-21",
+        "count": 177,
+        "previous": null,
+        "work_id": "W2804957865"
+      },
+      "10.1101/2019.12.13.19014902": {
+        "checked": "2026-07-21",
+        "count": 793,
+        "previous": null,
+        "work_id": "W2995808388"
+      },
+      "10.1109/tmi.2014.2377694": {
+        "checked": "2026-07-21",
+        "count": 6606,
+        "previous": null,
+        "work_id": "W1641498739"
+      },
+      "10.1176/appi.ajp.2017.17030283": {
+        "checked": "2026-07-21",
+        "count": 687,
+        "previous": null,
+        "work_id": "W2609984900"
+      },
+      "10.13026/c2k01r": {
+        "checked": "2026-07-21",
+        "count": 46,
+        "previous": null,
+        "work_id": "W6940928799"
+      },
+      "10.1371/journal.pmed.1001779": {
+        "checked": "2026-07-21",
+        "count": 13535,
+        "previous": null,
+        "work_id": "W2082704080"
+      },
+      "10.18112/openneuro.ds008055.v1.0.4": {
+        "checked": "2026-07-21",
+        "count": 0,
+        "previous": null,
+        "work_id": "W7166593980"
+      },
+      "10.18112/openneuro.ds008064.v1.0.0": {
+        "checked": "2026-07-21",
+        "count": 0,
+        "previous": null,
+        "work_id": "W7166566292"
+      },
+      "10.18112/openneuro.ds008066.v1.0.0": {
+        "checked": "2026-07-21",
+        "count": 0,
+        "previous": null,
+        "work_id": "W7167693789"
+      },
+      "10.18112/openneuro.ds008108.v1.0.0": {
+        "checked": "2026-07-21",
+        "count": 0,
+        "previous": null,
+        "work_id": "W7167585698"
+      },
+      "10.3389/fnins.2012.00055": {
+        "checked": "2026-07-21",
+        "count": 1232,
+        "previous": null,
+        "work_id": "W2119163516"
+      },
+      "10.3389/fnins.2016.00196": {
+        "checked": "2026-07-21",
+        "count": 509,
+        "previous": null,
+        "work_id": "W2345279893"
+      },
+      "10.7554/elife.71774": {
+        "checked": "2026-07-21",
+        "count": 380,
+        "previous": null,
+        "work_id": "W3206860915"
+      }
+    },
+    "last_run": "2026-07-21"
+  },
   "crossref": {
+    "1053-8119": {
+      "high_water_index_date": "2026-07-21",
+      "last_count": 6279,
+      "last_run": "2026-07-21"
+    },
+    "1662-453X": {
+      "high_water_index_date": "2026-07-21",
+      "last_count": 4348,
+      "last_run": "2026-07-21"
+    },
+    "2047-217X": {
+      "high_water_index_date": "2026-07-21",
+      "last_count": 517,
+      "last_run": "2026-07-21"
+    },
     "2052-4463": {
-      "high_water_index_date": "2026-07-13",
-      "last_count": 30,
+      "high_water_index_date": "2026-07-21",
+      "last_count": 2224,
+      "last_run": "2026-07-21"
+    },
+    "2213-1582": {
+      "high_water_index_date": "2026-07-21",
+      "last_count": 1152,
+      "last_run": "2026-07-21"
+    },
+    "2352-3409": {
+      "high_water_index_date": "2026-07-21",
+      "last_count": 1533,
       "last_run": "2026-07-21"
     }
   },
@@ -10,8 +160,18 @@
     "last_created": "2020-08-05T01:55:23",
     "last_run": "2026-07-21"
   },
+  "europepmc": {
+    "last_run": "2026-07-21"
+  },
+  "openalex": {
+    "last_run": "2026-07-21",
+    "rotation_index": 24
+  },
   "openneuro": {
     "last_created": "2026-07-11T04:58:00",
+    "last_run": "2026-07-21"
+  },
+  "zenodo": {
     "last_run": "2026-07-21"
   }
 }

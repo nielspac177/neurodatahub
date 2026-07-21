@@ -1,4 +1,18 @@
 {
+  "10-1038-s41597-025-04511-0": {
+    "access_page_sha256": "3f50f2b96cdee05203884bd88b8fb2d61c6d1afeed710555d41f0de1ee4643d1",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21",
+    "redirects_to": "https://www.nature.com/articles/s41597-025-04511-0"
+  },
+  "abcd": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
   "adni": {
     "access_page_sha256": "6a6972b71314435b7d73c3023ad6605fd364ad5a0b7e30a52d4923b5f003d4c6",
     "checked": "2026-07-21",
@@ -6,8 +20,39 @@
     "http_status": 200,
     "last_ok": "2026-07-21"
   },
+  "bci-competition-iv": {
+    "access_page_sha256": "8f865f57f8638202c65d9d2dfb8fe1e08885e7f0bede048d2aab503fc8627215",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "brats": {
+    "access_page_sha256": "1e888add6bfad3316e08fbb780cbe81862735299408f250f5d2048af29005476",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21",
+    "redirects_to": "https://www.synapse.org/Synapse:syn53708126"
+  },
+  "chb-mit": {
+    "access_page_sha256": "9444bd00126fcba2c70a5b4638615dbfa61f2e98d2a739ba98bf2675b1e100d5",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
   "eicu-crd": {
-    "access_page_sha256": "b91abd74372edb2f41fe6b60e21b4ebf36374c9bff863bc7be8609732fbd8438",
+    "access_changed_at": "2026-07-21",
+    "access_page_sha256": "ca214b6f0b17436e304ea8d9c0634c62da0e5107811e72f922c35c313bc6ed3d",
+    "access_recheck": true,
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "enigma": {
+    "access_page_sha256": "9871c4d79076e9bd3b4f9aa5091d45318ce2c1d0495f01c2ab5289155d985d83",
     "checked": "2026-07-21",
     "fail_streak": 0,
     "http_status": 200,
@@ -20,11 +65,81 @@
     "http_status": 200,
     "last_ok": "2026-07-21"
   },
+  "moabb": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "oasis": {
+    "access_page_sha256": "82774e3b943ce63f30ae098627c2a374e48b202d4cda2238d410b47100b0f432",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "openneuro": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "openneuro-ds008055": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "openneuro-ds008064": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "openneuro-ds008066": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "openneuro-ds008108": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "pgc": {
+    "access_page_sha256": "bd324824ce86168eee06486ede6302aa0f28abdcb3eff38625e357b0d0e9d7e0",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
   "ppmi": {
     "access_page_sha256": "b42a2660f48b1078f8e536bbb7c43a900a6a571b4297ea60cba735db8e59bf1e",
     "checked": "2026-07-21",
     "fail_streak": 0,
     "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "tcia": {
+    "access_page_sha256": "f2fed490c8a3e268134e7df921d6f24cf691782e8a0e48af70bdec2fa9f89829",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "tuh-eeg": {
+    "access_page_sha256": "6ebd6fa1b191f7a5d75037cf57ec7c114a0553be0367f5c563f8ae873a6b4804",
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-07-21"
+  },
+  "uk-biobank": {
+    "checked": "2026-07-21",
+    "fail_streak": 0,
+    "http_status": 403,
     "last_ok": "2026-07-21"
   }
 }
