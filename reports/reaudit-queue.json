@@ -3,6 +3,16 @@
   "citation_triggers": 0,
   "queue": [
     {
+      "id": "eicu-crd",
+      "score": 4.9,
+      "reasons": [
+        "la página de acceso cambió",
+        "1 preguntas sin verificar"
+      ],
+      "access": "credentialed",
+      "last_verified": "2026-07-21"
+    },
+    {
       "id": "ppmi",
       "score": 2.1,
       "reasons": [
@@ -48,15 +58,6 @@
       "last_verified": "2026-07-21"
     },
     {
-      "id": "eicu-crd",
-      "score": 1.9,
-      "reasons": [
-        "1 preguntas sin verificar"
-      ],
-      "access": "credentialed",
-      "last_verified": "2026-07-21"
-    },
-    {
       "id": "brats",
       "score": 1.5,
       "reasons": [
@@ -72,6 +73,106 @@
         "1 preguntas sin verificar"
       ],
       "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "pgc",
+      "score": 1.5,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "enigma",
+      "score": 1.5,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "tuh-eeg",
+      "score": 1.5,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "oasis",
+      "score": 1.5,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "registration",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "openneuro",
+      "score": 1.2,
+      "reasons": [
+        "2 preguntas sin verificar"
+      ],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "chb-mit",
+      "score": 1.2,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "bci-competition-iv",
+      "score": 1.2,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "moabb",
+      "score": 1.2,
+      "reasons": [
+        "1 preguntas sin verificar"
+      ],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "10-1038-s41597-025-04511-0",
+      "score": 0.7,
+      "reasons": [],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "openneuro-ds008064",
+      "score": 0.7,
+      "reasons": [],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "openneuro-ds008066",
+      "score": 0.7,
+      "reasons": [],
+      "access": "open",
+      "last_verified": "2026-07-21"
+    },
+    {
+      "id": "openneuro-ds008055",
+      "score": 0.25,
+      "reasons": [],
+      "access": "open",
       "last_verified": "2026-07-21"
     }
   ]
