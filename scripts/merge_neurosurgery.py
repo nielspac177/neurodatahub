@@ -106,6 +106,16 @@ def main():
             if q.get("feasibility") in schema.VALID_FEASIBILITY:
                 proj["feasibility"] = q["feasibility"]
 
+            # El trabajo previo que el redactor ya identificó. Sin esto, la
+            # afirmación de novedad queda sin respaldo visible y el estudiante
+            # no puede comprobarla. Se copia sólo lo que tiene forma de DOI.
+            prior = [w for w in (q.get("prior_work") or [])
+                     if isinstance(w, dict) and str(w.get("doi", "")).startswith("10.")]
+            if prior:
+                proj["prior_work"] = [{"doi": w["doi"],
+                                       "what_was_done": w.get("what_was_done", "trabajo previo cercano")}
+                                      for w in prior]
+
             proj = {k: v for k, v in proj.items() if v not in (None, "", [])}
             by_id[ds].setdefault("projects", []).append(proj)
             existing_pids.add(qid)
