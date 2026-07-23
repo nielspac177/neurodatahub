@@ -1831,6 +1831,126 @@
           "novelty": "partial",
           "still_open_because": "No existing study performs this analysis in the eICU-CRD multicenter cohort specifically, AND — the genuinely open delta — none pre-specifies and tests the effect-modification hypothesis that any beta-blocker mortality benefit is concentrated in patients with early (first-day) tachycardia as a proxy for sympathetic hyperactivity. Prior work reports main/adjusted effects and generic subgroups but not a formal heart-rate-stratified interaction test tying benefit to the hyperadrenergic phenotype. Remaining delta = (1) eICU replication + (2) the tachycardia-by-beta-blocker interaction analysis.",
           "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-eicu-ich-site-variation",
+          "question_en": "Across the ~200 hospitals of eICU, how much of the variation in intracerebral haemorrhage mortality is attributable to the hospital rather than to the patient, once admission severity is adjusted for, and which hospital characteristics (size, teaching status, region, ICU type) explain the residual variation?",
+          "question_es": "En los ~200 hospitales de eICU, ¿qué parte de la variación en la mortalidad por hemorragia intracerebral es atribuible al hospital y no al paciente, tras ajustar por la gravedad al ingreso, y qué características hospitalarias (tamaño, docencia, región, tipo de UCI) explican la variación residual?",
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data",
+            "validation"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "If two hospitals with the same patients produce different mortality, the difference is a process-of-care problem that quality programmes can fix — which is a far more actionable finding than another prognostic marker.",
+          "outcome_measure": "Intraclass correlation and median odds ratio for in-hospital mortality across sites; secondary: site variation in DNR and neurosurgical procedure rates",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "eICU site-variation analyses exist for sepsis and general ICU mortality; the ICH-specific decomposition with the DNR-rate and procedure-rate secondary outcomes has not been published, and it directly tests the regionalisation argument.",
+          "feasibility": "feasible"
+        },
+        {
+          "id": "vascular-eicu-volume-outcome",
+          "question_en": "In eICU, is a hospital's annual volume of haemorrhagic-stroke ICU admissions associated with risk-adjusted in-hospital mortality and with the probability that a patient receives a neurosurgical procedure — the empirical basis of the argument for regionalising cerebrovascular care?",
+          "question_es": "En eICU, ¿el volumen anual de ingresos en UCI por ictus hemorrágico de un hospital se asocia a la mortalidad intrahospitalaria ajustada por riesgo y a la probabilidad de que un paciente reciba un procedimiento neuroquirúrgico, base empírica del argumento para regionalizar la atención cerebrovascular?",
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Whether a bleeding patient should be transferred to a high-volume centre is a live health-systems question with real transfer risks on the other side of the ledger.",
+          "outcome_measure": "Risk-adjusted in-hospital mortality by volume quartile; secondary: neurosurgical procedure rate and transfer-in status",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Volume-outcome relationships for SAH come from administrative discharge databases without physiology; eICU adds severity adjustment and procedure-level detail, and the two-year window means volume must be estimated with an explicitly stated denominator caveat.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-eicu-external-validation-ich-model",
+          "question_en": "Does a mortality model for intracerebral haemorrhage trained on MIMIC-IV keep its discrimination and calibration when validated hospital-by-hospital in eICU, and which hospital characteristics predict where it decalibrates most?",
+          "question_es": "¿Un modelo de mortalidad para hemorragia intracerebral entrenado en MIMIC-IV mantiene su discriminación y calibración al validarse hospital por hospital en eICU, y qué características hospitalarias predicen dónde se descalibra más?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "machine-learning",
+            "validation",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "mimic-iv"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "A prognostic score that decalibrates at the receiving hospital produces exactly the pessimism that drives early withdrawal — so knowing where the model breaks is a patient-safety question, not a methods exercise.",
+          "outcome_measure": "AUC and calibration slope/intercept per hospital, following TRIPOD reporting",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Cross-database validation has been done for sepsis and general ICU mortality and, in TBI, for physiological time-series models; the ICH-specific per-hospital calibration analysis with a decalibration-predictor model has not been reported.",
+          "feasibility": "feasible"
+        },
+        {
+          "id": "vascular-eicu-equity-wlst",
+          "question_en": "In eICU patients with spontaneous intracerebral haemorrhage, do race and insurance status predict the rate of withdrawal of life-sustaining therapy and of neurosurgical intervention after adjustment for severity, and does the site random effect absorb the disparity — that is, is the difference between patients or between the hospitals they reach?",
+          "question_es": "En pacientes de eICU con hemorragia intracerebral espontánea, ¿la raza y el tipo de seguro predicen la tasa de retirada de soporte vital y de intervención neuroquirúrgica tras ajustar por gravedad, y absorbe el efecto aleatorio de centro la disparidad, es decir, la diferencia está entre pacientes o entre los hospitales a los que llegan?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "mimic-iv"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Disparities in end-of-life decisions after haemorrhagic stroke are documented, but whether they live in the bedside conversation or in which hospital the patient arrives at determines whether the fix is training or health-system policy.",
+          "outcome_measure": "Adjusted odds of withdrawal of life-sustaining therapy and of neurosurgical procedure, with and without hospital random effects; secondary: in-hospital mortality",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Registry and national-inpatient-sample studies establish that Black patients undergo WLST less often after ICH; what is unanswered is the between- versus within-hospital decomposition with physiological severity adjustment, which only a multi-hospital ICU database supports. Race in eICU is coarsely coded and that misclassification must be reported, not glossed.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1007/s12028-018-0554-4",
+              "what_was_done": "minority patients less likely to undergo withdrawal of care after spontaneous ICH, registry data without site decomposition"
+            }
+          ]
+        },
+        {
+          "id": "vascular-eicu-offhours-intervention",
+          "question_en": "Does admission at night or at the weekend delay neurosurgical intervention and reversal-agent administration in haemorrhagic stroke across eICU hospitals, and is any delay reflected in risk-adjusted mortality?",
+          "question_es": "¿El ingreso nocturno o en fin de semana retrasa la intervención neuroquirúrgica y la administración del agente reversor en el ictus hemorrágico en los hospitales de eICU, y se refleja ese retraso en la mortalidad ajustada por riesgo?",
+          "difficulty": 3,
+          "effort_weeks": 9,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "The off-hours effect is the classic argument for in-house neurosurgical cover, and it should be visible as a time-to-intervention difference before it is visible as a mortality difference.",
+          "outcome_measure": "Time from ICU admission to neurosurgical procedure or reversal agent; secondary: risk-adjusted in-hospital mortality",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Weekend-effect studies for stroke use administrative databases and mortality alone; the process endpoint (time to intervention) with minute-level ICU offsets, which is the mechanism the effect is supposed to run through, has not been examined in eICU.",
+          "feasibility": "feasible"
         }
       ],
       "descriptor_doi": "10.1038/sdata.2018.178",
@@ -2417,6 +2537,338 @@
           "novelty": "partial",
           "still_open_because": "No study applies a formal target-trial emulation design (with explicit handling of immortal-time bias from monitor-placement timing) to this device question — existing work uses propensity weighting/matching in ordinary cohorts, and the only TBI target-trial emulation found addresses prophylactic anticoagulation, not ICP monitoring. Also not jointly done in one study: discharge-home-vs-facility as a co-primary outcome alongside mortality, and an explicit EVD-vs-ICP-bolt device-type contrast. That methodological+outcome combination is the remaining delta.",
           "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-nimodipine-interruption",
+          "question_en": "In adults admitted to the ICU with aneurysmal subarachnoid haemorrhage (ICD-9 430 / ICD-10 I60.x), does maintaining the full nimodipine schedule with vasopressor support to protect the mean arterial pressure, versus reducing or interrupting nimodipine when hypotension appears, change in-hospital mortality and the odds of discharge home rather than to a facility, in a target-trial emulation cloned at the first hypotensive episode?",
+          "question_es": "En adultos ingresados en UCI con hemorragia subaracnoidea aneurismática (CIE-9 430 / CIE-10 I60.x), ¿mantener la pauta completa de nimodipino con soporte vasopresor para proteger la presión arterial media, frente a reducir o interrumpir el nimodipino cuando aparece hipotensión, modifica la mortalidad intrahospitalaria y la probabilidad de alta a domicilio en lugar de a un centro, en una emulación de ensayo diana clonada en el primer episodio hipotensivo?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Nimodipine is the only drug with class I evidence in aSAH, yet the bedside reflex when the pressure drops is to halve the dose or skip it — nobody knows whether the safer-looking manoeuvre costs the patient the one proven benefit.",
+          "outcome_measure": "In-hospital mortality and discharge disposition (home vs facility); secondary: initiation of vasopressors for induced hypertension and ICU length of stay",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "MIMIC-IV work already reports a nimodipine dose-response for 28-day mortality (cumulative first-24h dose, propensity matched), but that design compares patients who got more versus less drug rather than the clinical decision made at the hypotensive episode; no study emulates the hold-versus-support-with-vasopressor strategy with a clone-censor-weight design or reports discharge disposition for it.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1007/s10143-025-03695-8",
+              "what_was_done": "MIMIC-IV retrospective cohorts of nimodipine exposure and adjunctive magnesium in non-traumatic SAH, mortality endpoints"
+            }
+          ]
+        },
+        {
+          "id": "vascular-icu-sah-transfusion-threshold",
+          "question_en": "Among ICU patients with aneurysmal subarachnoid haemorrhage who become anaemic, does a liberal red-cell transfusion strategy (transfuse at haemoglobin below 10 g/dL) versus a restrictive one (below 8 g/dL) associate with lower in-hospital mortality and better discharge disposition, once admission severity, rebleeding and surgical or endovascular treatment are accounted for?",
+          "question_es": "En pacientes de UCI con hemorragia subaracnoidea aneurismática que desarrollan anemia, ¿una estrategia liberal de transfusión de hematíes (transfundir con hemoglobina < 10 g/dL) frente a una restrictiva (< 8 g/dL) se asocia a menor mortalidad intrahospitalaria y mejor destino al alta, una vez tenidas en cuenta la gravedad al ingreso, el resangrado y el tratamiento quirúrgico o endovascular?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "The brain at risk of delayed ischaemia is the one organ where the restrictive transfusion dogma may be wrong, and SAHaRA-style trials are only now reporting — meanwhile every neuro-ICU transfuses by habit rather than by evidence.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; secondary: vasopressor-treated induced hypertension as a delayed-ischaemia proxy",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Published MIMIC SAH papers are almost all single-biomarker-versus-mortality associations (sodium, anion gap, platelet-to-RDW, SpO2); the transfusion-threshold strategy question in an SAH-specific ICU cohort with a disposition endpoint has not been emulated on these data.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-sah-fever-burden",
+          "question_en": "In aneurysmal subarachnoid haemorrhage, does the cumulative fever burden over the first seven ICU days (area under the temperature-above-38.3 C curve) predict in-hospital mortality and discharge disposition independently of admission severity, and does active cooling or antipyretic exposure modify that association?",
+          "question_es": "En la hemorragia subaracnoidea aneurismática, ¿la carga febril acumulada durante los primeros siete días de UCI (área bajo la curva de temperatura por encima de 38,3 °C) predice la mortalidad intrahospitalaria y el destino al alta con independencia de la gravedad al ingreso, y modifica esa asociación el enfriamiento activo o la exposición a antipiréticos?",
+          "difficulty": 3,
+          "effort_weeks": 9,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Fever after SAH is the commonest secondary insult on the unit and the one every intensivist treats reflexively, without knowing whether the burden itself or the illness that causes it drives the bad outcome.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; secondary: ICU length of stay",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Fever-outcome associations after SAH are established in prospective registries, but the confounding-by-infection structure and the antipyretic-exposure interaction have not been modelled on granular ICU time series with a formal negative-control analysis.",
+          "feasibility": "feasible"
+        },
+        {
+          "id": "vascular-icu-sah-hyponatremia-strategy",
+          "question_en": "In aneurysmal subarachnoid haemorrhage complicated by hyponatraemia, does an active sodium-correcting strategy (hypertonic saline or fludrocortisone) versus fluid restriction associate with lower in-hospital mortality and fewer days of vasopressor-supported induced hypertension?",
+          "question_es": "En la hemorragia subaracnoidea aneurismática complicada con hiponatremia, ¿una estrategia activa de corrección del sodio (suero salino hipertónico o fludrocortisona) frente a la restricción hídrica se asocia a menor mortalidad intrahospitalaria y a menos días de hipertensión inducida con vasopresores?",
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Cerebral salt wasting and SIADH look identical on the chart but demand opposite treatments, and fluid restriction in a vasospasm-prone patient is exactly the manoeuvre neurosurgeons fear.",
+          "outcome_measure": "In-hospital mortality; secondary: vasopressor days and discharge disposition",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "A MIMIC-IV paper links admission sodium to mortality in non-traumatic SAH, but describes an association with a baseline value rather than comparing the two management strategies with time-varying exposure.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.3389/fneur.2023.1234769",
+              "what_was_done": "MIMIC-IV association of 24-hour serum sodium with all-cause mortality in non-traumatic SAH"
+            }
+          ]
+        },
+        {
+          "id": "vascular-icu-sah-cardiac-effect-modification",
+          "question_en": "In aneurysmal subarachnoid haemorrhage with neurogenic cardiac injury (troponin elevation or new ECG repolarisation change in the first 48 h), is the association between vasopressor-supported induced hypertension and in-hospital mortality different from that in patients without cardiac injury — that is, does the stunned myocardium change the risk-benefit of pushing the pressure?",
+          "question_es": "En la hemorragia subaracnoidea aneurismática con lesión cardiaca neurogénica (elevación de troponina o cambio nuevo de repolarización en el ECG en las primeras 48 h), ¿la asociación entre la hipertensión inducida con vasopresores y la mortalidad intrahospitalaria difiere de la de los pacientes sin lesión cardiaca, es decir, cambia el miocardio aturdido el balance riesgo-beneficio de subir la presión?",
+          "difficulty": 4,
+          "effort_weeks": 12,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Induced hypertension is the standard rescue for delayed ischaemia, but a third of these patients have a stunned heart, and no guideline says whether that should temper the vasopressor.",
+          "outcome_measure": "In-hospital mortality with a formal interaction term; secondary: discharge disposition and new heart-failure coding",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Neurogenic stunned myocardium after SAH is well described as a prognostic marker, but it has not been tested as an effect modifier of induced-hypertension exposure in an ICU dataset with drug-level vasopressor timing.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-ich-early-dnr",
+          "question_en": "In spontaneous intracerebral haemorrhage, does a do-not-resuscitate order written in the first 24 hours associate with higher in-hospital mortality after adjustment for admission severity, and how much of that association is mediated by measurable reductions in treatment intensity (ICU procedures, vasopressors, ventilation, neurosurgical intervention) rather than by the severity that prompted the order?",
+          "question_es": "En la hemorragia intracerebral espontánea, ¿una orden de no reanimar escrita en las primeras 24 horas se asocia a mayor mortalidad intrahospitalaria tras ajustar por gravedad al ingreso, y qué parte de esa asociación está mediada por reducciones medibles en la intensidad del tratamiento (procedimientos de UCI, vasopresores, ventilación, intervención neuroquirúrgica) y no por la gravedad que motivó la orden?",
+          "difficulty": 5,
+          "effort_weeks": 14,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "The self-fulfilling prophecy is the central ethical problem of ICH care: prognostic pessimism produces the outcome it predicts, and the only way to see it is to measure whether the DNR order is followed by less treatment.",
+          "outcome_measure": "In-hospital mortality, decomposed into direct effect and effect mediated through treatment-intensity measures",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "The early-DNR question has been asked in single-centre prospective registries with conflicting answers, but not with a formal mediation decomposition through machine-measured treatment intensity, and not across the ~200 hospitals of eICU where DNR culture varies by site.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1007/s12028-013-9878-2",
+              "what_was_done": "prospective single-centre registry, early DNR versus outcome, no mediation model"
+            },
+            {
+              "doi": "10.1007/s12028-020-01014-1",
+              "what_was_done": "early DNR orders and outcome after ICH"
+            }
+          ]
+        },
+        {
+          "id": "vascular-icu-ich-bp-target-emulation",
+          "question_en": "In spontaneous intracerebral haemorrhage presenting with systolic pressure above 180 mmHg, does an intensive blood-pressure strategy (systolic below 140 mmHg achieved within the first hours) versus a standard strategy (below 180 mmHg) change in-hospital mortality and discharge disposition when emulated as a target trial with time-varying confounding by neurological deterioration?",
+          "question_es": "En la hemorragia intracerebral espontánea con presión sistólica de presentación superior a 180 mmHg, ¿una estrategia intensiva de presión arterial (sistólica < 140 mmHg alcanzada en las primeras horas) frente a una estándar (< 180 mmHg) modifica la mortalidad intrahospitalaria y el destino al alta cuando se emula como ensayo diana con confusión variable en el tiempo por deterioro neurológico?",
+          "difficulty": 5,
+          "effort_weeks": 14,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "INTERACT and ATACH-2 disagreed on how low to go and whether speed or level matters, so the bedside question — how aggressively to treat the pressure in the first hours — is still argued on every round.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; secondary: acute kidney injury as the harm endpoint",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "MIMIC-IV analyses of ICH blood pressure report variability indices as prognostic markers rather than emulating the treat-to-target strategies that the trials actually compared; the achieved-target emulation with time-varying confounding has not been done on these data.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.17085/apm.24039",
+              "what_was_done": "MIMIC-IV, first-24h blood-pressure variability indices versus in-hospital mortality in 1,036 ICH patients"
+            }
+          ]
+        },
+        {
+          "id": "vascular-icu-ich-reversal-timing",
+          "question_en": "In anticoagulation-associated intracerebral haemorrhage, does time from hospital arrival to administration of a reversal agent (4-factor PCC, vitamin K, idarucizumab or andexanet) predict in-hospital mortality and the need for surgical evacuation, and does the association differ between warfarin-associated and direct-oral-anticoagulant-associated bleeds?",
+          "question_es": "En la hemorragia intracerebral asociada a anticoagulación, ¿el tiempo desde la llegada al hospital hasta la administración del agente reversor (CCP de 4 factores, vitamina K, idarucizumab o andexanet) predice la mortalidad intrahospitalaria y la necesidad de evacuación quirúrgica, y difiere la asociación entre hemorragias asociadas a warfarina y a anticoagulantes orales directos?",
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Door-to-reversal time is the one modifiable process measure in anticoagulated ICH, and no head-to-head trial compares the agents — so real-world timing data is what a protocol committee actually has to work with.",
+          "outcome_measure": "In-hospital mortality; secondary: craniotomy or EVD placement and thromboembolic complications",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "No head-to-head trial exists and published observational work is registry-based; the door-to-reversal interval with drug-level administration timestamps and a DOAC-versus-warfarin interaction has not been analysed in MIMIC-IV. Note the catalogue already has a trauma-side question on pre-injury anticoagulation (mimic-iv-ntq3) — this one is spontaneous ICH and is about the reversal process, not the exposure.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-ich-evacuation-emulation",
+          "question_en": "In supratentorial spontaneous intracerebral haemorrhage, does surgical evacuation (craniotomy or minimally invasive procedure coded during the admission) versus continued medical management change in-hospital survival and the odds of discharge home, when the comparison is emulated as a target trial with propensity matching on GCS, age, haemorrhage-related coding and admission physiology?",
+          "question_es": "En la hemorragia intracerebral espontánea supratentorial, ¿la evacuación quirúrgica (craneotomía o procedimiento mínimamente invasivo codificado durante el ingreso) frente al manejo médico continuado modifica la supervivencia intrahospitalaria y la probabilidad de alta a domicilio, emulando la comparación como ensayo diana con emparejamiento por puntaje de propensión sobre GCS, edad, codificación de la hemorragia y fisiología al ingreso?",
+          "difficulty": 5,
+          "effort_weeks": 14,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "STICH I and II were neutral and ENRICH reopened the question for minimally invasive evacuation, which means the surgical decision at 2 a.m. is still made on intuition about which clot and which patient.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; secondary: ICU length of stay and tracheostomy",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Trial evidence covers the randomised comparison but not the real-world population outside trial eligibility; an ICU-database emulation with immortal-time handling and disposition endpoints for the ICD-coded evacuation decision has not been reported. Case-mix confounding by indication is severe and must be stated as the main limitation.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-ivh-evd-shunt",
+          "question_en": "Among ICU patients with intraventricular extension of intracerebral or subarachnoid haemorrhage who receive an external ventricular drain, which admission variables predict conversion to a permanent shunt during the same admission, and does the timing of drain placement change that risk?",
+          "question_es": "Entre los pacientes de UCI con extensión intraventricular de hemorragia intracerebral o subaracnoidea que reciben un drenaje ventricular externo, ¿qué variables al ingreso predicen la conversión a derivación permanente durante el mismo ingreso, y modifica ese riesgo el momento de colocación del drenaje?",
+          "difficulty": 3,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Shunt dependence is the outcome families ask about first and the one that determines discharge destination, yet the decision to place and when to wean an EVD is governed by local habit.",
+          "outcome_measure": "Ventriculoperitoneal shunt placement during the admission; secondary: EVD days, ventriculitis coding, discharge disposition",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Shunt-dependence predictors come mostly from single-centre neurosurgical series; the ICD-procedure-based operationalisation across a general ICU database, and the drain-timing contrast, have not been published, though procedure coding will misclassify some drains and that must be quantified.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-stroke-glucose-strategy",
+          "question_en": "In ICU patients with acute ischaemic stroke and hyperglycaemia, does intensive glucose control by insulin infusion versus sliding-scale subcutaneous insulin associate with in-hospital mortality, hypoglycaemic events and discharge disposition?",
+          "question_es": "En pacientes de UCI con ictus isquémico agudo e hiperglucemia, ¿el control intensivo de glucosa con infusión de insulina frente a insulina subcutánea en pauta móvil se asocia a mortalidad intrahospitalaria, episodios de hipoglucemia y destino al alta?",
+          "difficulty": 3,
+          "effort_weeks": 10,
+          "skills": [
+            "python",
+            "statistics",
+            "causal-inference",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "SHINE showed no benefit and more hypoglycaemia from tight control, but units carried on with insulin infusions out of habit — real-world data show what that habit costs.",
+          "outcome_measure": "In-hospital mortality and discharge disposition; safety endpoint: glucose below 40 mg/dL",
+          "subspecialty": "vascular",
+          "clinical_verdict": "well-studied",
+          "novelty": "partial",
+          "still_open_because": "SHINE answered the randomised question in a broader stroke population; what remains is the ICU-specific comparison of delivery route with hypoglycaemia as a co-primary safety endpoint, which trial data are underpowered to characterise.",
+          "feasibility": "feasible"
+        },
+        {
+          "id": "vascular-icu-stroke-sedation-exam",
+          "question_en": "In mechanically ventilated ICU patients with ischaemic or haemorrhagic stroke, does a higher frequency of documented sedation interruption and neurological examination associate with earlier detection of deterioration — proxied by time to the first new head CT order or emergency neurosurgical procedure — and with in-hospital mortality?",
+          "question_es": "En pacientes de UCI con ictus isquémico o hemorrágico bajo ventilación mecánica, ¿una mayor frecuencia de interrupción de sedación y de exploración neurológica documentada se asocia a una detección más precoz del deterioro —medida como tiempo hasta la primera nueva petición de TC craneal o procedimiento neuroquirúrgico urgente— y a la mortalidad intrahospitalaria?",
+          "difficulty": 4,
+          "effort_weeks": 11,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "The neuro-ICU trade-off between sedation for ventilator synchrony and the wake-up test for a reliable exam is decided nurse by nurse, with no data on whether the exam actually catches deterioration earlier.",
+          "outcome_measure": "Time to first new imaging order or emergency procedure; secondary: in-hospital mortality and ventilator days",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Sedation-interruption trials excluded or underrepresented acute brain injury and no observational study uses documentation frequency as the exposure with time-to-detection as the endpoint; the main threat is that documentation frequency also tracks nurse staffing, which must be adjusted for at the unit level.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-icu-cvt-feasibility",
+          "question_en": "How many ICU admissions with cerebral venous thrombosis (ICD-10 I67.6, I63.6, G08) exist in MIMIC-IV and eICU combined, what is their anticoagulation pattern and in-hospital mortality, and what is the minimum effect size a study of this cohort could detect — that is, is this rare disease answerable at all in open ICU data?",
+          "question_es": "¿Cuántos ingresos de UCI con trombosis venosa cerebral (CIE-10 I67.6, I63.6, G08) hay en MIMIC-IV y eICU combinados, cuál es su patrón de anticoagulación y su mortalidad intrahospitalaria, y cuál es el tamaño de efecto mínimo detectable en esta cohorte, es decir, ¿es esta enfermedad rara siquiera abordable con datos abiertos de UCI?",
+          "difficulty": 2,
+          "effort_weeks": 6,
+          "skills": [
+            "python",
+            "statistics",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "eicu-crd"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Cerebral venous thrombosis is the cerebrovascular emergency that residents most often manage without evidence, and knowing whether open ICU data can support any question about it saves a student from a doomed project.",
+          "outcome_measure": "Cohort size and event counts; formal minimum detectable effect (sensitivity analysis) for in-hospital mortality",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Feasibility-and-precision papers are rarely written but are exactly what the next student needs; no published counts of CVT phenotyping in MIMIC-IV/eICU with a minimum-detectable-effect analysis exist. The honest likely result is an underpowered null, which is still a publishable precision statement.",
+          "feasibility": "feasible"
         }
       ],
       "descriptor_doi": "10.1038/s41597-022-01899-x",
@@ -2632,6 +3084,27 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "vascular-openneuro-imaging-inventory",
+          "question_en": "What cerebrovascular imaging actually exists in OpenNeuro — how many BIDS datasets contain stroke, haemorrhage, aneurysm, arteriovenous-malformation or cavernoma participants, with what modalities, sample sizes and lesion annotations — and which of them can support a lesion-symptom or segmentation project that a student could finish in a semester?",
+          "question_es": "¿Qué imagen cerebrovascular existe realmente en OpenNeuro —cuántos datasets BIDS contienen participantes con ictus, hemorragia, aneurisma, malformación arteriovenosa o cavernoma, con qué modalidades, tamaños muestrales y anotaciones de lesión— y cuáles pueden sostener un proyecto de lesión-síntoma o de segmentación que un estudiante termine en un semestre?",
+          "difficulty": 2,
+          "effort_weeks": 6,
+          "skills": [
+            "python",
+            "neuroimaging",
+            "validation"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Every cerebrovascular imaging project starts with a week wasted discovering that the data does not exist; an inventory turns that week into a resource for everyone who comes next.",
+          "outcome_measure": "A verified inventory table (dataset accession, modality, n, lesion masks yes/no, licence) plus a shortlist of semester-feasible projects",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "No cerebrovascular-specific inventory of OpenNeuro exists, and the catalogue's own gap analysis shows that the largest curated stroke-lesion resource (ATLAS v2.0, 1,271 subjects) lives outside OpenNeuro — which is itself the finding a student should document.",
+          "feasibility": "feasible"
         }
       ],
       "descriptor_doi": "10.7554/eLife.71774",
@@ -3220,6 +3693,163 @@
           "status": "open",
           "unverified": true,
           "confidence": 0.2
+        },
+        {
+          "id": "vascular-genetics-ccm-penetrance",
+          "question_en": "Among UK Biobank participants with exome sequencing, what is the population penetrance of loss-of-function variants in KRIT1, CCM2 and PDCD10 — that is, what fraction of unselected carriers ever receive a cavernous-malformation, intracranial-haemorrhage or epilepsy diagnosis in linked hospital records, and how does that compare with the ~80-90% penetrance quoted from affected families?",
+          "question_es": "Entre los participantes del UK Biobank con secuenciación de exoma, ¿cuál es la penetrancia poblacional de las variantes de pérdida de función en KRIT1, CCM2 y PDCD10, es decir, qué fracción de portadores no seleccionados llega a recibir un diagnóstico de malformación cavernosa, hemorragia intracraneal o epilepsia en los registros hospitalarios vinculados, y cómo se compara con la penetrancia del ~80-90% citada a partir de familias afectadas?",
+          "difficulty": 5,
+          "effort_weeks": 15,
+          "skills": [
+            "python",
+            "genomics",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Penetrance figures for cavernoma genes come from families ascertained because they were symptomatic, so the number a neurosurgeon quotes to an incidentally-found carrier is almost certainly too high — and the counselling depends entirely on that number.",
+          "outcome_measure": "Cumulative incidence by age of ICD-coded cavernous malformation (D18.02/Q28.3), intracranial haemorrhage (I60-I62) and epilepsy (G40) in carriers versus non-carriers; secondary: lesions visible on the imaging subsample",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Published CCM penetrance estimates come from clinically ascertained pedigrees; no population-scale, unselected estimate from biobank exomes with linked hospital diagnoses has been published, and the ascertainment-free design is exactly what makes the answer new. Expect few carriers — the analysis plan must include the minimum detectable penetrance up front.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-genetics-hht-avm-penetrance",
+          "question_en": "In UK Biobank exomes, do carriers of predicted loss-of-function variants in ENG, ACVRL1 and SMAD4 — the hereditary haemorrhagic telangiectasia genes behind most brain arteriovenous malformations with a genetic cause — show a raised rate of ICD-coded cerebral arteriovenous malformation (Q28.2), intracranial haemorrhage and epistaxis, and what fraction of carriers have no HHT diagnosis at all?",
+          "question_es": "En los exomas del UK Biobank, ¿los portadores de variantes de pérdida de función predicha en ENG, ACVRL1 y SMAD4 —los genes de la telangiectasia hemorrágica hereditaria responsables de la mayoría de las malformaciones arteriovenosas cerebrales de causa genética— presentan una tasa elevada de malformación arteriovenosa cerebral codificada (Q28.2), hemorragia intracraneal y epistaxis, y qué fracción de portadores no tiene ningún diagnóstico de THH?",
+          "difficulty": 5,
+          "effort_weeks": 15,
+          "skills": [
+            "python",
+            "genomics",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Brain AVMs are the cerebrovascular lesion with the least data and the hardest counselling; if a large fraction of gene-positive people in the population never get diagnosed, current screening recommendations rest on a biased denominator.",
+          "outcome_measure": "Prevalence ratio of Q28.2, I60-I62 and epistaxis codes in carriers versus non-carriers; secondary: proportion of carriers with no HHT-related code (underdiagnosis fraction)",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "A 2024 study estimated HHT prevalence from gnomAD allele frequencies of predicted-pathogenic ENG/ACVRL1 variants, but allele frequency is not phenotype; the phenotypic penetrance and the underdiagnosis fraction in a cohort with linked hospital records remain unmeasured. Note that brain AVM coding (Q28.2) is sparse in hospital data and the ceiling of what can be detected must be stated.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1161/CIRCGEN.124.005061",
+              "what_was_done": "HHT prevalence estimated from gnomAD allele frequencies of predicted pathogenic ENG and ACVRL1 variants, no phenotype linkage"
+            }
+          ]
+        },
+        {
+          "id": "vascular-genetics-connective-tissue-aneurysm",
+          "question_en": "Do UK Biobank carriers of pathogenic variants in the connective-tissue and polycystic-kidney genes linked to intracranial aneurysm (COL3A1, PKD1, PKD2, FBN1) have a higher rate of ICD-coded unruptured intracranial aneurysm, subarachnoid haemorrhage and arterial dissection than non-carriers, and is the absolute risk high enough to justify the aneurysm screening that guidelines currently recommend by family history alone?",
+          "question_es": "¿Los portadores en el UK Biobank de variantes patogénicas en genes de tejido conectivo y de riñón poliquístico ligados al aneurisma intracraneal (COL3A1, PKD1, PKD2, FBN1) tienen mayor tasa de aneurisma intracraneal no roto, hemorragia subaracnoidea y disección arterial codificados que los no portadores, y es el riesgo absoluto suficiente para justificar el cribado de aneurismas que las guías recomiendan hoy sólo por historia familiar?",
+          "difficulty": 5,
+          "effort_weeks": 14,
+          "skills": [
+            "python",
+            "genomics",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Screening decisions for unruptured aneurysms are made from family history because the genotype-specific absolute risk in unselected people has never been measured, and screening carries its own harms.",
+          "outcome_measure": "Absolute and relative risk by age of I67.1, I60.x and arterial dissection codes in carriers versus non-carriers",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "Aneurysm risk in these syndromes is quoted from specialist clinic cohorts; the unselected-carrier absolute risk with competing-risk-of-death handling has not been reported, and it is the number a screening guideline actually needs.",
+          "feasibility": "feasible_with_caveat"
+        },
+        {
+          "id": "vascular-genetics-aneurysm-prs-interaction",
+          "question_en": "Does a polygenic risk score for intracranial aneurysm and subarachnoid haemorrhage interact with smoking and blood pressure in UK Biobank — that is, does genetic risk change the absolute benefit a person gets from quitting smoking or treating hypertension, and would a combined score reclassify who should be offered screening?",
+          "question_es": "¿Interactúa una puntuación de riesgo poligénico para aneurisma intracraneal y hemorragia subaracnoidea con el tabaquismo y la presión arterial en el UK Biobank, es decir, modifica el riesgo genético el beneficio absoluto de dejar de fumar o tratar la hipertensión, y reclasificaría una puntuación combinada a quién ofrecer cribado?",
+          "difficulty": 4,
+          "effort_weeks": 13,
+          "skills": [
+            "python",
+            "genomics",
+            "statistics",
+            "validation"
+          ],
+          "extra_datasets": [
+            "pgc"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "Smoking and hypertension are the two modifiable causes of aneurysmal bleeding, and telling a high-genetic-risk patient the size of their own absolute benefit is more persuasive than quoting a population average.",
+          "outcome_measure": "Incident SAH/aneurysm diagnosis; additive and multiplicative interaction terms, plus net reclassification against a clinical-risk-factor model",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "Mendelian randomisation has established that blood pressure causes aneurysm risk (roughly a 70% increase per 10 mmHg of genetically-predicted systolic pressure), and stroke PRS studies exist, but the gene-environment interaction on the absolute-risk scale with a reclassification analysis for screening has not been reported for aneurysm/SAH specifically. Case counts for SAH in UK Biobank are modest and power must be stated first.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1177/23969873231204420",
+              "what_was_done": "Mendelian randomisation of blood pressure and antihypertensives on intracranial aneurysm and aneurysmal SAH risk"
+            }
+          ]
+        },
+        {
+          "id": "vascular-genetics-wmh-mediation",
+          "question_en": "In the UK Biobank imaging subsample, does white-matter hyperintensity volume mediate the association between a stroke polygenic risk score and incident stroke — and if so, could an imaging phenotype substitute for genotype as an earlier, modifiable marker of small-vessel risk?",
+          "question_es": "En la submuestra de imagen del UK Biobank, ¿el volumen de hiperintensidades de sustancia blanca media la asociación entre una puntuación de riesgo poligénico de ictus y el ictus incidente, y podría un fenotipo de imagen sustituir al genotipo como marcador más precoz y modificable de riesgo de pequeño vaso?",
+          "difficulty": 4,
+          "effort_weeks": 13,
+          "skills": [
+            "python",
+            "genomics",
+            "causal-inference",
+            "neuroimaging",
+            "clinical-data"
+          ],
+          "extra_datasets": [
+            "enigma"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "If the genetic risk of stroke acts through visible small-vessel damage, then the MRI a patient already has tells you more, sooner, than a genotype they will never get.",
+          "outcome_measure": "Mediated proportion of the PRS-incident stroke association through WMH volume, with sensitivity analysis for unmeasured mediator-outcome confounding",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "partial",
+          "still_open_because": "The genetic overlap between white-matter measures and lacunar stroke is established, and PRS-incident-stroke associations are published, but the formal mediation decomposition with sensitivity analysis — the step that decides whether imaging can stand in for genotype — has not been done.",
+          "feasibility": "feasible_with_caveat",
+          "prior_work": [
+            {
+              "doi": "10.1161/STROKEAHA.118.020811",
+              "what_was_done": "genetic study of white matter integrity in UK Biobank and overlap with stroke, depression and dementia"
+            }
+          ]
+        },
+        {
+          "id": "vascular-genetics-rnf213-europeans",
+          "question_en": "Are rare RNF213 variants associated with intracranial arterial stenosis, moyamoya-type coding and early-onset ischaemic stroke in the largely European UK Biobank cohort, where the East Asian founder variant p.R4810K is essentially absent — and what is the minimum odds ratio this cohort could detect?",
+          "question_es": "¿Se asocian las variantes raras de RNF213 con estenosis arterial intracraneal, codificación de tipo moyamoya e ictus isquémico de inicio precoz en la cohorte mayoritariamente europea del UK Biobank, donde la variante fundadora asiática p.R4810K está prácticamente ausente, y cuál es el odds ratio mínimo detectable en esta cohorte?",
+          "difficulty": 5,
+          "effort_weeks": 13,
+          "skills": [
+            "python",
+            "genomics",
+            "statistics",
+            "clinical-data"
+          ],
+          "status": "open",
+          "unverified": false,
+          "clinical_rationale": "European moyamoya patients are increasingly sequenced and told something about RNF213 without any population baseline to interpret the result against.",
+          "outcome_measure": "Association of rare RNF213 variant burden with I67.5, intracranial stenosis and early-onset I63 codes; primary deliverable includes the minimum detectable odds ratio",
+          "subspecialty": "vascular",
+          "clinical_verdict": "open",
+          "novelty": "novel",
+          "still_open_because": "RNF213 work is overwhelmingly East Asian; a European population baseline with an explicit power statement has not been published. This question is included with the honest expectation that the answer may be an informative null, and the write-up should be framed that way from the start rather than hunting for a significant subgroup.",
+          "feasibility": "feasible_with_caveat"
         }
       ],
       "descriptor_doi": "10.1371/journal.pmed.1001779",
