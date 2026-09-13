@@ -1,0 +1,102 @@
+{
+  "abcd": {
+    "checked": "2026-09-13",
+    "count": 2460,
+    "doi": "10.1016/j.dcn.2018.03.001"
+  },
+  "adni": {
+    "checked": "2026-09-13",
+    "count": 4468,
+    "doi": "10.1002/jmri.21049"
+  },
+  "bci-competition-iv": {
+    "checked": "2026-09-13",
+    "count": 1275,
+    "doi": "10.3389/fnins.2012.00055"
+  },
+  "brats": {
+    "checked": "2026-09-13",
+    "count": 6810,
+    "doi": "10.1109/tmi.2014.2377694"
+  },
+  "chb-mit": {
+    "checked": "2026-09-13",
+    "count": 50,
+    "doi": "10.13026/c2k01r"
+  },
+  "eicu-crd": {
+    "checked": "2026-09-13",
+    "count": 2007,
+    "doi": "10.1038/sdata.2018.178"
+  },
+  "enigma": {
+    "checked": "2026-09-13",
+    "count": 891,
+    "doi": "10.1007/s11682-013-9269-5"
+  },
+  "mimic-iv": {
+    "checked": "2026-09-13",
+    "count": 3227,
+    "doi": "10.1038/s41597-022-01899-x"
+  },
+  "moabb": {
+    "checked": "2026-09-13",
+    "count": 197,
+    "doi": "10.1088/1741-2552/aadea0"
+  },
+  "oasis": {
+    "checked": "2026-09-13",
+    "count": 808,
+    "doi": "10.1101/2019.12.13.19014902"
+  },
+  "openneuro": {
+    "checked": "2026-09-13",
+    "count": 397,
+    "doi": "10.7554/elife.71774"
+  },
+  "openneuro-ds008055": {
+    "checked": "2026-09-13",
+    "count": 0,
+    "doi": "10.18112/openneuro.ds008055.v1.0.4"
+  },
+  "openneuro-ds008064": {
+    "checked": "2026-09-13",
+    "count": 0,
+    "doi": "10.18112/openneuro.ds008064.v1.0.0"
+  },
+  "openneuro-ds008066": {
+    "checked": "2026-09-13",
+    "count": 0,
+    "doi": "10.18112/openneuro.ds008066.v1.0.0"
+  },
+  "openneuro-ds008108": {
+    "checked": "2026-09-13",
+    "count": 0,
+    "doi": "10.18112/openneuro.ds008108.v1.0.0"
+  },
+  "pgc": {
+    "checked": "2026-09-13",
+    "count": 694,
+    "doi": "10.1176/appi.ajp.2017.17030283"
+  },
+  "ppmi": {
+    "checked": "2026-09-13",
+    "count": 1972,
+    "doi": "10.1016/j.pneurobio.2011.09.005"
+  },
+  "tcia": {
+    "checked": "2026-09-13",
+    "count": 4709,
+    "doi": "10.1007/s10278-013-9622-7"
+  },
+  "tuh-eeg": {
+    "checked": "2026-09-13",
+    "count": 528,
+    "doi": "10.3389/fnins.2016.00196"
+  },
+  "uk-biobank": {
+    "checked": "2026-09-13",
+    "count": 13868,
+    "doi": "10.1371/journal.pmed.1001779"
+  }
+}
