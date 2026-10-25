@@ -1,50 +1,66 @@
-# Weekly dataset scan — 2026-07-21
+# Weekly dataset scan — 2026-10-25
 
-- Candidatos nuevos: **28**
-- Dudosos (requieren triaje LLM): **30**
-- Rechazados: **32**
-- Duplicados colapsados: **0**
+- Candidatos nuevos: **5423**
+- Dudosos (requieren triaje LLM): **9244**
+- Rechazados: **14042**
+- Duplicados colapsados: **87**
 
 ## Por fuente
 
 | Fuente | Traídos | Nuevos |
 |---|---:|---:|
-| crossref | 30 | 30 |
-| openneuro | 30 | 30 |
-| dandi | 30 | 30 |
+| crossref | 28505 | 28480 |
+| openneuro | 88 | 88 |
+| dandi | 0 | 0 |
+| citedby | 37 | 36 |
+| openalex | 8 | 6 |
+| zenodo | 78 | 26 |
+| europepmc | 80 | 73 |
 
 ## Candidatos a enriquecer
 
 | Puntaje | Título | Fuente | Enlace |
 |---:|---|---|---|
-| 37 | A Comprehensive Multimodal Dataset for Investigating Cognitive Impairment in Obs | OpenNeuro | https://openneuro.org/datasets/ds008108 |
-| 29 | Choice Overload fMRI Dataset | OpenNeuro | https://openneuro.org/datasets/ds008066 |
-| 28 | Individualized fMRI-guided rTMS combined with Self-System Therapy versus mindful | OpenNeuro | https://openneuro.org/datasets/ds008064 |
-| 28 | Scientific Creativity MRI Dataset | OpenNeuro | https://openneuro.org/datasets/ds008055 |
-| 27 | A neuroimaging dataset during sequential color qualia similarity judgments with  | Crossref | https://doi.org/10.1038/s41597-025-04511-0 |
-| 27 | Evaluating Approaches for Inference Testing of Whole-Brain Densely Sampled Singl | OpenNeuro | https://openneuro.org/datasets/ds008070 |
-| 26 | A large-scale dataset of pre- and postsurgical MRI data from patients with chron | Crossref | https://doi.org/10.1038/s41597-025-06311-y |
-| 26 | The neural dynamics of working memory and transcranial magnetic stimulation | OpenNeuro | https://openneuro.org/datasets/ds008037 |
-| 24 | Whole genome and exome sequencing reference datasets from a multi-center and cro | Crossref | https://doi.org/10.1038/s41597-021-01077-5 |
-| 24 | FNR Effort Study EEG Dataset | OpenNeuro | https://openneuro.org/datasets/ds008104 |
-| 24 | Electrophysiology data from thalamic and cortical neurons during somatosensation | DANDI | https://dandiarchive.org/dandiset/000005 |
-| 23 | Author Correction: Open-access quantitative MRI data of the spinal cord and repr | Crossref | https://doi.org/10.1038/s41597-021-01044-0 |
-| 23 | Precision drawing during task fMRI in healthy adults and individuals with periph | OpenNeuro | https://openneuro.org/datasets/ds008162 |
-| 23 | Hierarchical Priors in Perceptual Uncertainty and Psychosis Proneness | OpenNeuro | https://openneuro.org/datasets/ds008083 |
-| 22 | MindSentences2025 | OpenNeuro | https://openneuro.org/datasets/ds008034 |
-| 22 | Learning regularities in noise (ASRT MEG) | OpenNeuro | https://openneuro.org/datasets/ds008017 |
-| 21 | Allen Institute - Visual Coding - Neuropixels (Brain Observatory 1.1 Stimulus Se | DANDI | https://dandiarchive.org/dandiset/000021 |
-| 21 | Allen Brain Observatory Neuropixels recording | DANDI | https://dandiarchive.org/dandiset/000030 |
-| 20 | Simulated cortical Neuropixels recording with ground truth | DANDI | https://dandiarchive.org/dandiset/000028 |
-| 18 | Auditory-motor EEG (one-channel) | OpenNeuro | https://openneuro.org/datasets/ds008161 |
-| 18 | ValidPain2 - Performance of the Nociception Level Index and the PainSensor to pr | OpenNeuro | https://openneuro.org/datasets/ds008115 |
-| 18 | Pizza-topping meat/vegetarian word categorization with consumer EEG (EMOTIV EPOC | OpenNeuro | https://openneuro.org/datasets/ds008099 |
-| 18 | Food-image categorization with consumer EEG (vegetarian vs. meat) | OpenNeuro | https://openneuro.org/datasets/ds008092 |
-| 18 | Optimizing parameters for multiband ABRs to continuous speech | OpenNeuro | https://openneuro.org/datasets/ds008065 |
-| 18 | HierarchicalPriors | OpenNeuro | https://openneuro.org/datasets/ds008063 |
-| 18 | EEG and hedonic responses to sonic-seasoning soundscapes | OpenNeuro | https://openneuro.org/datasets/ds008062 |
-| 18 | Not passive sponges: When attention wanes, our brains are less synchronized with | OpenNeuro | https://openneuro.org/datasets/ds008014 |
-| 18 | Human ECoG speaking consonant-vowel syllables | DANDI | https://dandiarchive.org/dandiset/000019 |
+| 81 | The BrainLat project, a multimodal neuroimaging dataset of neurodegeneration fro | Crossref | https://doi.org/10.1038/s41597-023-02806-8 |
+| 69 | A phenome-wide examination of neural and cognitive function | Crossref | https://doi.org/10.1038/sdata.2016.110 |
+| 66 | A mind-brain-body dataset of MRI, EEG, cognition, emotion, and peripheral physio | Crossref | https://doi.org/10.1038/sdata.2018.308 |
+| 65 | PEARL-Neuro Database: EEG, fMRI, health and lifestyle data of middle-aged people | Crossref | https://doi.org/10.1038/s41597-024-03106-5 |
+| 63 | A longitudinal resource for mapping interindividual variation in the aging conne | Crossref | https://doi.org/10.1038/s41597-026-07746-7 |
+| 62 | A lightweight triple-modal fusion network for progressive mild cognitive impairm | Crossref | https://doi.org/10.3389/fnins.2025.1637291 |
+| 59 | High-Density EEG Source Localisation of averaged interictal epileptic Discharges | Crossref | https://doi.org/10.1038/s41597-025-05740-z |
+| 58 | Population-scale cross-disorder atlas of the human prefrontal cortex at single-c | Crossref | https://doi.org/10.1038/s41597-025-04687-5 |
+| 58 | Causal relationships involving brain imaging-derived phenotypes based on UKB ima | Crossref | https://doi.org/10.3389/fnins.2024.1436223 |
+| 57 | The Mexican magnetic resonance imaging dataset of patients with cocaine use diso | Crossref | https://doi.org/10.1038/s41597-022-01251-3 |
+| 57 | ArEEG: an Open-Access Arabic Inner Speech EEG Dataset | Crossref | https://doi.org/10.1038/s41597-025-05387-w |
+| 57 | BRISC: Annotated Dataset for Brain Tumor Segmentation and Classification | Crossref | https://doi.org/10.1038/s41597-026-06753-y |
+| 57 | AMYPAD-PNHS: A Pan-European, Multi-Site &amp; Multimodal MRI Dataset of Older Ad | Crossref | https://doi.org/10.1038/s41597-026-07988-5 |
+| 57 | EEGformer: A transformer–based brain activity classification method using EEG si | Crossref | https://doi.org/10.3389/fnins.2023.1148855 |
+| 57 | Sensation seeking correlates with increased white matter integrity of structures | Crossref | https://doi.org/10.3389/fnins.2023.1267700 |
+| 56 | An EEG motor imagery dataset for brain computer interface in acute stroke patien | Crossref | https://doi.org/10.1038/s41597-023-02787-8 |
+| 55 | A multi-site, multi-disorder resting-state magnetic resonance image database | Crossref | https://doi.org/10.1038/s41597-021-01004-8 |
+| 55 | eldBETA: A Large Eldercare-oriented Benchmark Database of SSVEP-BCI for the Agin | Crossref | https://doi.org/10.1038/s41597-022-01372-9 |
+| 55 | The Queensland Twin Adolescent Brain Project, a longitudinal study of adolescent | Crossref | https://doi.org/10.1038/s41597-023-02038-w |
+| 55 | An Open-Access Multi-modal Dataset for Cognitive, Motor and Cognitive-Motor Task | Crossref | https://doi.org/10.1038/s41597-026-08125-y |
+| 55 | A neuroimaging atlas of the nigrosomes in the substantia nigra based on 3D histo | Crossref | https://doi.org/10.1038/s41597-026-08133-y |
+| 55 | Combining Neuroimaging and Omics Datasets for Disease Classification Using Graph | Crossref | https://doi.org/10.3389/fnins.2022.866666 |
+| 55 | Early detection and classification of Alzheimer’s disease through data fusion of | Crossref | https://doi.org/10.3389/fnins.2025.1554015 |
+| 55 | Applications of functional ultrasound brain-computer interfaces in neurological  | Crossref | https://doi.org/10.3389/fnins.2026.1946753 |
+| 54 | A behavioral and brain imaging dataset with focus on emotion regulation of women | Crossref | https://doi.org/10.1038/s41597-022-01677-9 |
+| 54 | Comparison of deep learning architectures for predicting amyloid positivity in A | Crossref | https://doi.org/10.3389/fnins.2024.1387196 |
+| 53 | Enhancing studies of the connectome in autism using the autism brain imaging dat | Crossref | https://doi.org/10.1038/sdata.2017.10 |
+| 53 | Bile acids targeted metabolomics and medication classification data in the ADNI1 | Crossref | https://doi.org/10.1038/s41597-019-0181-8 |
+| 53 | A magnetoencephalography dataset for motor and cognitive imagery-based brain-com | Crossref | https://doi.org/10.1038/s41597-021-00899-7 |
+| 53 | Neurocognitive aging data release with behavioral, structural and multi-echo fun | Crossref | https://doi.org/10.1038/s41597-022-01231-7 |
+| 53 | An open-access dataset of naturalistic viewing using simultaneous EEG-fMRI | Crossref | https://doi.org/10.1038/s41597-023-02458-8 |
+| 53 | Multimodal single-neuron, intracranial EEG, and fMRI brain responses during movi | Crossref | https://doi.org/10.1038/s41597-024-03029-1 |
+| 52 | Intracranial electrophysiological recordings from the human brain during memory  | Crossref | https://doi.org/10.1038/s41597-021-01099-z |
+| 52 | A large EEG dataset for studying cross-session variability in motor imagery brai | Crossref | https://doi.org/10.1038/s41597-022-01647-1 |
+| 52 | A synchronized multimodal neuroimaging dataset for studying brain language proce | Crossref | https://doi.org/10.1038/s41597-022-01708-5 |
+| 52 | Open multi-session and multi-task EEG cognitive Dataset for passive brain-comput | Crossref | https://doi.org/10.1038/s41597-022-01898-y |
+| 52 | An Open Science MRI Database of over 100 Synaesthetic Brains and Accompanying De | Crossref | https://doi.org/10.1038/s41597-023-02664-4 |
+| 52 | NIRS-BIDS: Brain Imaging Data Structure Extended to Near-Infrared Spectroscopy | Crossref | https://doi.org/10.1038/s41597-024-04136-9 |
+| 52 | A multi-day and high-quality EEG dataset for motor imagery brain-computer interf | Crossref | https://doi.org/10.1038/s41597-025-04826-y |
+| 51 | Targeted metabolomics and medication classification data from participants in th | Crossref | https://doi.org/10.1038/sdata.2017.140 |
 
 ---
 

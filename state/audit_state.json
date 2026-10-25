@@ -1,30 +1,153 @@
 {
+  "10-1038-s41597-025-04511-0": {
+    "access_page_sha256": "2cb5ce528c0605f558f1e14b70cccea1aee64cb5f064bf727f4ad224612d91a6",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25",
+    "redirects_to": "https://www.nature.com/articles/s41597-025-04511-0?error=cookies_not_supported&code=ba1fdd71-624c-498b-90d0-dbbde4029aba"
+  },
+  "10-1038-s41597-025-06311-y": {
+    "access_page_sha256": "3c3f7163a88a7dcef65b546f1babc3555487ea80538086692e3c21bbc567dc19",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25",
+    "redirects_to": "https://www.nature.com/articles/s41597-025-06311-y?error=cookies_not_supported&code=6a2bf3d1-b755-48f5-90ff-7520948220ca"
+  },
+  "abcd": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
   "adni": {
     "access_page_sha256": "6a6972b71314435b7d73c3023ad6605fd364ad5a0b7e30a52d4923b5f003d4c6",
-    "checked": "2026-07-21",
+    "checked": "2026-10-25",
     "fail_streak": 0,
     "http_status": 200,
-    "last_ok": "2026-07-21"
+    "last_ok": "2026-10-25"
+  },
+  "bci-competition-iv": {
+    "access_page_sha256": "8f865f57f8638202c65d9d2dfb8fe1e08885e7f0bede048d2aab503fc8627215",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "brats": {
+    "access_page_sha256": "8b300bc9e826cd4f604820dafa96cafbc1847401ebb8a912daa27021eded1841",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25",
+    "redirects_to": "https://www.synapse.org/Synapse:syn53708126"
+  },
+  "chb-mit": {
+    "access_page_sha256": "d1398a5a3006a2cdcc2f7b89b40f1cdca02f01530cc7abdb3a9bee1178642d60",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
   },
   "eicu-crd": {
-    "access_page_sha256": "b91abd74372edb2f41fe6b60e21b4ebf36374c9bff863bc7be8609732fbd8438",
-    "checked": "2026-07-21",
+    "access_changed_at": "2026-10-25",
+    "access_page_sha256": "3e0d9e9a22ee73340deeff6a6dc604eaf8fcfefa9ad422a4d39d36217bede7f6",
+    "access_recheck": true,
+    "checked": "2026-10-25",
     "fail_streak": 0,
     "http_status": 200,
-    "last_ok": "2026-07-21"
+    "last_ok": "2026-10-25"
+  },
+  "enigma": {
+    "access_page_sha256": "f6552165c01ab91f1e4000f290fbcfbc185a20cb0f85bee3fb59a8a7e954fa84",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
   },
   "mimic-iv": {
-    "access_page_sha256": "5e568ab4587e44262e030339482d7afe1a495e7263a219969d5bd064fa9df9d3",
-    "checked": "2026-07-21",
+    "access_changed_at": "2026-10-25",
+    "access_page_sha256": "52f72b11a58ebdaee6a13da74b6e947f3732da09e6d3b1ee6c61b4f569608d97",
+    "access_recheck": true,
+    "checked": "2026-10-25",
     "fail_streak": 0,
     "http_status": 200,
-    "last_ok": "2026-07-21"
+    "last_ok": "2026-10-25"
+  },
+  "moabb": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "oasis": {
+    "access_page_sha256": "82774e3b943ce63f30ae098627c2a374e48b202d4cda2238d410b47100b0f432",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "openneuro": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "openneuro-ds008055": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "openneuro-ds008064": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "openneuro-ds008066": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "openneuro-ds008108": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "pgc": {
+    "access_page_sha256": "8e84a4b836730f5dae18398b1dc2cef16a6f5d878667a0a28a63cc8bd7efdf61",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
   },
   "ppmi": {
     "access_page_sha256": "b42a2660f48b1078f8e536bbb7c43a900a6a571b4297ea60cba735db8e59bf1e",
-    "checked": "2026-07-21",
+    "checked": "2026-10-25",
     "fail_streak": 0,
     "http_status": 200,
-    "last_ok": "2026-07-21"
+    "last_ok": "2026-10-25"
+  },
+  "tcia": {
+    "checked": "2026-10-25",
+    "fail_streak": 1,
+    "http_status": 0
+  },
+  "tuh-eeg": {
+    "access_page_sha256": "6ebd6fa1b191f7a5d75037cf57ec7c114a0553be0367f5c563f8ae873a6b4804",
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 200,
+    "last_ok": "2026-10-25"
+  },
+  "uk-biobank": {
+    "checked": "2026-10-25",
+    "fail_streak": 0,
+    "http_status": 403,
+    "last_ok": "2026-10-25"
   }
 }
